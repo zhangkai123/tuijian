@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4BFA998F18AFA19200D673CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA998E18AFA19200D673CB /* Foundation.framework */; };
+		4BFA999118AFA19200D673CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA999018AFA19200D673CB /* CoreGraphics.framework */; };
+		4BFA999318AFA19200D673CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA999218AFA19200D673CB /* UIKit.framework */; };
+		4BFA999918AFA19200D673CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BFA999718AFA19200D673CB /* InfoPlist.strings */; };
+		4BFA999B18AFA19200D673CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFA999A18AFA19200D673CB /* main.m */; };
+		4BFA999F18AFA19200D673CB /* TJAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFA999E18AFA19200D673CB /* TJAppDelegate.m */; };
+		4BFA99A118AFA19200D673CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BFA99A018AFA19200D673CB /* Images.xcassets */; };
+		4BFA99A818AFA19200D673CB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA99A718AFA19200D673CB /* XCTest.framework */; };
+		4BFA99A918AFA19200D673CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA998E18AFA19200D673CB /* Foundation.framework */; };
+		4BFA99AA18AFA19200D673CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA999218AFA19200D673CB /* UIKit.framework */; };
+		4BFA99B218AFA19200D673CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BFA99B018AFA19200D673CB /* InfoPlist.strings */; };
+		4BFA99B418AFA19200D673CB /* TuijianTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFA99B318AFA19200D673CB /* TuijianTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4BFA99AB18AFA19200D673CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BFA998318AFA19200D673CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4BFA998A18AFA19200D673CB;
+			remoteInfo = Tuijian;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4BFA998B18AFA19200D673CB /* Tuijian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuijian.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BFA998E18AFA19200D673CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4BFA999018AFA19200D673CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4BFA999218AFA19200D673CB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4BFA999618AFA19200D673CB /* Tuijian-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tuijian-Info.plist"; sourceTree = "<group>"; };
+		4BFA999818AFA19200D673CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4BFA999A18AFA19200D673CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4BFA999C18AFA19200D673CB /* Tuijian-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tuijian-Prefix.pch"; sourceTree = "<group>"; };
+		4BFA999D18AFA19200D673CB /* TJAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJAppDelegate.h; sourceTree = "<group>"; };
+		4BFA999E18AFA19200D673CB /* TJAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJAppDelegate.m; sourceTree = "<group>"; };
+		4BFA99A018AFA19200D673CB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4BFA99A618AFA19200D673CB /* TuijianTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuijianTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BFA99A718AFA19200D673CB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		4BFA99AF18AFA19200D673CB /* TuijianTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TuijianTests-Info.plist"; sourceTree = "<group>"; };
+		4BFA99B118AFA19200D673CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4BFA99B318AFA19200D673CB /* TuijianTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TuijianTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4BFA998818AFA19200D673CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BFA999118AFA19200D673CB /* CoreGraphics.framework in Frameworks */,
+				4BFA999318AFA19200D673CB /* UIKit.framework in Frameworks */,
+				4BFA998F18AFA19200D673CB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BFA99A318AFA19200D673CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BFA99A818AFA19200D673CB /* XCTest.framework in Frameworks */,
+				4BFA99AA18AFA19200D673CB /* UIKit.framework in Frameworks */,
+				4BFA99A918AFA19200D673CB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4BFA998218AFA19200D673CB = {
+			isa = PBXGroup;
+			children = (
+				4BFA999418AFA19200D673CB /* Tuijian */,
+				4BFA99AD18AFA19200D673CB /* TuijianTests */,
+				4BFA998D18AFA19200D673CB /* Frameworks */,
+				4BFA998C18AFA19200D673CB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4BFA998C18AFA19200D673CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4BFA998B18AFA19200D673CB /* Tuijian.app */,
+				4BFA99A618AFA19200D673CB /* TuijianTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4BFA998D18AFA19200D673CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4BFA998E18AFA19200D673CB /* Foundation.framework */,
+				4BFA999018AFA19200D673CB /* CoreGraphics.framework */,
+				4BFA999218AFA19200D673CB /* UIKit.framework */,
+				4BFA99A718AFA19200D673CB /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4BFA999418AFA19200D673CB /* Tuijian */ = {
+			isa = PBXGroup;
+			children = (
+				4BFA999D18AFA19200D673CB /* TJAppDelegate.h */,
+				4BFA999E18AFA19200D673CB /* TJAppDelegate.m */,
+				4BFA99A018AFA19200D673CB /* Images.xcassets */,
+				4BFA999518AFA19200D673CB /* Supporting Files */,
+			);
+			path = Tuijian;
+			sourceTree = "<group>";
+		};
+		4BFA999518AFA19200D673CB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4BFA999618AFA19200D673CB /* Tuijian-Info.plist */,
+				4BFA999718AFA19200D673CB /* InfoPlist.strings */,
+				4BFA999A18AFA19200D673CB /* main.m */,
+				4BFA999C18AFA19200D673CB /* Tuijian-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4BFA99AD18AFA19200D673CB /* TuijianTests */ = {
+			isa = PBXGroup;
+			children = (
+				4BFA99B318AFA19200D673CB /* TuijianTests.m */,
+				4BFA99AE18AFA19200D673CB /* Supporting Files */,
+			);
+			path = TuijianTests;
+			sourceTree = "<group>";
+		};
+		4BFA99AE18AFA19200D673CB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4BFA99AF18AFA19200D673CB /* TuijianTests-Info.plist */,
+				4BFA99B018AFA19200D673CB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4BFA998A18AFA19200D673CB /* Tuijian */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BFA99B718AFA19200D673CB /* Build configuration list for PBXNativeTarget "Tuijian" */;
+			buildPhases = (
+				4BFA998718AFA19200D673CB /* Sources */,
+				4BFA998818AFA19200D673CB /* Frameworks */,
+				4BFA998918AFA19200D673CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tuijian;
+			productName = Tuijian;
+			productReference = 4BFA998B18AFA19200D673CB /* Tuijian.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4BFA99A518AFA19200D673CB /* TuijianTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BFA99BA18AFA19300D673CB /* Build configuration list for PBXNativeTarget "TuijianTests" */;
+			buildPhases = (
+				4BFA99A218AFA19200D673CB /* Sources */,
+				4BFA99A318AFA19200D673CB /* Frameworks */,
+				4BFA99A418AFA19200D673CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4BFA99AC18AFA19200D673CB /* PBXTargetDependency */,
+			);
+			name = TuijianTests;
+			productName = TuijianTests;
+			productReference = 4BFA99A618AFA19200D673CB /* TuijianTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4BFA998318AFA19200D673CB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TJ;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "zhang kai";
+				TargetAttributes = {
+					4BFA99A518AFA19200D673CB = {
+						TestTargetID = 4BFA998A18AFA19200D673CB;
+					};
+				};
+			};
+			buildConfigurationList = 4BFA998618AFA19200D673CB /* Build configuration list for PBXProject "Tuijian" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4BFA998218AFA19200D673CB;
+			productRefGroup = 4BFA998C18AFA19200D673CB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4BFA998A18AFA19200D673CB /* Tuijian */,
+				4BFA99A518AFA19200D673CB /* TuijianTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4BFA998918AFA19200D673CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BFA999918AFA19200D673CB /* InfoPlist.strings in Resources */,
+				4BFA99A118AFA19200D673CB /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BFA99A418AFA19200D673CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BFA99B218AFA19200D673CB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4BFA998718AFA19200D673CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BFA999F18AFA19200D673CB /* TJAppDelegate.m in Sources */,
+				4BFA999B18AFA19200D673CB /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BFA99A218AFA19200D673CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BFA99B418AFA19200D673CB /* TuijianTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4BFA99AC18AFA19200D673CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4BFA998A18AFA19200D673CB /* Tuijian */;
+			targetProxy = 4BFA99AB18AFA19200D673CB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4BFA999718AFA19200D673CB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BFA999818AFA19200D673CB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4BFA99B018AFA19200D673CB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BFA99B118AFA19200D673CB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4BFA99B518AFA19200D673CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4BFA99B618AFA19200D673CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4BFA99B818AFA19200D673CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tuijian/Tuijian-Prefix.pch";
+				INFOPLIST_FILE = "Tuijian/Tuijian-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4BFA99B918AFA19200D673CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tuijian/Tuijian-Prefix.pch";
+				INFOPLIST_FILE = "Tuijian/Tuijian-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		4BFA99BB18AFA19300D673CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Tuijian.app/Tuijian";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tuijian/Tuijian-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TuijianTests/TuijianTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		4BFA99BC18AFA19300D673CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Tuijian.app/Tuijian";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tuijian/Tuijian-Prefix.pch";
+				INFOPLIST_FILE = "TuijianTests/TuijianTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4BFA998618AFA19200D673CB /* Build configuration list for PBXProject "Tuijian" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BFA99B518AFA19200D673CB /* Debug */,
+				4BFA99B618AFA19200D673CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BFA99B718AFA19200D673CB /* Build configuration list for PBXNativeTarget "Tuijian" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BFA99B818AFA19200D673CB /* Debug */,
+				4BFA99B918AFA19200D673CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4BFA99BA18AFA19300D673CB /* Build configuration list for PBXNativeTarget "TuijianTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BFA99BB18AFA19300D673CB /* Debug */,
+				4BFA99BC18AFA19300D673CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4BFA998318AFA19200D673CB /* Project object */;
+}
