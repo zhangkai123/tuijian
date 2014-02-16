@@ -7,14 +7,19 @@
 //
 
 #import "TJAppDelegate.h"
+#import "TJShowViewController.h"
 
 @implementation TJAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    TJShowViewController *showViewController = [[TJShowViewController alloc]init];
+    self.navigationController = [[UINavigationController alloc]initWithRootViewController:showViewController];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     return YES;
 }
