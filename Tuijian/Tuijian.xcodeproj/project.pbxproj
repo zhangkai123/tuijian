@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */; };
+		4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */; };
+		4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */; };
+		4B543FD218B4FBA50052DFDD /* TJCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B543FD118B4FBA50052DFDD /* TJCropViewController.m */; };
 		4B7A421018B0CF66009356F4 /* TJShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A420F18B0CF66009356F4 /* TJShowViewController.m */; };
 		4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A421318B0DCE2009356F4 /* camera_18_2x.png */; };
+		4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D07D18B394690055D40B /* AVCamPreviewView.m */; };
+		4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D08018B394A40055D40B /* TJCamViewController.m */; };
 		4BFA998F18AFA19200D673CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA998E18AFA19200D673CB /* Foundation.framework */; };
 		4BFA999118AFA19200D673CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA999018AFA19200D673CB /* CoreGraphics.framework */; };
 		4BFA999318AFA19200D673CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA999218AFA19200D673CB /* UIKit.framework */; };
@@ -34,9 +40,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon-highlighted@2x.png"; sourceTree = "<group>"; };
+		4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon@2x.png"; sourceTree = "<group>"; };
+		4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CameraFlipIcon@2x.png"; sourceTree = "<group>"; };
+		4B543FD018B4FBA50052DFDD /* TJCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCropViewController.h; sourceTree = "<group>"; };
+		4B543FD118B4FBA50052DFDD /* TJCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCropViewController.m; sourceTree = "<group>"; };
 		4B7A420E18B0CF66009356F4 /* TJShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJShowViewController.h; sourceTree = "<group>"; };
 		4B7A420F18B0CF66009356F4 /* TJShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJShowViewController.m; sourceTree = "<group>"; };
 		4B7A421318B0DCE2009356F4 /* camera_18_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_18_2x.png; sourceTree = "<group>"; };
+		4BC7D07C18B394690055D40B /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
+		4BC7D07D18B394690055D40B /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
+		4BC7D07F18B394A40055D40B /* TJCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCamViewController.h; sourceTree = "<group>"; };
+		4BC7D08018B394A40055D40B /* TJCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCamViewController.m; sourceTree = "<group>"; };
 		4BFA998B18AFA19200D673CB /* Tuijian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuijian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BFA998E18AFA19200D673CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4BFA999018AFA19200D673CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -79,6 +94,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B543FC918B4F30B0052DFDD /* camera */ = {
+			isa = PBXGroup;
+			children = (
+				4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */,
+				4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */,
+				4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */,
+			);
+			name = camera;
+			sourceTree = "<group>";
+		};
 		4BFA998218AFA19200D673CB = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +141,12 @@
 				4BFA999E18AFA19200D673CB /* TJAppDelegate.m */,
 				4B7A420E18B0CF66009356F4 /* TJShowViewController.h */,
 				4B7A420F18B0CF66009356F4 /* TJShowViewController.m */,
+				4BC7D07C18B394690055D40B /* AVCamPreviewView.h */,
+				4BC7D07D18B394690055D40B /* AVCamPreviewView.m */,
+				4BC7D07F18B394A40055D40B /* TJCamViewController.h */,
+				4BC7D08018B394A40055D40B /* TJCamViewController.m */,
+				4B543FD018B4FBA50052DFDD /* TJCropViewController.h */,
+				4B543FD118B4FBA50052DFDD /* TJCropViewController.m */,
 				4BFA99A018AFA19200D673CB /* Images.xcassets */,
 				4BFA999518AFA19200D673CB /* Supporting Files */,
 			);
@@ -125,6 +156,7 @@
 		4BFA999518AFA19200D673CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B543FC918B4F30B0052DFDD /* camera */,
 				4B7A421318B0DCE2009356F4 /* camera_18_2x.png */,
 				4BFA999618AFA19200D673CB /* Tuijian-Info.plist */,
 				4BFA999718AFA19200D673CB /* InfoPlist.strings */,
@@ -228,9 +260,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */,
+				4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */,
 				4BFA999918AFA19200D673CB /* InfoPlist.strings in Resources */,
 				4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */,
 				4BFA99A118AFA19200D673CB /* Images.xcassets in Resources */,
+				4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +286,9 @@
 			files = (
 				4B7A421018B0CF66009356F4 /* TJShowViewController.m in Sources */,
 				4BFA999F18AFA19200D673CB /* TJAppDelegate.m in Sources */,
+				4B543FD218B4FBA50052DFDD /* TJCropViewController.m in Sources */,
+				4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */,
+				4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */,
 				4BFA999B18AFA19200D673CB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
