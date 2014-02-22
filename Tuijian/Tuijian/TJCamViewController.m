@@ -52,7 +52,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor darkGrayColor];
     
-    self.previewView = [[AVCamPreviewView alloc]initWithFrame:CGRectMake(10, 50, 300, 350)];
+    self.previewView = [[AVCamPreviewView alloc]initWithFrame:CGRectMake(0, 0, 300, 350)];
     [(AVCaptureVideoPreviewLayer *)self.previewView.layer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     self.previewView.layer.cornerRadius = 5;
     self.previewView.layer.masksToBounds = YES;
