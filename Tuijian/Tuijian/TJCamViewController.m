@@ -17,7 +17,9 @@ static void * CapturingStillImageContext = &CapturingStillImageContext;
 static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDeviceAuthorizedContext;
 
 @interface TJCamViewController ()
-
+{
+    BOOL backPositionCamera;
+}
 @property (nonatomic, retain) AVCamPreviewView *previewView;
 
 // Session management.
@@ -51,6 +53,13 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor darkGrayColor];
+    
+    UIButton *cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(5 , 25, 60, 30)];
+    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    cancelButton.backgroundColor = [UIColor clearColor];
+    [cancelButton addTarget:self action:@selector(cancelTakePhoto) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:cancelButton];
     
     self.previewView = [[AVCamPreviewView alloc]initWithFrame:CGRectMake(0, 0, 300, 350)];
     [(AVCaptureVideoPreviewLayer *)self.previewView.layer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
@@ -124,6 +133,11 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 		}
 	});
 
+    backPositionCamera = YES;
+}
+-(void)cancelTakePhoto
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void) displayContentController: (UIViewController*) content;
 {
@@ -156,6 +170,9 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 				NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
 				UIImage *image = [[UIImage alloc] initWithData:imageData];
 //				[[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
+                if (!backPositionCamera) {
+                    image = [UIImage imageWithCGImage:[image CGImage] scale:image.scale orientation:UIImageOrientationLeftMirrored];
+                }
                 TJCropViewController *cropViewController = [[TJCropViewController alloc]init];
                 cropViewController.thePhoto = image;
                 [self displayContentController:cropViewController];
@@ -178,12 +195,15 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 		{
 			case AVCaptureDevicePositionUnspecified:
 				preferredPosition = AVCaptureDevicePositionBack;
+                backPositionCamera = YES;
 				break;
 			case AVCaptureDevicePositionBack:
 				preferredPosition = AVCaptureDevicePositionFront;
+                backPositionCamera = NO;
 				break;
 			case AVCaptureDevicePositionFront:
 				preferredPosition = AVCaptureDevicePositionBack;
+                backPositionCamera = YES;
 				break;
 		}
 		
