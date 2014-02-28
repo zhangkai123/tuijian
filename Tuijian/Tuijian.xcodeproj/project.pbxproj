@@ -16,6 +16,7 @@
 		4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D07D18B394690055D40B /* AVCamPreviewView.m */; };
 		4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D08018B394A40055D40B /* TJCamViewController.m */; };
 		4BE1636018B869040009158D /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1635F18B869040009158D /* ImageScrollView.m */; };
+		4BE1636318B9D7890009158D /* TJEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1636218B9D7880009158D /* TJEditViewController.m */; };
 		4BFA998F18AFA19200D673CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA998E18AFA19200D673CB /* Foundation.framework */; };
 		4BFA999118AFA19200D673CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA999018AFA19200D673CB /* CoreGraphics.framework */; };
 		4BFA999318AFA19200D673CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA999218AFA19200D673CB /* UIKit.framework */; };
@@ -28,6 +29,8 @@
 		4BFA99AA18AFA19200D673CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA999218AFA19200D673CB /* UIKit.framework */; };
 		4BFA99B218AFA19200D673CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BFA99B018AFA19200D673CB /* InfoPlist.strings */; };
 		4BFA99B418AFA19200D673CB /* TuijianTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFA99B318AFA19200D673CB /* TuijianTests.m */; };
+		4BFB64CC18C07ACA00C304BB /* TJInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB64CB18C07ACA00C304BB /* TJInfoViewController.m */; };
+		4BFB64CF18C07AEC00C304BB /* TJMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB64CE18C07AEC00C304BB /* TJMineViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,8 @@
 		4BC7D08018B394A40055D40B /* TJCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCamViewController.m; sourceTree = "<group>"; };
 		4BE1635E18B869040009158D /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
 		4BE1635F18B869040009158D /* ImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollView.m; sourceTree = "<group>"; };
+		4BE1636118B9D7880009158D /* TJEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJEditViewController.h; sourceTree = "<group>"; };
+		4BE1636218B9D7880009158D /* TJEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJEditViewController.m; sourceTree = "<group>"; };
 		4BFA998B18AFA19200D673CB /* Tuijian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuijian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BFA998E18AFA19200D673CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4BFA999018AFA19200D673CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -71,6 +76,10 @@
 		4BFA99AF18AFA19200D673CB /* TuijianTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TuijianTests-Info.plist"; sourceTree = "<group>"; };
 		4BFA99B118AFA19200D673CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4BFA99B318AFA19200D673CB /* TuijianTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TuijianTests.m; sourceTree = "<group>"; };
+		4BFB64CA18C07ACA00C304BB /* TJInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJInfoViewController.h; sourceTree = "<group>"; };
+		4BFB64CB18C07ACA00C304BB /* TJInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJInfoViewController.m; sourceTree = "<group>"; };
+		4BFB64CD18C07AEC00C304BB /* TJMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMineViewController.h; sourceTree = "<group>"; };
+		4BFB64CE18C07AEC00C304BB /* TJMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMineViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +153,10 @@
 				4BFA999E18AFA19200D673CB /* TJAppDelegate.m */,
 				4B7A420E18B0CF66009356F4 /* TJShowViewController.h */,
 				4B7A420F18B0CF66009356F4 /* TJShowViewController.m */,
+				4BFB64CA18C07ACA00C304BB /* TJInfoViewController.h */,
+				4BFB64CB18C07ACA00C304BB /* TJInfoViewController.m */,
+				4BFB64CD18C07AEC00C304BB /* TJMineViewController.h */,
+				4BFB64CE18C07AEC00C304BB /* TJMineViewController.m */,
 				4BC7D07C18B394690055D40B /* AVCamPreviewView.h */,
 				4BC7D07D18B394690055D40B /* AVCamPreviewView.m */,
 				4BC7D07F18B394A40055D40B /* TJCamViewController.h */,
@@ -152,6 +165,8 @@
 				4B543FD118B4FBA50052DFDD /* TJCropViewController.m */,
 				4BE1635E18B869040009158D /* ImageScrollView.h */,
 				4BE1635F18B869040009158D /* ImageScrollView.m */,
+				4BE1636118B9D7880009158D /* TJEditViewController.h */,
+				4BE1636218B9D7880009158D /* TJEditViewController.m */,
 				4BFA99A018AFA19200D673CB /* Images.xcassets */,
 				4BFA999518AFA19200D673CB /* Supporting Files */,
 			);
@@ -293,9 +308,12 @@
 				4B7A421018B0CF66009356F4 /* TJShowViewController.m in Sources */,
 				4BFA999F18AFA19200D673CB /* TJAppDelegate.m in Sources */,
 				4B543FD218B4FBA50052DFDD /* TJCropViewController.m in Sources */,
+				4BE1636318B9D7890009158D /* TJEditViewController.m in Sources */,
 				4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */,
 				4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */,
+				4BFB64CF18C07AEC00C304BB /* TJMineViewController.m in Sources */,
 				4BFA999B18AFA19200D673CB /* main.m in Sources */,
+				4BFB64CC18C07ACA00C304BB /* TJInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

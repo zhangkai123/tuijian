@@ -8,18 +8,36 @@
 
 #import "TJAppDelegate.h"
 #import "TJShowViewController.h"
+#import "TJInfoViewController.h"
+#import "TJMineViewController.h"
 
 @implementation TJAppDelegate
+@synthesize tabBarController = _tabBarController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSMutableArray *controllersArray = [[NSMutableArray alloc]initWithCapacity:3];
+    
     TJShowViewController *showViewController = [[TJShowViewController alloc]init];
-    self.navigationController = [[UINavigationController alloc]initWithRootViewController:showViewController];
+    UINavigationController *showNavController = [[UINavigationController alloc]initWithRootViewController:showViewController];
+    
+    TJInfoViewController *infoViewController = [[TJInfoViewController alloc]init];
+    UINavigationController *infoNavController = [[UINavigationController alloc]initWithRootViewController:infoViewController];
+
+    TJMineViewController *mineViewController = [[TJMineViewController alloc]init];
+    UINavigationController *mineNavController = [[UINavigationController alloc]initWithRootViewController:mineViewController];
+
+    [controllersArray addObject:showNavController];
+    [controllersArray addObject:infoNavController];
+    [controllersArray addObject:mineNavController];
+    
+    self.tabBarController = [[UITabBarController alloc]init];
+    self.tabBarController.viewControllers = controllersArray;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = self.navigationController;
+    self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
 }

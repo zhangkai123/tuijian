@@ -11,6 +11,7 @@
 @interface TJAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UINavigationController *navigationController;
+@property (nonatomic,retain) UITabBarController *tabBarController;
+//@property (strong, nonatomic) UINavigationController *navigationController;
 
 @end
