@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 zhang kai. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TJBaseViewController.h"
 
-@interface TJCropViewController : UIViewController
+@interface TJCropViewController : TJBaseViewController
 
 
 @property(nonatomic,strong) UIImage *thePhoto;

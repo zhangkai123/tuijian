@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJCamViewController.m"
-            timestampString = "414831314.283215"
+            timestampString = "415336898.055794"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
             landmarkName = "-subjectAreaDidChange:"
             landmarkType = "5">
          </BreakpointContent>

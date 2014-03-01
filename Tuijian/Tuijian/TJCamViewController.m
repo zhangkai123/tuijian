@@ -139,19 +139,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-- (void) displayContentController: (UIViewController*) content;
-{
-    [self addChildViewController:content];
-//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-//    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7")) {
-//        content.view.frame = CGRectMake(0, 44 + 20, 320, screenBounds.size.height - 62);
-//    }else{
-//        content.view.frame = CGRectMake(0, 44, 320, screenBounds.size.height - 44);
-//    }
-    content.view.frame = self.view.frame;
-    [self.view addSubview:content.view];
-    [content didMoveToParentViewController:self];
-}
 
 -(void)takePhoto
 {

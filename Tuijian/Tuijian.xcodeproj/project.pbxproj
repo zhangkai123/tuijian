@@ -31,6 +31,7 @@
 		4BFA99B418AFA19200D673CB /* TuijianTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFA99B318AFA19200D673CB /* TuijianTests.m */; };
 		4BFB64CC18C07ACA00C304BB /* TJInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB64CB18C07ACA00C304BB /* TJInfoViewController.m */; };
 		4BFB64CF18C07AEC00C304BB /* TJMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB64CE18C07AEC00C304BB /* TJMineViewController.m */; };
+		4BFB64D218C187F800C304BB /* TJBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB64D118C187F800C304BB /* TJBaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		4BFB64CB18C07ACA00C304BB /* TJInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJInfoViewController.m; sourceTree = "<group>"; };
 		4BFB64CD18C07AEC00C304BB /* TJMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMineViewController.h; sourceTree = "<group>"; };
 		4BFB64CE18C07AEC00C304BB /* TJMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMineViewController.m; sourceTree = "<group>"; };
+		4BFB64D018C187F800C304BB /* TJBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJBaseViewController.h; sourceTree = "<group>"; };
+		4BFB64D118C187F800C304BB /* TJBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJBaseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +154,8 @@
 			children = (
 				4BFA999D18AFA19200D673CB /* TJAppDelegate.h */,
 				4BFA999E18AFA19200D673CB /* TJAppDelegate.m */,
+				4BFB64D018C187F800C304BB /* TJBaseViewController.h */,
+				4BFB64D118C187F800C304BB /* TJBaseViewController.m */,
 				4B7A420E18B0CF66009356F4 /* TJShowViewController.h */,
 				4B7A420F18B0CF66009356F4 /* TJShowViewController.m */,
 				4BFB64CA18C07ACA00C304BB /* TJInfoViewController.h */,
@@ -310,6 +315,7 @@
 				4B543FD218B4FBA50052DFDD /* TJCropViewController.m in Sources */,
 				4BE1636318B9D7890009158D /* TJEditViewController.m in Sources */,
 				4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */,
+				4BFB64D218C187F800C304BB /* TJBaseViewController.m in Sources */,
 				4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */,
 				4BFB64CF18C07AEC00C304BB /* TJMineViewController.m in Sources */,
 				4BFA999B18AFA19200D673CB /* main.m in Sources */,

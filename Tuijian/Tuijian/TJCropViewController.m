@@ -9,10 +9,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TJCropViewController.h"
 #import "ImageScrollView.h"
+#import "TJEditViewController.h"
 
 @interface TJCropViewController ()
 {
-    UIImageView *imageView;
+    ImageScrollView *imageScrollView;
 }
 @end
 
@@ -48,7 +49,7 @@
     [useButton addTarget:self action:@selector(useCrop) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:useButton];
     
-    ImageScrollView *imageScrollView = [[ImageScrollView alloc]initWithFrame:CGRectMake(0, 0, 300, 350)];
+    imageScrollView = [[ImageScrollView alloc]initWithFrame:CGRectMake(0, 0, 300, 350)];
     imageScrollView.backgroundColor = [UIColor blackColor];
     imageScrollView.layer.cornerRadius = 5;
     imageScrollView.layer.masksToBounds = YES;
@@ -62,15 +63,21 @@
 }
 -(void)useCrop
 {
-    
+    UIImage *cropedImage = [self getImageFromScrollView:imageScrollView];
+    TJEditViewController *editViewController = [[TJEditViewController alloc]init];
+    editViewController.cropedImage = cropedImage;
+    [self displayContentController:editViewController];
 }
--(void)dismissMyViewController: (UIViewController*) content
+-(UIImage *)getImageFromScrollView:(UIScrollView *)theScrollView
 {
-    [content willMoveToParentViewController:nil];
-    [content.view removeFromSuperview];
-    [content removeFromParentViewController];
+    UIGraphicsBeginImageContext(theScrollView.frame.size);
+    CGPoint offset=theScrollView.contentOffset;
+    CGContextTranslateCTM(UIGraphicsGetCurrentContext(), -offset.x, -offset.y);
+    [theScrollView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return viewImage;
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

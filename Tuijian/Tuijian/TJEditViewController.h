@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 zhang kai. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TJBaseViewController.h"
 
-@interface TJEditViewController : UIViewController
+@interface TJEditViewController : TJBaseViewController
 
+@property(nonatomic,strong) UIImage *cropedImage;
 @end
