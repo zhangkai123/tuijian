@@ -11,6 +11,6 @@
 @interface TJNetworkManager : NSObject
 
 +(id)sharedNetworkManager;
-//-(void)sendSinaUserInfoRequest:(NSDictionary *)sinaUserInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
+-(void)sendTencentUserInfoRequest:(NSDictionary *)sinaUserInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 -(void)sendUserTokenToServerForLogin:(NSString *)access_token success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 @end

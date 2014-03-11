@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <TencentOpenAPI/TencentOAuth.h>
+#import "TJUser.h"
 
 @interface TJDiskCacheManager : NSObject
 
@@ -17,9 +18,9 @@
 -(BOOL)getUserLoginMask;
 -(void)saveTencentLoginInfo:(TencentOAuth *)tencentOAuth;
 -(NSDictionary *)getTencentLoginInfo;
-//-(void)saveUserInfo:(ADUser *)user;
+-(void)saveUserInfo:(TJUser *)user;
+-(void)saveUserLoginMask:(BOOL)logined;
 //-(NSDictionary *)getUserInfoFromDisk;
-//-(void)saveUserLoginMask:(BOOL)logined;
 //-(void)saveCurrentEditCourse:(NSDictionary *)dic;
 //-(NSDictionary *)getCurrentEditCourse;
 @end

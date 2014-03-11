@@ -52,29 +52,30 @@
     return tencentUserLoginInfo;
 }
 
-//-(void)saveUserInfo:(ADUser *)user
-//{
-//    NSString *name = [user name];
-//    NSString *gender = [user gender];
-//    NSString *profile_image_url = [user profile_image_url];
-//    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:name,AD_USER_NAME,
-//                              gender,AD_USER_GENDER,
-//                              profile_image_url,AD_USER_IMAGE_URL, nil];
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    [userDefaults setObject:userInfo forKey:AD_USER_INFO];
-//    [userDefaults synchronize];
-//}
+-(void)saveUserInfo:(TJUser *)user
+{
+    NSString *name = [user name];
+    NSString *gender = [user gender];
+    NSString *profile_image_url = [user profile_image_url];
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:name,TJ_USER_NAME,
+                              gender,TJ_USER_GENDER,
+                              profile_image_url,TJ_USER_IMAGE_URL, nil];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:userInfo forKey:TJ_USER_INFO];
+    [userDefaults synchronize];
+}
+-(void)saveUserLoginMask:(BOOL)logined
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:logined forKey:TJ_USER_HAVE_LOGIN];
+    [userDefaults synchronize];
+}
+
 //-(NSDictionary *)getUserInfoFromDisk
 //{
 //    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 //    NSDictionary *userInfo = [userDefaults objectForKey:AD_USER_INFO];
 //    return userInfo;
-//}
-//-(void)saveUserLoginMask:(BOOL)logined
-//{
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    [userDefaults setBool:logined forKey:AD_USER_HAVE_LOGIN];
-//    [userDefaults synchronize];
 //}
 //-(void)saveCurrentEditCourse:(NSDictionary *)dic
 //{

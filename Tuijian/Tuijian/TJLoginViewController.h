@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 zhang kai. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TJBaseViewController.h"
 
 #import <TencentOpenAPI/TencentOAuth.h>
 
-@interface TJLoginViewController : UIViewController<TencentSessionDelegate>
+@interface TJLoginViewController : TJBaseViewController<TencentSessionDelegate>
 {
     TencentOAuth* _tencentOAuth;
     NSArray* _permissions;

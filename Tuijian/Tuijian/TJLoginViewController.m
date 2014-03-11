@@ -55,7 +55,11 @@
         // 记录登录用户的OpenID、Token以及过期时间
         [[TJDataController sharedDataController]saveTencentLoginInfo:_tencentOAuth];
         [[TJDataController sharedDataController]getMyUserToken:^(NSString *myUserToken){
-            
+            [[TJDataController sharedDataController]getTencentUserInfo:^(TJUser *tencentUser){
+                [self dismissMyViewController:self];
+            }failure:^(NSError *error){
+                
+            }];
         }failure:^(NSError *error){
             
         }];

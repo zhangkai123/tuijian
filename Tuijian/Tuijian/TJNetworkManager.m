@@ -7,7 +7,7 @@
 //
 
 #import "TJNetworkManager.h"
-//#import "ADSinaAPIClient.h"
+#import "TJTencentAPIClient.h"
 #import "TJMyServerClient.h"
 
 @implementation TJNetworkManager
@@ -28,26 +28,27 @@
     return self;
 }
 
-//-(void)sendSinaUserInfoRequest:(NSDictionary *)sinaUserInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
-//{
-//    ADSinaAPIClient *client = [ADSinaAPIClient sharedClient];
-//    
-//    NSString *userId = [sinaUserInfo objectForKey:AD_SINA_USER_ID];
-//    NSString *accessToken = [sinaUserInfo objectForKey:AD_SINA_ACCESS_TOKEN];
-//    
-//    NSString *path = @"users/show.json";
-//    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"uid",accessToken,@"access_token", nil];
-//    NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
-//    
-//    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-//        
-//        success(JSON);
-//    }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-//        
-//        failure(error);
-//    }];
-//    [operation start];
-//}
+-(void)sendTencentUserInfoRequest:(NSDictionary *)sinaUserInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+{
+    TJTencentAPIClient *client = [TJTencentAPIClient sharedClient];
+    
+    NSString *userId = [sinaUserInfo objectForKey:TJ_TENCENT_USER_ID];
+    NSString *accessToken = [sinaUserInfo objectForKey:TJ_TENCENT_ACCESS_TOKEN];
+    
+    NSString *path = @"user/get_user_info";
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"openid",accessToken,@"access_token",@"101035345",@"oauth_consumer_key", nil];
+    NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
+    
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        
+        success(JSON);
+    }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        failure(error);
+    }];
+    [operation start];
+}
 -(void)sendUserTokenToServerForLogin:(NSString *)access_token success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     TJMyServerClient *client = [TJMyServerClient sharedClient];

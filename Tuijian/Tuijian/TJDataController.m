@@ -52,6 +52,19 @@
 
     }];
 }
+-(void)getTencentUserInfo:(void(^)(TJUser *tencentUser))tencentUserInfo failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *tencentLoginInfo = [[TJDiskCacheManager sharedDiskCacheManager]getTencentLoginInfo];
+    [[TJNetworkManager sharedNetworkManager] sendTencentUserInfoRequest:tencentLoginInfo success:^(id JSON){
+
+        TJUser *userInfo = [[TJUser alloc]initWithJsonData:JSON];
+        [[TJDiskCacheManager sharedDiskCacheManager]saveUserInfo:userInfo];
+        tencentUserInfo(userInfo);
+        [[TJDiskCacheManager sharedDiskCacheManager]saveUserLoginMask:YES];
+    } failure:^(NSError *error){
+        failure(error);
+    }];
+}
 
 //-(void)saveCurrentEditCourse:(NSDictionary *)dic
 //{
@@ -69,18 +82,4 @@
 //}
 //
 //
-//-(void)getSinaUserInfo:(void(^)(ADUser *sinaUser))sinaUserInfo failure:(void (^)(NSError *error))failure
-//{
-//    NSDictionary *sinaLoginInfo = [[ADDiskCacheManager sharedDiskCacheManager]getSinaLoginInfo];
-//    [[ADNetworkManager sharedNetworkManager] sendSinaUserInfoRequest:sinaLoginInfo success:^(id JSON){
-//        
-//        ADUser *userInfo = [[ADUser alloc]initWithJsonData:JSON];
-//        [[ADDiskCacheManager sharedDiskCacheManager]saveUserInfo:userInfo];
-//        sinaUserInfo(userInfo);
-//        [userInfo release];
-//        [[ADDiskCacheManager sharedDiskCacheManager]saveUserLoginMask:YES];
-//    } failure:^(NSError *error){
-//        failure(error);
-//    }];
-//}
 @end

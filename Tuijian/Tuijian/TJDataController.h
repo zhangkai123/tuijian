@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TJNetworkManager.h"
 #import "TJDiskCacheManager.h"
+#import "TJUser.h"
 
 #import <TencentOpenAPI/TencentOAuth.h>
 
@@ -20,8 +21,8 @@
 -(BOOL)getUserLoginMask;
 -(void)saveTencentLoginInfo:(TencentOAuth *)tencentOAuth;
 -(void)getMyUserToken:(void (^)(NSString *userToken))myUserToken failure:(void (^)(NSError *error))failure;
+-(void)getTencentUserInfo:(void(^)(TJUser *tencentUser))tencentUserInfo failure:(void (^)(NSError *error))failure;
 //-(ADUser *)getUserInfo;
-//-(void)getSinaUserInfo:(void(^)(ADUser *sinaUser))sinaUserInfo failure:(void (^)(NSError *error))failure;
 //-(void)saveCurrentEditCourse:(NSDictionary *)dic;
 //-(NSDictionary *)getCurrentEditCourse;
 @end

@@ -38,6 +38,7 @@
 		4B569CDE18CEBB5D000DF219 /* TJTencentAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CDA18CEBB5D000DF219 /* TJTencentAPIClient.m */; };
 		4B569CDF18CEBB5D000DF219 /* TJMyServerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CDC18CEBB5D000DF219 /* TJMyServerClient.m */; };
 		4B569CE318CED1E4000DF219 /* TJDiskCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CE218CED1E4000DF219 /* TJDiskCacheManager.m */; };
+		4B569CEA18CF0BE9000DF219 /* TJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CE918CF0BE9000DF219 /* TJUser.m */; };
 		4B7A421018B0CF66009356F4 /* TJShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A420F18B0CF66009356F4 /* TJShowViewController.m */; };
 		4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A421318B0DCE2009356F4 /* camera_18_2x.png */; };
 		4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D07D18B394690055D40B /* AVCamPreviewView.m */; };
@@ -121,6 +122,8 @@
 		4B569CE118CED1E4000DF219 /* TJDiskCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJDiskCacheManager.h; sourceTree = "<group>"; };
 		4B569CE218CED1E4000DF219 /* TJDiskCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJDiskCacheManager.m; sourceTree = "<group>"; };
 		4B569CE618CED567000DF219 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		4B569CE818CF0BE9000DF219 /* TJUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJUser.h; sourceTree = "<group>"; };
+		4B569CE918CF0BE9000DF219 /* TJUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJUser.m; sourceTree = "<group>"; };
 		4B7A420E18B0CF66009356F4 /* TJShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJShowViewController.h; sourceTree = "<group>"; };
 		4B7A420F18B0CF66009356F4 /* TJShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJShowViewController.m; sourceTree = "<group>"; };
 		4B7A421318B0DCE2009356F4 /* camera_18_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_18_2x.png; sourceTree = "<group>"; };
@@ -299,6 +302,15 @@
 			name = Help;
 			sourceTree = "<group>";
 		};
+		4B569CE718CF0BD5000DF219 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				4B569CE818CF0BE9000DF219 /* TJUser.h */,
+				4B569CE918CF0BE9000DF219 /* TJUser.m */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
 		4BFA998218AFA19200D673CB = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +357,7 @@
 				4B569CD218CEBA8C000DF219 /* DataManager */,
 				4B569CD618CEBB2A000DF219 /* NetworkManager */,
 				4B569CE018CED1C0000DF219 /* DiskManager */,
+				4B569CE718CF0BD5000DF219 /* DataModel */,
 				4B569CAE18CEA57B000DF219 /* Login */,
 				4BFA999D18AFA19200D673CB /* TJAppDelegate.h */,
 				4BFA999E18AFA19200D673CB /* TJAppDelegate.m */,
@@ -524,6 +537,7 @@
 				4B569CCA18CEBA0D000DF219 /* AFHTTPRequestOperation.m in Sources */,
 				4BE1636318B9D7890009158D /* TJEditViewController.m in Sources */,
 				4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */,
+				4B569CEA18CF0BE9000DF219 /* TJUser.m in Sources */,
 				4BFB64D218C187F800C304BB /* TJBaseViewController.m in Sources */,
 				4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */,
 				4BFB64CF18C07AEC00C304BB /* TJMineViewController.m in Sources */,
