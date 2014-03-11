@@ -16,7 +16,7 @@
 static void * CapturingStillImageContext = &CapturingStillImageContext;
 static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDeviceAuthorizedContext;
 
-@interface TJCamViewController ()
+@interface TJCamViewController ()<UIImagePickerControllerDelegate>
 {
     BOOL backPositionCamera;
 }
@@ -79,6 +79,12 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     cameraButton.backgroundColor = [UIColor clearColor];
     [cameraButton addTarget:self action:@selector(changeCamera) forControlEvents:UIControlEventTouchUpInside];
     [self.previewView addSubview:cameraButton];
+    
+    UIButton *albumeButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 300, 27, 29)];
+    [albumeButton setImage:[UIImage imageNamed:@"ChoosePhotoIcon"] forState:UIControlStateNormal];
+    albumeButton.backgroundColor = [UIColor clearColor];
+    [albumeButton addTarget:self action:@selector(showAlbume) forControlEvents:UIControlEventTouchUpInside];
+    [self.previewView addSubview:albumeButton];
     
     // Create the AVCaptureSession
 	AVCaptureSession *session = [[AVCaptureSession alloc] init];
@@ -166,6 +172,24 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 			}
 		}];
 	});
+}
+-(void)showAlbume
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = (id)self;
+    picker.allowsEditing = NO;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+    TJCropViewController *cropViewController = [[TJCropViewController alloc]init];
+    cropViewController.thePhoto = chosenImage;
+    [self displayContentController:cropViewController];
 }
 -(void)changeCamera
 {

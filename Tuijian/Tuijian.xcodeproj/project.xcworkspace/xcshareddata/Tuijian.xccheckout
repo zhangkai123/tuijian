@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DE382E07-BBEE-437E-BA65-E0C6C16C4058</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Tuijian</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AE4C28DE-4F24-436B-BC8D-F402C8BA4B29</key>
+		<string>https://github.com/zhangkai123/tuijian.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Tuijian/Tuijian.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AE4C28DE-4F24-436B-BC8D-F402C8BA4B29</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/zhangkai123/tuijian.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AE4C28DE-4F24-436B-BC8D-F402C8BA4B29</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AE4C28DE-4F24-436B-BC8D-F402C8BA4B29</string>
+			<key>IDESourceControlWCCName</key>
+			<string>tuijian</string>
+		</dict>
+	</array>
+</dict>
+</plist>
