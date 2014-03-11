@@ -12,6 +12,32 @@
 		4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */; };
 		4B543FD218B4FBA50052DFDD /* TJCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B543FD118B4FBA50052DFDD /* TJCropViewController.m */; };
 		4B54577018CDBEF700492F81 /* ChoosePhotoIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B54576F18CDBEF700492F81 /* ChoosePhotoIcon@2x.png */; };
+		4B569C9918CE9E36000DF219 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B569C9718CE9E36000DF219 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		4B569C9A18CE9E36000DF219 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B569C9818CE9E36000DF219 /* TencentOpenAPI.framework */; };
+		4B569C9C18CE9EA2000DF219 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B569C9B18CE9EA2000DF219 /* Security.framework */; };
+		4B569C9E18CE9EAE000DF219 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B569C9D18CE9EAE000DF219 /* libiconv.dylib */; };
+		4B569CA018CE9EB8000DF219 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B569C9F18CE9EB8000DF219 /* SystemConfiguration.framework */; };
+		4B569CA218CE9ED1000DF219 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B569CA118CE9ED1000DF219 /* libsqlite3.dylib */; };
+		4B569CA418CE9EDC000DF219 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B569CA318CE9EDC000DF219 /* CoreTelephony.framework */; };
+		4B569CA618CE9EE8000DF219 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B569CA518CE9EE8000DF219 /* libstdc++.dylib */; };
+		4B569CA818CE9EF4000DF219 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B569CA718CE9EF4000DF219 /* libz.dylib */; };
+		4B569CAD18CEA573000DF219 /* TJLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CAC18CEA573000DF219 /* TJLoginViewController.m */; };
+		4B569CB118CEA848000DF219 /* bt_92X120.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B569CB018CEA848000DF219 /* bt_92X120.png */; };
+		4B569CB318CEAAE9000DF219 /* bt_blue_76X24.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B569CB218CEAAE9000DF219 /* bt_blue_76X24.png */; };
+		4B569CC918CEBA0D000DF219 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CB718CEBA0D000DF219 /* AFHTTPClient.m */; };
+		4B569CCA18CEBA0D000DF219 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CB918CEBA0D000DF219 /* AFHTTPRequestOperation.m */; };
+		4B569CCB18CEBA0D000DF219 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CBB18CEBA0D000DF219 /* AFImageRequestOperation.m */; };
+		4B569CCC18CEBA0D000DF219 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CBD18CEBA0D000DF219 /* AFJSONRequestOperation.m */; };
+		4B569CCD18CEBA0D000DF219 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CBF18CEBA0D000DF219 /* AFNetworkActivityIndicatorManager.m */; };
+		4B569CCE18CEBA0D000DF219 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CC218CEBA0D000DF219 /* AFPropertyListRequestOperation.m */; };
+		4B569CCF18CEBA0D000DF219 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CC418CEBA0D000DF219 /* AFURLConnectionOperation.m */; };
+		4B569CD018CEBA0D000DF219 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CC618CEBA0D000DF219 /* AFXMLRequestOperation.m */; };
+		4B569CD118CEBA0D000DF219 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CC818CEBA0D000DF219 /* UIImageView+AFNetworking.m */; };
+		4B569CD518CEBAA7000DF219 /* TJDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CD418CEBAA7000DF219 /* TJDataController.m */; };
+		4B569CDD18CEBB5D000DF219 /* TJNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CD818CEBB5D000DF219 /* TJNetworkManager.m */; };
+		4B569CDE18CEBB5D000DF219 /* TJTencentAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CDA18CEBB5D000DF219 /* TJTencentAPIClient.m */; };
+		4B569CDF18CEBB5D000DF219 /* TJMyServerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CDC18CEBB5D000DF219 /* TJMyServerClient.m */; };
+		4B569CE318CED1E4000DF219 /* TJDiskCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CE218CED1E4000DF219 /* TJDiskCacheManager.m */; };
 		4B7A421018B0CF66009356F4 /* TJShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A420F18B0CF66009356F4 /* TJShowViewController.m */; };
 		4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A421318B0DCE2009356F4 /* camera_18_2x.png */; };
 		4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D07D18B394690055D40B /* AVCamPreviewView.m */; };
@@ -52,6 +78,49 @@
 		4B543FD018B4FBA50052DFDD /* TJCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCropViewController.h; sourceTree = "<group>"; };
 		4B543FD118B4FBA50052DFDD /* TJCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCropViewController.m; sourceTree = "<group>"; };
 		4B54576F18CDBEF700492F81 /* ChoosePhotoIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChoosePhotoIcon@2x.png"; sourceTree = "<group>"; };
+		4B569C9718CE9E36000DF219 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		4B569C9818CE9E36000DF219 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = Tuijian/TencentOpenAPI.framework; sourceTree = "<group>"; };
+		4B569C9B18CE9EA2000DF219 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		4B569C9D18CE9EAE000DF219 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		4B569C9F18CE9EB8000DF219 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4B569CA118CE9ED1000DF219 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		4B569CA318CE9EDC000DF219 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		4B569CA518CE9EE8000DF219 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		4B569CA718CE9EF4000DF219 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		4B569CAB18CEA573000DF219 /* TJLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJLoginViewController.h; sourceTree = "<group>"; };
+		4B569CAC18CEA573000DF219 /* TJLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJLoginViewController.m; sourceTree = "<group>"; };
+		4B569CB018CEA848000DF219 /* bt_92X120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_92X120.png; sourceTree = "<group>"; };
+		4B569CB218CEAAE9000DF219 /* bt_blue_76X24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_blue_76X24.png; sourceTree = "<group>"; };
+		4B569CB618CEBA0D000DF219 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		4B569CB718CEBA0D000DF219 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
+		4B569CB818CEBA0D000DF219 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		4B569CB918CEBA0D000DF219 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		4B569CBA18CEBA0D000DF219 /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
+		4B569CBB18CEBA0D000DF219 /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
+		4B569CBC18CEBA0D000DF219 /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		4B569CBD18CEBA0D000DF219 /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
+		4B569CBE18CEBA0D000DF219 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		4B569CBF18CEBA0D000DF219 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		4B569CC018CEBA0D000DF219 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		4B569CC118CEBA0D000DF219 /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		4B569CC218CEBA0D000DF219 /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
+		4B569CC318CEBA0D000DF219 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		4B569CC418CEBA0D000DF219 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		4B569CC518CEBA0D000DF219 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		4B569CC618CEBA0D000DF219 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
+		4B569CC718CEBA0D000DF219 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		4B569CC818CEBA0D000DF219 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		4B569CD318CEBAA7000DF219 /* TJDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJDataController.h; sourceTree = "<group>"; };
+		4B569CD418CEBAA7000DF219 /* TJDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJDataController.m; sourceTree = "<group>"; };
+		4B569CD718CEBB5D000DF219 /* TJNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJNetworkManager.h; sourceTree = "<group>"; };
+		4B569CD818CEBB5D000DF219 /* TJNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJNetworkManager.m; sourceTree = "<group>"; };
+		4B569CD918CEBB5D000DF219 /* TJTencentAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJTencentAPIClient.h; sourceTree = "<group>"; };
+		4B569CDA18CEBB5D000DF219 /* TJTencentAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJTencentAPIClient.m; sourceTree = "<group>"; };
+		4B569CDB18CEBB5D000DF219 /* TJMyServerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyServerClient.h; sourceTree = "<group>"; };
+		4B569CDC18CEBB5D000DF219 /* TJMyServerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyServerClient.m; sourceTree = "<group>"; };
+		4B569CE118CED1E4000DF219 /* TJDiskCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJDiskCacheManager.h; sourceTree = "<group>"; };
+		4B569CE218CED1E4000DF219 /* TJDiskCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJDiskCacheManager.m; sourceTree = "<group>"; };
+		4B569CE618CED567000DF219 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		4B7A420E18B0CF66009356F4 /* TJShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJShowViewController.h; sourceTree = "<group>"; };
 		4B7A420F18B0CF66009356F4 /* TJShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJShowViewController.m; sourceTree = "<group>"; };
 		4B7A421318B0DCE2009356F4 /* camera_18_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_18_2x.png; sourceTree = "<group>"; };
@@ -92,7 +161,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B569CA818CE9EF4000DF219 /* libz.dylib in Frameworks */,
+				4B569CA618CE9EE8000DF219 /* libstdc++.dylib in Frameworks */,
+				4B569CA418CE9EDC000DF219 /* CoreTelephony.framework in Frameworks */,
+				4B569CA218CE9ED1000DF219 /* libsqlite3.dylib in Frameworks */,
 				4BFA999118AFA19200D673CB /* CoreGraphics.framework in Frameworks */,
+				4B569CA018CE9EB8000DF219 /* SystemConfiguration.framework in Frameworks */,
+				4B569C9E18CE9EAE000DF219 /* libiconv.dylib in Frameworks */,
+				4B569C9C18CE9EA2000DF219 /* Security.framework in Frameworks */,
+				4B569C9A18CE9E36000DF219 /* TencentOpenAPI.framework in Frameworks */,
 				4BFA999318AFA19200D673CB /* UIKit.framework in Frameworks */,
 				4BFA998F18AFA19200D673CB /* Foundation.framework in Frameworks */,
 			);
@@ -122,6 +199,106 @@
 			name = camera;
 			sourceTree = "<group>";
 		};
+		4B569C9618CE9DCC000DF219 /* Tencent */ = {
+			isa = PBXGroup;
+			children = (
+				4B569C9718CE9E36000DF219 /* TencentOpenApi_IOS_Bundle.bundle */,
+			);
+			name = Tencent;
+			sourceTree = "<group>";
+		};
+		4B569CAE18CEA57B000DF219 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4B569CAB18CEA573000DF219 /* TJLoginViewController.h */,
+				4B569CAC18CEA573000DF219 /* TJLoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		4B569CAF18CEA839000DF219 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				4B569CB218CEAAE9000DF219 /* bt_blue_76X24.png */,
+				4B569CB018CEA848000DF219 /* bt_92X120.png */,
+			);
+			name = login;
+			sourceTree = "<group>";
+		};
+		4B569CB418CEB9D5000DF219 /* ThirdPartyLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				4B569CB518CEBA0D000DF219 /* AFNetworking */,
+				4B569C9618CE9DCC000DF219 /* Tencent */,
+			);
+			name = ThirdPartyLibrary;
+			sourceTree = "<group>";
+		};
+		4B569CB518CEBA0D000DF219 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				4B569CB618CEBA0D000DF219 /* AFHTTPClient.h */,
+				4B569CB718CEBA0D000DF219 /* AFHTTPClient.m */,
+				4B569CB818CEBA0D000DF219 /* AFHTTPRequestOperation.h */,
+				4B569CB918CEBA0D000DF219 /* AFHTTPRequestOperation.m */,
+				4B569CBA18CEBA0D000DF219 /* AFImageRequestOperation.h */,
+				4B569CBB18CEBA0D000DF219 /* AFImageRequestOperation.m */,
+				4B569CBC18CEBA0D000DF219 /* AFJSONRequestOperation.h */,
+				4B569CBD18CEBA0D000DF219 /* AFJSONRequestOperation.m */,
+				4B569CBE18CEBA0D000DF219 /* AFNetworkActivityIndicatorManager.h */,
+				4B569CBF18CEBA0D000DF219 /* AFNetworkActivityIndicatorManager.m */,
+				4B569CC018CEBA0D000DF219 /* AFNetworking.h */,
+				4B569CC118CEBA0D000DF219 /* AFPropertyListRequestOperation.h */,
+				4B569CC218CEBA0D000DF219 /* AFPropertyListRequestOperation.m */,
+				4B569CC318CEBA0D000DF219 /* AFURLConnectionOperation.h */,
+				4B569CC418CEBA0D000DF219 /* AFURLConnectionOperation.m */,
+				4B569CC518CEBA0D000DF219 /* AFXMLRequestOperation.h */,
+				4B569CC618CEBA0D000DF219 /* AFXMLRequestOperation.m */,
+				4B569CC718CEBA0D000DF219 /* UIImageView+AFNetworking.h */,
+				4B569CC818CEBA0D000DF219 /* UIImageView+AFNetworking.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		4B569CD218CEBA8C000DF219 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				4B569CD318CEBAA7000DF219 /* TJDataController.h */,
+				4B569CD418CEBAA7000DF219 /* TJDataController.m */,
+			);
+			name = DataManager;
+			sourceTree = "<group>";
+		};
+		4B569CD618CEBB2A000DF219 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				4B569CD718CEBB5D000DF219 /* TJNetworkManager.h */,
+				4B569CD818CEBB5D000DF219 /* TJNetworkManager.m */,
+				4B569CD918CEBB5D000DF219 /* TJTencentAPIClient.h */,
+				4B569CDA18CEBB5D000DF219 /* TJTencentAPIClient.m */,
+				4B569CDB18CEBB5D000DF219 /* TJMyServerClient.h */,
+				4B569CDC18CEBB5D000DF219 /* TJMyServerClient.m */,
+			);
+			name = NetworkManager;
+			sourceTree = "<group>";
+		};
+		4B569CE018CED1C0000DF219 /* DiskManager */ = {
+			isa = PBXGroup;
+			children = (
+				4B569CE118CED1E4000DF219 /* TJDiskCacheManager.h */,
+				4B569CE218CED1E4000DF219 /* TJDiskCacheManager.m */,
+			);
+			name = DiskManager;
+			sourceTree = "<group>";
+		};
+		4B569CE418CED50F000DF219 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				4B569CE618CED567000DF219 /* Common.h */,
+			);
+			name = Help;
+			sourceTree = "<group>";
+		};
 		4BFA998218AFA19200D673CB = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +321,14 @@
 		4BFA998D18AFA19200D673CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B569CA718CE9EF4000DF219 /* libz.dylib */,
+				4B569CA518CE9EE8000DF219 /* libstdc++.dylib */,
+				4B569CA318CE9EDC000DF219 /* CoreTelephony.framework */,
+				4B569CA118CE9ED1000DF219 /* libsqlite3.dylib */,
+				4B569C9F18CE9EB8000DF219 /* SystemConfiguration.framework */,
+				4B569C9D18CE9EAE000DF219 /* libiconv.dylib */,
+				4B569C9B18CE9EA2000DF219 /* Security.framework */,
+				4B569C9818CE9E36000DF219 /* TencentOpenAPI.framework */,
 				4BFA998E18AFA19200D673CB /* Foundation.framework */,
 				4BFA999018AFA19200D673CB /* CoreGraphics.framework */,
 				4BFA999218AFA19200D673CB /* UIKit.framework */,
@@ -155,6 +340,12 @@
 		4BFA999418AFA19200D673CB /* Tuijian */ = {
 			isa = PBXGroup;
 			children = (
+				4B569CE418CED50F000DF219 /* Help */,
+				4B569CB418CEB9D5000DF219 /* ThirdPartyLibrary */,
+				4B569CD218CEBA8C000DF219 /* DataManager */,
+				4B569CD618CEBB2A000DF219 /* NetworkManager */,
+				4B569CE018CED1C0000DF219 /* DiskManager */,
+				4B569CAE18CEA57B000DF219 /* Login */,
 				4BFA999D18AFA19200D673CB /* TJAppDelegate.h */,
 				4BFA999E18AFA19200D673CB /* TJAppDelegate.m */,
 				4BFB64D018C187F800C304BB /* TJBaseViewController.h */,
@@ -184,6 +375,7 @@
 		4BFA999518AFA19200D673CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B569CAF18CEA839000DF219 /* login */,
 				4B543FC918B4F30B0052DFDD /* camera */,
 				4B7A421318B0DCE2009356F4 /* camera_18_2x.png */,
 				4BFA999618AFA19200D673CB /* Tuijian-Info.plist */,
@@ -288,12 +480,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B569C9918CE9E36000DF219 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */,
 				4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */,
+				4B569CB318CEAAE9000DF219 /* bt_blue_76X24.png in Resources */,
 				4BFA999918AFA19200D673CB /* InfoPlist.strings in Resources */,
 				4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */,
 				4B54577018CDBEF700492F81 /* ChoosePhotoIcon@2x.png in Resources */,
 				4BFA99A118AFA19200D673CB /* Images.xcassets in Resources */,
+				4B569CB118CEA848000DF219 /* bt_92X120.png in Resources */,
 				4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,16 +508,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B569CAD18CEA573000DF219 /* TJLoginViewController.m in Sources */,
+				4B569CDF18CEBB5D000DF219 /* TJMyServerClient.m in Sources */,
 				4BE1636018B869040009158D /* ImageScrollView.m in Sources */,
+				4B569CCE18CEBA0D000DF219 /* AFPropertyListRequestOperation.m in Sources */,
 				4B7A421018B0CF66009356F4 /* TJShowViewController.m in Sources */,
+				4B569CCF18CEBA0D000DF219 /* AFURLConnectionOperation.m in Sources */,
+				4B569CDE18CEBB5D000DF219 /* TJTencentAPIClient.m in Sources */,
 				4BFA999F18AFA19200D673CB /* TJAppDelegate.m in Sources */,
+				4B569CC918CEBA0D000DF219 /* AFHTTPClient.m in Sources */,
 				4B543FD218B4FBA50052DFDD /* TJCropViewController.m in Sources */,
+				4B569CCB18CEBA0D000DF219 /* AFImageRequestOperation.m in Sources */,
+				4B569CCD18CEBA0D000DF219 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				4B569CD518CEBAA7000DF219 /* TJDataController.m in Sources */,
+				4B569CCA18CEBA0D000DF219 /* AFHTTPRequestOperation.m in Sources */,
 				4BE1636318B9D7890009158D /* TJEditViewController.m in Sources */,
 				4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */,
 				4BFB64D218C187F800C304BB /* TJBaseViewController.m in Sources */,
 				4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */,
 				4BFB64CF18C07AEC00C304BB /* TJMineViewController.m in Sources */,
+				4B569CD018CEBA0D000DF219 /* AFXMLRequestOperation.m in Sources */,
 				4BFA999B18AFA19200D673CB /* main.m in Sources */,
+				4B569CDD18CEBB5D000DF219 /* TJNetworkManager.m in Sources */,
+				4B569CCC18CEBA0D000DF219 /* AFJSONRequestOperation.m in Sources */,
+				4B569CD118CEBA0D000DF219 /* UIImageView+AFNetworking.m in Sources */,
+				4B569CE318CED1E4000DF219 /* TJDiskCacheManager.m in Sources */,
 				4BFB64CC18C07ACA00C304BB /* TJInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,6 +648,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/zhangkai/Desktop/tuijian/Tuijian/Tuijian,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tuijian/Tuijian-Prefix.pch";
 				INFOPLIST_FILE = "Tuijian/Tuijian-Info.plist";
@@ -451,6 +665,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/zhangkai/Desktop/tuijian/Tuijian/Tuijian,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tuijian/Tuijian-Prefix.pch";
 				INFOPLIST_FILE = "Tuijian/Tuijian-Info.plist";

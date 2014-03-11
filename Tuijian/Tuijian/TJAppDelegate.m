@@ -7,13 +7,23 @@
 //
 
 #import "TJAppDelegate.h"
+#import "TJLoginViewController.h"
 #import "TJShowViewController.h"
 #import "TJInfoViewController.h"
 #import "TJMineViewController.h"
 
+#import <TencentOpenAPI/TencentOAuth.h>
+
 @implementation TJAppDelegate
 @synthesize tabBarController = _tabBarController;
 
+- (void) displayContentControllerOnController: (UIViewController*) contentController onController:(UIViewController *)controller
+{
+    [controller addChildViewController:contentController];
+    contentController.view.frame = controller.view.frame;
+    [controller.view addSubview:contentController.view];
+    [contentController didMoveToParentViewController:controller];
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSMutableArray *controllersArray = [[NSMutableArray alloc]initWithCapacity:3];
@@ -34,12 +44,24 @@
     self.tabBarController = [[UITabBarController alloc]init];
     self.tabBarController.viewControllers = controllersArray;
     
+    BOOL haveLogin = [[TJDataController sharedDataController]getUserLoginMask];
+    if (!haveLogin) {
+        TJLoginViewController *loginViewController = [[TJLoginViewController alloc]init];
+        [self displayContentControllerOnController:loginViewController onController:self.tabBarController];
+    }
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    return [TencentOAuth HandleOpenURL:url];
+}
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return [TencentOAuth HandleOpenURL:url];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
