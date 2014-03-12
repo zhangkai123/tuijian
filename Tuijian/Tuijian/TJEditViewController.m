@@ -8,8 +8,11 @@
 
 #import "TJEditViewController.h"
 
-@interface TJEditViewController ()
-
+@interface TJEditViewController ()<UITextViewDelegate>
+{
+    UITextView *tuijianTextView;
+    UILabel *placeHolderLabel;
+}
 @end
 
 @implementation TJEditViewController
@@ -23,7 +26,10 @@
     }
     return self;
 }
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [tuijianTextView becomeFirstResponder];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,12 +53,30 @@
     
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 300, 350)];
     imageView.backgroundColor = [UIColor blackColor];
+    imageView.userInteractionEnabled = YES;
     imageView.layer.cornerRadius = 5;
     imageView.layer.masksToBounds = YES;
     imageView.image = self.cropedImage;
     [self.view addSubview:imageView];
-    imageView.center = self.view.center;
+    imageView.center = CGPointMake(self.view.center.x, self.view.center.y - 50);
 
+    tuijianTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 300, 160)];
+    tuijianTextView.backgroundColor = [UIColor whiteColor];
+    [tuijianTextView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
+    tuijianTextView.font = [UIFont systemFontOfSize:15];
+    tuijianTextView.autocorrectionType = UITextAutocorrectionTypeNo;
+    tuijianTextView.keyboardType = UIKeyboardTypeDefault;
+    tuijianTextView.returnKeyType = UIReturnKeyDone;
+    tuijianTextView.textAlignment = NSTextAlignmentLeft;
+    tuijianTextView.scrollEnabled = NO;
+    tuijianTextView.delegate = self;
+    [imageView addSubview:tuijianTextView];
+    
+    placeHolderLabel = [[UILabel alloc]initWithFrame:CGRectMake(10.0, 0.0,tuijianTextView.frame.size.width - 10.0, 34.0)];
+    [placeHolderLabel setText:@"推荐理由 :"];
+    [placeHolderLabel setBackgroundColor:[UIColor clearColor]];
+    [placeHolderLabel setTextColor:[UIColor lightGrayColor]];
+    [tuijianTextView addSubview:placeHolderLabel];
 }
 -(void)backToCrop
 {
@@ -60,6 +84,49 @@
 }
 -(void)sendToServer
 {
+    NSString *tuijianText = tuijianTextView.text;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma text view delegate
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+//    textView.backgroundColor = [UIColor greenColor];
+}
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView{
+//    textView.backgroundColor = [UIColor whiteColor];
+    return YES;
+}
+- (void)textViewDidEndEditing:(UITextView *)textView{
+   
+}
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    NSCharacterSet *doneButtonCharacterSet = [NSCharacterSet newlineCharacterSet];
+    NSRange replacementTextRange = [text rangeOfCharacterFromSet:doneButtonCharacterSet];
+    NSUInteger location = replacementTextRange.location;
+    
+    if (textView.text.length + text.length > 140){
+        if (location != NSNotFound){
+            [textView resignFirstResponder];
+        }
+        return NO;
+    }
+    else if (location != NSNotFound){
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+- (void)textViewDidChange:(UITextView *)textView{
+    if(tuijianTextView.text.length == 0){
+        placeHolderLabel.hidden = NO;
+    }else{
+        placeHolderLabel.hidden = YES;
+    }
+}
+- (void)textViewDidChangeSelection:(UITextView *)textView{
     
 }
 
