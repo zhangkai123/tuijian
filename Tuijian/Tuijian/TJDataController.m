@@ -65,6 +65,14 @@
         failure(error);
     }];
 }
+-(TJUser *)getMyUserInfo
+{
+    NSDictionary *userInfoDic = [[TJDiskCacheManager sharedDiskCacheManager]getUserInfoFromDisk];
+    TJUser *userInfo = [[TJUser alloc]initWithDictionaryData:userInfoDic];
+    return userInfo;
+}
+
+
 
 //-(void)saveCurrentEditCourse:(NSDictionary *)dic
 //{
@@ -74,12 +82,4 @@
 //{
 //    return [[ADDiskCacheManager sharedDiskCacheManager]getCurrentEditCourse];
 //}
-//-(ADUser *)getUserInfo
-//{
-//    NSDictionary *userInfoDic = [[ADDiskCacheManager sharedDiskCacheManager]getUserInfoFromDisk];
-//    ADUser *userInfo = [[ADUser alloc]initWithDictionaryData:userInfoDic];
-//    return userInfo;
-//}
-//
-//
 @end

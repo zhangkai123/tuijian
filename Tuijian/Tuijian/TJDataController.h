@@ -22,7 +22,7 @@
 -(void)saveTencentLoginInfo:(TencentOAuth *)tencentOAuth;
 -(void)getMyUserToken:(void (^)(NSString *userToken))myUserToken failure:(void (^)(NSError *error))failure;
 -(void)getTencentUserInfo:(void(^)(TJUser *tencentUser))tencentUserInfo failure:(void (^)(NSError *error))failure;
-//-(ADUser *)getUserInfo;
+-(TJUser *)getMyUserInfo;
 //-(void)saveCurrentEditCourse:(NSDictionary *)dic;
 //-(NSDictionary *)getCurrentEditCourse;
 @end

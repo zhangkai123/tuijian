@@ -15,5 +15,6 @@
     #import <Foundation/Foundation.h>
 
     #import "Common.h"
+    #import "AFNetworking.h"
     #import "TJDataController.h"
 #endif

@@ -20,7 +20,7 @@
 -(NSDictionary *)getTencentLoginInfo;
 -(void)saveUserInfo:(TJUser *)user;
 -(void)saveUserLoginMask:(BOOL)logined;
-//-(NSDictionary *)getUserInfoFromDisk;
+-(NSDictionary *)getUserInfoFromDisk;
 //-(void)saveCurrentEditCourse:(NSDictionary *)dic;
 //-(NSDictionary *)getCurrentEditCourse;
 @end

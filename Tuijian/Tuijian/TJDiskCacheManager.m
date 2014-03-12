@@ -71,12 +71,12 @@
     [userDefaults synchronize];
 }
 
-//-(NSDictionary *)getUserInfoFromDisk
-//{
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    NSDictionary *userInfo = [userDefaults objectForKey:AD_USER_INFO];
-//    return userInfo;
-//}
+-(NSDictionary *)getUserInfoFromDisk
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userInfo = [userDefaults objectForKey:TJ_USER_INFO];
+    return userInfo;
+}
 //-(void)saveCurrentEditCourse:(NSDictionary *)dic
 //{
 //    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
