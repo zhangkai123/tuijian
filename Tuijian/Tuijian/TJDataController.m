@@ -82,8 +82,9 @@
     NSString *myAccessToken = [self getMyUserToken];
     [[TJNetworkManager sharedNetworkManager]uploadItem:myAccessToken recMes:recommendMes uploadImage:ulImage success:^(id Json){
         
+        success(Json);
     }failure:^(NSError *error){
-        
+        failure(error);
     }];
 }
 

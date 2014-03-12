@@ -86,11 +86,10 @@
 {
     NSString *tuijianText = tuijianTextView.text;
     [[TJDataController sharedDataController]saveItem:tuijianText uploadImage:self.cropedImage success:^(id Json){
-        
+        [self dismissViewControllerAnimated:YES completion:nil];
     }failure:^(NSError *error){
         
     }];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma text view delegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
