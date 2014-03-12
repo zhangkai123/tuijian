@@ -23,6 +23,7 @@
 -(void)getMyUserToken:(void (^)(NSString *userToken))myUserToken failure:(void (^)(NSError *error))failure;
 -(void)getTencentUserInfo:(void(^)(TJUser *tencentUser))tencentUserInfo failure:(void (^)(NSError *error))failure;
 -(TJUser *)getMyUserInfo;
+-(void)saveItem:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 //-(void)saveCurrentEditCourse:(NSDictionary *)dic;
 //-(NSDictionary *)getCurrentEditCourse;
 @end

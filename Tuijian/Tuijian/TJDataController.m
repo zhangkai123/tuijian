@@ -71,7 +71,21 @@
     TJUser *userInfo = [[TJUser alloc]initWithDictionaryData:userInfoDic];
     return userInfo;
 }
-
+-(NSString *)getMyUserToken
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *myAccessToken = [userDefaults objectForKey:TJ_MY_ACCESS_TOKEN];
+    return myAccessToken;
+}
+-(void)saveItem:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+{
+    NSString *myAccessToken = [self getMyUserToken];
+    [[TJNetworkManager sharedNetworkManager]uploadItem:myAccessToken recMes:recommendMes uploadImage:ulImage success:^(id Json){
+        
+    }failure:^(NSError *error){
+        
+    }];
+}
 
 
 //-(void)saveCurrentEditCourse:(NSDictionary *)dic

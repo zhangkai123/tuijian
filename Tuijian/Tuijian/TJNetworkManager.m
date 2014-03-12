@@ -65,4 +65,25 @@
     }];
     [operation start];
 }
+-(void)uploadItem:(NSString *)accessT recMes:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+{
+    TJMyServerClient *client = [TJMyServerClient sharedClient];
+    NSString *path = @"uploadItem";
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken",recommendMes,@"recommendMessage", nil];
+//    NSURLRequest *request = [client requestWithMethod:@"POST" path:path parameters:paraDic];
+    NSData *imgData = UIImagePNGRepresentation(ulImage);
+    NSMutableURLRequest *myRequest = [client multipartFormRequestWithMethod:@"POST" path:path
+                                                                 parameters:paraDic constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
+                                                                     [formData appendPartWithFileData:imgData name:@"uploadedfile" fileName:@"myDynamicFile.png" mimeType:@"images/png"];
+                                                                 }];
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:myRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        
+        success(JSON);
+    }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        failure(error);
+    }];
+    [operation start];
+}
 @end
