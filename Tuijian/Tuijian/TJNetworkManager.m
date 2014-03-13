@@ -70,7 +70,6 @@
     TJMyServerClient *client = [TJMyServerClient sharedClient];
     NSString *path = @"uploadItem";
     NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken",recommendMes,@"recommendMessage", nil];
-//    NSURLRequest *request = [client requestWithMethod:@"POST" path:path parameters:paraDic];
     NSData *imgData = UIImagePNGRepresentation(ulImage);
     NSMutableURLRequest *myRequest = [client multipartFormRequestWithMethod:@"POST" path:path
                                                                  parameters:paraDic constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
@@ -78,6 +77,22 @@
                                                                  }];
     [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:myRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        
+        success(JSON);
+    }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        failure(error);
+    }];
+    [operation start];
+}
+-(void)sendFeatchItemsRequest:(NSString *)accessT success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+{
+    TJMyServerClient *client = [TJMyServerClient sharedClient];
+    NSString *path = @"featchItems";
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken", nil];
+    NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         
         success(JSON);
     }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {

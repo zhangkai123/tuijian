@@ -10,7 +10,9 @@
 #import "TJCamViewController.h"
 
 @interface TJShowViewController ()<UIImagePickerControllerDelegate>
-
+{
+    UITableView *itemTableView;
+}
 @end
 
 @implementation TJShowViewController
@@ -37,34 +39,19 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [[TJDataController sharedDataController]getItems:^(id Json){
+        
+    }failure:^(NSError *error){
+        
+    }];
 }
 -(void)takePhoto:(id)sender
 {
-//    @try
-//    {
-//        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-//        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//        picker.cameraViewTransform = CGAffineTransformMakeScale(0.5, 0.5);
-//        picker.delegate = (id)self;
-//        
-//        [self presentViewController:picker animated:YES completion:^(void){
-//            
-//        }];
-//    }
-//    @catch (NSException *exception)
-//    {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"Camera is not available  " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-//        [alert show];
-//    }
     TJCamViewController *camViewController = [[TJCamViewController alloc]init];
     [self presentViewController:camViewController animated:YES completion:^(void){
     }];
 }
-//-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary*)info
-//{
-//    [picker dismissViewControllerAnimated:YES completion:nil];
-////    self.imageView.image=[info objectForKey:@"UIImagePickerControllerOriginalImage"];
-//}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
