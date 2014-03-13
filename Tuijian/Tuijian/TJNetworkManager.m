@@ -49,11 +49,11 @@
     }];
     [operation start];
 }
--(void)sendUserTokenToServerForLogin:(NSString *)access_token success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)sendUserTokenToServerForLogin:(NSString *)access_token userInfo:(NSDictionary *)userInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     TJMyServerClient *client = [TJMyServerClient sharedClient];
     NSString *path = @"Login/ThirdPartyUserLogin";
-    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:@"tencent",@"user_category",access_token,@"access_token", nil];
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:@"tencent",@"user_category",access_token,@"access_token",userInfo,@"userInfomation", nil];
     NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {

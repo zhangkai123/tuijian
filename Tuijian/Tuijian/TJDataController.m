@@ -34,11 +34,12 @@
     [[TJDiskCacheManager sharedDiskCacheManager]saveTencentLoginInfo:tencentOAuth];
 }
 
--(void)getMyUserToken:(void (^)(NSString *userToken))myUserToken failure:(void (^)(NSError *error))failure
+-(void)getMyUserToken:(TJUser *)theUser myUserToken:(void (^)(NSString *userToken))myUserToken failure:(void (^)(NSError *error))failure
 {
     NSDictionary *tencentLoginInfo = [[TJDiskCacheManager sharedDiskCacheManager]getTencentLoginInfo];
     NSString *tencentUserAccessToken = [tencentLoginInfo objectForKey:TJ_TENCENT_ACCESS_TOKEN];
-    [[TJNetworkManager sharedNetworkManager]sendUserTokenToServerForLogin:tencentUserAccessToken success:^(id JSON){
+    NSDictionary *userInfoDic = [NSDictionary dictionaryWithObjectsAndKeys:theUser.name,@"userName",theUser.profile_image_url,@"profileUrl",theUser.gender,@"gender",nil];
+    [[TJNetworkManager sharedNetworkManager]sendUserTokenToServerForLogin:tencentUserAccessToken userInfo:userInfoDic success:^(id JSON){
 
         NSString *success = [JSON objectForKey:@"status"];
         if ([success isEqualToString:@"success"]) {
@@ -47,6 +48,7 @@
             [userDefaults setObject:myAccessToken forKey:TJ_MY_ACCESS_TOKEN];
             [userDefaults synchronize];
             myUserToken(myAccessToken);
+            [[TJDiskCacheManager sharedDiskCacheManager]saveUserLoginMask:YES];
         }
     }failure:^(NSError *error){
 
@@ -60,7 +62,6 @@
         TJUser *userInfo = [[TJUser alloc]initWithJsonData:JSON];
         [[TJDiskCacheManager sharedDiskCacheManager]saveUserInfo:userInfo];
         tencentUserInfo(userInfo);
-        [[TJDiskCacheManager sharedDiskCacheManager]saveUserLoginMask:YES];
     } failure:^(NSError *error){
         failure(error);
     }];

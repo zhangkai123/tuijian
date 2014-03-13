@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B47A36818D1462500087BE4 /* TJItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B47A36718D1462500087BE4 /* TJItemCell.m */; };
+		4B47A36B18D1477400087BE4 /* TJItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B47A36A18D1477400087BE4 /* TJItem.m */; };
 		4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */; };
 		4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */; };
 		4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */; };
@@ -75,6 +77,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B47A36618D1462500087BE4 /* TJItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJItemCell.h; sourceTree = "<group>"; };
+		4B47A36718D1462500087BE4 /* TJItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJItemCell.m; sourceTree = "<group>"; };
+		4B47A36918D1477400087BE4 /* TJItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJItem.h; sourceTree = "<group>"; };
+		4B47A36A18D1477400087BE4 /* TJItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJItem.m; sourceTree = "<group>"; };
 		4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon-highlighted@2x.png"; sourceTree = "<group>"; };
 		4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon@2x.png"; sourceTree = "<group>"; };
 		4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CameraFlipIcon@2x.png"; sourceTree = "<group>"; };
@@ -311,6 +317,8 @@
 			children = (
 				4B569CE818CF0BE9000DF219 /* TJUser.h */,
 				4B569CE918CF0BE9000DF219 /* TJUser.m */,
+				4B47A36918D1477400087BE4 /* TJItem.h */,
+				4B47A36A18D1477400087BE4 /* TJItem.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -392,6 +400,8 @@
 				4BE1635F18B869040009158D /* ImageScrollView.m */,
 				4BE1636118B9D7880009158D /* TJEditViewController.h */,
 				4BE1636218B9D7880009158D /* TJEditViewController.m */,
+				4B47A36618D1462500087BE4 /* TJItemCell.h */,
+				4B47A36718D1462500087BE4 /* TJItemCell.m */,
 				4BFA99A018AFA19200D673CB /* Images.xcassets */,
 				4BFA999518AFA19200D673CB /* Supporting Files */,
 			);
@@ -560,7 +570,9 @@
 				4B569CD018CEBA0D000DF219 /* AFXMLRequestOperation.m in Sources */,
 				4BFA999B18AFA19200D673CB /* main.m in Sources */,
 				4B569CDD18CEBB5D000DF219 /* TJNetworkManager.m in Sources */,
+				4B47A36B18D1477400087BE4 /* TJItem.m in Sources */,
 				4B569CCC18CEBA0D000DF219 /* AFJSONRequestOperation.m in Sources */,
+				4B47A36818D1462500087BE4 /* TJItemCell.m in Sources */,
 				4B569CD118CEBA0D000DF219 /* UIImageView+AFNetworking.m in Sources */,
 				4B569CE318CED1E4000DF219 /* TJDiskCacheManager.m in Sources */,
 				4BFB64CC18C07ACA00C304BB /* TJInfoViewController.m in Sources */,

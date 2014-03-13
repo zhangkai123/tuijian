@@ -12,7 +12,7 @@
 
 +(id)sharedNetworkManager;
 -(void)sendTencentUserInfoRequest:(NSDictionary *)sinaUserInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
--(void)sendUserTokenToServerForLogin:(NSString *)access_token success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
+-(void)sendUserTokenToServerForLogin:(NSString *)access_token userInfo:(NSDictionary *)userInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 -(void)uploadItem:(NSString *)accessT recMes:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 -(void)sendFeatchItemsRequest:(NSString *)accessT success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 @end
