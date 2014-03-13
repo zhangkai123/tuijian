@@ -17,4 +17,5 @@
     #import "Common.h"
     #import "AFNetworking.h"
     #import "TJDataController.h"
+    #import "SDWebImage/UIImageView+WebCache.h"
 #endif

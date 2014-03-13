@@ -7,6 +7,7 @@
 //
 
 #import "TJDataController.h"
+#import "TJParser.h"
 
 @implementation TJDataController
 +(id)sharedDataController
@@ -93,7 +94,8 @@
     NSString *myAccessToken = [self getMyUserToken];
     [[TJNetworkManager sharedNetworkManager]sendFeatchItemsRequest:myAccessToken success:^(id Json){
         
-        success(Json);
+        NSArray *itemsArray = [TJParser parseItemsJsonData:Json];
+        success(itemsArray);
     }failure:^(NSError *error){
         
         failure(error);

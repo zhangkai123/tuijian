@@ -9,6 +9,7 @@
 #import "TJShowViewController.h"
 #import "TJCamViewController.h"
 #import "TJItemCell.h"
+#import "TJItem.h"
 
 @interface TJShowViewController ()<UIImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource>
 {
@@ -42,9 +43,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     // Do any additional setup after loading the view.
-    itemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 45, 320, 548-45) style:UITableViewStylePlain];
+    itemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 548-45) style:UITableViewStylePlain];
 //    [itemTableView setBackgroundColor:[UIColor clearColor]];
-    [itemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+//    [itemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     itemTableView.rowHeight = 190;
     itemTableView.dataSource = self;
     itemTableView.delegate = self;
@@ -53,9 +54,11 @@
     itemsArray = [[NSMutableArray alloc]init];
 
     __block UITableView *weaktheTalbleView = itemTableView;
-    __block NSMutableArray *weakproductsArray = itemsArray;
-    [[TJDataController sharedDataController]getItems:^(NSArray *itemsArray){
+    __block NSMutableArray *weakItemsArray = itemsArray;
+    [[TJDataController sharedDataController]getItems:^(NSArray *iteArray){
         
+        [weakItemsArray addObjectsFromArray:iteArray];
+        [weaktheTalbleView reloadData];
     }failure:^(NSError *error){
         
     }];
@@ -102,6 +105,17 @@
 //    }else{
 //        cell.coverView2.hidden = YES;
 //    }
+    TJItem *theItem = [itemsArray objectAtIndex:indexPath.row];
+    UIImage *genderPlaceHolder = nil;
+    if ([theItem.userGender intValue] == 1) {
+        [cell.genderImageView setImage:[UIImage imageNamed:@"male.png"]];
+        genderPlaceHolder = [UIImage imageNamed:@"man_placeholder.png"];
+    }else{
+        [cell.genderImageView setImage:[UIImage imageNamed:@"female.png"]];
+        genderPlaceHolder = [UIImage imageNamed:@"womanPlaceholder.png"];
+    }
+    [cell.userImageView setImageWithURL:[NSURL URLWithString:theItem.userImg] placeholderImage:genderPlaceHolder];
+    [cell.nameLabel setText:theItem.userName];
     return cell;
 }
 
