@@ -10,23 +10,14 @@
 
 @interface TJItemCell : UITableViewCell
 {
-    UIImageView *userImageView;
-    UILabel *nameLabel;
-    UIImageView *genderImageView;
-    
     UIImageView *itemImageView;
-    NSString *recommendInfo;
-    NSString *commentNum;
-    NSString *likeNum;
+    UILabel *recommendInfoLabel;
+    UILabel *commentNumLabel;
+    UILabel *likeNumLabel;
 }
-
-@property(nonatomic,strong) UIImageView *userImageView;
-@property(nonatomic,strong) UILabel *nameLabel;
-@property(nonatomic,strong) UIImageView *genderImageView;
-
 @property(nonatomic,strong) UIImageView *itemImageView;
-@property(nonatomic,strong) NSString *recommendInfo;
-@property(nonatomic,strong) NSString *commentNum;
-@property(nonatomic,strong) NSString *likeNum;
+@property(nonatomic,strong) UILabel *recommendInfoLabel;
+@property(nonatomic,strong) UILabel *commentNumLabel;
+@property(nonatomic,strong) UILabel *likeNumLabel;
 
 @end

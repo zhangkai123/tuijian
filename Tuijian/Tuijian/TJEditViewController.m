@@ -54,7 +54,7 @@
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 300, 350)];
     imageView.backgroundColor = [UIColor blackColor];
     imageView.userInteractionEnabled = YES;
-    imageView.layer.cornerRadius = 5;
+    imageView.layer.cornerRadius = 2;
     imageView.layer.masksToBounds = YES;
     imageView.image = self.cropedImage;
     [self.view addSubview:imageView];

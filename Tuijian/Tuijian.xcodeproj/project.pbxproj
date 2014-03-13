@@ -26,6 +26,7 @@
 		4B47A39B18D179B800087BE4 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B47A38D18D179B800087BE4 /* UIImageView+WebCache.m */; };
 		4B47A39D18D17BB100087BE4 /* man_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A39C18D17BB100087BE4 /* man_placeholder.png */; };
 		4B47A39F18D17BB700087BE4 /* womanPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A39E18D17BB700087BE4 /* womanPlaceholder.png */; };
+		4B47A3A118D187F600087BE4 /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A018D187F600087BE4 /* photo.png */; };
 		4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */; };
 		4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */; };
 		4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */; };
@@ -131,6 +132,7 @@
 		4B47A38D18D179B800087BE4 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		4B47A39C18D17BB100087BE4 /* man_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man_placeholder.png; sourceTree = "<group>"; };
 		4B47A39E18D17BB700087BE4 /* womanPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = womanPlaceholder.png; sourceTree = "<group>"; };
+		4B47A3A018D187F600087BE4 /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
 		4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon-highlighted@2x.png"; sourceTree = "<group>"; };
 		4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon@2x.png"; sourceTree = "<group>"; };
 		4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CameraFlipIcon@2x.png"; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 		4BFA999518AFA19200D673CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B47A3A018D187F600087BE4 /* photo.png */,
 				4BDEDB3A18CFF47F001C2874 /* gender */,
 				4B569CAF18CEA839000DF219 /* login */,
 				4B543FC918B4F30B0052DFDD /* camera */,
@@ -617,6 +620,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B47A39D18D17BB100087BE4 /* man_placeholder.png in Resources */,
+				4B47A3A118D187F600087BE4 /* photo.png in Resources */,
 				4B569C9918CE9E36000DF219 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */,
 				4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */,

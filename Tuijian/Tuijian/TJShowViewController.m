@@ -43,12 +43,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     // Do any additional setup after loading the view.
-    itemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 548-45) style:UITableViewStylePlain];
+    itemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
 //    [itemTableView setBackgroundColor:[UIColor clearColor]];
 //    [itemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    itemTableView.rowHeight = 190;
+    itemTableView.rowHeight = 500;
     itemTableView.dataSource = self;
     itemTableView.delegate = self;
+    itemTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
     [self.view addSubview:itemTableView];
     
     itemsArray = [[NSMutableArray alloc]init];
@@ -72,11 +73,11 @@
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [itemsArray count];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [itemsArray count];
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -84,41 +85,45 @@
     if (!cell) {
         cell = [[TJItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-//    cell.rowNum = indexPath.row;
-//    cell.delegate = self;
-//    Product *leftProduct = [productsArray objectAtIndex:indexPath.row*2];
-//    //change to big image to see if better performance
-//    NSString *lProduct = [NSString stringWithFormat:@"%@_160x160.jpg",leftProduct.pic_url];
-//    [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"smallbPlaceHolder.png"]];
-//    //        [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"smallbPlaceHolder.png"]];
-//    cell.priceLabel2.text = leftProduct.price;
-//    cell.likeLabel2.text = leftProduct.seller_credit_score;
-//    
-//    cell.coverView2.hidden = NO;
-//    if ([productsArray count] > indexPath.row*2 + 1) {
-//        Product *rightProduct = [productsArray objectAtIndex:indexPath.row*2 + 1];
-//        NSString *rProduct = [NSString stringWithFormat:@"%@_160x160.jpg",rightProduct.pic_url];
-//        [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"smallbPlaceHolder.png"]];
-//        //                [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"smallbPlaceHolder.png"]];
-//        cell.priceLabelR2.text = rightProduct.price;
-//        cell.likeLabel2R.text = rightProduct.seller_credit_score;
-//    }else{
-//        cell.coverView2.hidden = YES;
-//    }
-    TJItem *theItem = [itemsArray objectAtIndex:indexPath.row];
-    UIImage *genderPlaceHolder = nil;
-    if ([theItem.userGender intValue] == 1) {
-        [cell.genderImageView setImage:[UIImage imageNamed:@"male.png"]];
-        genderPlaceHolder = [UIImage imageNamed:@"man_placeholder.png"];
-    }else{
-        [cell.genderImageView setImage:[UIImage imageNamed:@"female.png"]];
-        genderPlaceHolder = [UIImage imageNamed:@"womanPlaceholder.png"];
-    }
-    [cell.userImageView setImageWithURL:[NSURL URLWithString:theItem.userImg] placeholderImage:genderPlaceHolder];
-    [cell.nameLabel setText:theItem.userName];
+    TJItem *theItem = [itemsArray objectAtIndex:indexPath.section];
+    [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
     return cell;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+    TJItem *theItem = [itemsArray objectAtIndex:section];
+    UIImageView *userImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
+    userImageView.clipsToBounds = YES;
+    [backView addSubview:userImageView];
+    userImageView.layer.cornerRadius = 40 / 2.0;
+    
+    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 10, 100, 20)];
+    nameLabel.textColor = [UIColor blackColor];
+    [nameLabel setFont:[UIFont systemFontOfSize:12]];
+    [backView addSubview:nameLabel];
+    
+    UIImageView *genderImageView = [[UIImageView alloc]initWithFrame:CGRectMake(60, 30, 13, 13)];
+    [backView addSubview:genderImageView];
 
+    UIImage *genderPlaceHolder = nil;
+    if ([theItem.userGender intValue] == 1) {
+        [genderImageView setImage:[UIImage imageNamed:@"male.png"]];
+        genderPlaceHolder = [UIImage imageNamed:@"man_placeholder.png"];
+    }else{
+        [genderImageView setImage:[UIImage imageNamed:@"female.png"]];
+        genderPlaceHolder = [UIImage imageNamed:@"womanPlaceholder.png"];
+    }
+    [userImageView setImageWithURL:[NSURL URLWithString:theItem.userImg] placeholderImage:genderPlaceHolder];
+    [nameLabel setText:theItem.userName];
+    
+    [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.8]];
+    return backView;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

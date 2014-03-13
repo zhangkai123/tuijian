@@ -51,7 +51,7 @@
     
     imageScrollView = [[ImageScrollView alloc]initWithFrame:CGRectMake(0, 0, 300, 350)];
     imageScrollView.backgroundColor = [UIColor blackColor];
-    imageScrollView.layer.cornerRadius = 5;
+    imageScrollView.layer.cornerRadius = 2;
     imageScrollView.layer.masksToBounds = YES;
     [imageScrollView displayImage:self.thePhoto];
     [self.view addSubview:imageScrollView];

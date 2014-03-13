@@ -63,7 +63,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     
     self.previewView = [[AVCamPreviewView alloc]initWithFrame:CGRectMake(0, 0, 300, 350)];
     [(AVCaptureVideoPreviewLayer *)self.previewView.layer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    self.previewView.layer.cornerRadius = 5;
+    self.previewView.layer.cornerRadius = 2;
     self.previewView.layer.masksToBounds = YES;
     [self.view addSubview:self.previewView];
     self.previewView.center = self.view.center;
