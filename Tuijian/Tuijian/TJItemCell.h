@@ -13,6 +13,9 @@
     UIImageView *itemImageView;
     UILabel *recommendInfoLabel;
     
+    UIButton *shareButton;
+    UIButton *likeButton;
+    
     UIImageView *commentImageView;
     UILabel *commentNumLabel;
     

@@ -29,6 +29,9 @@
 		4B47A3A118D187F600087BE4 /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A018D187F600087BE4 /* photo.png */; };
 		4B47A3A418D1AA0100087BE4 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A318D1AA0100087BE4 /* comment.png */; };
 		4B47A3A618D1AA1600087BE4 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A518D1AA1600087BE4 /* like.png */; };
+		4B47A3A918D1B40500087BE4 /* favhighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A718D1B40400087BE4 /* favhighlight@2x.png */; };
+		4B47A3AA18D1B40500087BE4 /* favSelectedHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A818D1B40400087BE4 /* favSelectedHighlight@2x.png */; };
+		4B47A3AC18D1B42300087BE4 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3AB18D1B42300087BE4 /* share.png */; };
 		4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */; };
 		4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */; };
 		4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */; };
@@ -137,6 +140,9 @@
 		4B47A3A018D187F600087BE4 /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
 		4B47A3A318D1AA0100087BE4 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		4B47A3A518D1AA1600087BE4 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
+		4B47A3A718D1B40400087BE4 /* favhighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favhighlight@2x.png"; sourceTree = "<group>"; };
+		4B47A3A818D1B40400087BE4 /* favSelectedHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favSelectedHighlight@2x.png"; sourceTree = "<group>"; };
+		4B47A3AB18D1B42300087BE4 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon-highlighted@2x.png"; sourceTree = "<group>"; };
 		4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon@2x.png"; sourceTree = "<group>"; };
 		4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CameraFlipIcon@2x.png"; sourceTree = "<group>"; };
@@ -305,6 +311,9 @@
 		4B47A3A218D1A9EC00087BE4 /* items */ = {
 			isa = PBXGroup;
 			children = (
+				4B47A3AB18D1B42300087BE4 /* share.png */,
+				4B47A3A718D1B40400087BE4 /* favhighlight@2x.png */,
+				4B47A3A818D1B40400087BE4 /* favSelectedHighlight@2x.png */,
 				4B47A3A318D1AA0100087BE4 /* comment.png */,
 				4B47A3A518D1AA1600087BE4 /* like.png */,
 			);
@@ -634,11 +643,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B47A39D18D17BB100087BE4 /* man_placeholder.png in Resources */,
+				4B47A3AA18D1B40500087BE4 /* favSelectedHighlight@2x.png in Resources */,
 				4B47A3A118D187F600087BE4 /* photo.png in Resources */,
 				4B47A3A618D1AA1600087BE4 /* like.png in Resources */,
 				4B569C9918CE9E36000DF219 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */,
 				4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */,
+				4B47A3AC18D1B42300087BE4 /* share.png in Resources */,
 				4B569CB318CEAAE9000DF219 /* bt_blue_76X24.png in Resources */,
 				4BDEDB3C18CFF48A001C2874 /* male.png in Resources */,
 				4BFA999918AFA19200D673CB /* InfoPlist.strings in Resources */,
@@ -646,6 +657,7 @@
 				4B54577018CDBEF700492F81 /* ChoosePhotoIcon@2x.png in Resources */,
 				4BFA99A118AFA19200D673CB /* Images.xcassets in Resources */,
 				4B47A3A418D1AA0100087BE4 /* comment.png in Resources */,
+				4B47A3A918D1B40500087BE4 /* favhighlight@2x.png in Resources */,
 				4BDEDB3E18CFF490001C2874 /* female.png in Resources */,
 				4B47A39F18D17BB700087BE4 /* womanPlaceholder.png in Resources */,
 				4B569CB118CEA848000DF219 /* bt_92X120.png in Resources */,
