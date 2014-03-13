@@ -54,7 +54,7 @@
 
     __block UITableView *weaktheTalbleView = itemTableView;
     __block NSMutableArray *weakproductsArray = itemsArray;
-    [[TJDataController sharedDataController]getItems:^(id Json){
+    [[TJDataController sharedDataController]getItems:^(NSArray *itemsArray){
         
     }failure:^(NSError *error){
         

@@ -88,7 +88,7 @@
         failure(error);
     }];
 }
--(void)getItems:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)getItems:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure
 {
     NSString *myAccessToken = [self getMyUserToken];
     [[TJNetworkManager sharedNetworkManager]sendFeatchItemsRequest:myAccessToken success:^(id Json){
