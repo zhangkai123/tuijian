@@ -15,6 +15,7 @@
 {
     UITableView *itemTableView;
     NSMutableArray *itemsArray;
+    NSMutableArray *textHeightArray;
 }
 @end
 
@@ -53,11 +54,23 @@
     [self.view addSubview:itemTableView];
     
     itemsArray = [[NSMutableArray alloc]init];
-
+    textHeightArray = [[NSMutableArray alloc]init];
+    
     __block UITableView *weaktheTalbleView = itemTableView;
     __block NSMutableArray *weakItemsArray = itemsArray;
+    __block NSMutableArray *weakTextHeightArray = textHeightArray;
     [[TJDataController sharedDataController]getItems:^(NSArray *iteArray){
-        
+        for (int i = 0; i < [iteArray count]; i++) {
+            TJItem *item = [iteArray objectAtIndex:i];
+            NSString *recommendTex = item.recommendReason;
+//            CGSize expectedLabelSize = [recommendTex sizeWithFont:[UIFont systemFontOfSize:15]
+//                                              constrainedToSize:CGSizeMake(300, 0)
+//                                                  lineBreakMode:NSLineBreakByCharWrapping];
+            CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(300, 0)
+                                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+            [weakTextHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
+        }
         [weakItemsArray addObjectsFromArray:iteArray];
         [weaktheTalbleView reloadData];
     }failure:^(NSError *error){
@@ -79,6 +92,11 @@
 {
     return 1;
 }
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
+    return textHeight + 355;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TJItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -87,6 +105,9 @@
     }
     TJItem *theItem = [itemsArray objectAtIndex:indexPath.section];
     [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
+    
+    float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
+    [cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

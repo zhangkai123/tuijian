@@ -16,8 +16,8 @@
     UILabel *likeNumLabel;
 }
 @property(nonatomic,strong) UIImageView *itemImageView;
-@property(nonatomic,strong) UILabel *recommendInfoLabel;
 @property(nonatomic,strong) UILabel *commentNumLabel;
 @property(nonatomic,strong) UILabel *likeNumLabel;
 
+-(void)setRecommendInfoAndHeight:(NSString *)recommendInfo textHeight:(float)textH;
 @end
