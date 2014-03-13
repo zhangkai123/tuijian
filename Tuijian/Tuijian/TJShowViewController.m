@@ -95,7 +95,7 @@
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
-    return textHeight + 355;
+    return textHeight + 355 + 40;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -108,6 +108,8 @@
     
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
     [cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
+    cell.likeNumLabel.text = theItem.likeNum;
+    cell.commentNumLabel.text = theItem.commentNum;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

@@ -12,7 +12,11 @@
 {
     UIImageView *itemImageView;
     UILabel *recommendInfoLabel;
+    
+    UIImageView *commentImageView;
     UILabel *commentNumLabel;
+    
+    UIImageView *likeImageView;
     UILabel *likeNumLabel;
 }
 @property(nonatomic,strong) UIImageView *itemImageView;

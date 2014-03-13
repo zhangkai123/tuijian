@@ -23,9 +23,32 @@
         [recommendInfoLabel setFont:[UIFont systemFontOfSize:15]];
         recommendInfoLabel.lineBreakMode = NSLineBreakByCharWrapping;
         recommendInfoLabel.numberOfLines = 0;
-        recommendInfoLabel.text = @"太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了太牛逼了";
         [recommendInfoLabel setTextColor:[UIColor blackColor]];
         [self addSubview:recommendInfoLabel];
+        
+        likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];
+        likeImageView.image = [UIImage imageNamed:@"like.png"];
+        likeImageView.alpha = 0.5;
+        [self addSubview:likeImageView];
+        
+        likeNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];
+        [likeNumLabel setFont:[UIFont systemFontOfSize:8]];
+        likeNumLabel.textAlignment = NSTextAlignmentCenter;
+        likeNumLabel.textColor = [UIColor redColor];
+        likeNumLabel.text = @"1000";
+        [likeImageView addSubview:likeNumLabel];
+        
+        commentImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 28, 28)];
+        commentImageView.image = [UIImage imageNamed:@"comment.png"];
+        commentImageView.alpha = 0.5;
+        [self addSubview:commentImageView];
+        
+        commentNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 28, 28)];
+        [commentNumLabel setFont:[UIFont systemFontOfSize:8]];
+        commentNumLabel.textAlignment = NSTextAlignmentCenter;
+        commentNumLabel.textColor = [UIColor redColor];
+        commentNumLabel.text = @"1000";
+        [commentImageView addSubview:commentNumLabel];
     }
     return self;
 }
@@ -33,6 +56,9 @@
 {
     recommendInfoLabel.text = recommendInfo;
     recommendInfoLabel.frame = CGRectMake(10, 355, 300, textH);
+    
+    likeImageView.frame = CGRectMake(240, 360 + textH, 32, 32);
+    commentImageView.frame = CGRectMake(240 + 32 + 5, 360 + textH + 2, 28, 28);
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
