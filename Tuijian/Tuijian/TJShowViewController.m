@@ -38,7 +38,11 @@
     }
     return self;
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self refreshTableViewData];
+    [super viewWillAppear:animated];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -56,16 +60,45 @@
     itemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
     
+    [self refreshTableViewData];
+//    __block UITableView *weaktheTalbleView = itemTableView;
+//    __block NSMutableArray *weakItemsArray = itemsArray;
+//    __block NSMutableArray *weakTextHeightArray = textHeightArray;
+//    [[TJDataController sharedDataController]getItems:^(NSArray *iteArray){
+//        for (int i = 0; i < [iteArray count]; i++) {
+//            TJItem *item = [iteArray objectAtIndex:i];
+//            NSString *recommendTex = item.recommendReason;
+////            CGSize expectedLabelSize = [recommendTex sizeWithFont:[UIFont systemFontOfSize:15]
+////                                              constrainedToSize:CGSizeMake(300, 0)
+////                                                  lineBreakMode:NSLineBreakByCharWrapping];
+//            CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(300, 0)
+//                                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+//                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+//            [weakTextHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
+//        }
+//        [weakItemsArray addObjectsFromArray:iteArray];
+//        [weaktheTalbleView reloadData];
+//    }failure:^(NSError *error){
+//        
+//    }];
+}
+-(void)refreshTableViewData
+{
     __block UITableView *weaktheTalbleView = itemTableView;
     __block NSMutableArray *weakItemsArray = itemsArray;
     __block NSMutableArray *weakTextHeightArray = textHeightArray;
     [[TJDataController sharedDataController]getItems:^(NSArray *iteArray){
+        if ([iteArray count] == 0) {
+            return;
+        }
+        [weakTextHeightArray removeAllObjects];
+        [weakItemsArray removeAllObjects];
         for (int i = 0; i < [iteArray count]; i++) {
             TJItem *item = [iteArray objectAtIndex:i];
             NSString *recommendTex = item.recommendReason;
-//            CGSize expectedLabelSize = [recommendTex sizeWithFont:[UIFont systemFontOfSize:15]
-//                                              constrainedToSize:CGSizeMake(300, 0)
-//                                                  lineBreakMode:NSLineBreakByCharWrapping];
+            //            CGSize expectedLabelSize = [recommendTex sizeWithFont:[UIFont systemFontOfSize:15]
+            //                                              constrainedToSize:CGSizeMake(300, 0)
+            //                                                  lineBreakMode:NSLineBreakByCharWrapping];
             CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(300, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                                                attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
@@ -73,6 +106,7 @@
         }
         [weakItemsArray addObjectsFromArray:iteArray];
         [weaktheTalbleView reloadData];
+        [weaktheTalbleView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
     }failure:^(NSError *error){
         
     }];
@@ -103,6 +137,8 @@
     if (!cell) {
         cell = [[TJItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     TJItem *theItem = [itemsArray objectAtIndex:indexPath.section];
     [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
     
@@ -144,7 +180,7 @@
     [userImageView setImageWithURL:[NSURL URLWithString:theItem.userImg] placeholderImage:genderPlaceHolder];
     [nameLabel setText:theItem.userName];
     
-    [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.8]];
+//    [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.8]];
     return backView;
 }
 - (void)didReceiveMemoryWarning

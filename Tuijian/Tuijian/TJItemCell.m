@@ -59,7 +59,7 @@
         
         likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];
         likeImageView.image = [UIImage imageNamed:@"like.png"];
-        likeImageView.alpha = 0.5;
+//        likeImageView.alpha = 0.5;
         [self addSubview:likeImageView];
         
         likeNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];
@@ -71,7 +71,7 @@
         
         commentImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 28, 28)];
         commentImageView.image = [UIImage imageNamed:@"comment.png"];
-        commentImageView.alpha = 0.5;
+//        commentImageView.alpha = 0.5;
         [self addSubview:commentImageView];
         
         commentNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, -1, 28, 28)];
