@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TJItem.h"
 
 @interface TJCommentViewController : UIViewController
+{
+    TJItem *theItem;
+    float textHeight;
+}
 
+@property(nonatomic,strong) TJItem *theItem;
+@property(nonatomic,assign) float textHeight;
 @end

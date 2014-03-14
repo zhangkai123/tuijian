@@ -12,7 +12,7 @@
 #import "TJItem.h"
 #import "TJCommentViewController.h"
 
-@interface TJShowViewController ()<UIImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *itemTableView;
     NSMutableArray *itemsArray;
@@ -52,7 +52,6 @@
     itemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
 //    [itemTableView setBackgroundColor:[UIColor clearColor]];
 //    [itemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    itemTableView.rowHeight = 500;
     itemTableView.dataSource = self;
     itemTableView.delegate = self;
     itemTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
@@ -62,26 +61,6 @@
     textHeightArray = [[NSMutableArray alloc]init];
     
     [self refreshTableViewData];
-//    __block UITableView *weaktheTalbleView = itemTableView;
-//    __block NSMutableArray *weakItemsArray = itemsArray;
-//    __block NSMutableArray *weakTextHeightArray = textHeightArray;
-//    [[TJDataController sharedDataController]getItems:^(NSArray *iteArray){
-//        for (int i = 0; i < [iteArray count]; i++) {
-//            TJItem *item = [iteArray objectAtIndex:i];
-//            NSString *recommendTex = item.recommendReason;
-////            CGSize expectedLabelSize = [recommendTex sizeWithFont:[UIFont systemFontOfSize:15]
-////                                              constrainedToSize:CGSizeMake(300, 0)
-////                                                  lineBreakMode:NSLineBreakByCharWrapping];
-//            CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(300, 0)
-//                                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-//                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
-//            [weakTextHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
-//        }
-//        [weakItemsArray addObjectsFromArray:iteArray];
-//        [weaktheTalbleView reloadData];
-//    }failure:^(NSError *error){
-//        
-//    }];
 }
 -(void)refreshTableViewData
 {
@@ -107,7 +86,7 @@
         }
         [weakItemsArray addObjectsFromArray:iteArray];
         [weaktheTalbleView reloadData];
-        [weaktheTalbleView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+//        [weaktheTalbleView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
     }failure:^(NSError *error){
         
     }];
@@ -151,8 +130,13 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    TJItem *item = [itemsArray objectAtIndex:indexPath.section];
+    float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
+    
     self.hidesBottomBarWhenPushed = YES;
     TJCommentViewController *commentViewController = [[TJCommentViewController alloc]init];
+    commentViewController.theItem = item;
+    commentViewController.textHeight = textHeight;
     [self.navigationController pushViewController:commentViewController animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }

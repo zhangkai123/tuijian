@@ -73,6 +73,7 @@
 		4BE1636018B869040009158D /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1635F18B869040009158D /* ImageScrollView.m */; };
 		4BE1636318B9D7890009158D /* TJEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1636218B9D7880009158D /* TJEditViewController.m */; };
 		4BF41A2318D299B6004E9A38 /* TJCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */; };
+		4BF41A2718D2E17A004E9A38 /* write.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF41A2618D2E17A004E9A38 /* write.png */; };
 		4BFA998F18AFA19200D673CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA998E18AFA19200D673CB /* Foundation.framework */; };
 		4BFA999118AFA19200D673CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA999018AFA19200D673CB /* CoreGraphics.framework */; };
 		4BFA999318AFA19200D673CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA999218AFA19200D673CB /* UIKit.framework */; };
@@ -210,6 +211,7 @@
 		4BE1636218B9D7880009158D /* TJEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJEditViewController.m; sourceTree = "<group>"; };
 		4BF41A2118D299B6004E9A38 /* TJCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCommentViewController.h; sourceTree = "<group>"; };
 		4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCommentViewController.m; sourceTree = "<group>"; };
+		4BF41A2618D2E17A004E9A38 /* write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = write.png; sourceTree = "<group>"; };
 		4BFA998B18AFA19200D673CB /* Tuijian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuijian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BFA998E18AFA19200D673CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4BFA999018AFA19200D673CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -545,6 +547,7 @@
 				4B569CAF18CEA839000DF219 /* login */,
 				4B543FC918B4F30B0052DFDD /* camera */,
 				4B7A421318B0DCE2009356F4 /* camera_18_2x.png */,
+				4BF41A2618D2E17A004E9A38 /* write.png */,
 				4BFA999618AFA19200D673CB /* Tuijian-Info.plist */,
 				4BFA999718AFA19200D673CB /* InfoPlist.strings */,
 				4BFA999A18AFA19200D673CB /* main.m */,
@@ -666,6 +669,7 @@
 				4BDEDB3E18CFF490001C2874 /* female.png in Resources */,
 				4B47A39F18D17BB700087BE4 /* womanPlaceholder.png in Resources */,
 				4B569CB118CEA848000DF219 /* bt_92X120.png in Resources */,
+				4BF41A2718D2E17A004E9A38 /* write.png in Resources */,
 				4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
