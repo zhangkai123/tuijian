@@ -27,20 +27,20 @@
         [recommendInfoLabel setTextColor:[UIColor blackColor]];
         [self addSubview:recommendInfoLabel];
         
-        shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [shareButton setFrame:CGRectMake(0, 0, 70, 28)];
-        shareButton.layer.cornerRadius = 3;
-        [shareButton setClipsToBounds:YES];
-        shareButton.backgroundColor = UIColorFromRGB(0xD4D4D4);
-        [shareButton setImage:[UIImage imageNamed:@"share.png"] forState:UIControlStateNormal];
-        [shareButton setTitle:@"分享" forState:UIControlStateNormal];
-        [shareButton.titleLabel setFont:[UIFont systemFontOfSize:15.f]];
-        [shareButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        [shareButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-        shareButton.imageEdgeInsets = UIEdgeInsetsMake(0, 40, 0, 0);
-        [shareButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -50, 0, 0)];
-//        [shareButton addTarget:self action:@selector(buttonTouchedUpInside:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:shareButton];
+//        shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [shareButton setFrame:CGRectMake(0, 0, 70, 28)];
+//        shareButton.layer.cornerRadius = 3;
+//        [shareButton setClipsToBounds:YES];
+//        shareButton.backgroundColor = UIColorFromRGB(0xD4D4D4);
+//        [shareButton setImage:[UIImage imageNamed:@"share.png"] forState:UIControlStateNormal];
+//        [shareButton setTitle:@"分享" forState:UIControlStateNormal];
+//        [shareButton.titleLabel setFont:[UIFont systemFontOfSize:15.f]];
+//        [shareButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+//        [shareButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+//        shareButton.imageEdgeInsets = UIEdgeInsetsMake(0, 40, 0, 0);
+//        [shareButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -50, 0, 0)];
+////        [shareButton addTarget:self action:@selector(buttonTouchedUpInside:) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:shareButton];
         
         likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [likeButton setFrame:CGRectMake(0, 0, 70, 28)];
@@ -88,10 +88,10 @@
     recommendInfoLabel.text = recommendInfo;
     recommendInfoLabel.frame = CGRectMake(10, 355, 300, textH);
     
-    shareButton.frame = CGRectMake(10, 360 + textH + 2, 70, 28);
-    likeButton.frame = CGRectMake(10 + 75, 360 + textH + 2, 70, 28);
-    likeImageView.frame = CGRectMake(240, 360 + textH, 32, 32);
-    commentImageView.frame = CGRectMake(240 + 32 + 5, 360 + textH + 2, 28, 28);
+//    shareButton.frame = CGRectMake(10, 360 + textH + 2, 70, 28);
+    likeButton.frame = CGRectMake(320 - 70 - 10, 360 + textH + 1, 70, 28);
+    likeImageView.frame = CGRectMake(10, 360 + textH, 32, 32);
+    commentImageView.frame = CGRectMake(10 + 32 + 5, 360 + textH + 2, 28, 28);
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

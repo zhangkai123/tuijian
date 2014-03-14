@@ -10,6 +10,7 @@
 #import "TJCamViewController.h"
 #import "TJItemCell.h"
 #import "TJItem.h"
+#import "TJCommentViewController.h"
 
 @interface TJShowViewController ()<UIImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource>
 {
@@ -137,7 +138,7 @@
     if (!cell) {
         cell = [[TJItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     TJItem *theItem = [itemsArray objectAtIndex:indexPath.section];
     [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
@@ -147,6 +148,13 @@
     cell.likeNumLabel.text = theItem.likeNum;
     cell.commentNumLabel.text = theItem.commentNum;
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.hidesBottomBarWhenPushed = YES;
+    TJCommentViewController *commentViewController = [[TJCommentViewController alloc]init];
+    [self.navigationController pushViewController:commentViewController animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
