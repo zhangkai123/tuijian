@@ -11,4 +11,5 @@
 @interface TJParser : NSObject
 
 +(NSArray *)parseItemsJsonData:(id)json;
++(void)parseLikeJsonData:(id)json success:(void (^)(BOOL hasLiked))success failed:(void (^)(NSError *error))failed;
 @end

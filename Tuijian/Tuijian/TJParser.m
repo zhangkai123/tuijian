@@ -31,4 +31,18 @@
     }
     return itemsArray;
 }
++(void)parseLikeJsonData:(id)json success:(void (^)(BOOL hasLiked))successed failed:(void (^)(NSError *error))failed
+{
+    NSString *sucess = [json objectForKey:@"status"];
+    if ([sucess isEqualToString:@"success"]) {
+        NSString *hasLiked = [json objectForKey:@"hasliked"];
+        if ([hasLiked isEqualToString:@"YES"]) {
+            successed(YES);
+        }else{
+            successed(NO);
+        }
+    }else{
+        
+    }
+}
 @end

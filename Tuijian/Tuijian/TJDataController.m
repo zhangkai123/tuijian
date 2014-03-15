@@ -101,11 +101,15 @@
         failure(error);
     }];
 }
--(void)saveLike:(NSString *)itemId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)saveLike:(NSString *)itemId success:(void (^)(BOOL hasLiked))liked failure:(void (^)(NSError *error))failure
 {
     NSString *myAccessToken = [self getMyUserToken];
     [[TJNetworkManager sharedNetworkManager]sendLikeRequest:myAccessToken itemId:itemId success:^(id Json){
-        success(Json);
+        [TJParser parseLikeJsonData:Json success:^(BOOL hasLiked){
+            liked(hasLiked);
+        }failed:^(NSError *error){
+            failure(error);
+        }];
     }failure:^(NSError *error){
         failure(error);
     }];

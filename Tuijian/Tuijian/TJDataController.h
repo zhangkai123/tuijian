@@ -25,7 +25,7 @@
 -(TJUser *)getMyUserInfo;
 -(void)saveItem:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 -(void)getItems:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure;
--(void)saveLike:(NSString *)itemId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
+-(void)saveLike:(NSString *)itemId success:(void (^)(BOOL hasLiked))liked failure:(void (^)(NSError *error))failure;
 //-(void)saveCurrentEditCourse:(NSDictionary *)dic;
 //-(NSDictionary *)getCurrentEditCourse;
 @end

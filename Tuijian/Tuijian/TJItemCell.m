@@ -52,7 +52,7 @@
         [likeButton setTitle:@"赞" forState:UIControlStateNormal];
         [likeButton.titleLabel setFont:[UIFont systemFontOfSize:15.f]];
         [likeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        [likeButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+//        [likeButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
         likeButton.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 0, 0);
         [likeButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -60, 0, 0)];
         [likeButton addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
@@ -96,8 +96,14 @@
 }
 -(void)like
 {
-    [[TJDataController sharedDataController]saveLike:self.itemId success:^(id Json){
-        
+    [[TJDataController sharedDataController]saveLike:self.itemId success:^(BOOL hasLiked){
+        if (hasLiked) {
+            [likeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [likeButton setImage:[UIImage imageNamed:@"favSelectedHighlight@2x.png"] forState:UIControlStateNormal];
+        }else{
+            [likeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            [likeButton setImage:[UIImage imageNamed:@"favhighlight@2x.png"] forState:UIControlStateNormal];
+        }
     }failure:^(NSError *error){
         
     }];
