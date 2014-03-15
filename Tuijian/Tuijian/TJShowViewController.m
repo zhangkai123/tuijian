@@ -120,8 +120,8 @@
 //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     TJItem *theItem = [itemsArray objectAtIndex:indexPath.section];
+    cell.itemId = theItem.itemId;
     [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
-    
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
     [cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
     cell.likeNumLabel.text = theItem.likeNum;

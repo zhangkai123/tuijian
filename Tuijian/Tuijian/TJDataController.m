@@ -101,7 +101,15 @@
         failure(error);
     }];
 }
-
+-(void)saveLike:(NSString *)itemId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+{
+    NSString *myAccessToken = [self getMyUserToken];
+    [[TJNetworkManager sharedNetworkManager]sendLikeRequest:myAccessToken itemId:itemId success:^(id Json){
+        success(Json);
+    }failure:^(NSError *error){
+        failure(error);
+    }];
+}
 //-(void)saveCurrentEditCourse:(NSDictionary *)dic
 //{
 //    [[ADDiskCacheManager sharedDiskCacheManager]saveCurrentEditCourse:dic];

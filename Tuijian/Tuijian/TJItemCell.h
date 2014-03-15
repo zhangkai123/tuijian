@@ -10,6 +10,8 @@
 
 @interface TJItemCell : UITableViewCell
 {
+    NSString *itemId;
+    
     UIImageView *itemImageView;
     UILabel *recommendInfoLabel;
     
@@ -22,6 +24,8 @@
     UIImageView *likeImageView;
     UILabel *likeNumLabel;
 }
+@property(nonatomic,strong) NSString *itemId;
+
 @property(nonatomic,strong) UIImageView *itemImageView;
 @property(nonatomic,strong) UILabel *commentNumLabel;
 @property(nonatomic,strong) UILabel *likeNumLabel;

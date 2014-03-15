@@ -15,4 +15,5 @@
 -(void)sendUserTokenToServerForLogin:(NSString *)access_token userInfo:(NSDictionary *)userInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 -(void)uploadItem:(NSString *)accessT recMes:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 -(void)sendFeatchItemsRequest:(NSString *)accessT success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
+-(void)sendLikeRequest:(NSString *)accessT itemId:(NSString *)itemId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 @end

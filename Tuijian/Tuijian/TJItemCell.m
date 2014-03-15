@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation TJItemCell
+@synthesize itemId;
 @synthesize itemImageView ,commentNumLabel ,likeNumLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -54,7 +55,7 @@
         [likeButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
         likeButton.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 0, 0);
         [likeButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -60, 0, 0)];
-        //        [likeButton addTarget:self action:@selector(buttonTouchedUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        [likeButton addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:likeButton];
         
         likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];
@@ -92,6 +93,14 @@
     likeButton.frame = CGRectMake(10, 360 + textH + 1, 70, 28);
     likeImageView.frame = CGRectMake(240, 360 + textH, 32, 32);
     commentImageView.frame = CGRectMake(240 + 32 + 5, 360 + textH + 2, 28, 28);
+}
+-(void)like
+{
+    [[TJDataController sharedDataController]saveLike:self.itemId success:^(id Json){
+        
+    }failure:^(NSError *error){
+        
+    }];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

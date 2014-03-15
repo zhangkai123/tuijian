@@ -92,6 +92,7 @@
     NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken", nil];
     NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
     
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         
         success(JSON);
@@ -101,4 +102,22 @@
     }];
     [operation start];
 }
+-(void)sendLikeRequest:(NSString *)accessT itemId:(NSString *)itemId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+{
+    TJMyServerClient *client = [TJMyServerClient sharedClient];
+    NSString *path = @"likeRequest";
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"userId",itemId,@"itemId", nil];
+    NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
+    
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        
+        success(JSON);
+    }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        failure(error);
+    }];
+    [operation start];
+}
+
 @end
