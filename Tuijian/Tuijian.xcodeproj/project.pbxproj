@@ -33,6 +33,7 @@
 		4B47A3AA18D1B40500087BE4 /* favSelectedHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A818D1B40400087BE4 /* favSelectedHighlight@2x.png */; };
 		4B47A3AC18D1B42300087BE4 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3AB18D1B42300087BE4 /* share.png */; };
 		4B50AC1618D6DE120028BAF9 /* YFInputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B50AC1518D6DE120028BAF9 /* YFInputBar.m */; };
+		4B50AC1A18D6EDF20028BAF9 /* writing.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B50AC1918D6EDF20028BAF9 /* writing.png */; };
 		4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */; };
 		4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */; };
 		4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */; };
@@ -148,6 +149,7 @@
 		4B47A3AB18D1B42300087BE4 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		4B50AC1418D6DE120028BAF9 /* YFInputBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFInputBar.h; sourceTree = "<group>"; };
 		4B50AC1518D6DE120028BAF9 /* YFInputBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFInputBar.m; sourceTree = "<group>"; };
+		4B50AC1918D6EDF20028BAF9 /* writing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = writing.png; sourceTree = "<group>"; };
 		4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon-highlighted@2x.png"; sourceTree = "<group>"; };
 		4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon@2x.png"; sourceTree = "<group>"; };
 		4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CameraFlipIcon@2x.png"; sourceTree = "<group>"; };
@@ -561,6 +563,7 @@
 				4B543FC918B4F30B0052DFDD /* camera */,
 				4B7A421318B0DCE2009356F4 /* camera_18_2x.png */,
 				4BF41A2618D2E17A004E9A38 /* write.png */,
+				4B50AC1918D6EDF20028BAF9 /* writing.png */,
 				4BFA999618AFA19200D673CB /* Tuijian-Info.plist */,
 				4BFA999718AFA19200D673CB /* InfoPlist.strings */,
 				4BFA999A18AFA19200D673CB /* main.m */,
@@ -668,6 +671,7 @@
 			files = (
 				4B47A39D18D17BB100087BE4 /* man_placeholder.png in Resources */,
 				4B47A3AA18D1B40500087BE4 /* favSelectedHighlight@2x.png in Resources */,
+				4B50AC1A18D6EDF20028BAF9 /* writing.png in Resources */,
 				4B47A3A118D187F600087BE4 /* photo.png in Resources */,
 				4B47A3A618D1AA1600087BE4 /* like.png in Resources */,
 				4B569C9918CE9E36000DF219 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,

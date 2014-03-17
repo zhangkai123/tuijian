@@ -14,6 +14,7 @@
 {
     UITableView *detailTableView;
     YFInputBar *inputBar;
+    BOOL isWirting;
 }
 @end
 
@@ -59,7 +60,15 @@
 }
 -(void)writeComment
 {
-    [inputBar.textField becomeFirstResponder];
+    if (isWirting) {
+        isWirting = NO;
+        [inputBar.textField resignFirstResponder];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"write.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeComment)];
+    }else{
+        isWirting = YES;
+        [inputBar.textField becomeFirstResponder];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"writing.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeComment)];
+    }
 }
 
 #pragma YFInputBar delegate
@@ -71,6 +80,8 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        isWirting = NO;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"write.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeComment)];
         [((UIView*)obj) resignFirstResponder];
     }];
 }
