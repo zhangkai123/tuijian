@@ -25,7 +25,7 @@
     [contentController didMoveToParentViewController:controller];
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+{    
     NSMutableArray *controllersArray = [[NSMutableArray alloc]initWithCapacity:3];
     
     TJShowViewController *showViewController = [[TJShowViewController alloc]init];

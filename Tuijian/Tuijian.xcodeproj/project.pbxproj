@@ -34,6 +34,9 @@
 		4B47A3AC18D1B42300087BE4 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3AB18D1B42300087BE4 /* share.png */; };
 		4B50AC1618D6DE120028BAF9 /* YFInputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B50AC1518D6DE120028BAF9 /* YFInputBar.m */; };
 		4B50AC1A18D6EDF20028BAF9 /* writing.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B50AC1918D6EDF20028BAF9 /* writing.png */; };
+		4B50AC2218D6FCA70028BAF9 /* AMScrollingNavbarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B50AC1E18D6FCA70028BAF9 /* AMScrollingNavbarTableViewController.m */; };
+		4B50AC2318D6FCA70028BAF9 /* AMScrollingNavbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B50AC2018D6FCA70028BAF9 /* AMScrollingNavbarViewController.m */; };
+		4B50AC2418D6FCA70028BAF9 /* AMSrcollingCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B50AC2118D6FCA70028BAF9 /* AMSrcollingCollectionViewController.m */; };
 		4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */; };
 		4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */; };
 		4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */; };
@@ -150,6 +153,12 @@
 		4B50AC1418D6DE120028BAF9 /* YFInputBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFInputBar.h; sourceTree = "<group>"; };
 		4B50AC1518D6DE120028BAF9 /* YFInputBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFInputBar.m; sourceTree = "<group>"; };
 		4B50AC1918D6EDF20028BAF9 /* writing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = writing.png; sourceTree = "<group>"; };
+		4B50AC1C18D6FCA70028BAF9 /* AMScrollingCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScrollingCollectionViewController.h; sourceTree = "<group>"; };
+		4B50AC1D18D6FCA70028BAF9 /* AMScrollingNavbarTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScrollingNavbarTableViewController.h; sourceTree = "<group>"; };
+		4B50AC1E18D6FCA70028BAF9 /* AMScrollingNavbarTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScrollingNavbarTableViewController.m; sourceTree = "<group>"; };
+		4B50AC1F18D6FCA70028BAF9 /* AMScrollingNavbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMScrollingNavbarViewController.h; sourceTree = "<group>"; };
+		4B50AC2018D6FCA70028BAF9 /* AMScrollingNavbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMScrollingNavbarViewController.m; sourceTree = "<group>"; };
+		4B50AC2118D6FCA70028BAF9 /* AMSrcollingCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSrcollingCollectionViewController.m; sourceTree = "<group>"; };
 		4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon-highlighted@2x.png"; sourceTree = "<group>"; };
 		4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon@2x.png"; sourceTree = "<group>"; };
 		4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CameraFlipIcon@2x.png"; sourceTree = "<group>"; };
@@ -341,6 +350,19 @@
 			name = Comment;
 			sourceTree = "<group>";
 		};
+		4B50AC1B18D6FCA70028BAF9 /* AMScrollingNavbar */ = {
+			isa = PBXGroup;
+			children = (
+				4B50AC1C18D6FCA70028BAF9 /* AMScrollingCollectionViewController.h */,
+				4B50AC1D18D6FCA70028BAF9 /* AMScrollingNavbarTableViewController.h */,
+				4B50AC1E18D6FCA70028BAF9 /* AMScrollingNavbarTableViewController.m */,
+				4B50AC1F18D6FCA70028BAF9 /* AMScrollingNavbarViewController.h */,
+				4B50AC2018D6FCA70028BAF9 /* AMScrollingNavbarViewController.m */,
+				4B50AC2118D6FCA70028BAF9 /* AMSrcollingCollectionViewController.m */,
+			);
+			path = AMScrollingNavbar;
+			sourceTree = "<group>";
+		};
 		4B543FC918B4F30B0052DFDD /* camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +403,7 @@
 		4B569CB418CEB9D5000DF219 /* ThirdPartyLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				4B50AC1B18D6FCA70028BAF9 /* AMScrollingNavbar */,
 				4B47A37018D179B800087BE4 /* SDWebImage */,
 				4B569CB518CEBA0D000DF219 /* AFNetworking */,
 				4B569C9618CE9DCC000DF219 /* Tencent */,
@@ -725,10 +748,12 @@
 				4B47A39018D179B800087BE4 /* SDImageCache.m in Sources */,
 				4B569CDE18CEBB5D000DF219 /* TJTencentAPIClient.m in Sources */,
 				4BFA999F18AFA19200D673CB /* TJAppDelegate.m in Sources */,
+				4B50AC2318D6FCA70028BAF9 /* AMScrollingNavbarViewController.m in Sources */,
 				4B569CC918CEBA0D000DF219 /* AFHTTPClient.m in Sources */,
 				4B47A39118D179B800087BE4 /* SDWebImageCompat.m in Sources */,
 				4B543FD218B4FBA50052DFDD /* TJCropViewController.m in Sources */,
 				4B47A39818D179B800087BE4 /* UIImage+GIF.m in Sources */,
+				4B50AC2418D6FCA70028BAF9 /* AMSrcollingCollectionViewController.m in Sources */,
 				4B47A39518D179B800087BE4 /* SDWebImageManager.m in Sources */,
 				4B569CCB18CEBA0D000DF219 /* AFImageRequestOperation.m in Sources */,
 				4B569CCD18CEBA0D000DF219 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -755,6 +780,7 @@
 				4B47A39718D179B800087BE4 /* UIButton+WebCache.m in Sources */,
 				4B569CE318CED1E4000DF219 /* TJDiskCacheManager.m in Sources */,
 				4BFB64CC18C07ACA00C304BB /* TJInfoViewController.m in Sources */,
+				4B50AC2218D6FCA70028BAF9 /* AMScrollingNavbarTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

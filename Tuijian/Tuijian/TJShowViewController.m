@@ -31,6 +31,13 @@
     }
     return self;
 }
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
+{
+	// This enables the user to scroll down the navbar by tapping the status bar.
+	[self showNavbar];
+	
+	return YES;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -57,10 +64,28 @@
     itemTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
     [self.view addSubview:itemTableView];
     
+    [self setNavTranslucentAndTintcolor];
+    // Just call this line to enable the scrolling navbar
+	[self followScrollView:itemTableView];
+    
     itemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
-    
     [self refreshTableViewData];
+}
+-(void)setNavTranslucentAndTintcolor
+{
+    [self.navigationController.navigationBar setTranslucent:NO];
+    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
+        [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    }
+    // For better behavior set statusbar style to opaque on iOS < 7.0
+    if (([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] == NSOrderedAscending)) {
+        // Silence depracation warnings
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+#pragma clang diagnostic pop
+    }
 }
 -(void)refreshTableViewData
 {
