@@ -126,6 +126,7 @@
     [cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
     cell.likeNumLabel.text = theItem.likeNum;
     cell.commentNumLabel.text = theItem.commentNum;
+    [cell setLikeButtonColor:theItem.hasLiked];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

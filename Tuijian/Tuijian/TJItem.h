@@ -19,4 +19,5 @@
 @property(nonatomic,strong) NSString *recommendReason;
 @property(nonatomic,strong) NSString *commentNum;
 @property(nonatomic,strong) NSString *likeNum;
+@property(nonatomic,assign) BOOL hasLiked;
 @end

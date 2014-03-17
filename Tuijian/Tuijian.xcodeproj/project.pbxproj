@@ -66,6 +66,7 @@
 		4B569CEA18CF0BE9000DF219 /* TJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CE918CF0BE9000DF219 /* TJUser.m */; };
 		4B7A421018B0CF66009356F4 /* TJShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A420F18B0CF66009356F4 /* TJShowViewController.m */; };
 		4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A421318B0DCE2009356F4 /* camera_18_2x.png */; };
+		4B941E5118D6A4E10056FA3E /* TJDynamicLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B941E5018D6A4E10056FA3E /* TJDynamicLabel.m */; };
 		4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D07D18B394690055D40B /* AVCamPreviewView.m */; };
 		4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D08018B394A40055D40B /* TJCamViewController.m */; };
 		4BDEDB3C18CFF48A001C2874 /* male.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3B18CFF48A001C2874 /* male.png */; };
@@ -199,6 +200,8 @@
 		4B7A420E18B0CF66009356F4 /* TJShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJShowViewController.h; sourceTree = "<group>"; };
 		4B7A420F18B0CF66009356F4 /* TJShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJShowViewController.m; sourceTree = "<group>"; };
 		4B7A421318B0DCE2009356F4 /* camera_18_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_18_2x.png; sourceTree = "<group>"; };
+		4B941E4F18D6A4E10056FA3E /* TJDynamicLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJDynamicLabel.h; sourceTree = "<group>"; };
+		4B941E5018D6A4E10056FA3E /* TJDynamicLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJDynamicLabel.m; sourceTree = "<group>"; };
 		4BC7D07C18B394690055D40B /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
 		4BC7D07D18B394690055D40B /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		4BC7D07F18B394A40055D40B /* TJCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCamViewController.h; sourceTree = "<group>"; };
@@ -532,6 +535,8 @@
 				4B47A36718D1462500087BE4 /* TJItemCell.m */,
 				4BF41A2118D299B6004E9A38 /* TJCommentViewController.h */,
 				4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */,
+				4B941E4F18D6A4E10056FA3E /* TJDynamicLabel.h */,
+				4B941E5018D6A4E10056FA3E /* TJDynamicLabel.m */,
 				4BFA99A018AFA19200D673CB /* Images.xcassets */,
 				4BFA999518AFA19200D673CB /* Supporting Files */,
 			);
@@ -622,6 +627,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "zhang kai";
 				TargetAttributes = {
+					4BFA998A18AFA19200D673CB = {
+						DevelopmentTeam = 6DY3TFE2Y4;
+					};
 					4BFA99A518AFA19200D673CB = {
 						TestTargetID = 4BFA998A18AFA19200D673CB;
 					};
@@ -695,6 +703,7 @@
 				4B47A39618D179B800087BE4 /* SDWebImagePrefetcher.m in Sources */,
 				4B569CCE18CEBA0D000DF219 /* AFPropertyListRequestOperation.m in Sources */,
 				4BF41A2318D299B6004E9A38 /* TJCommentViewController.m in Sources */,
+				4B941E5118D6A4E10056FA3E /* TJDynamicLabel.m in Sources */,
 				4B47A39418D179B800087BE4 /* SDWebImageDownloaderOperation.m in Sources */,
 				4B7A421018B0CF66009356F4 /* TJShowViewController.m in Sources */,
 				4B569CCF18CEBA0D000DF219 /* AFURLConnectionOperation.m in Sources */,
@@ -848,6 +857,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/zhangkai/Desktop/tuijian/Tuijian/Tuijian,
@@ -856,6 +867,7 @@
 				GCC_PREFIX_HEADER = "Tuijian/Tuijian-Prefix.pch";
 				INFOPLIST_FILE = "Tuijian/Tuijian-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -865,6 +877,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/zhangkai/Desktop/tuijian/Tuijian/Tuijian,
@@ -873,6 +887,7 @@
 				GCC_PREFIX_HEADER = "Tuijian/Tuijian-Prefix.pch";
 				INFOPLIST_FILE = "Tuijian/Tuijian-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

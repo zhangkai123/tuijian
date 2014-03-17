@@ -27,22 +27,7 @@
         recommendInfoLabel.numberOfLines = 0;
         [recommendInfoLabel setTextColor:[UIColor blackColor]];
         [self addSubview:recommendInfoLabel];
-        
-//        shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [shareButton setFrame:CGRectMake(0, 0, 70, 28)];
-//        shareButton.layer.cornerRadius = 3;
-//        [shareButton setClipsToBounds:YES];
-//        shareButton.backgroundColor = UIColorFromRGB(0xD4D4D4);
-//        [shareButton setImage:[UIImage imageNamed:@"share.png"] forState:UIControlStateNormal];
-//        [shareButton setTitle:@"分享" forState:UIControlStateNormal];
-//        [shareButton.titleLabel setFont:[UIFont systemFontOfSize:15.f]];
-//        [shareButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-//        [shareButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-//        shareButton.imageEdgeInsets = UIEdgeInsetsMake(0, 40, 0, 0);
-//        [shareButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -50, 0, 0)];
-////        [shareButton addTarget:self action:@selector(buttonTouchedUpInside:) forControlEvents:UIControlEventTouchUpInside];
-//        [self addSubview:shareButton];
-        
+                
         likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [likeButton setFrame:CGRectMake(0, 0, 70, 28)];
         likeButton.layer.cornerRadius = 3;
@@ -97,16 +82,20 @@
 -(void)like
 {
     [[TJDataController sharedDataController]saveLike:self.itemId success:^(BOOL hasLiked){
-        if (hasLiked) {
-            [likeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-            [likeButton setImage:[UIImage imageNamed:@"favSelectedHighlight@2x.png"] forState:UIControlStateNormal];
-        }else{
-            [likeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            [likeButton setImage:[UIImage imageNamed:@"favhighlight@2x.png"] forState:UIControlStateNormal];
-        }
+        [self setLikeButtonColor:hasLiked];
     }failure:^(NSError *error){
         
     }];
+}
+-(void)setLikeButtonColor:(BOOL)hasLiked
+{
+    if (hasLiked) {
+        [likeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [likeButton setImage:[UIImage imageNamed:@"favSelectedHighlight@2x.png"] forState:UIControlStateNormal];
+    }else{
+        [likeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        [likeButton setImage:[UIImage imageNamed:@"favhighlight@2x.png"] forState:UIControlStateNormal];
+    }
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

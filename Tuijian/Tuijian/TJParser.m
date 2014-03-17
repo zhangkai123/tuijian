@@ -27,6 +27,13 @@
         item.recommendReason = [itemDic objectForKey:@"recommendReason"];
         item.commentNum = [itemDic objectForKey:@"commentNum"];
         item.likeNum = [itemDic objectForKey:@"likeNum"];
+        
+        id uid = [itemDic objectForKey:@"uid"];
+        if (uid != [NSNull null]) {
+            item.hasLiked = YES;
+        }else{
+            item.hasLiked = NO;
+        }
         [itemsArray addObject:item];
     }
     return itemsArray;

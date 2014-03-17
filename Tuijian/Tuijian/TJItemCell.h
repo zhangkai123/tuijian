@@ -31,4 +31,5 @@
 @property(nonatomic,strong) UILabel *likeNumLabel;
 
 -(void)setRecommendInfoAndHeight:(NSString *)recommendInfo textHeight:(float)textH;
+-(void)setLikeButtonColor:(BOOL)hasLiked;
 @end
