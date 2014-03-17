@@ -77,9 +77,6 @@
     if (self.clearInputWhenSend) {
         self.textField.text = @"";
     }
-    if (self.resignFirstResponderWhenSend) {
-        [self resignFirstResponder];
-    }
 }
 
 #pragma mark keyboardNotification

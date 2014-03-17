@@ -13,7 +13,7 @@
 @interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,YFInputBarDelegate>
 {
     UITableView *detailTableView;
-    YFInputBar *inputBar;
+    YFInputBar *commentInputBar;
     BOOL isWirting;
 }
 @end
@@ -51,30 +51,37 @@
     detailTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
     [self.view addSubview:detailTableView];
 
-    inputBar = [[YFInputBar alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY([UIScreen mainScreen].bounds), 320, 44)];
-    inputBar.backgroundColor = [UIColor lightGrayColor];
-    inputBar.delegate = self;
-    inputBar.clearInputWhenSend = YES;
-    inputBar.resignFirstResponderWhenSend = YES;
-    [self.view addSubview:inputBar];
+    commentInputBar = [[YFInputBar alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY([UIScreen mainScreen].bounds), 320, 44)];
+    commentInputBar.backgroundColor = [UIColor lightGrayColor];
+    commentInputBar.delegate = self;
+    commentInputBar.clearInputWhenSend = YES;
+    [self.view addSubview:commentInputBar];
 }
 -(void)writeComment
 {
     if (isWirting) {
-        isWirting = NO;
-        [inputBar.textField resignFirstResponder];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"write.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeComment)];
+        [self exitWriteStatus];
     }else{
-        isWirting = YES;
-        [inputBar.textField becomeFirstResponder];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"writing.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeComment)];
+        [self enterWriteStatus];
     }
 }
-
+-(void)enterWriteStatus
+{
+    isWirting = YES;
+    [commentInputBar.textField becomeFirstResponder];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"writing.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeComment)];
+}
+-(void)exitWriteStatus
+{
+    isWirting = NO;
+    [commentInputBar.textField resignFirstResponder];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"write.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeComment)];
+}
 #pragma YFInputBar delegate
 -(void)inputBar:(YFInputBar *)inputBar sendBtnPress:(UIButton *)sendBtn withInputString:(NSString *)str
 {
     NSLog(@"%@",str);
+    [self exitWriteStatus];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

@@ -24,8 +24,6 @@
 
 //点击btn时候 清空textfield  默认NO
 @property(assign,nonatomic)BOOL clearInputWhenSend;
-//点击btn时候 隐藏键盘  默认NO
-@property(assign,nonatomic)BOOL resignFirstResponderWhenSend;
 
 //初始frame
 @property(assign,nonatomic)CGRect originalFrame;
