@@ -74,7 +74,6 @@
     recommendInfoLabel.text = recommendInfo;
     recommendInfoLabel.frame = CGRectMake(10, 355, 300, textH);
     
-//    shareButton.frame = CGRectMake(10, 360 + textH + 2, 70, 28);
     likeButton.frame = CGRectMake(10, 360 + textH + 1, 70, 28);
     likeImageView.frame = CGRectMake(240, 360 + textH, 32, 32);
     commentImageView.frame = CGRectMake(240 + 32 + 5, 360 + textH + 2, 28, 28);
