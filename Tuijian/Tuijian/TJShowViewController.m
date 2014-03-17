@@ -12,7 +12,7 @@
 #import "TJItem.h"
 #import "TJCommentViewController.h"
 
-@interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJItemCellDelegate>
 {
     UITableView *itemTableView;
     NSMutableArray *itemsArray;
@@ -127,6 +127,7 @@
     cell.likeNumLabel.text = theItem.likeNum;
     cell.commentNumLabel.text = theItem.commentNum;
     [cell setLikeButtonColor:theItem.hasLiked];
+    cell.delegate = self;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -176,6 +177,29 @@
     [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.8]];
 //    [backView setBackgroundColor:[UIColor whiteColor]];
     return backView;
+}
+#pragma TJItemCellDelegate
+-(void)likeItem:(NSString *)itemId liked:(void (^)(BOOL Liked))hasL
+{
+    __block TJItem *theItem = [self getItemFromId:itemId];
+    [[TJDataController sharedDataController]saveLike:itemId success:^(BOOL hasLiked){
+        hasL(hasLiked);
+        theItem.hasLiked = hasLiked;
+    }failure:^(NSError *error){
+        
+    }];
+}
+-(TJItem *)getItemFromId:(NSString *)itemId
+{
+    TJItem *theItem = nil;
+    for (int i = 0; i < [itemsArray count]; i++) {
+        TJItem *item = [itemsArray objectAtIndex:i];
+        if ([item.itemId isEqualToString:itemId]) {
+            theItem = item;
+            break;
+        }
+    }
+    return theItem;
 }
 - (void)didReceiveMemoryWarning
 {

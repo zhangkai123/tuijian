@@ -12,6 +12,7 @@
 @implementation TJItemCell
 @synthesize itemId;
 @synthesize itemImageView ,commentNumLabel ,likeNumLabel;
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -80,10 +81,8 @@
 }
 -(void)like
 {
-    [[TJDataController sharedDataController]saveLike:self.itemId success:^(BOOL hasLiked){
+    [self.delegate likeItem:self.itemId liked:^(BOOL hasLiked){
         [self setLikeButtonColor:hasLiked];
-    }failure:^(NSError *error){
-        
     }];
 }
 -(void)setLikeButtonColor:(BOOL)hasLiked
