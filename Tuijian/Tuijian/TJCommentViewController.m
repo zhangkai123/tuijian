@@ -8,10 +8,12 @@
 
 #import "TJCommentViewController.h"
 #import "TJItemCell.h"
+#import "YFInputBar.h"
 
-@interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,YFInputBarDelegate>
 {
     UITableView *detailTableView;
+    YFInputBar *inputBar;
 }
 @end
 
@@ -35,10 +37,6 @@
     }
     return self;
 }
--(void)writeComment
-{
-    
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -52,6 +50,29 @@
     detailTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
     [self.view addSubview:detailTableView];
 
+    inputBar = [[YFInputBar alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY([UIScreen mainScreen].bounds), 320, 44)];
+    inputBar.backgroundColor = [UIColor lightGrayColor];
+    inputBar.delegate = self;
+    inputBar.clearInputWhenSend = YES;
+    inputBar.resignFirstResponderWhenSend = YES;
+    [self.view addSubview:inputBar];
+}
+-(void)writeComment
+{
+    [inputBar.textField becomeFirstResponder];
+}
+
+#pragma YFInputBar delegate
+-(void)inputBar:(YFInputBar *)inputBar sendBtnPress:(UIButton *)sendBtn withInputString:(NSString *)str
+{
+    NSLog(@"%@",str);
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [((UIView*)obj) resignFirstResponder];
+    }];
 }
 
 #pragma uitableview delegate and datasource
