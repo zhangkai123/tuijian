@@ -12,6 +12,8 @@
 #import "TJInfoViewController.h"
 #import "TJMineViewController.h"
 
+#import "GTScrollNavigationBar.h"
+
 #import <TencentOpenAPI/TencentOAuth.h>
 
 @implementation TJAppDelegate
@@ -29,7 +31,9 @@
     NSMutableArray *controllersArray = [[NSMutableArray alloc]initWithCapacity:3];
     
     TJShowViewController *showViewController = [[TJShowViewController alloc]init];
-    UINavigationController *showNavController = [[UINavigationController alloc]initWithRootViewController:showViewController];
+//    UINavigationController *showNavController = [[UINavigationController alloc]initWithRootViewController:showViewController];
+    UINavigationController *showNavController = [[UINavigationController alloc] initWithNavigationBarClass:[GTScrollNavigationBar class] toolbarClass:nil];
+    [showNavController setViewControllers:@[showViewController] animated:NO];
     
     TJInfoViewController *infoViewController = [[TJInfoViewController alloc]init];
     UINavigationController *infoNavController = [[UINavigationController alloc]initWithRootViewController:infoViewController];

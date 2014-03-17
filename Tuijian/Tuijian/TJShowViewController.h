@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 zhang kai. All rights reserved.
 //
 
-#import "AMScrollingNavbarViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface TJShowViewController : AMScrollingNavbarViewController
+@interface TJShowViewController : UIViewController
 
 @end

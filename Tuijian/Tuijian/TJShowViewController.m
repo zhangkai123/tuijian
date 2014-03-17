@@ -11,6 +11,7 @@
 #import "TJItemCell.h"
 #import "TJItem.h"
 #import "TJCommentViewController.h"
+#import "GTScrollNavigationBar.H"
 
 @interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJItemCellDelegate>
 {
@@ -26,17 +27,13 @@
 -(id)init
 {
     if (self = [super init]) {
-        self.title = @"推荐";
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"camera_18_2x.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(takePhoto:)];
     }
     return self;
 }
-- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
 {
-	// This enables the user to scroll down the navbar by tapping the status bar.
-	[self showNavbar];
-	
-	return YES;
+    [self.navigationController.scrollNavigationBar resetToDefaultPosition:YES];
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,13 +46,18 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self refreshTableViewData];
+    self.navigationController.scrollNavigationBar.scrollView = itemTableView;
     [super viewWillAppear:animated];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.scrollNavigationBar.scrollView = nil;
+    [super viewWillDisappear:animated];
 }
 - (void)viewDidLoad
 {
+    self.title = @"推荐";
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    // Do any additional setup after loading the view.
     itemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
 //    [itemTableView setBackgroundColor:[UIColor clearColor]];
 //    [itemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -64,28 +66,9 @@
     itemTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
     [self.view addSubview:itemTableView];
     
-    [self setNavTranslucentAndTintcolor];
-    // Just call this line to enable the scrolling navbar
-	[self followScrollView:itemTableView];
-    
     itemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
     [self refreshTableViewData];
-}
--(void)setNavTranslucentAndTintcolor
-{
-    [self.navigationController.navigationBar setTranslucent:NO];
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
-        [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    }
-    // For better behavior set statusbar style to opaque on iOS < 7.0
-    if (([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] == NSOrderedAscending)) {
-        // Silence depracation warnings
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-#pragma clang diagnostic pop
-    }
 }
 -(void)refreshTableViewData
 {
@@ -199,7 +182,7 @@
     [userImageView setImageWithURL:[NSURL URLWithString:theItem.userImg] placeholderImage:genderPlaceHolder];
     [nameLabel setText:theItem.userName];
     
-    [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.8]];
+    [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.95]];
 //    [backView setBackgroundColor:[UIColor whiteColor]];
     return backView;
 }
