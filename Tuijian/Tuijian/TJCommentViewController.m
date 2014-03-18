@@ -7,7 +7,8 @@
 //
 
 #import "TJCommentViewController.h"
-#import "TJItemCell.h"
+#import "TJItemDetailCell.h"
+#import "TJLikeCell.h"
 #import "YFInputBar.h"
 
 @interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,YFInputBarDelegate>
@@ -15,6 +16,9 @@
     UITableView *detailTableView;
     YFInputBar *commentInputBar;
     BOOL isWirting;
+    
+    NSMutableArray *myLikesArray;
+    NSMutableArray *myCommentsArray;
 }
 @end
 
@@ -56,13 +60,22 @@
     commentInputBar.delegate = self;
     commentInputBar.clearInputWhenSend = YES;
     [self.view addSubview:commentInputBar];
+    
+    myLikesArray = [[NSMutableArray alloc]init];
+    myCommentsArray = [[NSMutableArray alloc]init];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    __block UITableView *weakDetailTableView = detailTableView;
+    __block NSMutableArray *weakMyLikesArray = myLikesArray;
+    __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
     [[TJDataController sharedDataController]getLikesComments:self.theItem.itemId likes:^(NSArray *likesArray){
-        
+        [weakMyLikesArray removeAllObjects];
+        [weakMyLikesArray addObjectsFromArray:likesArray];
     }comments:^(NSArray *commentsArray){
-        
+        [weakMyCommentsArray removeAllObjects];
+        [weakMyCommentsArray addObjectsFromArray:commentsArray];
+        [weakDetailTableView reloadData];
     }failure:^(NSError *error){
         
     }];
@@ -116,7 +129,13 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    int rowNum = 0;
+    if ((section == 0) || (section == 1)) {
+        rowNum = 1;
+    }else{
+        rowNum = [myCommentsArray count];
+    }
+    return rowNum;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -134,17 +153,21 @@
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellOne"];
         if (!cell) {
-            cell = [[TJItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
+            cell = [[TJItemDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         }
         
-        [[(TJItemCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
-        [(TJItemCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
-        [(TJItemCell *)cell likeNumLabel].text = theItem.likeNum;
-        [(TJItemCell *)cell commentNumLabel].text = theItem.commentNum;
-    }else{
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        [[(TJItemDetailCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
+        [(TJItemDetailCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
+    }else if (indexPath.section == 1) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
         if (!cell) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+            cell = [[TJLikeCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
+        }
+        [(TJLikeCell *)cell setLikesArray:myLikesArray];
+    }else{
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
         }
     }
     return cell;
