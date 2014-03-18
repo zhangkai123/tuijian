@@ -18,12 +18,12 @@
         // Initialization code
         self.backgroundColor = UIColorFromRGB(0xD4D4D4);
         
-        self.userImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 40, 40)];
+        self.userImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
         userImageView.clipsToBounds = YES;
         userImageView.layer.cornerRadius = 40 / 2.0;
         [self addSubview:self.userImageView];
         
-        UIImageView *likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, 25, 40, 30)];
+        UIImageView *likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(25, 25, 40, 30)];
         likeImageView.image = [UIImage imageNamed:@"favSelectedHighlight@2x.png"];
         [self addSubview:likeImageView];
 

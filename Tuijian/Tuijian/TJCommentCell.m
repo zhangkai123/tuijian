@@ -19,7 +19,7 @@
         // Initialization code
         self.backgroundColor = UIColorFromRGB(0xEEEEEE);
         
-        self.userImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 40, 40)];
+        self.userImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
         userImageView.clipsToBounds = YES;
         userImageView.layer.cornerRadius = 40 / 2.0;
         [self addSubview:self.userImageView];

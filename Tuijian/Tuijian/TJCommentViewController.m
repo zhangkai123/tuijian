@@ -233,7 +233,7 @@
         [userImageView setImageWithURL:[NSURL URLWithString:theItem.userImg] placeholderImage:genderPlaceHolder];
         [nameLabel setText:theItem.userName];
         
-        [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.8]];
+        [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.95]];
     }
     return backView;
 }
