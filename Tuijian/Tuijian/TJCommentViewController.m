@@ -10,6 +10,8 @@
 #import "TJItemDetailCell.h"
 #import "TJLikeCell.h"
 #import "YFInputBar.h"
+#import "TJCommentCell.h"
+#import "TJComment.h"
 
 @interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,YFInputBarDelegate>
 {
@@ -48,7 +50,7 @@
 	// Do any additional setup after loading the view.
     detailTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
     //    [itemTableView setBackgroundColor:[UIColor clearColor]];
-    //    [itemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    //[detailTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     detailTableView.rowHeight = 500;
     detailTableView.dataSource = self;
     detailTableView.delegate = self;
@@ -167,8 +169,12 @@
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
         if (!cell) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
+            cell = [[TJCommentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
         }
+        TJComment *comment = [myCommentsArray objectAtIndex:indexPath.row];
+        [[(TJCommentCell *)cell userImageView] setImageWithURL:[NSURL URLWithString:comment.user.profile_image_url] placeholderImage:[UIImage imageNamed:@"photo.png"]];
+        [[(TJCommentCell *)cell nameLable]setText:comment.user.name];
+        [[(TJCommentCell *)cell commentLable]setText:comment.info];
     }
     return cell;
 }

@@ -24,6 +24,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.backgroundColor = [UIColor lightGrayColor];
+        
         likeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
         likeTableView.delegate = self;
         likeTableView.dataSource = self;

@@ -11,6 +11,7 @@
 		4B31B77818D8123F00F87D71 /* TJItemDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B77718D8123F00F87D71 /* TJItemDetailCell.m */; };
 		4B31B77B18D813F400F87D71 /* TJLikeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B77A18D813F400F87D71 /* TJLikeCell.m */; };
 		4B31B77E18D8164000F87D71 /* TJLikeUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B77D18D8164000F87D71 /* TJLikeUserCell.m */; };
+		4B31B78118D825BB00F87D71 /* TJCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B78018D825BB00F87D71 /* TJCommentCell.m */; };
 		4B47A36818D1462500087BE4 /* TJItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B47A36718D1462500087BE4 /* TJItemCell.m */; };
 		4B47A36B18D1477400087BE4 /* TJItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B47A36A18D1477400087BE4 /* TJItem.m */; };
 		4B47A36F18D1627400087BE4 /* TJParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B47A36E18D1627400087BE4 /* TJParser.m */; };
@@ -117,6 +118,8 @@
 		4B31B77A18D813F400F87D71 /* TJLikeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJLikeCell.m; sourceTree = "<group>"; };
 		4B31B77C18D8164000F87D71 /* TJLikeUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJLikeUserCell.h; sourceTree = "<group>"; };
 		4B31B77D18D8164000F87D71 /* TJLikeUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJLikeUserCell.m; sourceTree = "<group>"; };
+		4B31B77F18D825BB00F87D71 /* TJCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCommentCell.h; sourceTree = "<group>"; };
+		4B31B78018D825BB00F87D71 /* TJCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCommentCell.m; sourceTree = "<group>"; };
 		4B47A36618D1462500087BE4 /* TJItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJItemCell.h; sourceTree = "<group>"; };
 		4B47A36718D1462500087BE4 /* TJItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJItemCell.m; sourceTree = "<group>"; };
 		4B47A36918D1477400087BE4 /* TJItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJItem.h; sourceTree = "<group>"; };
@@ -580,6 +583,8 @@
 				4B31B77A18D813F400F87D71 /* TJLikeCell.m */,
 				4B31B77C18D8164000F87D71 /* TJLikeUserCell.h */,
 				4B31B77D18D8164000F87D71 /* TJLikeUserCell.m */,
+				4B31B77F18D825BB00F87D71 /* TJCommentCell.h */,
+				4B31B78018D825BB00F87D71 /* TJCommentCell.m */,
 				4BFA99A018AFA19200D673CB /* Images.xcassets */,
 				4BFA999518AFA19200D673CB /* Supporting Files */,
 			);
@@ -785,6 +790,7 @@
 				4B569CDD18CEBB5D000DF219 /* TJNetworkManager.m in Sources */,
 				4B47A39318D179B800087BE4 /* SDWebImageDownloader.m in Sources */,
 				4B31B77518D7F75400F87D71 /* TJComment.m in Sources */,
+				4B31B78118D825BB00F87D71 /* TJCommentCell.m in Sources */,
 				4B47A36B18D1477400087BE4 /* TJItem.m in Sources */,
 				4B47A38F18D179B800087BE4 /* NSData+ImageContentType.m in Sources */,
 				4B569CCC18CEBA0D000DF219 /* AFJSONRequestOperation.m in Sources */,
