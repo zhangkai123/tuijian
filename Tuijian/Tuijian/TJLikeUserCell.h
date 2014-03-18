@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface TJLikeUserCell : UITableViewCell
-
+{
+    UIImageView *userImageView;
+}
+@property(nonatomic,strong) UIImageView *userImageView;
 @end

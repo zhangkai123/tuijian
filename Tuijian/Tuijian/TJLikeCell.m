@@ -59,7 +59,7 @@
     cell.transform = CGAffineTransformMakeRotation(M_PI_2);
     TJUser *user = [self.likesArray objectAtIndex:indexPath.row];
     UIImage *placeHoder = [self getGenderPlaceHolder:user];
-    [cell.imageView setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:placeHoder];
+    [cell.userImageView setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:placeHoder];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
