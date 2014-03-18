@@ -57,6 +57,15 @@
     commentInputBar.clearInputWhenSend = YES;
     [self.view addSubview:commentInputBar];
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[TJDataController sharedDataController]getLikesComments:self.theItem.itemId likes:^(NSArray *likesArray){
+        
+    }comments:^(NSArray *commentsArray){
+        
+    }];
+    [super viewWillAppear:animated];
+}
 -(void)writeComment
 {
     if (isWirting) {

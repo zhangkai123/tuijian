@@ -124,4 +124,12 @@
         
     }];
 }
+-(void)getLikesComments:(NSString *)itemId likes:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray
+{
+    [[TJNetworkManager sharedNetworkManager]getLikesAndComments:itemId success:^(id Json){
+        
+    }failure:^(NSError *error){
+        
+    }];
+}
 @end

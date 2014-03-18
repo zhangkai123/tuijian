@@ -68,7 +68,7 @@
     
     itemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
-    [self refreshTableViewData];
+//    [self refreshTableViewData];
 }
 -(void)refreshTableViewData
 {
@@ -114,7 +114,7 @@
 {
     return 1;
 }
--(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
     return textHeight + 355 + 40;

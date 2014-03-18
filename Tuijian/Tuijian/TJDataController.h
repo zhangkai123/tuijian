@@ -27,6 +27,5 @@
 -(void)getItems:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure;
 -(void)saveLike:(NSString *)itemId success:(void (^)(BOOL hasLiked))liked failure:(void (^)(NSError *error))failure;
 -(void)saveComment:(NSString *)itemId commentInfo:(NSString *)commentInfo success:(void (^)(BOOL hasCommented))succeed failure:(void (^)(NSError *error))failure;
-//-(void)saveCurrentEditCourse:(NSDictionary *)dic;
-//-(NSDictionary *)getCurrentEditCourse;
+-(void)getLikesComments:(NSString *)itemId likes:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray;
 @end
