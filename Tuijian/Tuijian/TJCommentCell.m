@@ -10,6 +10,7 @@
 
 @implementation TJCommentCell
 @synthesize userImageView ,nameLable ,commentLable;
+@synthesize commentHeight;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,14 +27,20 @@
         [nameLable setFont:[UIFont systemFontOfSize:12]];
         [self addSubview:nameLable];
 
-        commentLable = [[UILabel alloc]initWithFrame:CGRectMake(60, 30, 250, 20)];
+        commentLable = [[UILabel alloc]initWithFrame:CGRectMake(60, 30, 250, 0)];
         commentLable.textColor = [UIColor blackColor];
         [commentLable setFont:[UIFont systemFontOfSize:12]];
+        commentLable.lineBreakMode = NSLineBreakByCharWrapping;
+        commentLable.numberOfLines = 0;
         [self addSubview:commentLable];
     }
     return self;
 }
-
+-(void)setCommentHeight:(float)commentH
+{
+    commentHeight =commentH;
+    commentLable.frame = CGRectMake(60, 30, 250, commentH);
+}
 - (void)awakeFromNib
 {
     // Initialization code

@@ -21,6 +21,7 @@
     
     NSMutableArray *myLikesArray;
     NSMutableArray *myCommentsArray;
+    NSMutableArray *myCommentHeightArray;
 }
 @end
 
@@ -65,6 +66,7 @@
     
     myLikesArray = [[NSMutableArray alloc]init];
     myCommentsArray = [[NSMutableArray alloc]init];
+    myCommentHeightArray = [[NSMutableArray alloc]init];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -75,6 +77,14 @@
         [weakMyLikesArray removeAllObjects];
         [weakMyLikesArray addObjectsFromArray:likesArray];
     }comments:^(NSArray *commentsArray){
+        for (int i = 0; i < [commentsArray count]; i++) {
+            TJComment *comment = [commentsArray objectAtIndex:i];
+            CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(250, 0)
+                                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+            [myCommentHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
+
+        }
         [weakMyCommentsArray removeAllObjects];
         [weakMyCommentsArray addObjectsFromArray:commentsArray];
         [weakDetailTableView reloadData];
@@ -144,8 +154,10 @@
     float rowHeight = 0;
     if (indexPath.section == 0) {
         rowHeight = textHeight + 355 + 40;
-    }else{
+    }else if (indexPath.section == 1){
         rowHeight = 50;
+    }else{
+        rowHeight = [[myCommentHeightArray objectAtIndex:indexPath.row] floatValue] + 30 + 5;
     }
     return rowHeight;
 }
@@ -175,6 +187,9 @@
         [[(TJCommentCell *)cell userImageView] setImageWithURL:[NSURL URLWithString:comment.user.profile_image_url] placeholderImage:[UIImage imageNamed:@"photo.png"]];
         [[(TJCommentCell *)cell nameLable]setText:comment.user.name];
         [[(TJCommentCell *)cell commentLable]setText:comment.info];
+        
+        float  commentHeight = [[myCommentHeightArray objectAtIndex:indexPath.row]floatValue];
+        [(TJCommentCell *)cell setCommentHeight:commentHeight];
     }
     return cell;
 }

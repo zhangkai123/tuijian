@@ -17,4 +17,5 @@
 @property(nonatomic,strong) UIImageView *userImageView;
 @property(nonatomic,strong) UILabel *nameLable;
 @property(nonatomic,strong) UILabel *commentLable;
+@property(nonatomic,assign) float commentHeight;
 @end
