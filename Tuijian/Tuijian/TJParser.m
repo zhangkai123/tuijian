@@ -12,6 +12,15 @@
 
 @implementation TJParser
 
++(BOOL)parseStatusJsonData:(id)json
+{
+    BOOL haveSucceed = NO;
+    NSString *status = [json objectForKey:@"status"];
+    if ([status isEqualToString:@"mySuccess"]) {
+        haveSucceed = YES;
+    }
+    return haveSucceed;
+}
 +(NSArray *)parseItemsJsonData:(id)json
 {
     NSMutableArray *itemsArray = [[NSMutableArray alloc]init];
@@ -50,7 +59,7 @@
             successed(NO);
         }
     }else{
-        successed(NO);
+        failed(nil);
     }
 }
 +(void)parseLikesCommentsData:(id)json likesArray:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray failed:(void (^)(NSError *error))failed

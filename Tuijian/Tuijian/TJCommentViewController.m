@@ -76,6 +76,7 @@
     __block UITableView *weakDetailTableView = detailTableView;
     __block NSMutableArray *weakMyLikesArray = myLikesArray;
     __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
+    __block NSMutableArray *weakmyCommentHeightArray = myCommentHeightArray;
     [[TJDataController sharedDataController]getLikesComments:self.theItem.itemId likes:^(NSArray *likesArray){
         [weakMyLikesArray removeAllObjects];
         [weakMyLikesArray addObjectsFromArray:likesArray];
@@ -85,7 +86,7 @@
             CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(250, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                                                attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
-            [myCommentHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
+            [weakmyCommentHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
 
         }
         [weakMyCommentsArray removeAllObjects];
@@ -119,9 +120,22 @@
 #pragma YFInputBar delegate
 -(void)inputBar:(YFInputBar *)inputBar sendBtnPress:(UIButton *)sendBtn withInputString:(NSString *)str
 {
-    NSLog(@"%@",str);
+    __block NSString *commentInfo = str;
+    __block UITableView *weakDetailTableView = detailTableView;
+    __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
+    __block NSMutableArray *weakmyCommentHeightArray = myCommentHeightArray;
     [[TJDataController sharedDataController]saveComment:self.theItem.itemId commentInfo:str success:^(BOOL hasCommented){
-        
+        if (hasCommented) {
+           TJComment *comment = [[TJDataController sharedDataController] getMyOwnCommentItem:commentInfo];
+            [weakMyCommentsArray insertObject:comment atIndex:0];
+            
+            CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(250, 0)
+                                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+            [weakmyCommentHeightArray insertObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height] atIndex:0];
+
+            [weakDetailTableView reloadData];
+        }
     }failure:^(NSError *error){
         
     }];

@@ -118,10 +118,10 @@
 {
     NSString *myAccessToken = [self getMyUserToken];
     [[TJNetworkManager sharedNetworkManager]sendComment:myAccessToken itemId:itemId commentInfo:commentInfo success:^(id Json){
-        
-        
+        BOOL success = [TJParser parseStatusJsonData:Json];
+        succeed(success);
     }failure:^(NSError *error){
-        
+        failure(error);
     }];
 }
 -(void)getLikesComments:(NSString *)itemId likes:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray failure:(void (^)(NSError *error))failure
@@ -137,5 +137,15 @@
     }failure:^(NSError *error){
         failure(error);
     }];
+}
+-(TJComment *)getMyOwnCommentItem:(NSString *)commentInfo
+{
+    TJComment *comment = [[TJComment alloc]init];
+    TJUser *user = [self getMyUserInfo];
+    NSString *accessToken = [self getMyUserToken];
+    user.accessToken = accessToken;
+    comment.user = user;
+    comment.info = commentInfo;
+    return comment;
 }
 @end
