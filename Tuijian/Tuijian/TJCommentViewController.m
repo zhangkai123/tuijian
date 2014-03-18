@@ -50,14 +50,17 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     detailTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
-    //    [itemTableView setBackgroundColor:[UIColor clearColor]];
-    //[detailTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [detailTableView setBackgroundColor:UIColorFromRGB(0xEEEEEE)];
+    [detailTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     detailTableView.rowHeight = 500;
     detailTableView.dataSource = self;
     detailTableView.delegate = self;
     detailTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
     [self.view addSubview:detailTableView];
 
+    UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 50, 0);
+    detailTableView.contentInset = insets;
+    
     commentInputBar = [[YFInputBar alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY([UIScreen mainScreen].bounds), 320, 44)];
     commentInputBar.backgroundColor = [UIColor lightGrayColor];
     commentInputBar.delegate = self;

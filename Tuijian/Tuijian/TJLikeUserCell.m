@@ -16,7 +16,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundColor = UIColorFromRGB(0xD4D4D4);
         
         self.userImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 40, 40)];
         userImageView.clipsToBounds = YES;
