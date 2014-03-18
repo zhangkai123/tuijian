@@ -114,12 +114,14 @@
         failure(error);
     }];
 }
-//-(void)saveCurrentEditCourse:(NSDictionary *)dic
-//{
-//    [[ADDiskCacheManager sharedDiskCacheManager]saveCurrentEditCourse:dic];
-//}
-//-(NSDictionary *)getCurrentEditCourse
-//{
-//    return [[ADDiskCacheManager sharedDiskCacheManager]getCurrentEditCourse];
-//}
+-(void)saveComment:(NSString *)itemId commentInfo:(NSString *)commentInfo success:(void (^)(BOOL hasCommented))succeed failure:(void (^)(NSError *error))failure
+{
+    NSString *myAccessToken = [self getMyUserToken];
+    [[TJNetworkManager sharedNetworkManager]sendComment:myAccessToken itemId:itemId commentInfo:commentInfo success:^(id Json){
+        
+        
+    }failure:^(NSError *error){
+        
+    }];
+}
 @end
