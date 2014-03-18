@@ -8,6 +8,7 @@
 
 #import "TJParser.h"
 #import "TJItem.h"
+#import "TJComment.h"
 
 @implementation TJParser
 
@@ -49,7 +50,44 @@
             successed(NO);
         }
     }else{
+        successed(NO);
+    }
+}
++(void)parseLikesCommentsData:(id)json likesArray:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray failed:(void (^)(NSError *error))failed
+{
+    NSString *sucess = [json objectForKey:@"status"];
+    if ([sucess isEqualToString:@"success"]) {
+        NSArray *likesArray = [json objectForKey:@"theLikes"];
+        NSMutableArray *likesA = [[NSMutableArray alloc]init];
+        for (int i = 0; i < [likesArray count]; i++) {
+            NSDictionary *userDic = [likesArray objectAtIndex:i];
+            TJUser *user = [[TJUser alloc]init];
+            user.accessToken = [userDic objectForKey:@"accessToken"];
+            user.name = [userDic objectForKey:@"name"];
+            user.gender = [userDic objectForKey:@"sex"];
+            user.profile_image_url = [userDic objectForKey:@"img"];
+            [likesA addObject:user];
+        }
+        lArray(likesA);
         
+        NSArray *commentsArray = [json objectForKey:@"theComments"];
+        NSMutableArray *commentsA = [[NSMutableArray alloc]init];
+        for (int i = 0; i < [commentsArray count]; i++) {
+            NSDictionary *commentDic = [commentsArray objectAtIndex:i];
+            TJComment *comment = [[TJComment alloc]init];
+            TJUser *user = [[TJUser alloc]init];
+            user.accessToken = [commentDic objectForKey:@"accessToken"];
+            user.name = [commentDic objectForKey:@"name"];
+            user.gender = [commentDic objectForKey:@"sex"];
+            user.profile_image_url = [commentDic objectForKey:@"img"];
+            
+            comment.user = user;
+            comment.info = [commentDic objectForKey:@"info"];
+            [commentsA addObject:comment];
+        }
+        cArray(commentsA);
+    }else{
+        failed(nil);
     }
 }
 @end

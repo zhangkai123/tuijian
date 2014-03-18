@@ -124,12 +124,18 @@
         
     }];
 }
--(void)getLikesComments:(NSString *)itemId likes:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray
+-(void)getLikesComments:(NSString *)itemId likes:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray failure:(void (^)(NSError *error))failure
 {
     [[TJNetworkManager sharedNetworkManager]getLikesAndComments:itemId success:^(id Json){
-        
+        [TJParser parseLikesCommentsData:Json likesArray:^(NSArray *likesArray){
+            lArray(likesArray);
+        }comments:^(NSArray *commentsArray){
+            cArray(commentsArray);
+        }failed:^(NSError *error){
+            failure(error);
+        }];
     }failure:^(NSError *error){
-        
+        failure(error);
     }];
 }
 @end

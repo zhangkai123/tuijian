@@ -9,6 +9,7 @@
 #import "TJUser.h"
 
 @implementation TJUser
+@synthesize accessToken;
 @synthesize name = _name ,gender = _gender, profile_image_url = _profile_image_url;
 
 -(id)initWithJsonData:(id)json

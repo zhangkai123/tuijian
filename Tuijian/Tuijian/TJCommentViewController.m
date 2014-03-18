@@ -63,6 +63,8 @@
         
     }comments:^(NSArray *commentsArray){
         
+    }failure:^(NSError *error){
+        
     }];
     [super viewWillAppear:animated];
 }
