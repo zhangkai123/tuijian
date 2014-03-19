@@ -10,6 +10,7 @@
 
 @interface TJUser : NSObject
 
+@property(nonatomic,retain) NSString *myUserId;
 @property(nonatomic,retain) NSString *accessToken;
 @property(nonatomic,retain) NSString *name;
 @property(nonatomic,retain) NSString *gender;
