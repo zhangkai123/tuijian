@@ -188,8 +188,12 @@
             cell = [[TJItemDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         }
         
+        [(TJItemDetailCell *)cell setItemId:theItem.itemId];
         [[(TJItemDetailCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
         [(TJItemDetailCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
+        [(TJItemDetailCell *)cell setLikeButtonColor:theItem.hasLiked];
+        [(TJItemDetailCell *)cell setDelegate:(id)self];
+
     }else if (indexPath.section == 1) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
         if (!cell) {
@@ -262,6 +266,17 @@
         [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.95]];
     }
     return backView;
+}
+#pragma TJItemCellDelegate
+-(void)likeItem:(NSString *)itemId liked:(void (^)(BOOL Liked))hasL
+{
+    __block TJItem *item = theItem;
+    [[TJDataController sharedDataController]saveLike:itemId success:^(BOOL hasLiked){
+        hasL(hasLiked);
+        item.hasLiked = hasLiked;
+    }failure:^(NSError *error){
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning
