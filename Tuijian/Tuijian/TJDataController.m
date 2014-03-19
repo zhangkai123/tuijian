@@ -57,8 +57,10 @@
         NSString *success = [JSON objectForKey:@"status"];
         if ([success isEqualToString:@"success"]) {
             NSString *myAccessToken = [JSON objectForKey:@"myAccessToken"];
+            NSString *myUserId = [JSON objectForKey:@"myUserId"];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setObject:myAccessToken forKey:TJ_MY_ACCESS_TOKEN];
+            [userDefaults setObject:[NSString stringWithFormat:@"%@",myUserId] forKey:TJ_MY_USER_ID];
             [userDefaults synchronize];
             myUserToken(myAccessToken);
             [[TJDiskCacheManager sharedDiskCacheManager]saveUserLoginMask:YES];
@@ -79,6 +81,13 @@
     NSString *myAccessToken = [userDefaults objectForKey:TJ_MY_ACCESS_TOKEN];
     return myAccessToken;
 }
+-(NSString *)getMyUserId
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *myUserId = [userDefaults objectForKey:TJ_MY_USER_ID];
+    return myUserId;
+}
+
 -(void)saveItem:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     NSString *myAccessToken = [self getMyUserToken];
@@ -147,5 +156,15 @@
     comment.user = user;
     comment.info = commentInfo;
     return comment;
+}
+
+#pragma XMPP Server
+-(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success
+{
+    NSString *myUserId = [self getMyUserId];
+    NSString *myUserToken = [self getMyUserToken];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]userConnectToXMPPServer:myUserId password:myUserToken success:^(BOOL hasOnline){
+        success(hasOnline);
+    }];
 }
 @end

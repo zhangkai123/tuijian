@@ -20,7 +20,7 @@
 #define TJ_TENCENT_TOKEN_EXPIRATION_DATE @"tencent_token_expiration_date"
 
 #define TJ_MY_ACCESS_TOKEN @"my_access_token"
-
+#define TJ_MY_USER_ID @"my_user_id"
 
 #define TJ_USER_INFO @"user_info"
 #define TJ_USER_NAME @"user_name"
