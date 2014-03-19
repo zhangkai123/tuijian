@@ -210,6 +210,7 @@
 		4B9C414118D9855400B9F8E5 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9C414018D9855400B9F8E5 /* libresolv.dylib */; };
 		4B9C414318D9856600B9F8E5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9C414218D9856600B9F8E5 /* CFNetwork.framework */; };
 		4B9C414518D9857A00B9F8E5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9C414418D9857A00B9F8E5 /* libxml2.dylib */; };
+		4B9C414B18D98F0E00B9F8E5 /* TJXMPPServerMananger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C414A18D98F0E00B9F8E5 /* TJXMPPServerMananger.m */; };
 		4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D07D18B394690055D40B /* AVCamPreviewView.m */; };
 		4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D08018B394A40055D40B /* TJCamViewController.m */; };
 		4BDEDB3C18CFF48A001C2874 /* male.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3B18CFF48A001C2874 /* male.png */; };
@@ -633,6 +634,8 @@
 		4B9C414018D9855400B9F8E5 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		4B9C414218D9856600B9F8E5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		4B9C414418D9857A00B9F8E5 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		4B9C414918D98F0E00B9F8E5 /* TJXMPPServerMananger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJXMPPServerMananger.h; sourceTree = "<group>"; };
+		4B9C414A18D98F0E00B9F8E5 /* TJXMPPServerMananger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJXMPPServerMananger.m; sourceTree = "<group>"; };
 		4BC7D07C18B394690055D40B /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
 		4BC7D07D18B394690055D40B /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		4BC7D07F18B394A40055D40B /* TJCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCamViewController.h; sourceTree = "<group>"; };
@@ -869,7 +872,7 @@
 			name = DataManager;
 			sourceTree = "<group>";
 		};
-		4B569CD618CEBB2A000DF219 /* NetworkManager */ = {
+		4B569CD618CEBB2A000DF219 /* WebServerManager */ = {
 			isa = PBXGroup;
 			children = (
 				4B569CD718CEBB5D000DF219 /* TJNetworkManager.h */,
@@ -879,7 +882,7 @@
 				4B569CDB18CEBB5D000DF219 /* TJMyServerClient.h */,
 				4B569CDC18CEBB5D000DF219 /* TJMyServerClient.m */,
 			);
-			name = NetworkManager;
+			name = WebServerManager;
 			sourceTree = "<group>";
 		};
 		4B569CE018CED1C0000DF219 /* DiskManager */ = {
@@ -1716,6 +1719,15 @@
 			path = libidn;
 			sourceTree = "<group>";
 		};
+		4B9C414818D98EA000B9F8E5 /* XMPPManager */ = {
+			isa = PBXGroup;
+			children = (
+				4B9C414918D98F0E00B9F8E5 /* TJXMPPServerMananger.h */,
+				4B9C414A18D98F0E00B9F8E5 /* TJXMPPServerMananger.m */,
+			);
+			name = XMPPManager;
+			sourceTree = "<group>";
+		};
 		4BDEDB3A18CFF47F001C2874 /* gender */ = {
 			isa = PBXGroup;
 			children = (
@@ -1778,7 +1790,8 @@
 				4B569CB418CEB9D5000DF219 /* ThirdPartyLibrary */,
 				4B569CD218CEBA8C000DF219 /* DataManager */,
 				4B47A36C18D1625900087BE4 /* Parser */,
-				4B569CD618CEBB2A000DF219 /* NetworkManager */,
+				4B569CD618CEBB2A000DF219 /* WebServerManager */,
+				4B9C414818D98EA000B9F8E5 /* XMPPManager */,
 				4B569CE018CED1C0000DF219 /* DiskManager */,
 				4B569CE718CF0BD5000DF219 /* DataModel */,
 				4B569CAE18CEA57B000DF219 /* Login */,
@@ -2111,6 +2124,7 @@
 				4B9C40F118D984AF00B9F8E5 /* XMPPvCardCoreDataStorage.m in Sources */,
 				4BFA999B18AFA19200D673CB /* main.m in Sources */,
 				4B50AC1618D6DE120028BAF9 /* YFInputBar.m in Sources */,
+				4B9C414B18D98F0E00B9F8E5 /* TJXMPPServerMananger.m in Sources */,
 				4B9C40DC18D984AF00B9F8E5 /* XMPPIQ+JabberRPCResonse.m in Sources */,
 				4B9C40EE18D984AF00B9F8E5 /* XMPPRoom.m in Sources */,
 				4B9C40DA18D984AF00B9F8E5 /* XMPPSystemInputActivityMonitor.m in Sources */,
