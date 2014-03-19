@@ -74,6 +74,7 @@
 		4B569CEA18CF0BE9000DF219 /* TJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CE918CF0BE9000DF219 /* TJUser.m */; };
 		4B7A421018B0CF66009356F4 /* TJShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A420F18B0CF66009356F4 /* TJShowViewController.m */; };
 		4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A421318B0DCE2009356F4 /* camera_18_2x.png */; };
+		4B9C3F6718D9234C00B9F8E5 /* UIImage+additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C3F6618D9234C00B9F8E5 /* UIImage+additions.m */; };
 		4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D07D18B394690055D40B /* AVCamPreviewView.m */; };
 		4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D08018B394A40055D40B /* TJCamViewController.m */; };
 		4BDEDB3C18CFF48A001C2874 /* male.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3B18CFF48A001C2874 /* male.png */; };
@@ -222,6 +223,8 @@
 		4B7A420E18B0CF66009356F4 /* TJShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJShowViewController.h; sourceTree = "<group>"; };
 		4B7A420F18B0CF66009356F4 /* TJShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJShowViewController.m; sourceTree = "<group>"; };
 		4B7A421318B0DCE2009356F4 /* camera_18_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_18_2x.png; sourceTree = "<group>"; };
+		4B9C3F6518D9234C00B9F8E5 /* UIImage+additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+additions.h"; sourceTree = "<group>"; };
+		4B9C3F6618D9234C00B9F8E5 /* UIImage+additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+additions.m"; sourceTree = "<group>"; };
 		4BC7D07C18B394690055D40B /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
 		4BC7D07D18B394690055D40B /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		4BC7D07F18B394A40055D40B /* TJCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCamViewController.h; sourceTree = "<group>"; };
@@ -494,6 +497,15 @@
 			name = DataModel;
 			sourceTree = "<group>";
 		};
+		4B9C3F6118D9230700B9F8E5 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				4B9C3F6518D9234C00B9F8E5 /* UIImage+additions.h */,
+				4B9C3F6618D9234C00B9F8E5 /* UIImage+additions.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
 		4BDEDB3A18CFF47F001C2874 /* gender */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +558,7 @@
 		4BFA999418AFA19200D673CB /* Tuijian */ = {
 			isa = PBXGroup;
 			children = (
+				4B9C3F6118D9230700B9F8E5 /* Category */,
 				4B569CE418CED50F000DF219 /* Help */,
 				4B569CB418CEB9D5000DF219 /* ThirdPartyLibrary */,
 				4B569CD218CEBA8C000DF219 /* DataManager */,
@@ -777,6 +790,7 @@
 				4B569CCA18CEBA0D000DF219 /* AFHTTPRequestOperation.m in Sources */,
 				4BE1636318B9D7890009158D /* TJEditViewController.m in Sources */,
 				4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */,
+				4B9C3F6718D9234C00B9F8E5 /* UIImage+additions.m in Sources */,
 				4B569CEA18CF0BE9000DF219 /* TJUser.m in Sources */,
 				4BFB64D218C187F800C304BB /* TJBaseViewController.m in Sources */,
 				4B31B77B18D813F400F87D71 /* TJLikeCell.m in Sources */,

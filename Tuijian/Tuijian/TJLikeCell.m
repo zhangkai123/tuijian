@@ -9,6 +9,7 @@
 #import "TJLikeCell.h"
 #import "TJLikeUserCell.h"
 #import "TJUser.h"
+#import "UIImage+additions.h"
 
 @interface TJLikeCell()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -61,7 +62,17 @@
     cell.transform = CGAffineTransformMakeRotation(M_PI_2);
     TJUser *user = [self.likesArray objectAtIndex:indexPath.row];
     UIImage *placeHoder = [self getGenderPlaceHolder:user];
-    [cell.userImageView setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:placeHoder];
+//    [cell.userImageView setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:placeHoder];
+    __block UIImageView *weakImageView = cell.userImageView;
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:user.profile_image_url]];
+    [cell.userImageView setImageWithURLRequest:urlRequest placeholderImage:placeHoder
+    success:^(NSURLRequest *request ,NSHTTPURLResponse *response ,UIImage *image){
+        
+        float radius = MAX(image.size.width, image.size.height);
+        weakImageView.image = [image makeRoundCornersWithRadius:radius/2];
+    }failure:^(NSURLRequest *request ,NSHTTPURLResponse *response ,NSError *error){
+         
+     }];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

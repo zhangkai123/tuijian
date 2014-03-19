@@ -12,6 +12,7 @@
 #import "YFInputBar.h"
 #import "TJCommentCell.h"
 #import "TJComment.h"
+#import "UIImage+additions.h"
 
 @interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,YFInputBarDelegate>
 {
@@ -201,7 +202,18 @@
             cell = [[TJCommentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
         }
         TJComment *comment = [myCommentsArray objectAtIndex:indexPath.row];
-        [[(TJCommentCell *)cell userImageView] setImageWithURL:[NSURL URLWithString:comment.user.profile_image_url] placeholderImage:[UIImage imageNamed:@"photo.png"]];
+//        [[(TJCommentCell *)cell userImageView] setImageWithURL:[NSURL URLWithString:comment.user.profile_image_url] placeholderImage:[UIImage imageNamed:@"photo.png"]];
+        __block UIImageView *weakImageView = [(TJCommentCell *)cell userImageView];
+        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:comment.user.profile_image_url]];
+        [[(TJCommentCell *)cell userImageView] setImageWithURLRequest:urlRequest
+                                               placeholderImage:[UIImage imageNamed:@"photo.png"]
+                                               success:^(NSURLRequest *request ,NSHTTPURLResponse *response ,UIImage *image){
+            
+                                                    float radius = MAX(image.size.width, image.size.height);
+                                                    weakImageView.image = [image makeRoundCornersWithRadius:radius/2];
+                                               }failure:^(NSURLRequest *request ,NSHTTPURLResponse *response ,NSError *error){
+            
+                                               }];
         [[(TJCommentCell *)cell nameLable]setText:comment.user.name];
         [[(TJCommentCell *)cell commentLable]setText:comment.info];
         
