@@ -19,6 +19,6 @@
 +(id)sharedXMPPServerMananger;
 -(void)userConnectToXMPPServer:(NSString *)userId password:(NSString *)pword success:(void (^)(BOOL hasOnline))success;
 - (void)disconnect;
--(void)sendLike:(NSString *)userId;
+-(void)sendLike:(NSString *)userId itemId:(NSString *)itemId;
 - (void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId;
 @end

@@ -94,22 +94,17 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 }
 
 #pragma mark send message
--(void)sendLike:(NSString *)userId
+-(void)sendLike:(NSString *)userId itemId:(NSString *)itemId
 {
     NSString *jabberID = [NSString stringWithFormat:@"%@@zhangkaemacbook.lan",userId];
     XMPPJID *jid = [XMPPJID jidWithString:jabberID];
-//    if([msgContent length] > 0)
-//    {
-//        NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
-//        [body setStringValue:msgContent];
     
-        NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
-        [message addAttributeWithName:@"type" stringValue:@"like"];
-        [message addAttributeWithName:@"to" stringValue:[jid full]];
-//        [message addChild:body];
+    NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
+    [message addAttributeWithName:@"to" stringValue:[jid full]];
+    [message addAttributeWithName:@"type" stringValue:@"like"];
+    [message addAttributeWithName:@"itemId" stringValue:itemId];
         
-        [xmppStream sendElement:message];
-//    }
+    [xmppStream sendElement:message];
 }
 - (void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId
 {
@@ -177,12 +172,13 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message {
 	
 	
-	NSString *msg = [[message elementForName:@"body"] stringValue];
+//	NSString *msg = [[message elementForName:@"body"] stringValue];
 	NSString *from = [[message attributeForName:@"from"] stringValue];
     NSString *type = [[message attributeForName:@"type"] stringValue];
+    NSString *itemId = [[message attributeForName:@"itemId"] stringValue];
     
 	NSMutableDictionary *m = [[NSMutableDictionary alloc] init];
-	[m setObject:msg forKey:@"msg"];
+//	[m setObject:msg forKey:@"msg"];
 	[m setObject:from forKey:@"sender"];
 	
     //	[_messageDelegate newMessageReceived:m];

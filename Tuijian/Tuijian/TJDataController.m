@@ -183,9 +183,9 @@
 {
     [[TJXMPPServerMananger sharedXMPPServerMananger]disconnect];
 }
--(void)sendLike:(NSString *)userId
+-(void)sendLike:(NSString *)userId itemId:(NSString *)itemId
 {
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendLike:userId];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendLike:userId itemId:itemId];
 }
 -(void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId
 {

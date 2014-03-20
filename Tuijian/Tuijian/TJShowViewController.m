@@ -195,7 +195,7 @@
         hasL(hasLiked);
         theItem.hasLiked = hasLiked;
         if (hasLiked) {
-            [[TJDataController sharedDataController]sendLike:uid];
+            [[TJDataController sharedDataController]sendLike:uid itemId:itemId];
         }
     }failure:^(NSError *error){
         
