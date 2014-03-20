@@ -167,4 +167,8 @@
         success(hasOnline);
     }];
 }
+-(void)disConnectToXMPPServer
+{
+    [[TJXMPPServerMananger sharedXMPPServerMananger]disconnect];
+}
 @end

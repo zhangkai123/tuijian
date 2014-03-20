@@ -34,4 +34,5 @@
 
 #pragma XMPP Server
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success;
+-(void)disConnectToXMPPServer;
 @end

@@ -711,6 +711,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B1D467D18DA8B330056262B /* TabControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4B7A420E18B0CF66009356F4 /* TJShowViewController.h */,
+				4B7A420F18B0CF66009356F4 /* TJShowViewController.m */,
+				4BFB64CA18C07ACA00C304BB /* TJInfoViewController.h */,
+				4BFB64CB18C07ACA00C304BB /* TJInfoViewController.m */,
+				4BFB64CD18C07AEC00C304BB /* TJMineViewController.h */,
+				4BFB64CE18C07AEC00C304BB /* TJMineViewController.m */,
+			);
+			name = TabControllers;
+			sourceTree = "<group>";
+		};
+		4B1D467E18DA8B870056262B /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				4BC7D07C18B394690055D40B /* AVCamPreviewView.h */,
+				4BC7D07D18B394690055D40B /* AVCamPreviewView.m */,
+				4BC7D07F18B394A40055D40B /* TJCamViewController.h */,
+				4BC7D08018B394A40055D40B /* TJCamViewController.m */,
+				4B543FD018B4FBA50052DFDD /* TJCropViewController.h */,
+				4B543FD118B4FBA50052DFDD /* TJCropViewController.m */,
+				4BE1635E18B869040009158D /* ImageScrollView.h */,
+				4BE1635F18B869040009158D /* ImageScrollView.m */,
+				4BE1636118B9D7880009158D /* TJEditViewController.h */,
+				4BE1636218B9D7880009158D /* TJEditViewController.m */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		4B1D467F18DA8BD70056262B /* CellView */ = {
+			isa = PBXGroup;
+			children = (
+				4B47A36618D1462500087BE4 /* TJItemCell.h */,
+				4B47A36718D1462500087BE4 /* TJItemCell.m */,
+				4B31B77618D8123F00F87D71 /* TJItemDetailCell.h */,
+				4B31B77718D8123F00F87D71 /* TJItemDetailCell.m */,
+				4B31B77918D813F400F87D71 /* TJLikeCell.h */,
+				4B31B77A18D813F400F87D71 /* TJLikeCell.m */,
+				4B31B77C18D8164000F87D71 /* TJLikeUserCell.h */,
+				4B31B77D18D8164000F87D71 /* TJLikeUserCell.m */,
+				4B31B77F18D825BB00F87D71 /* TJCommentCell.h */,
+				4B31B78018D825BB00F87D71 /* TJCommentCell.m */,
+			);
+			name = CellView;
+			sourceTree = "<group>";
+		};
 		4B47A36C18D1625900087BE4 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -1795,37 +1842,14 @@
 				4B569CE018CED1C0000DF219 /* DiskManager */,
 				4B569CE718CF0BD5000DF219 /* DataModel */,
 				4B569CAE18CEA57B000DF219 /* Login */,
+				4B1D467E18DA8B870056262B /* Camera */,
+				4B1D467D18DA8B330056262B /* TabControllers */,
 				4B50AC1318D6DCB70028BAF9 /* Comment */,
+				4B1D467F18DA8BD70056262B /* CellView */,
 				4BFA999D18AFA19200D673CB /* TJAppDelegate.h */,
 				4BFA999E18AFA19200D673CB /* TJAppDelegate.m */,
 				4BFB64D018C187F800C304BB /* TJBaseViewController.h */,
 				4BFB64D118C187F800C304BB /* TJBaseViewController.m */,
-				4B7A420E18B0CF66009356F4 /* TJShowViewController.h */,
-				4B7A420F18B0CF66009356F4 /* TJShowViewController.m */,
-				4BFB64CA18C07ACA00C304BB /* TJInfoViewController.h */,
-				4BFB64CB18C07ACA00C304BB /* TJInfoViewController.m */,
-				4BFB64CD18C07AEC00C304BB /* TJMineViewController.h */,
-				4BFB64CE18C07AEC00C304BB /* TJMineViewController.m */,
-				4BC7D07C18B394690055D40B /* AVCamPreviewView.h */,
-				4BC7D07D18B394690055D40B /* AVCamPreviewView.m */,
-				4BC7D07F18B394A40055D40B /* TJCamViewController.h */,
-				4BC7D08018B394A40055D40B /* TJCamViewController.m */,
-				4B543FD018B4FBA50052DFDD /* TJCropViewController.h */,
-				4B543FD118B4FBA50052DFDD /* TJCropViewController.m */,
-				4BE1635E18B869040009158D /* ImageScrollView.h */,
-				4BE1635F18B869040009158D /* ImageScrollView.m */,
-				4BE1636118B9D7880009158D /* TJEditViewController.h */,
-				4BE1636218B9D7880009158D /* TJEditViewController.m */,
-				4B47A36618D1462500087BE4 /* TJItemCell.h */,
-				4B47A36718D1462500087BE4 /* TJItemCell.m */,
-				4B31B77618D8123F00F87D71 /* TJItemDetailCell.h */,
-				4B31B77718D8123F00F87D71 /* TJItemDetailCell.m */,
-				4B31B77918D813F400F87D71 /* TJLikeCell.h */,
-				4B31B77A18D813F400F87D71 /* TJLikeCell.m */,
-				4B31B77C18D8164000F87D71 /* TJLikeUserCell.h */,
-				4B31B77D18D8164000F87D71 /* TJLikeUserCell.m */,
-				4B31B77F18D825BB00F87D71 /* TJCommentCell.h */,
-				4B31B78018D825BB00F87D71 /* TJCommentCell.m */,
 				4BFA99A018AFA19200D673CB /* Images.xcassets */,
 				4BFA999518AFA19200D673CB /* Supporting Files */,
 			);
