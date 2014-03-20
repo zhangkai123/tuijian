@@ -21,6 +21,7 @@
 
 #define TJ_MY_ACCESS_TOKEN @"my_access_token"
 #define TJ_MY_USER_ID @"my_user_id"
+#define TJ_MY_USER_PASSWORD @"my_user_password"//password for openfire 
 
 #define TJ_USER_INFO @"user_info"
 #define TJ_USER_NAME @"user_name"

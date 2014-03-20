@@ -58,9 +58,11 @@
         if ([success isEqualToString:@"success"]) {
             NSString *myAccessToken = [JSON objectForKey:@"myAccessToken"];
             NSString *myUserId = [JSON objectForKey:@"myUserId"];
+            NSString *myUserPassword = [JSON objectForKey:@"myPassword"];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setObject:myAccessToken forKey:TJ_MY_ACCESS_TOKEN];
             [userDefaults setObject:[NSString stringWithFormat:@"%@",myUserId] forKey:TJ_MY_USER_ID];
+            [userDefaults setObject:myUserPassword forKey:TJ_MY_USER_PASSWORD];
             [userDefaults synchronize];
             myUserToken(myAccessToken);
             [[TJDiskCacheManager sharedDiskCacheManager]saveUserLoginMask:YES];
@@ -86,6 +88,12 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *myUserId = [userDefaults objectForKey:TJ_MY_USER_ID];
     return myUserId;
+}
+-(NSString *)getMyUserPassword
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *myUserPassword = [userDefaults objectForKey:TJ_MY_USER_PASSWORD];
+    return myUserPassword;
 }
 
 -(void)saveItem:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
@@ -162,8 +170,8 @@
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success
 {
     NSString *myUserId = [self getMyUserId];
-    NSString *myUserToken = [self getMyUserToken];
-    [[TJXMPPServerMananger sharedXMPPServerMananger]userConnectToXMPPServer:myUserId password:myUserToken success:^(BOOL hasOnline){
+    NSString *myUserPassword = [self getMyUserPassword];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]userConnectToXMPPServer:myUserId password:myUserPassword success:^(BOOL hasOnline){
         success(hasOnline);
     }];
 }
