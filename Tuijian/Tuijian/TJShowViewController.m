@@ -129,6 +129,7 @@
     
     TJItem *theItem = [itemsArray objectAtIndex:indexPath.section];
     cell.itemId = theItem.itemId;
+    cell.userId = theItem.uid;
     [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
     [cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
@@ -187,15 +188,15 @@
     return backView;
 }
 #pragma TJItemCellDelegate
--(void)likeItem:(NSString *)itemId liked:(void (^)(BOOL Liked))hasL
+-(void)likeItem:(NSString *)itemId uid:(NSString *)uid liked:(void (^)(BOOL Liked))hasL
 {
     __block TJItem *theItem = [self getItemFromId:itemId];
     [[TJDataController sharedDataController]saveLike:itemId success:^(BOOL hasLiked){
         hasL(hasLiked);
         theItem.hasLiked = hasLiked;
-//        if (hasLiked) {
-//            [[TJDataController sharedDataController]sendMessage:@"I love you" toUser:<#(NSString *)#>]
-//        }
+        if (hasLiked) {
+            [[TJDataController sharedDataController]sendLike:uid];
+        }
     }failure:^(NSError *error){
         
     }];

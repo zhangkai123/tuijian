@@ -94,6 +94,23 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 }
 
 #pragma mark send message
+-(void)sendLike:(NSString *)userId
+{
+    NSString *jabberID = [NSString stringWithFormat:@"%@@zhangkaemacbook.lan",userId];
+    XMPPJID *jid = [XMPPJID jidWithString:jabberID];
+//    if([msgContent length] > 0)
+//    {
+//        NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+//        [body setStringValue:msgContent];
+    
+        NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
+        [message addAttributeWithName:@"type" stringValue:@"like"];
+        [message addAttributeWithName:@"to" stringValue:[jid full]];
+//        [message addChild:body];
+        
+        [xmppStream sendElement:message];
+//    }
+}
 - (void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId
 {
     NSString *jabberID = [NSString stringWithFormat:@"%@@zhangkaemacbook.lan",userId];
@@ -125,19 +142,19 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 	}
     
 }
-///**
-// * This method is called after the stream is closed.
-// *
-// * The given error parameter will be non-nil if the error was due to something outside the general xmpp realm.
-// * Some examples:
-// * - The TCP socket was unexpectedly disconnected.
-// * - The SRV resolution of the domain failed.
-// * - Error parsing xml sent from server.
-// **/
-//- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error
-//{
-//    
-//}
+/**
+ * This method is called after the stream is closed.
+ *
+ * The given error parameter will be non-nil if the error was due to something outside the general xmpp realm.
+ * Some examples:
+ * - The TCP socket was unexpectedly disconnected.
+ * - The SRV resolution of the domain failed.
+ * - Error parsing xml sent from server.
+ **/
+- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error
+{
+    
+}
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender {
 	
 	[self goOnline];
@@ -162,6 +179,7 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 	
 	NSString *msg = [[message elementForName:@"body"] stringValue];
 	NSString *from = [[message attributeForName:@"from"] stringValue];
+    NSString *type = [[message attributeForName:@"type"] stringValue];
     
 	NSMutableDictionary *m = [[NSMutableDictionary alloc] init];
 	[m setObject:msg forKey:@"msg"];

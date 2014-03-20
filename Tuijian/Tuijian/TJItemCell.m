@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation TJItemCell
-@synthesize itemId;
+@synthesize itemId ,userId;
 @synthesize itemImageView ,commentNumLabel ,likeNumLabel;
 @synthesize delegate;
 
@@ -81,7 +81,7 @@
 }
 -(void)like
 {
-    [self.delegate likeItem:self.itemId liked:^(BOOL hasLiked){
+    [self.delegate likeItem:self.itemId uid:self.userId liked:^(BOOL hasLiked){
         [self setLikeButtonColor:hasLiked];
     }];
 }
