@@ -65,11 +65,11 @@
     }];
     [operation start];
 }
--(void)uploadItem:(NSString *)accessT recMes:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)uploadItem:(NSString *)accessT uid:(NSString *)uid recMes:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     TJMyServerClient *client = [TJMyServerClient sharedClient];
     NSString *path = @"uploadItem";
-    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken",recommendMes,@"recommendMessage", nil];
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken",uid,@"uid",recommendMes,@"recommendMessage", nil];
     NSData *imgData = UIImagePNGRepresentation(ulImage);
     NSMutableURLRequest *myRequest = [client multipartFormRequestWithMethod:@"POST" path:path
                                                                  parameters:paraDic constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
@@ -85,11 +85,11 @@
     }];
     [operation start];
 }
--(void)sendFeatchItemsRequest:(NSString *)accessT success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)sendFeatchItemsRequest:(NSString *)accessT uid:(NSString *)uid success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     TJMyServerClient *client = [TJMyServerClient sharedClient];
     NSString *path = @"featchItems";
-    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken", nil];
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken",uid,@"uid", nil];
     NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
     
     [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
@@ -102,11 +102,11 @@
     }];
     [operation start];
 }
--(void)sendLikeRequest:(NSString *)accessT itemId:(NSString *)itemId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)sendLikeRequest:(NSString *)accessT uid:(NSString *)uid itemId:(NSString *)itemId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     TJMyServerClient *client = [TJMyServerClient sharedClient];
     NSString *path = @"likeRequest";
-    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"userId",itemId,@"itemId", nil];
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken",uid,@"uid",itemId,@"itemId", nil];
     NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
     
     [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
@@ -119,11 +119,11 @@
     }];
     [operation start];
 }
--(void)sendComment:(NSString *)accessT itemId:(NSString *)itemId commentInfo:(NSString *)commentInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)sendComment:(NSString *)accessT uid:(NSString *)uid itemId:(NSString *)itemId commentInfo:(NSString *)commentInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     TJMyServerClient *client = [TJMyServerClient sharedClient];
     NSString *path = @"commentRequest";
-    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken",itemId,@"itemId",commentInfo ,@"CommentInfo" ,nil];
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken",uid,@"uid",itemId,@"itemId",commentInfo ,@"CommentInfo" ,nil];
     [client setParameterEncoding:AFFormURLParameterEncoding];
     NSURLRequest *request = [client requestWithMethod:@"POST" path:path parameters:paraDic];
     

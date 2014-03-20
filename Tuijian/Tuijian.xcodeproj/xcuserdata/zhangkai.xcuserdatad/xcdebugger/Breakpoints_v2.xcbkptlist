@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "118"
             endingLineNumber = "118"
-            landmarkName = "-sendLikeRequest:itemId:success:failure:"
+            landmarkName = "-sendLikeRequest:uid:itemId:success:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "136"
             endingLineNumber = "136"
-            landmarkName = "-sendComment:itemId:commentInfo:success:failure:"
+            landmarkName = "-sendComment:uid:itemId:commentInfo:success:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -311,7 +311,7 @@
                   symbolName = "__39-[TJShowViewController likeItem:liked:]_block_invoke"
                   moduleName = "Tuijian"
                   urlString = "file:///Users/zhangkai/Desktop/tuijian/Tuijian/Tuijian/TJShowViewController.m"
-                  timestampString = "416992532.607565"
+                  timestampString = "416998333.276475"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "199"
@@ -325,7 +325,7 @@
                   symbolName = "__39-[TJShowViewController likeItem:liked:]_block_invoke197"
                   moduleName = "Tuijian"
                   urlString = "file:///Users/zhangkai/Desktop/tuijian/Tuijian/Tuijian/TJShowViewController.m"
-                  timestampString = "416992532.607854"
+                  timestampString = "416998333.276786"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "199"
@@ -348,6 +348,22 @@
             startingLineNumber = "65"
             endingLineNumber = "65"
             landmarkName = "-getMyUserToken:myUserToken:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tuijian/TJDataController.m"
+            timestampString = "416997552.129361"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "-saveComment:commentInfo:success:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

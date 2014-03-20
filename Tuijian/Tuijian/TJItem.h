@@ -11,7 +11,7 @@
 @interface TJItem : NSObject
 
 @property(nonatomic,strong) NSString *itemId;
-@property(nonatomic,strong) NSString *accessToken;
+@property(nonatomic,strong) NSString *uid;
 @property(nonatomic,strong) NSString *userName;
 @property(nonatomic,strong) NSString *userImg;
 @property(nonatomic,strong) NSString *userGender;

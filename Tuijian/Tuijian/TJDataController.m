@@ -99,7 +99,8 @@
 -(void)saveItem:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     NSString *myAccessToken = [self getMyUserToken];
-    [[TJNetworkManager sharedNetworkManager]uploadItem:myAccessToken recMes:recommendMes uploadImage:ulImage success:^(id Json){
+    NSString *uid = [self getMyUserId];
+    [[TJNetworkManager sharedNetworkManager]uploadItem:myAccessToken uid:uid recMes:recommendMes uploadImage:ulImage success:^(id Json){
         
         success(Json);
     }failure:^(NSError *error){
@@ -109,7 +110,8 @@
 -(void)getItems:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure
 {
     NSString *myAccessToken = [self getMyUserToken];
-    [[TJNetworkManager sharedNetworkManager]sendFeatchItemsRequest:myAccessToken success:^(id Json){
+    NSString *myUserId = [self getMyUserId];
+    [[TJNetworkManager sharedNetworkManager]sendFeatchItemsRequest:myAccessToken uid:myUserId success:^(id Json){
         
         NSArray *itemsArray = [TJParser parseItemsJsonData:Json];
         success(itemsArray);
@@ -121,7 +123,8 @@
 -(void)saveLike:(NSString *)itemId success:(void (^)(BOOL hasLiked))liked failure:(void (^)(NSError *error))failure
 {
     NSString *myAccessToken = [self getMyUserToken];
-    [[TJNetworkManager sharedNetworkManager]sendLikeRequest:myAccessToken itemId:itemId success:^(id Json){
+    NSString *myUserId = [self getMyUserId];
+    [[TJNetworkManager sharedNetworkManager]sendLikeRequest:myAccessToken uid:myUserId itemId:itemId success:^(id Json){
         [TJParser parseLikeJsonData:Json success:^(BOOL hasLiked){
             liked(hasLiked);
         }failed:^(NSError *error){
@@ -134,7 +137,8 @@
 -(void)saveComment:(NSString *)itemId commentInfo:(NSString *)commentInfo success:(void (^)(BOOL hasCommented))succeed failure:(void (^)(NSError *error))failure
 {
     NSString *myAccessToken = [self getMyUserToken];
-    [[TJNetworkManager sharedNetworkManager]sendComment:myAccessToken itemId:itemId commentInfo:commentInfo success:^(id Json){
+    NSString *myUserId = [self getMyUserId];
+    [[TJNetworkManager sharedNetworkManager]sendComment:myAccessToken uid:myUserId itemId:itemId commentInfo:commentInfo success:^(id Json){
         BOOL success = [TJParser parseStatusJsonData:Json];
         succeed(success);
     }failure:^(NSError *error){

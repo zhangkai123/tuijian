@@ -29,7 +29,7 @@
         NSDictionary *itemDic = [jsonArray objectAtIndex:i];
         TJItem *item = [[TJItem alloc]init];
         item.itemId = [itemDic objectForKey:@"id"];
-        item.accessToken = [itemDic objectForKey:@"accessToken"];
+        item.uid = [itemDic objectForKey:@"uid"];
         item.userName = [itemDic objectForKey:@"userName"];
         item.userImg = [itemDic objectForKey:@"userImg"];
         item.userGender = [itemDic objectForKey:@"userGender"];
@@ -38,7 +38,7 @@
         item.commentNum = [itemDic objectForKey:@"commentNum"];
         item.likeNum = [itemDic objectForKey:@"likeNum"];
         
-        id uid = [itemDic objectForKey:@"uid"];
+        id uid = [itemDic objectForKey:@"user_id"];
         if (uid != [NSNull null]) {
             item.hasLiked = YES;
         }else{
@@ -72,6 +72,7 @@
             NSDictionary *userDic = [likesArray objectAtIndex:i];
             TJUser *user = [[TJUser alloc]init];
             user.accessToken = [userDic objectForKey:@"accessToken"];
+            user.myUserId = [userDic objectForKey:@"id"];
             user.name = [userDic objectForKey:@"name"];
             user.gender = [userDic objectForKey:@"sex"];
             user.profile_image_url = [userDic objectForKey:@"img"];
@@ -86,6 +87,7 @@
             TJComment *comment = [[TJComment alloc]init];
             TJUser *user = [[TJUser alloc]init];
             user.accessToken = [commentDic objectForKey:@"accessToken"];
+            user.myUserId = [commentDic objectForKey:@"id"];
             user.name = [commentDic objectForKey:@"name"];
             user.gender = [commentDic objectForKey:@"sex"];
             user.profile_image_url = [commentDic objectForKey:@"img"];
