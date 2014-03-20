@@ -93,7 +93,25 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
     [xmppStream sendElement:presence];
 }
 
-#pragma mark -
+#pragma mark send message
+- (void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId
+{
+    NSString *jabberID = [NSString stringWithFormat:@"%@@zhangkaemacbook.lan",userId];
+    XMPPJID *jid = [XMPPJID jidWithString:jabberID];
+    if([msgContent length] > 0)
+    {
+        NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+        [body setStringValue:msgContent];
+        
+        NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
+        [message addAttributeWithName:@"type" stringValue:@"chat"];
+        [message addAttributeWithName:@"to" stringValue:[jid full]];
+        [message addChild:body];
+        
+        [xmppStream sendElement:message];
+    }
+}
+
 #pragma mark XMPP delegates
 - (void)xmppStreamDidConnect:(XMPPStream *)sender {
 	

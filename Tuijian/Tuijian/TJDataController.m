@@ -179,4 +179,8 @@
 {
     [[TJXMPPServerMananger sharedXMPPServerMananger]disconnect];
 }
+-(void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId
+{
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendMessage:msgContent toUser:userId];
+}
 @end

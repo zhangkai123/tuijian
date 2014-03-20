@@ -35,4 +35,5 @@
 #pragma XMPP Server
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success;
 -(void)disConnectToXMPPServer;
+-(void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId;
 @end

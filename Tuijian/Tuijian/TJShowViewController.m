@@ -193,6 +193,9 @@
     [[TJDataController sharedDataController]saveLike:itemId success:^(BOOL hasLiked){
         hasL(hasLiked);
         theItem.hasLiked = hasLiked;
+//        if (hasLiked) {
+//            [[TJDataController sharedDataController]sendMessage:@"I love you" toUser:<#(NSString *)#>]
+//        }
     }failure:^(NSError *error){
         
     }];
