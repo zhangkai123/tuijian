@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B1D468218DAF1240056262B /* TJMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1D468118DAF1240056262B /* TJMessage.m */; };
 		4B31B77518D7F75400F87D71 /* TJComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B77418D7F75400F87D71 /* TJComment.m */; };
 		4B31B77818D8123F00F87D71 /* TJItemDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B77718D8123F00F87D71 /* TJItemDetailCell.m */; };
 		4B31B77B18D813F400F87D71 /* TJLikeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B77A18D813F400F87D71 /* TJLikeCell.m */; };
@@ -247,6 +248,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B1D468018DAF1240056262B /* TJMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMessage.h; sourceTree = "<group>"; };
+		4B1D468118DAF1240056262B /* TJMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMessage.m; sourceTree = "<group>"; };
 		4B31B77318D7F75400F87D71 /* TJComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJComment.h; sourceTree = "<group>"; };
 		4B31B77418D7F75400F87D71 /* TJComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJComment.m; sourceTree = "<group>"; };
 		4B31B77618D8123F00F87D71 /* TJItemDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJItemDetailCell.h; sourceTree = "<group>"; };
@@ -958,6 +961,8 @@
 				4B47A36A18D1477400087BE4 /* TJItem.m */,
 				4B31B77318D7F75400F87D71 /* TJComment.h */,
 				4B31B77418D7F75400F87D71 /* TJComment.m */,
+				4B1D468018DAF1240056262B /* TJMessage.h */,
+				4B1D468118DAF1240056262B /* TJMessage.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -2029,6 +2034,7 @@
 				4B9C410918D984AF00B9F8E5 /* XMPPCapabilities.xcdatamodel in Sources */,
 				4B9C40F818D984AF00B9F8E5 /* XMPPvCardTempEmail.m in Sources */,
 				4B9C40B918D984AF00B9F8E5 /* XMPPAnonymousAuthentication.m in Sources */,
+				4B1D468218DAF1240056262B /* TJMessage.m in Sources */,
 				4B9C413318D984AF00B9F8E5 /* DispatchQueueLogFormatter.m in Sources */,
 				4B9C40E918D984AF00B9F8E5 /* XMPPRoomMemoryStorage.m in Sources */,
 				4B9C40C918D984AF00B9F8E5 /* XMPPParser.m in Sources */,
