@@ -10,4 +10,5 @@
 
 @interface TJPostViewController : UIViewController
 
+@property(nonatomic,strong) UIImage *cropedImage;
 @end

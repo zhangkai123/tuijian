@@ -111,7 +111,9 @@
 -(void)getTheCropedImage:(UIImage *)cropedImage
 {
     TJPostViewController *postViewController =[[TJPostViewController alloc]init];
-    [self presentViewController:postViewController animated:YES completion:nil];
+    postViewController.cropedImage = cropedImage;
+    UINavigationController *navcont = [[UINavigationController alloc] initWithRootViewController:postViewController];
+    [self presentViewController:navcont animated:YES completion:nil];
 }
 
 #pragma uitableview delegate and datasource
