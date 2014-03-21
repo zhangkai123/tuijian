@@ -20,10 +20,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0, 300, 300)];
+        itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
         [self addSubview:itemImageView];
         
-        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 305, 300, 30)];
+        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 325, 300, 30)];
         [titleLabel setFont:[UIFont systemFontOfSize:15]];
 //        titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
         titleLabel.numberOfLines = 1;
@@ -81,11 +81,11 @@
 -(void)setRecommendInfoAndHeight:(NSString *)recommendInfo textHeight:(float)textH
 {
     recommendInfoLabel.text = recommendInfo;
-    recommendInfoLabel.frame = CGRectMake(10, 305 + 30, 300, textH);
+    recommendInfoLabel.frame = CGRectMake(10, 325 + 30, 300, textH);
     
-    likeButton.frame = CGRectMake(10, 310 + 30 + textH + 1, 70, 28);
-    likeImageView.frame = CGRectMake(240, 310 + 30 + textH, 32, 32);
-    commentImageView.frame = CGRectMake(240 + 32 + 5, 310 + 30 + textH + 2, 28, 28);
+    likeButton.frame = CGRectMake(10, 330 + 30 + textH + 1, 70, 28);
+    likeImageView.frame = CGRectMake(240, 330 + 30 + textH, 32, 32);
+    commentImageView.frame = CGRectMake(240 + 32 + 5, 330 + 30 + textH + 2, 28, 28);
 }
 -(void)like
 {

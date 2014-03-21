@@ -171,7 +171,7 @@
 {
     float rowHeight = 0;
     if (indexPath.section == 0) {
-        rowHeight = textHeight + 305 + 40 + 30;
+        rowHeight = textHeight + 325 + 40 + 30;
     }else if (indexPath.section == 1){
         rowHeight = 50;
     }else{
