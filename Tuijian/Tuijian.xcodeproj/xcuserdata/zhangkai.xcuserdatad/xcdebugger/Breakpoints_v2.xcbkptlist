@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJCamViewController.m"
-            timestampString = "417065393.404557"
+            timestampString = "417097625.726001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "337"
-            endingLineNumber = "337"
-            landmarkName = "-subjectAreaDidChange:"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
+            landmarkName = "-checkDeviceAuthorizationStatus"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -57,7 +57,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor darkGrayColor];
+    self.view.backgroundColor = [UIColor blackColor];
     
     UIButton *cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(5 , 25, 60, 30)];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
@@ -66,30 +66,31 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     [cancelButton addTarget:self action:@selector(cancelTakePhoto) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelButton];
     
-    self.previewView = [[AVCamPreviewView alloc]initWithFrame:CGRectMake(0, 0, 300, 350)];
+    self.previewView = [[AVCamPreviewView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
     [(AVCaptureVideoPreviewLayer *)self.previewView.layer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    self.previewView.layer.cornerRadius = 2;
-    self.previewView.layer.masksToBounds = YES;
+//    self.previewView.layer.cornerRadius = 2;
+//    self.previewView.layer.masksToBounds = YES;
     [self.view addSubview:self.previewView];
-    self.previewView.center = self.view.center;
+    self.previewView.center = CGPointMake(self.view.center.x, self.view.center.y - 30);
     
-    UIButton *stillButton = [[UIButton alloc]initWithFrame:CGRectMake(120, 280, 60, 60)];
+    UIButton *stillButton = [[UIButton alloc]initWithFrame:CGRectMake(130, 440, 60, 60)];
     [stillButton setImage:[UIImage imageNamed:@"CaptureIcon"] forState:UIControlStateNormal];
     stillButton.backgroundColor = [UIColor clearColor];
     [stillButton addTarget:self action:@selector(takePhoto) forControlEvents:UIControlEventTouchUpInside];
-    [self.previewView addSubview:stillButton];
+    [self.view addSubview:stillButton];
     
-    UIButton *cameraButton = [[UIButton alloc]initWithFrame:CGRectMake(300 - 29 - 10, 10, 29, 25)];
+    UIButton *cameraButton = [[UIButton alloc]initWithFrame:CGRectMake(320 - 29 - 10, 10, 29, 25)];
     [cameraButton setImage:[UIImage imageNamed:@"CameraFlipIcon"] forState:UIControlStateNormal];
     cameraButton.backgroundColor = [UIColor clearColor];
     [cameraButton addTarget:self action:@selector(changeCamera) forControlEvents:UIControlEventTouchUpInside];
     [self.previewView addSubview:cameraButton];
     
-    UIButton *albumeButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 300, 27, 29)];
+    UIButton *albumeButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 320 - 29 - 10, 27, 29)];
     [albumeButton setImage:[UIImage imageNamed:@"ChoosePhotoIcon"] forState:UIControlStateNormal];
     albumeButton.backgroundColor = [UIColor clearColor];
     [albumeButton addTarget:self action:@selector(showAlbume) forControlEvents:UIControlEventTouchUpInside];
-    [self.previewView addSubview:albumeButton];
+    [self.view addSubview:albumeButton];
+    albumeButton.center = CGPointMake(30, stillButton.center.y);
     
     // Create the AVCaptureSession
 	AVCaptureSession *session = [[AVCaptureSession alloc] init];

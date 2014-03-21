@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor darkGrayColor];
+    self.view.backgroundColor = [UIColor blackColor];
     
     UIButton *cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(5 , 25, 60, 30)];
     [cancelButton setTitle:@"返回" forState:UIControlStateNormal];
@@ -54,13 +54,13 @@
     [useButton addTarget:self action:@selector(useCrop) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:useButton];
     
-    imageScrollView = [[ImageScrollView alloc]initWithFrame:CGRectMake(0, 0, 300, 350)];
+    imageScrollView = [[ImageScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
     imageScrollView.backgroundColor = [UIColor blackColor];
-    imageScrollView.layer.cornerRadius = 2;
-    imageScrollView.layer.masksToBounds = YES;
+//    imageScrollView.layer.cornerRadius = 2;
+//    imageScrollView.layer.masksToBounds = YES;
     [imageScrollView displayImage:self.thePhoto];
     [self.view addSubview:imageScrollView];
-    imageScrollView.center = self.view.center;
+    imageScrollView.center = CGPointMake(self.view.center.x, self.view.center.y - 30);
 }
 -(void)cancelCrop
 {

@@ -70,8 +70,8 @@
     self.zoomScale = 1.0;
 
     // make a new UIImageView for the new image
-    float width = 300;
-    float height = image.size.height*300/image.size.width;
+    float width = 320;
+    float height = image.size.height*320/image.size.width;
 
     imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
     imageView.image = image;
@@ -87,7 +87,7 @@
     self.maximumZoomScale = 2;
     self.minimumZoomScale = 1;
     self.zoomScale = 1;  // start out with the content fully visible
-    [self setContentOffset:CGPointMake(0, (imageSize.height - 350)/2)];
+    [self setContentOffset:CGPointMake(0, (imageSize.height - 320)/2)];
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent*)event
 {
