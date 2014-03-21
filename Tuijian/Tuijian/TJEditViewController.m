@@ -84,12 +84,12 @@
 }
 -(void)sendToServer
 {
-    NSString *tuijianText = tuijianTextView.text;
-    [[TJDataController sharedDataController]saveItem:tuijianText uploadImage:self.cropedImage success:^(id Json){
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }failure:^(NSError *error){
-        
-    }];
+//    NSString *tuijianText = tuijianTextView.text;
+//    [[TJDataController sharedDataController]saveItem:tuijianText uploadImage:self.cropedImage success:^(id Json){
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }failure:^(NSError *error){
+//        
+//    }];
 }
 #pragma text view delegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{

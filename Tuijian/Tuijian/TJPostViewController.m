@@ -78,8 +78,9 @@
 }
 -(void)postItem
 {
+    NSString *title = titleTextField.text;
     NSString *tuijianText = tuijianTextView.text;
-    [[TJDataController sharedDataController]saveItem:tuijianText uploadImage:self.cropedImage success:^(id Json){
+    [[TJDataController sharedDataController]saveItem:title recommendMes:tuijianText uploadImage:self.cropedImage success:^(id Json){
         [self dismissViewControllerAnimated:YES completion:nil];
     }failure:^(NSError *error){
         
@@ -101,6 +102,7 @@
         placeHolderLabel.hidden = NO;
     }
 }
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -9,6 +9,6 @@
 #import "TJItem.h"
 
 @implementation TJItem
-@synthesize itemId ,uid ,userName ,userImg ,userGender ,imageUrl ,recommendReason ,commentNum ,likeNum;
+@synthesize itemId ,uid ,userName ,userImg ,userGender ,title ,imageUrl ,recommendReason ,commentNum ,likeNum;
 @synthesize hasLiked;
 @end

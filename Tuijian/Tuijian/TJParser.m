@@ -33,6 +33,7 @@
         item.userName = [itemDic objectForKey:@"userName"];
         item.userImg = [itemDic objectForKey:@"userImg"];
         item.userGender = [itemDic objectForKey:@"userGender"];
+        item.title = [itemDic objectForKey:@"title"];
         item.imageUrl = [itemDic objectForKey:@"imageUrl"];
         item.recommendReason = [itemDic objectForKey:@"recommendReason"];
         item.commentNum = [itemDic objectForKey:@"commentNum"];

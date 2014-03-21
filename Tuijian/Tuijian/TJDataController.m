@@ -97,11 +97,11 @@
     return myUserPassword;
 }
 
--(void)saveItem:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)saveItem:(NSString *)title recommendMes:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     NSString *myAccessToken = [self getMyUserToken];
     NSString *uid = [self getMyUserId];
-    [[TJNetworkManager sharedNetworkManager]uploadItem:myAccessToken uid:uid recMes:recommendMes uploadImage:ulImage success:^(id Json){
+    [[TJNetworkManager sharedNetworkManager]uploadItem:myAccessToken uid:uid title:title recMes:recommendMes uploadImage:ulImage success:^(id Json){
         
         success(Json);
     }failure:^(NSError *error){

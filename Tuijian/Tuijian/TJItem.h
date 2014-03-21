@@ -15,6 +15,7 @@
 @property(nonatomic,strong) NSString *userName;
 @property(nonatomic,strong) NSString *userImg;
 @property(nonatomic,strong) NSString *userGender;
+@property(nonatomic,strong) NSString *title;
 @property(nonatomic,strong) NSString *imageUrl;
 @property(nonatomic,strong) NSString *recommendReason;
 @property(nonatomic,strong) NSString *commentNum;
