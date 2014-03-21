@@ -26,6 +26,7 @@
     }
     return self;
 }
+
 -(BOOL)getUserLoginMask
 {
     return [[TJDiskCacheManager sharedDiskCacheManager]getUserLoginMask];

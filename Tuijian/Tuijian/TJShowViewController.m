@@ -8,12 +8,13 @@
 
 #import "TJShowViewController.h"
 #import "TJCamViewController.h"
+#import "TJPostViewController.h"
 #import "TJItemCell.h"
 #import "TJItem.h"
 #import "TJCommentViewController.h"
 #import "GTScrollNavigationBar.H"
 
-@interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJItemCellDelegate>
+@interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJCamViewControllerDelegate,TJItemCellDelegate>
 {
     UITableView *itemTableView;
     NSMutableArray *itemsArray;
@@ -102,9 +103,17 @@
 -(void)takePhoto:(id)sender
 {
     TJCamViewController *camViewController = [[TJCamViewController alloc]init];
+    camViewController.delegate = self;
     [self presentViewController:camViewController animated:YES completion:^(void){
     }];
 }
+#pragma TJCamViewControllerDelegate
+-(void)getTheCropedImage:(UIImage *)cropedImage
+{
+    TJPostViewController *postViewController =[[TJPostViewController alloc]init];
+    [self presentViewController:postViewController animated:YES completion:nil];
+}
+
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

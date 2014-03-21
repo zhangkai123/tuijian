@@ -8,8 +8,14 @@
 
 #import "TJBaseViewController.h"
 
+@protocol TJCropViewControllerDelegate <NSObject>
+
+-(void)getTheCropedImage:(UIImage *)cropedImage;
+
+@end
+
 @interface TJCropViewController : TJBaseViewController
 
-
+@property(nonatomic,unsafe_unretained) id<TJCropViewControllerDelegate> delegate;
 @property(nonatomic,strong) UIImage *thePhoto;
 @end

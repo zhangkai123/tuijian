@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TJCropViewController.h"
 #import "ImageScrollView.h"
-#import "TJEditViewController.h"
+//#import "TJEditViewController.h"
 
 @interface TJCropViewController ()
 {
@@ -18,8 +18,13 @@
 @end
 
 @implementation TJCropViewController
+@synthesize delegate;
 @synthesize thePhoto;
 
+-(void)dealloc
+{
+    
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -63,10 +68,11 @@
 }
 -(void)useCrop
 {
+    __block id<TJCropViewControllerDelegate> weakDelegate = self.delegate;
     UIImage *cropedImage = [self getImageFromScrollView:imageScrollView];
-    TJEditViewController *editViewController = [[TJEditViewController alloc]init];
-    editViewController.cropedImage = cropedImage;
-    [self displayContentController:editViewController];
+    [self dismissViewControllerAnimated:NO completion:^(void){
+        [weakDelegate getTheCropedImage:cropedImage];
+    }];
 }
 -(UIImage *)getImageFromScrollView:(UIScrollView *)theScrollView
 {

@@ -8,6 +8,13 @@
 
 #import "TJBaseViewController.h"
 
+@protocol TJCamViewControllerDelegate <NSObject>
+
+-(void)getTheCropedImage:(UIImage *)cropedImage;
+
+@end
+
 @interface TJCamViewController : TJBaseViewController
 
+@property(nonatomic,unsafe_unretained) id<TJCamViewControllerDelegate> delegate;
 @end

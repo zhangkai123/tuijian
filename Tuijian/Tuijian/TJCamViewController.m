@@ -16,7 +16,7 @@
 static void * CapturingStillImageContext = &CapturingStillImageContext;
 static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDeviceAuthorizedContext;
 
-@interface TJCamViewController ()<UIImagePickerControllerDelegate>
+@interface TJCamViewController ()<UIImagePickerControllerDelegate,TJCropViewControllerDelegate>
 {
     BOOL backPositionCamera;
 }
@@ -38,7 +38,12 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 @end
 
 @implementation TJCamViewController
+@synthesize delegate;
 
+-(void)dealloc
+{
+    
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -167,6 +172,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
                     image = [UIImage imageWithCGImage:[image CGImage] scale:image.scale orientation:UIImageOrientationLeftMirrored];
                 }
                 TJCropViewController *cropViewController = [[TJCropViewController alloc]init];
+                cropViewController.delegate = self;
                 cropViewController.thePhoto = image;
                 [self displayContentController:cropViewController];
 			}
@@ -188,6 +194,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     TJCropViewController *cropViewController = [[TJCropViewController alloc]init];
+    cropViewController.delegate = self;
     cropViewController.thePhoto = chosenImage;
     [self displayContentController:cropViewController];
 }
@@ -415,6 +422,11 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 	}
 	
 	return captureDevice;
+}
+#pragma TJCropViewControllerDelegate
+-(void)getTheCropedImage:(UIImage *)cropedImage
+{
+    [self.delegate getTheCropedImage:cropedImage];
 }
 
 - (void)didReceiveMemoryWarning
