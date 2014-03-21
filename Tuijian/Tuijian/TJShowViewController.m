@@ -128,7 +128,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
-    return textHeight + 355 + 40;
+    return textHeight + 355 + 40 + 30;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -143,6 +143,7 @@
     cell.userId = theItem.uid;
     [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
+    cell.titleLabel.text = theItem.title;
     [cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
     cell.likeNumLabel.text = theItem.likeNum;
     cell.commentNumLabel.text = theItem.commentNum;

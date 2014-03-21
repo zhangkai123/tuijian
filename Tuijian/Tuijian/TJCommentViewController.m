@@ -163,7 +163,7 @@
     if ((section == 0) || (section == 1)) {
         rowNum = 1;
     }else{
-        rowNum = [myCommentsArray count];
+        rowNum = (NSInteger)[myCommentsArray count];
     }
     return rowNum;
 }
@@ -171,7 +171,7 @@
 {
     float rowHeight = 0;
     if (indexPath.section == 0) {
-        rowHeight = textHeight + 355 + 40;
+        rowHeight = textHeight + 355 + 40 + 30;
     }else if (indexPath.section == 1){
         rowHeight = 50;
     }else{
@@ -190,6 +190,7 @@
         
         [(TJItemDetailCell *)cell setItemId:theItem.itemId];
         [(TJItemDetailCell *)cell setUserId:theItem.uid];
+        [[(TJItemDetailCell *)cell titleLabel] setText:theItem.title];
         [[(TJItemDetailCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
         [(TJItemDetailCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
         [(TJItemDetailCell *)cell setLikeButtonColor:theItem.hasLiked];

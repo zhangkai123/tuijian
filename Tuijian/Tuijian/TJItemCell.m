@@ -11,6 +11,7 @@
 
 @implementation TJItemCell
 @synthesize itemId ,userId;
+@synthesize titleLabel;
 @synthesize itemImageView ,commentNumLabel ,likeNumLabel;
 @synthesize delegate;
 
@@ -21,6 +22,13 @@
         // Initialization code
         itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0, 300, 350)];
         [self addSubview:itemImageView];
+        
+        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 355, 300, 30)];
+        [titleLabel setFont:[UIFont systemFontOfSize:15]];
+//        titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        titleLabel.numberOfLines = 1;
+        [titleLabel setTextColor:UIColorFromRGB(0x029D74)];
+        [self addSubview:titleLabel];
         
         recommendInfoLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 0)];
         [recommendInfoLabel setFont:[UIFont systemFontOfSize:15]];
@@ -73,11 +81,11 @@
 -(void)setRecommendInfoAndHeight:(NSString *)recommendInfo textHeight:(float)textH
 {
     recommendInfoLabel.text = recommendInfo;
-    recommendInfoLabel.frame = CGRectMake(10, 355, 300, textH);
+    recommendInfoLabel.frame = CGRectMake(10, 355 + 30, 300, textH);
     
-    likeButton.frame = CGRectMake(10, 360 + textH + 1, 70, 28);
-    likeImageView.frame = CGRectMake(240, 360 + textH, 32, 32);
-    commentImageView.frame = CGRectMake(240 + 32 + 5, 360 + textH + 2, 28, 28);
+    likeButton.frame = CGRectMake(10, 360 + 30 + textH + 1, 70, 28);
+    likeImageView.frame = CGRectMake(240, 360 + 30 + textH, 32, 32);
+    commentImageView.frame = CGRectMake(240 + 32 + 5, 360 + 30 + textH + 2, 28, 28);
 }
 -(void)like
 {

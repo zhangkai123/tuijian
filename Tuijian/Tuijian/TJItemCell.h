@@ -20,6 +20,7 @@
     NSString *userId;
     
     UIImageView *itemImageView;
+    UILabel *titleLabel;
     UILabel *recommendInfoLabel;
     
     UIButton *shareButton;
@@ -35,6 +36,8 @@
 }
 @property(nonatomic,strong) NSString *itemId;
 @property(nonatomic,strong) NSString *userId;
+
+@property(nonatomic,strong) UILabel *titleLabel;
 
 @property(nonatomic,strong) UIImageView *itemImageView;
 @property(nonatomic,strong) UILabel *commentNumLabel;
