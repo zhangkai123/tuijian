@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TJCropViewController.h"
 #import "ImageScrollView.h"
-//#import "TJEditViewController.h"
+#import "UIImage+JTImageCrop.h"
 
 @interface TJCropViewController ()
 {
@@ -69,7 +69,10 @@
 -(void)useCrop
 {
     __block id<TJCropViewControllerDelegate> weakDelegate = self.delegate;
-    UIImage *cropedImage = [self getImageFromScrollView:imageScrollView];
+//    UIImage *cropedImage = [self getImageFromScrollView:imageScrollView];
+    
+    CGRect cropRect = [self getCropRect:self.thePhoto];
+    UIImage *cropedImage = [UIImage imageWithImage:self.thePhoto cropInRect:cropRect];
     [self dismissViewControllerAnimated:NO completion:^(void){
         [weakDelegate getTheCropedImage:cropedImage];
     }];
@@ -83,6 +86,16 @@
     UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return viewImage;
+}
+-(CGRect)getCropRect:(UIImage *)theImage
+{
+    CGPoint offset = imageScrollView.contentOffset;
+    float imageScale = theImage.size.width/320;
+    float actualXOffset = offset.x/imageScrollView.zoomScale * imageScale;
+    float actualYOffset = offset.y/imageScrollView.zoomScale * imageScale;
+    float imageWidth = theImage.size.width/imageScrollView.zoomScale;
+    CGRect cropRect = CGRectMake(actualXOffset, actualYOffset, imageWidth, imageWidth);
+    return cropRect;
 }
 - (void)didReceiveMemoryWarning
 {
