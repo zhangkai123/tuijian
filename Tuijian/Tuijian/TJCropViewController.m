@@ -73,6 +73,9 @@
     
     CGRect cropRect = [self getCropRect:self.thePhoto];
     UIImage *cropedImage = [UIImage imageWithImage:self.thePhoto cropInRect:cropRect];
+    if (cropedImage.size.width > 360) {
+        cropedImage = [UIImage resizeImageToSize:cropedImage toSize:CGSizeMake(360, 360)];
+    }
     [self dismissViewControllerAnimated:NO completion:^(void){
         [weakDelegate getTheCropedImage:cropedImage];
     }];

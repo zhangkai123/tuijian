@@ -40,4 +40,12 @@ CGRect CGRectTransformToRect(CGRect fromRect, CGRect toRect) {
     return [UIImage imageWithImage:image cropInRect:CGRectIntegral(actualRect)];
 }
 
++ (UIImage *)resizeImageToSize:(UIImage *)originImage toSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContext(newSize);
+    [originImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 @end

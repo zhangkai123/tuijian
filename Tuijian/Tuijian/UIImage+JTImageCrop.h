@@ -24,6 +24,7 @@
 //  rect {0.5, 0.5, 0.5, 0.5} produce part D, etc.
 
 + (UIImage *)imageWithImage:(UIImage *)image cropInRelativeRect:(CGRect)rect;
++ (UIImage *)resizeImageToSize:(UIImage *)originImage toSize:(CGSize)newSize;
 @end
 
 // Used by +[UIImage imageWithImage:cropInRelativeRect]
