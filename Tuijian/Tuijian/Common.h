@@ -28,5 +28,9 @@
 #define TJ_USER_GENDER @"user_gender"
 #define TJ_USER_IMAGE_URL @"user_image_url"
 
+#define TJ_RECIEVE_MESSAGE_NOTIFICATION @"recieve_message_notification"
+
+#define TJ_DATABASE_NAME @"message.sqlite"
+
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #endif

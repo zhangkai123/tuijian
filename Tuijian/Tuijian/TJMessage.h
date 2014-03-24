@@ -10,7 +10,11 @@
 
 @interface TJMessage : NSObject
 
+@property(nonatomic,strong) NSString *messageId;
+@property(nonatomic,strong) NSString *messageType;
+
 @property(nonatomic,strong) NSString *imageUrl;
 @property(nonatomic,strong) NSString *messageTitle;
+@property(nonatomic,strong) NSString *messageName;
 @property(nonatomic,strong) NSString *message;
 @end

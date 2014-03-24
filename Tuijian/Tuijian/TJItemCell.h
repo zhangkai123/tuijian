@@ -10,14 +10,14 @@
 
 @protocol TJItemCellDelegate <NSObject>
 
--(void)likeItem:(NSString *)itemId uid:(NSString *)uid liked:(void (^)(BOOL Liked))hasL;
+-(void)likeItem:(NSString *)itemId liked:(void (^)(BOOL Liked))hasL;
 
 @end
 
 @interface TJItemCell : UITableViewCell
 {
     NSString *itemId;
-    NSString *userId;
+//    NSString *userId;
     
     UIImageView *itemImageView;
     UILabel *titleLabel;
@@ -35,7 +35,7 @@
     __unsafe_unretained id<TJItemCellDelegate> delegate;
 }
 @property(nonatomic,strong) NSString *itemId;
-@property(nonatomic,strong) NSString *userId;
+//@property(nonatomic,strong) NSString *userId;
 
 @property(nonatomic,strong) UILabel *titleLabel;
 

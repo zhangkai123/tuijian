@@ -102,4 +102,20 @@
         failed(nil);
     }
 }
++(void)parseMessage:(id)data parsedMessage:(void (^)(TJMessage *message))message
+{
+    TJMessage *theMessage = [[TJMessage alloc]init];
+    NSString *itemId = [[message attributeForName:@"itemId"] stringValue];
+    NSString *type = [[message attributeForName:@"type"] stringValue];
+    NSString *imageUrl = [[message attributeForName:@"imageUrl"] stringValue];
+    NSString *title = [[message attributeForName:@"title"] stringValue];
+    NSString *userName = [[message attributeForName:@"userName"] stringValue];
+    
+    theMessage.messageId = itemId;
+    theMessage.messageType = type;
+    theMessage.imageUrl = imageUrl;
+    theMessage.messageTitle = title;
+    theMessage.message = userName;
+    message(theMessage);
+}
 @end

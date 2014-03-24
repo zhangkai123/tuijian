@@ -11,7 +11,7 @@
 @interface TJInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *infoTableView;
-    NSMutableArray *infoArray;
+    NSMutableArray *infoListArray;
 }
 @end
 
@@ -44,7 +44,10 @@
     infoTableView.rowHeight = 80;
     [self.view addSubview:infoTableView];
 
-    infoArray = [[NSMutableArray alloc]init];
+    infoListArray = [[NSMutableArray alloc]init];
+    
+    NSArray *messageListArray = [[TJDataController sharedDataController]featchMessageList];
+    [infoListArray addObjectsFromArray:messageListArray];
 }
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -53,39 +56,22 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [infoArray count];
+    return [infoListArray count];
 }
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    TJItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-//    if (!cell) {
-//        cell = [[TJItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-//    }
-//    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    
-//    TJItem *theItem = [itemsArray objectAtIndex:indexPath.section];
-//    cell.itemId = theItem.itemId;
-//    [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
-//    float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
-//    [cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
-//    cell.likeNumLabel.text = theItem.likeNum;
-//    cell.commentNumLabel.text = theItem.commentNum;
-//    [cell setLikeButtonColor:theItem.hasLiked];
-//    cell.delegate = self;
-//    return cell;
-//}
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    TJItem *item = [itemsArray objectAtIndex:indexPath.section];
-//    float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
-//    
-//    self.hidesBottomBarWhenPushed = YES;
-//    TJCommentViewController *commentViewController = [[TJCommentViewController alloc]init];
-//    commentViewController.theItem = item;
-//    commentViewController.textHeight = textHeight;
-//    [self.navigationController pushViewController:commentViewController animated:YES];
-//    self.hidesBottomBarWhenPushed = NO;
-//}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
 
 - (void)didReceiveMemoryWarning
 {

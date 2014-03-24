@@ -94,15 +94,19 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 }
 
 #pragma mark send message
--(void)sendLike:(NSString *)userId itemId:(NSString *)itemId
+-(void)sendLike:(NSString *)userId itemId:(NSString *)itemId imageUrl:(NSString *)iUrl title:(NSString *)title userName:(NSString *)uName
 {
     NSString *jabberID = [NSString stringWithFormat:@"%@@zhangkaemacbook.lan",userId];
     XMPPJID *jid = [XMPPJID jidWithString:jabberID];
     
     NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
     [message addAttributeWithName:@"to" stringValue:[jid full]];
-    [message addAttributeWithName:@"type" stringValue:@"like"];
     [message addAttributeWithName:@"itemId" stringValue:itemId];
+    [message addAttributeWithName:@"type" stringValue:@"like"];
+    
+    [message addAttributeWithName:@"imageUrl" stringValue:iUrl];
+    [message addAttributeWithName:@"title" stringValue:title];
+    [message addAttributeWithName:@"userName" stringValue:uName];
         
     [xmppStream sendElement:message];
 }
@@ -172,18 +176,16 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message {
 	
 	
-//	NSString *msg = [[message elementForName:@"body"] stringValue];
-	NSString *from = [[message attributeForName:@"from"] stringValue];
-    NSString *type = [[message attributeForName:@"type"] stringValue];
-    NSString *itemId = [[message attributeForName:@"itemId"] stringValue];
-    
-	NSMutableDictionary *m = [[NSMutableDictionary alloc] init];
-//	[m setObject:msg forKey:@"msg"];
-	[m setObject:from forKey:@"sender"];
+////	NSString *msg = [[message elementForName:@"body"] stringValue];
+//	NSString *from = [[message attributeForName:@"from"] stringValue];
+//    NSString *type = [[message attributeForName:@"type"] stringValue];
+//    NSString *itemId = [[message attributeForName:@"itemId"] stringValue];
+//    
+//	NSMutableDictionary *m = [[NSMutableDictionary alloc] init];
+////	[m setObject:msg forKey:@"msg"];
+//	[m setObject:from forKey:@"sender"];
 	
-    //	[_messageDelegate newMessageReceived:m];
-    //	[m release];
-	
+	[[NSNotificationCenter defaultCenter]postNotificationName:TJ_RECIEVE_MESSAGE_NOTIFICATION object:message];
 }
 
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence {

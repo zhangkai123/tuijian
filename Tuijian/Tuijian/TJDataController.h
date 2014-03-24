@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "TJNetworkManager.h"
 #import "TJDiskCacheManager.h"
+#import "TJDBManager.h"
 #import "TJXMPPServerMananger.h"
 #import "TJUser.h"
 #import "TJComment.h"
+#import "TJItem.h"
 
 #import <TencentOpenAPI/TencentOAuth.h>
 
@@ -35,6 +37,9 @@
 #pragma XMPP Server
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success;
 -(void)disConnectToXMPPServer;
--(void)sendLike:(NSString *)userId itemId:(NSString *)itemId;
--(void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId;
+-(void)sendLike:(TJItem *)item;
+//-(void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId;
+
+#pragma database
+-(NSArray *)featchMessageList;
 @end

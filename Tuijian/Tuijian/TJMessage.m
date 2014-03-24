@@ -9,6 +9,7 @@
 #import "TJMessage.h"
 
 @implementation TJMessage
-@synthesize imageUrl ,messageTitle ,message;
+@synthesize messageId ,messageType;
+@synthesize imageUrl ,messageTitle ,messageName ,message;
 
 @end

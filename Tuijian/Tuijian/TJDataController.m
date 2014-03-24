@@ -20,9 +20,15 @@
     });
     return dataController;
 }
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 -(id)init
 {
     if (self = [super init]) {
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveMessage:) name:TJ_RECIEVE_MESSAGE_NOTIFICATION object:nil];
     }
     return self;
 }
@@ -184,12 +190,30 @@
 {
     [[TJXMPPServerMananger sharedXMPPServerMananger]disconnect];
 }
--(void)sendLike:(NSString *)userId itemId:(NSString *)itemId
+-(void)sendLike:(TJItem *)item
 {
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendLike:userId itemId:itemId];
+//    [[TJXMPPServerMananger sharedXMPPServerMananger]sendLike:userId itemId:itemId];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendLike:item.uid itemId:item.itemId imageUrl:item.imageUrl title:item.title userName:item.userName];
 }
--(void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId
+//-(void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId
+//{
+//    [[TJXMPPServerMananger sharedXMPPServerMananger]sendMessage:msgContent toUser:userId];
+//}
+- (void) recieveMessage:(NSNotification *) notification
 {
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendMessage:msgContent toUser:userId];
+    if ([[notification name] isEqualToString:TJ_RECIEVE_MESSAGE_NOTIFICATION]){
+        id message = notification.object;
+        [TJParser parseMessage:message parsedMessage:^(TJMessage *mes){
+            
+        }];
+    }
 }
+
+#pragma database
+-(NSArray *)featchMessageList
+{
+    NSArray *messageListArray = [[TJDBManager sharedDBManager]getMessageList];
+    return messageListArray;
+}
+
 @end
