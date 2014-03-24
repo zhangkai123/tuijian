@@ -105,11 +105,11 @@
 +(void)parseMessage:(id)data parsedMessage:(void (^)(TJMessage *message))message
 {
     TJMessage *theMessage = [[TJMessage alloc]init];
-    NSString *messageId = [[data attributeForName:@"messageId"] stringValue];
-    NSString *type = [[data attributeForName:@"type"] stringValue];
-    NSString *imageUrl = [[data attributeForName:@"imageUrl"] stringValue];
-    NSString *title = [[data attributeForName:@"title"] stringValue];
-    NSString *messageName = [[data attributeForName:@"messageName"] stringValue];
+    NSString *messageId = [[data elementForName:@"messageId"] stringValue];
+    NSString *type = [[data elementForName:@"messageType"] stringValue];
+    NSString *imageUrl = [[data elementForName:@"imageUrl"] stringValue];
+    NSString *title = [[data elementForName:@"title"] stringValue];
+    NSString *messageName = [[data elementForName:@"messageName"] stringValue];
     NSString *messageContent = [[data elementForName:@"body"] stringValue];
     
     theMessage.messageId = messageId;

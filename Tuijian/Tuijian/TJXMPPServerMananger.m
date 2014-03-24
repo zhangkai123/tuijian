@@ -101,17 +101,39 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
     
     NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
     [message addAttributeWithName:@"to" stringValue:[jid full]];
-    [message addAttributeWithName:@"messageId" stringValue:mId];
-    [message addAttributeWithName:@"type" stringValue:mType];
+    [message addAttributeWithName:@"type" stringValue:@"chat"];
     
-    [message addAttributeWithName:@"imageUrl" stringValue:iUrl];
-    [message addAttributeWithName:@"title" stringValue:title];
-    [message addAttributeWithName:@"messageName" stringValue:mName];
+//    [message addAttributeWithName:@"messageId" stringValue:mId];
+//    [message addAttributeWithName:@"messageType" stringValue:mType];
+//    
+//    [message addAttributeWithName:@"imageUrl" stringValue:iUrl];
+//    [message addAttributeWithName:@"title" stringValue:title];
+//    [message addAttributeWithName:@"messageName" stringValue:mName];
+    
+    NSXMLElement *messageId = [NSXMLElement elementWithName:@"messageId"];
+    [messageId setStringValue:mId];
+    [message addChild:messageId];
+    
+    NSXMLElement *messageType = [NSXMLElement elementWithName:@"messageType"];
+    [messageType setStringValue:mType];
+    [message addChild:messageType];
+
+    NSXMLElement *imageUrl = [NSXMLElement elementWithName:@"imageUrl"];
+    [imageUrl setStringValue:iUrl];
+    [message addChild:imageUrl];
+
+    NSXMLElement *messageTitle = [NSXMLElement elementWithName:@"title"];
+    [messageTitle setStringValue:title];
+    [message addChild:messageTitle];
+
+    NSXMLElement *messageName = [NSXMLElement elementWithName:@"messageName"];
+    [messageName setStringValue:mName];
+    [message addChild:messageName];
     
     NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
     [body setStringValue:mes];
     [message addChild:body];
-        
+    
     [xmppStream sendElement:message];
 }
 //- (void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId
