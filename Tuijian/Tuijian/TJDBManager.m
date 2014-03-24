@@ -115,7 +115,7 @@
             theMessage.messageId = messageId;
             theMessage.messageType = messageType;
             theMessage.imageUrl = imageUrl;
-            theMessage.messageType = messageTitle;
+            theMessage.messageTitle = messageTitle;
             theMessage.messageName = messageName;
             theMessage.message = message;
             [messageListArray addObject:theMessage];

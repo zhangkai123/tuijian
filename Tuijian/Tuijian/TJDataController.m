@@ -192,19 +192,14 @@
 }
 -(void)sendLike:(TJItem *)item
 {
-//    [[TJXMPPServerMananger sharedXMPPServerMananger]sendLike:userId itemId:itemId];
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendLike:item.uid itemId:item.itemId imageUrl:item.imageUrl title:item.title userName:item.userName];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendMessage:item.uid messageId:item.itemId messageType:@"like" imageUrl:item.imageUrl title:item.title messageName:item.userName message:@"赞"];
 }
-//-(void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId
-//{
-//    [[TJXMPPServerMananger sharedXMPPServerMananger]sendMessage:msgContent toUser:userId];
-//}
 - (void) recieveMessage:(NSNotification *) notification
 {
     if ([[notification name] isEqualToString:TJ_RECIEVE_MESSAGE_NOTIFICATION]){
         id message = notification.object;
         [TJParser parseMessage:message parsedMessage:^(TJMessage *mes){
-            
+            [[TJDBManager sharedDBManager]insertMessageList:mes.messageId type:mes.messageType url:mes.imageUrl title:mes.messageTitle name:mes.messageName message:mes.message];
         }];
     }
 }

@@ -216,6 +216,7 @@
 		4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D08018B394A40055D40B /* TJCamViewController.m */; };
 		4BD48DEE18DFDF8D00D83667 /* TJDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD48DED18DFDF8D00D83667 /* TJDBManager.m */; };
 		4BD48DF518DFFDAB00D83667 /* message.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4BD48DF418DFFDAB00D83667 /* message.sqlite */; };
+		4BD48DF818E0144F00D83667 /* TJMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD48DF718E0144F00D83667 /* TJMessageCell.m */; };
 		4BDEDB3C18CFF48A001C2874 /* male.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3B18CFF48A001C2874 /* male.png */; };
 		4BDEDB3E18CFF490001C2874 /* female.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3D18CFF490001C2874 /* female.png */; };
 		4BE1636018B869040009158D /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1635F18B869040009158D /* ImageScrollView.m */; };
@@ -651,6 +652,8 @@
 		4BD48DEC18DFDF8D00D83667 /* TJDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJDBManager.h; sourceTree = "<group>"; };
 		4BD48DED18DFDF8D00D83667 /* TJDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJDBManager.m; sourceTree = "<group>"; };
 		4BD48DF418DFFDAB00D83667 /* message.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sqlite; sourceTree = "<group>"; };
+		4BD48DF618E0144F00D83667 /* TJMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMessageCell.h; sourceTree = "<group>"; };
+		4BD48DF718E0144F00D83667 /* TJMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMessageCell.m; sourceTree = "<group>"; };
 		4BDEDB3B18CFF48A001C2874 /* male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = male.png; sourceTree = "<group>"; };
 		4BDEDB3D18CFF490001C2874 /* female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = female.png; sourceTree = "<group>"; };
 		4BE1635E18B869040009158D /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
@@ -771,6 +774,8 @@
 				4B31B77D18D8164000F87D71 /* TJLikeUserCell.m */,
 				4B31B77F18D825BB00F87D71 /* TJCommentCell.h */,
 				4B31B78018D825BB00F87D71 /* TJCommentCell.m */,
+				4BD48DF618E0144F00D83667 /* TJMessageCell.h */,
+				4BD48DF718E0144F00D83667 /* TJMessageCell.m */,
 			);
 			name = CellView;
 			sourceTree = "<group>";
@@ -2064,6 +2069,7 @@
 				4B9C413218D984AF00B9F8E5 /* ContextFilterLogFormatter.m in Sources */,
 				4B50AC2818D715960028BAF9 /* GTScrollNavigationBar.m in Sources */,
 				4B9C410A18D984AF00B9F8E5 /* XMPPCapabilitiesCoreDataStorage.m in Sources */,
+				4BD48DF818E0144F00D83667 /* TJMessageCell.m in Sources */,
 				4B9C40CF18D984AF00B9F8E5 /* XMPPProcessOne.m in Sources */,
 				4B9C40C218D984AF00B9F8E5 /* NSXMLElement+XMPP.m in Sources */,
 				4B569CAD18CEA573000DF219 /* TJLoginViewController.m in Sources */,

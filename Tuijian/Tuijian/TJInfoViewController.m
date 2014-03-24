@@ -7,6 +7,8 @@
 //
 
 #import "TJInfoViewController.h"
+#import "TJMessage.h"
+#import "TJMessageCell.h"
 
 @interface TJInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -60,11 +62,16 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    TJMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[TJMessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    TJMessage *message = [infoListArray objectAtIndex:indexPath.row];
+    NSURL *imageUrl = [NSURL URLWithString:message.imageUrl];
+    [cell.theImageView setImageWithURL:imageUrl placeholderImage:nil];
+    [cell.titleLabel setText:message.messageTitle];
+    [cell.messageLabel setText:message.message];
     
     return cell;
 }

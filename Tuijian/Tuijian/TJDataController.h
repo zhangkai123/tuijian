@@ -38,7 +38,6 @@
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success;
 -(void)disConnectToXMPPServer;
 -(void)sendLike:(TJItem *)item;
-//-(void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId;
 
 #pragma database
 -(NSArray *)featchMessageList;
