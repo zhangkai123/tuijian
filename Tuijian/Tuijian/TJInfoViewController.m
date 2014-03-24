@@ -71,7 +71,11 @@
     NSURL *imageUrl = [NSURL URLWithString:message.imageUrl];
     [cell.theImageView setImageWithURL:imageUrl placeholderImage:nil];
     [cell.titleLabel setText:message.messageTitle];
-    [cell.messageLabel setText:message.message];
+    NSString *messageContent = nil;
+    if ([message.messageType isEqualToString:@"like"]) {
+        messageContent = [NSString stringWithFormat:@"%@给了你一个赞",message.messageName];
+    }
+    [cell.messageLabel setText:messageContent];
     
     return cell;
 }
