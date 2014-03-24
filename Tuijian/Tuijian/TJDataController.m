@@ -201,6 +201,7 @@
         id message = notification.object;
         [TJParser parseMessage:message parsedMessage:^(TJMessage *mes){
             [[TJDBManager sharedDBManager]insertMessageList:mes.messageId type:mes.messageType url:mes.imageUrl title:mes.messageTitle name:mes.messageName message:mes.message];
+            [[NSNotificationCenter defaultCenter]postNotificationName:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
         }];
     }
 }

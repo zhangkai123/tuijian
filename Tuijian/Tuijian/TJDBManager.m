@@ -99,7 +99,7 @@
     
     NSMutableArray *messageListArray = [[NSMutableArray alloc]init];
 	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-		NSString *getCommand = [NSString stringWithFormat:@"select * from mesList"];
+		NSString *getCommand = [NSString stringWithFormat:@"select * from mesList order by id DESC"];
 		const char *getSqlCommand = [getCommand UTF8String];
 		sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
 		

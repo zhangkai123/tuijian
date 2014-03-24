@@ -34,7 +34,10 @@
     }
     return self;
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -50,6 +53,15 @@
     
     NSArray *messageListArray = [[TJDataController sharedDataController]featchMessageList];
     [infoListArray addObjectsFromArray:messageListArray];
+    
+     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveMessage) name:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
+}
+-(void)recieveMessage
+{
+    NSArray *messageListArray = [[TJDataController sharedDataController]featchMessageList];
+    [infoListArray removeAllObjects];
+    [infoListArray addObjectsFromArray:messageListArray];
+    [infoTableView reloadData];
 }
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
