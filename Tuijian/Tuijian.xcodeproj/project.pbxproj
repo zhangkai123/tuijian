@@ -213,6 +213,7 @@
 		4B9C414318D9856600B9F8E5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9C414218D9856600B9F8E5 /* CFNetwork.framework */; };
 		4B9C414518D9857A00B9F8E5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9C414418D9857A00B9F8E5 /* libxml2.dylib */; };
 		4B9C414B18D98F0E00B9F8E5 /* TJXMPPServerMananger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C414A18D98F0E00B9F8E5 /* TJXMPPServerMananger.m */; };
+		4BACDCB618E2C5B00074F0F1 /* TJItemMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BACDCB518E2C5B00074F0F1 /* TJItemMessage.m */; };
 		4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D07D18B394690055D40B /* AVCamPreviewView.m */; };
 		4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D08018B394A40055D40B /* TJCamViewController.m */; };
 		4BD48DEE18DFDF8D00D83667 /* TJDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD48DED18DFDF8D00D83667 /* TJDBManager.m */; };
@@ -648,6 +649,8 @@
 		4B9C414418D9857A00B9F8E5 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		4B9C414918D98F0E00B9F8E5 /* TJXMPPServerMananger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJXMPPServerMananger.h; sourceTree = "<group>"; };
 		4B9C414A18D98F0E00B9F8E5 /* TJXMPPServerMananger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJXMPPServerMananger.m; sourceTree = "<group>"; };
+		4BACDCB418E2C5B00074F0F1 /* TJItemMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJItemMessage.h; sourceTree = "<group>"; };
+		4BACDCB518E2C5B00074F0F1 /* TJItemMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJItemMessage.m; sourceTree = "<group>"; };
 		4BC7D07C18B394690055D40B /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
 		4BC7D07D18B394690055D40B /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		4BC7D07F18B394A40055D40B /* TJCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCamViewController.h; sourceTree = "<group>"; };
@@ -996,6 +999,8 @@
 				4B31B77418D7F75400F87D71 /* TJComment.m */,
 				4B1D468018DAF1240056262B /* TJMessage.h */,
 				4B1D468118DAF1240056262B /* TJMessage.m */,
+				4BACDCB418E2C5B00074F0F1 /* TJItemMessage.h */,
+				4BACDCB518E2C5B00074F0F1 /* TJItemMessage.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -2208,6 +2213,7 @@
 				4B47A38E18D179B800087BE4 /* MKAnnotationView+WebCache.m in Sources */,
 				4B9C40FD18D984AF00B9F8E5 /* XMPPResultSet.m in Sources */,
 				4B9C411A18D984AF00B9F8E5 /* XMPPPing.m in Sources */,
+				4BACDCB618E2C5B00074F0F1 /* TJItemMessage.m in Sources */,
 				4B569CD018CEBA0D000DF219 /* AFXMLRequestOperation.m in Sources */,
 				4B9C412818D984AF00B9F8E5 /* RFImageToDataTransformer.m in Sources */,
 				4B9C40E318D984AF00B9F8E5 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,

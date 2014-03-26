@@ -219,9 +219,19 @@
     NSArray *messageListArray = [[TJDBManager sharedDBManager]getMessageList];
     return messageListArray;
 }
--(NSArray *)featchMessage:(NSString *)messageType messageId:(NSString *)mId
+-(NSArray *)featchItemMessage:(NSString *)mId
 {
-    NSArray *messageArray = [[TJDBManager sharedDBManager]getMessages:messageType messageId:mId];
-    return messageArray;
+    NSArray *messageArray = [[TJDBManager sharedDBManager]getMessages:@"itemMessage" messageId:mId];
+    NSMutableArray *itemsMessageArray = [[NSMutableArray alloc]init];
+    __block NSMutableArray *weakItemsMessageArray = itemsMessageArray;
+    for (int i = 0; i < [messageArray count]; i++) {
+        NSString *itemMessage = [messageArray objectAtIndex:i];
+        NSError *error = nil;
+        NSXMLElement *itemMessageXML = [[NSXMLElement alloc] initWithXMLString:itemMessage error:&error];
+        [TJParser parseItemMessage:itemMessageXML parsedMessage:^(TJItemMessage *itemMessage){
+            [weakItemsMessageArray addObject:itemMessage];
+        }];
+    }
+    return itemsMessageArray;
 }
 @end

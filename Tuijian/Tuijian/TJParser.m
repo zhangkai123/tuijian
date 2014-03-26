@@ -102,6 +102,7 @@
         failed(nil);
     }
 }
+#pragma messages category list
 +(void)parseMessage:(id)data parsedMessage:(void (^)(TJMessage *message))message
 {
     TJMessage *theMessage = [[TJMessage alloc]init];
@@ -120,4 +121,26 @@
     theMessage.message = messageContent;
     message(theMessage);
 }
+
+#pragma specific message type
++(void)parseItemMessage:(id)data parsedMessage:(void (^)(TJItemMessage *message))message
+{
+    TJItemMessage *theMessage = [[TJItemMessage alloc]init];
+    NSString *uid = [[data attributeForName:@"from"] stringValue];
+    NSArray *strArray = [uid componentsSeparatedByString:@"@"];
+    if ([strArray count] > 0) {
+        uid = [strArray objectAtIndex:0];
+    }
+    
+    NSString *userProfileImage = [[data elementForName:@"userProfileImage"] stringValue];
+    NSString *userName = [[data elementForName:@"messageName"] stringValue];
+    NSString *messageContent = [[data elementForName:@"body"] stringValue];
+    
+    theMessage.uid = uid;
+    theMessage.profileImageUrl = userProfileImage;
+    theMessage.userName = userName;
+    theMessage.message = messageContent;
+    message(theMessage);
+}
+
 @end

@@ -53,7 +53,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[TJDataController sharedDataController]featchMessage:@"itemMessage" messageId:self.messageId];
+    [[TJDataController sharedDataController]featchItemMessage:self.messageId];
     [super viewWillAppear:animated];
 }
 #pragma uitableview delegate and datasource
