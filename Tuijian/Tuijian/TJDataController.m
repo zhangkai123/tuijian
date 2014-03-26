@@ -193,19 +193,21 @@
 -(void)sendLike:(TJItem *)item
 {
     TJUser *myUserInfo = [self getMyUserInfo];
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendMessage:item.uid messageId:item.itemId messageType:@"itemMessage" imageUrl:item.imageUrl title:item.title messageName:myUserInfo.name message:@"赞"];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:item.uid messageId:item.itemId messageType:@"itemMessage" imageUrl:item.imageUrl title:item.title messageName:myUserInfo.name message:@"赞" userProfileImage:myUserInfo.profile_image_url];
 }
 -(void)sendComment:(TJItem *)item comment:(NSString *)commentInfo
 {
     TJUser *myUserInfo = [self getMyUserInfo];
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendMessage:item.uid messageId:item.itemId messageType:@"itemMessage" imageUrl:item.imageUrl title:item.title messageName:myUserInfo.name message:commentInfo];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:item.uid messageId:item.itemId messageType:@"itemMessage" imageUrl:item.imageUrl title:item.title messageName:myUserInfo.name message:commentInfo userProfileImage:myUserInfo.profile_image_url];
 }
 - (void) recieveMessage:(NSNotification *) notification
 {
     if ([[notification name] isEqualToString:TJ_RECIEVE_MESSAGE_NOTIFICATION]){
         id message = notification.object;
+        __block id weakMessage = message;
         [TJParser parseMessage:message parsedMessage:^(TJMessage *mes){
             [[TJDBManager sharedDBManager]insertMessageList:mes.messageId type:mes.messageType url:mes.imageUrl title:mes.messageTitle name:mes.messageName message:mes.message];
+            [[TJDBManager sharedDBManager]insertMessage:weakMessage messageType:mes.messageType messageId:mes.messageId];
             [[NSNotificationCenter defaultCenter]postNotificationName:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
         }];
     }
@@ -217,5 +219,9 @@
     NSArray *messageListArray = [[TJDBManager sharedDBManager]getMessageList];
     return messageListArray;
 }
-
+-(NSArray *)featchMessage:(NSString *)messageType messageId:(NSString *)mId
+{
+    NSArray *messageArray = [[TJDBManager sharedDBManager]getMessages:messageType messageId:mId];
+    return messageArray;
+}
 @end

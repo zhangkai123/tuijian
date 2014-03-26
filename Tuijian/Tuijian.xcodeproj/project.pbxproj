@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B03651E18E2A91400D106F1 /* TJItemMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B03651D18E2A91400D106F1 /* TJItemMessageViewController.m */; };
 		4B1D468218DAF1240056262B /* TJMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1D468118DAF1240056262B /* TJMessage.m */; };
 		4B31B77518D7F75400F87D71 /* TJComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B77418D7F75400F87D71 /* TJComment.m */; };
 		4B31B77818D8123F00F87D71 /* TJItemDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B77718D8123F00F87D71 /* TJItemDetailCell.m */; };
@@ -254,6 +255,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B03651C18E2A91400D106F1 /* TJItemMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJItemMessageViewController.h; sourceTree = "<group>"; };
+		4B03651D18E2A91400D106F1 /* TJItemMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJItemMessageViewController.m; sourceTree = "<group>"; };
 		4B1D468018DAF1240056262B /* TJMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMessage.h; sourceTree = "<group>"; };
 		4B1D468118DAF1240056262B /* TJMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMessage.m; sourceTree = "<group>"; };
 		4B31B77318D7F75400F87D71 /* TJComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJComment.h; sourceTree = "<group>"; };
@@ -731,6 +734,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B03651B18E2A8DC00D106F1 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				4B03651C18E2A91400D106F1 /* TJItemMessageViewController.h */,
+				4B03651D18E2A91400D106F1 /* TJItemMessageViewController.m */,
+			);
+			name = Message;
+			sourceTree = "<group>";
+		};
 		4B1D467D18DA8B330056262B /* TabControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1891,6 +1903,7 @@
 				4B1D467E18DA8B870056262B /* Camera */,
 				4B1D467D18DA8B330056262B /* TabControllers */,
 				4B50AC1318D6DCB70028BAF9 /* Comment */,
+				4B03651B18E2A8DC00D106F1 /* Message */,
 				4B1D467F18DA8BD70056262B /* CellView */,
 				4BFA999D18AFA19200D673CB /* TJAppDelegate.h */,
 				4BFA999E18AFA19200D673CB /* TJAppDelegate.m */,
@@ -2219,6 +2232,7 @@
 				4B9C40DF18D984AF00B9F8E5 /* XMPPLastActivity.m in Sources */,
 				4B9C40D018D984AF00B9F8E5 /* XMPPReconnect.m in Sources */,
 				4B31B77518D7F75400F87D71 /* TJComment.m in Sources */,
+				4B03651E18E2A91400D106F1 /* TJItemMessageViewController.m in Sources */,
 				4B9C411818D984AF00B9F8E5 /* XMPPBlocking.m in Sources */,
 				4B9C412018D984AF00B9F8E5 /* XMPPMessage+XEP_0224.m in Sources */,
 				4B9C410D18D984AF00B9F8E5 /* XMPPCapabilities.m in Sources */,

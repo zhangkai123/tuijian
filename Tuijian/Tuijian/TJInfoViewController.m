@@ -9,6 +9,7 @@
 #import "TJInfoViewController.h"
 #import "TJMessage.h"
 #import "TJMessageCell.h"
+#import "TJItemMessageViewController.h"
 
 @interface TJInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -97,7 +98,10 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+     TJMessage *message = [infoListArray objectAtIndex:indexPath.row];
+    TJItemMessageViewController *itemMessageViewController = [[TJItemMessageViewController alloc]initWithTitle:message.messageTitle];
+    itemMessageViewController.messageId = message.messageId;
+    [self.navigationController pushViewController:itemMessageViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

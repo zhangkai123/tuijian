@@ -35,24 +35,7 @@
 		printf("No database\n");
 		NSString *appPath = [[NSBundle mainBundle] pathForResource:databaseName ofType:nil];
 		[manager copyItemAtPath:appPath toPath:databasePath error:NULL];
-	}
-	
-//	// setup our compiled sql statements
-//	sqlite3 *database;
-//	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
-//		printf("SQLite is ok\n");
-//		sqlite3_stmt *compiledStatement;
-//        
-//		const char *insertMessageSQL = "" ;
-//		sqlite3_prepare_v2(database, insertMessageSQL, -1, &compiledStatement, NULL);
-//		insertMessageStatement = compiledStatement;
-//		
-//		const char *getMessagesSQL = "" ;
-//		sqlite3_prepare_v2(database, getMessagesSQL, -1, &compiledStatement, NULL);
-//		getMessagesStatement = compiledStatement;
-//	}
-//	
-//	sqlite3_close(database);
+	}	
 	return self;
 	
 }
@@ -125,13 +108,13 @@
 	return messageListArray;
 }
 
--(void)insertMessage:(NSString *)theMessage
+-(void)insertMessage:(NSString *)theMessage messageType:(NSString *)messageT messageId:(NSString *)mId
 {
 	sqlite3 *database;
 	sqlite3_stmt *compiledStatement;
 	
 	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-		NSString *insertCommand = [NSString stringWithFormat:@"insert into mes (message) VALUES('%@')" , theMessage];
+		NSString *insertCommand = [NSString stringWithFormat:@"insert into mes (messageId,messageType,message) VALUES('%@','%@','%@')" ,mId ,messageT ,theMessage];
 		const char *insertSqlCommand = [insertCommand UTF8String];
 		if (sqlite3_prepare_v2(database, insertSqlCommand, -1, &compiledStatement, NULL) == SQLITE_OK) {
 			if (sqlite3_step(compiledStatement) == SQLITE_DONE) {
@@ -143,20 +126,19 @@
 	}
 	sqlite3_close(database);
 }
--(NSArray *)getAllMessages
+-(NSArray *)getMessages:(NSString *)messageType messageId:(NSString *)mId
 {
 	sqlite3 *database;
 	sqlite3_stmt *compiledStatement;
     
     NSMutableArray *messageArray = [[NSMutableArray alloc]init];
 	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-		NSString *getCommand = [NSString stringWithFormat:@"select * from mes"];
+		NSString *getCommand = [NSString stringWithFormat:@"select * from mes where messageId='%@' and messageType='%@' order by id DESC",mId,messageType];
 		const char *getSqlCommand = [getCommand UTF8String];
 		sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
 		
-//		sqlite3_reset(compiledStatement);
 		while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
-			NSString *xmlStr = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 1)];
+			NSString *xmlStr = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 3)];
             [messageArray addObject:xmlStr];
 		}
 	}

@@ -94,7 +94,21 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 }
 
 #pragma mark send message
+-(void)sendItemMessage:(NSString *)userId messageId:(NSString *)mId messageType:(NSString *)mType imageUrl:(NSString *)iUrl title:(NSString *)title messageName:(NSString *)mName message:(NSString *)mes userProfileImage:(NSString *)pImage
+{
+    NSXMLElement *message = [self constructBasicMessage:userId messageId:mId messageType:mType imageUrl:iUrl title:title messageName:mName message:mes];    
+    NSXMLElement *userProfileImage = [NSXMLElement elementWithName:@"userProfileImage"];
+    [userProfileImage setStringValue:pImage];
+    [message addChild:userProfileImage];
+    [xmppStream sendElement:message];
+}
+
 -(void)sendMessage:(NSString *)userId messageId:(NSString *)mId messageType:(NSString *)mType imageUrl:(NSString *)iUrl title:(NSString *)title messageName:(NSString *)mName message:(NSString *)mes
+{
+    NSXMLElement *message = [self constructBasicMessage:userId messageId:mId messageType:mType imageUrl:iUrl title:title messageName:mName message:mes];
+    [xmppStream sendElement:message];
+}
+-(NSXMLElement *)constructBasicMessage:(NSString *)userId messageId:(NSString *)mId messageType:(NSString *)mType imageUrl:(NSString *)iUrl title:(NSString *)title messageName:(NSString *)mName message:(NSString *)mes
 {
     NSString *jabberID = [NSString stringWithFormat:@"%@@zhangkaemacbook.lan",userId];
     XMPPJID *jid = [XMPPJID jidWithString:jabberID];
@@ -103,12 +117,6 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
     [message addAttributeWithName:@"to" stringValue:[jid full]];
     [message addAttributeWithName:@"type" stringValue:@"chat"];
     
-//    [message addAttributeWithName:@"messageId" stringValue:mId];
-//    [message addAttributeWithName:@"messageType" stringValue:mType];
-//    
-//    [message addAttributeWithName:@"imageUrl" stringValue:iUrl];
-//    [message addAttributeWithName:@"title" stringValue:title];
-//    [message addAttributeWithName:@"messageName" stringValue:mName];
     
     NSXMLElement *messageId = [NSXMLElement elementWithName:@"messageId"];
     [messageId setStringValue:mId];
@@ -117,15 +125,15 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
     NSXMLElement *messageType = [NSXMLElement elementWithName:@"messageType"];
     [messageType setStringValue:mType];
     [message addChild:messageType];
-
+    
     NSXMLElement *imageUrl = [NSXMLElement elementWithName:@"imageUrl"];
     [imageUrl setStringValue:iUrl];
     [message addChild:imageUrl];
-
+    
     NSXMLElement *messageTitle = [NSXMLElement elementWithName:@"title"];
     [messageTitle setStringValue:title];
     [message addChild:messageTitle];
-
+    
     NSXMLElement *messageName = [NSXMLElement elementWithName:@"messageName"];
     [messageName setStringValue:mName];
     [message addChild:messageName];
@@ -134,7 +142,7 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
     [body setStringValue:mes];
     [message addChild:body];
     
-    [xmppStream sendElement:message];
+    return message;
 }
 //- (void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId
 //{
