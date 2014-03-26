@@ -9,6 +9,7 @@
 #import "TJItemMessageViewController.h"
 #import "TJCommentCell.h"
 #import "UIImage+additions.h"
+#import "TJItemMessage.h"
 
 @interface TJItemMessageViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -21,6 +22,10 @@
 @implementation TJItemMessageViewController
 @synthesize messageId;
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -50,10 +55,34 @@
     
     itemMessageArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveMessage) name:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
+}
+-(void)recieveMessage
+{
+    NSArray *mArray = [[TJDataController sharedDataController]featchItemMessage:self.messageId];
+    [itemMessageArray removeAllObjects];
+    [itemMessageArray addObjectsFromArray:mArray];
+    for (int i = 0; i < [itemMessageArray count]; i++) {
+        TJItemMessage *itemMessage = [itemMessageArray objectAtIndex:i];
+        CGRect expectedLabelRect = [itemMessage.message boundingRectWithSize:CGSizeMake(250, 0)
+                                                                     options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                                  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+        [textHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
+    }
+    [itemMessageTableView reloadData];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[TJDataController sharedDataController]featchItemMessage:self.messageId];
+    NSArray *mArray = [[TJDataController sharedDataController]featchItemMessage:self.messageId];
+    [itemMessageArray addObjectsFromArray:mArray];
+    for (int i = 0; i < [itemMessageArray count]; i++) {
+        TJItemMessage *itemMessage = [itemMessageArray objectAtIndex:i];
+        CGRect expectedLabelRect = [itemMessage.message boundingRectWithSize:CGSizeMake(250, 0)
+                                                              options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                           attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+        [textHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
+    }
     [super viewWillAppear:animated];
 }
 #pragma uitableview delegate and datasource
@@ -64,7 +93,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-    return textHeight + 40 + 30;
+    return textHeight + 30 + 5;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -74,9 +103,9 @@
     }
     //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    TJComment *comment = [itemMessageArray objectAtIndex:indexPath.row];
-    __block UIImageView *weakImageView = [(TJCommentCell *)cell userImageView];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:comment.user.profile_image_url]];
+    TJItemMessage *itemMessage = [itemMessageArray objectAtIndex:indexPath.row];
+    __block UIImageView *weakImageView = [cell userImageView];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:itemMessage.profileImageUrl]];
     [[cell userImageView] setImageWithURLRequest:urlRequest
                                                  placeholderImage:[UIImage imageNamed:@"photo.png"]
                                                           success:^(NSURLRequest *request ,NSHTTPURLResponse *response ,UIImage *image){
@@ -86,8 +115,14 @@
                                                           }failure:^(NSURLRequest *request ,NSHTTPURLResponse *response ,NSError *error){
                                                               
                                                           }];
-    [[cell nameLable]setText:comment.user.name];
-    [[cell commentLable]setText:comment.info];
+    [[cell nameLable]setText:itemMessage.userName];
+    NSString *commentMessage = nil;
+    if ([itemMessage.message isEqualToString:@"赞"]) {
+        commentMessage = [NSString stringWithFormat:@"给了你一个赞！"];
+    }else{
+        commentMessage = itemMessage.message;
+    }
+    [[cell commentLable]setText:commentMessage];
     
     float  commentHeight = [[textHeightArray objectAtIndex:indexPath.row]floatValue];
     [cell setCommentHeight:commentHeight];
