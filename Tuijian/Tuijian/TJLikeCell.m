@@ -25,7 +25,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        self.backgroundColor = UIColorFromRGB(0xD4D4D4);
+//        self.backgroundColor = UIColorFromRGB(0xD4D4D4);
+        self.backgroundColor = [UIColor blackColor];
         
         likeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
         likeTableView.delegate = self;
@@ -59,6 +60,7 @@
     if (!cell) {
         cell = [[TJLikeUserCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.transform = CGAffineTransformMakeRotation(M_PI_2);
     TJUser *user = [self.likesArray objectAtIndex:indexPath.row];
     UIImage *placeHoder = [self getGenderPlaceHolder:user];
