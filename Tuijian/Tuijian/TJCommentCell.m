@@ -25,13 +25,13 @@
         [self addSubview:self.userImageView];
         
         nameLable = [[UILabel alloc]initWithFrame:CGRectMake(60, 10, 100, 20)];
-        nameLable.textColor = [UIColor blueColor];
-        [nameLable setFont:[UIFont systemFontOfSize:12]];
+        nameLable.textColor = [UIColor blackColor];
+        [nameLable setFont:[UIFont systemFontOfSize:15]];
         [self addSubview:nameLable];
 
         commentLable = [[UILabel alloc]initWithFrame:CGRectMake(60, 30, 250, 0)];
         commentLable.textColor = [UIColor blackColor];
-        [commentLable setFont:[UIFont systemFontOfSize:12]];
+        [commentLable setFont:[UIFont systemFontOfSize:15]];
         commentLable.lineBreakMode = NSLineBreakByCharWrapping;
         commentLable.numberOfLines = 0;
         [self addSubview:commentLable];

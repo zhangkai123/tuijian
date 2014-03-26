@@ -80,7 +80,7 @@
         TJItemMessage *itemMessage = [itemMessageArray objectAtIndex:i];
         CGRect expectedLabelRect = [itemMessage.message boundingRectWithSize:CGSizeMake(250, 0)
                                                               options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                           attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+                                                           attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
         [textHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
     }
     [super viewWillAppear:animated];

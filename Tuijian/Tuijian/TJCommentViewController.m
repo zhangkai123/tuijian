@@ -51,13 +51,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     detailTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
-    [detailTableView setBackgroundColor:UIColorFromRGB(0xEEEEEE)];
-    [detailTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+//    [detailTableView setBackgroundColor:UIColorFromRGB(0xEEEEEE)];
     detailTableView.rowHeight = 500;
     detailTableView.dataSource = self;
     detailTableView.delegate = self;
     detailTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
-    detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:detailTableView];
 
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 50, 0);
@@ -133,7 +132,7 @@
             [weakMyCommentsArray insertObject:comment atIndex:0];
             CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(250, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
             [weakmyCommentHeightArray insertObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height] atIndex:0];
             [weakDetailTableView reloadData];
             [[TJDataController sharedDataController]sendComment:weakItem comment:commentInfo];
@@ -188,7 +187,6 @@
         if (!cell) {
             cell = [[TJItemDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [(TJItemDetailCell *)cell setItemId:theItem.itemId];
 //        [(TJItemDetailCell *)cell setUserId:theItem.uid];
         [[(TJItemDetailCell *)cell titleLabel] setText:theItem.title];
@@ -202,7 +200,6 @@
         if (!cell) {
             cell = [[TJLikeCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [(TJLikeCell *)cell setLikesArray:myLikesArray];
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
@@ -227,6 +224,7 @@
         float  commentHeight = [[myCommentHeightArray objectAtIndex:indexPath.row]floatValue];
         [(TJCommentCell *)cell setCommentHeight:commentHeight];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
