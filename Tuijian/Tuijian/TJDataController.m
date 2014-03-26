@@ -193,7 +193,12 @@
 -(void)sendLike:(TJItem *)item
 {
     TJUser *myUserInfo = [self getMyUserInfo];
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendMessage:item.uid messageId:item.itemId messageType:@"like" imageUrl:item.imageUrl title:item.title messageName:myUserInfo.name message:@"赞"];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendMessage:item.uid messageId:item.itemId messageType:@"itemMessage" imageUrl:item.imageUrl title:item.title messageName:myUserInfo.name message:@"赞"];
+}
+-(void)sendComment:(TJItem *)item comment:(NSString *)commentInfo
+{
+    TJUser *myUserInfo = [self getMyUserInfo];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendMessage:item.uid messageId:item.itemId messageType:@"itemMessage" imageUrl:item.imageUrl title:item.title messageName:myUserInfo.name message:commentInfo];
 }
 - (void) recieveMessage:(NSNotification *) notification
 {

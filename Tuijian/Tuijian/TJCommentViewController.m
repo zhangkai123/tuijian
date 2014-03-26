@@ -121,6 +121,7 @@
 #pragma YFInputBar delegate
 -(void)inputBar:(YFInputBar *)inputBar sendBtnPress:(UIButton *)sendBtn withInputString:(NSString *)str
 {
+    __block TJItem *weakItem = self.theItem;
     __block NSString *commentInfo = str;
     __block UITableView *weakDetailTableView = detailTableView;
     __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
@@ -129,13 +130,12 @@
         if (hasCommented) {
            TJComment *comment = [[TJDataController sharedDataController] getMyOwnCommentItem:commentInfo];
             [weakMyCommentsArray insertObject:comment atIndex:0];
-            
             CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(250, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                                                attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
             [weakmyCommentHeightArray insertObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height] atIndex:0];
-
             [weakDetailTableView reloadData];
+            [[TJDataController sharedDataController]sendComment:weakItem comment:commentInfo];
         }
     }failure:^(NSError *error){
         
