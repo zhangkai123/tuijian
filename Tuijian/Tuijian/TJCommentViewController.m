@@ -34,7 +34,7 @@
 -(id)init
 {
     if (self = [super init]) {
-        self.title = @"详情";
+        self.title = @"推荐详情";
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"write.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeComment)];
     }
     return self;
@@ -203,6 +203,7 @@
             cell = [[TJLikeCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
         }
         [(TJLikeCell *)cell setLikesArray:myLikesArray];
+        [(TJLikeCell *)cell setDelegate:(id)self];
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
         if (!cell) {
@@ -281,6 +282,19 @@
     userInfoViewController.userName = theItem.userName;
     userInfoViewController.userGender = theItem.userGender;
     userInfoViewController.uid = theItem.uid;
+    [self.navigationController pushViewController:userInfoViewController animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+#pragma TJLikeCellDelegate
+-(void)selectUserCell:(int)rowNum
+{
+    TJUser *user = [myLikesArray objectAtIndex:rowNum];
+    self.hidesBottomBarWhenPushed = YES;
+    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
+    userInfoViewController.userImageUrl = user.profile_image_url;
+    userInfoViewController.userName = user.name;
+    userInfoViewController.userGender = user.gender;
+    userInfoViewController.uid = user.myUserId;
     [self.navigationController pushViewController:userInfoViewController animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }

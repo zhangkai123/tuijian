@@ -19,6 +19,7 @@
 
 @implementation TJLikeCell
 @synthesize likesArray;
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -64,7 +65,6 @@
     cell.transform = CGAffineTransformMakeRotation(M_PI_2);
     TJUser *user = [self.likesArray objectAtIndex:indexPath.row];
     UIImage *placeHoder = [self getGenderPlaceHolder:user];
-//    [cell.userImageView setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:placeHoder];
     __block UIImageView *weakImageView = cell.userImageView;
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:user.profile_image_url]];
     [cell.userImageView setImageWithURLRequest:urlRequest placeholderImage:placeHoder
@@ -79,7 +79,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    [self.delegate selectUserCell:indexPath.row];
 }
 
 -(UIImage *)getGenderPlaceHolder:(TJUser *)theUser

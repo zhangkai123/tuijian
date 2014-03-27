@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TJLikeCellDelegate <NSObject>
+
+-(void)selectUserCell:(int)rowNum;
+
+@end
+
 @interface TJLikeCell : UITableViewCell
 {
     NSMutableArray *likesArray;
+    __unsafe_unretained id<TJLikeCellDelegate> delegate;
 }
 @property(nonatomic,strong) NSMutableArray *likesArray;
+@property(nonatomic,unsafe_unretained) id<TJLikeCellDelegate> delegate;
 @end
