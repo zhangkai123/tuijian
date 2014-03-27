@@ -1,35 +1,34 @@
 //
-//  TJMineViewController.m
+//  TJUserInfoViewController.m
 //  Tuijian
 //
-//  Created by zhang kai on 2/28/14.
+//  Created by zhang kai on 3/27/14.
 //  Copyright (c) 2014 zhang kai. All rights reserved.
 //
 
-#import "TJMineViewController.h"
+#import "TJUserInfoViewController.h"
 #import "TJUser.h"
 #import "TJMyInfoCell.h"
 #import "TJMyItemCell.h"
 #import "TJMyItemViewController.h"
 
-@interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface TJUserInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
-    UITableView *myItemTableView;
-    NSMutableArray *myItemsArray;
+    UITableView *herItemTableView;
+    NSMutableArray *herItemsArray;
     NSMutableArray *textHeightArray;
 }
 @end
 
-@implementation TJMineViewController
-
+@implementation TJUserInfoViewController
+@synthesize userImageUrl ,userName ,userGender ,uid;
 -(id)init
 {
     if (self = [super init]) {
-        self.title = @"我的";
+        self.title = @"详细信息";
     }
     return self;
 }
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -38,31 +37,30 @@
     }
     return self;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
+    herItemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
+    [herItemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    herItemTableView.showsHorizontalScrollIndicator = NO;
+    herItemTableView.showsVerticalScrollIndicator = NO;
+    herItemTableView.dataSource = self;
+    herItemTableView.delegate = self;
+    [self.view addSubview:herItemTableView];
     
-    myItemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
-    [myItemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    myItemTableView.showsHorizontalScrollIndicator = NO;
-    myItemTableView.showsVerticalScrollIndicator = NO;
-    myItemTableView.dataSource = self;
-    myItemTableView.delegate = self;
-    [self.view addSubview:myItemTableView];
-    
-    myItemsArray = [[NSMutableArray alloc]init];
+    herItemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
     
     [self refreshTableViewData];
 }
 -(void)refreshTableViewData
 {
-    __block UITableView *weaktheTalbleView = myItemTableView;
-    __block NSMutableArray *weakItemsArray = myItemsArray;
+    __block UITableView *weaktheTalbleView = herItemTableView;
+    __block NSMutableArray *weakItemsArray = herItemsArray;
     __block NSMutableArray *weakTextHeightArray = textHeightArray;
-    NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
-    [[TJDataController sharedDataController]getUserItems:myUserId success:^(NSArray *iteArray){
+    [[TJDataController sharedDataController]getUserItems:self.uid success:^(NSArray *iteArray){
         if ([iteArray count] == 0) {
             return;
         }
@@ -94,7 +92,7 @@
     if (section == 0) {
         rowNum = 1;
     }else{
-        rowNum = [myItemsArray count];
+        rowNum = [herItemsArray count];
     }
     return rowNum;
 }
@@ -117,10 +115,9 @@
         if (!cell) {
             cell = [[TJMyInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         }
-        TJUser *user = [[TJDataController sharedDataController]getMyUserInfo];
-        [[(TJMyInfoCell *)cell profileImageView] setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:nil];
-        [[(TJMyInfoCell *)cell nameLabel] setText:user.name];
-        if ([user.gender isEqualToString:@"男"]) {
+        [[(TJMyInfoCell *)cell profileImageView] setImageWithURL:[NSURL URLWithString:self.userImageUrl] placeholderImage:nil];
+        [[(TJMyInfoCell *)cell nameLabel] setText:self.userName];
+        if ([self.userGender intValue] == 1) {
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"male.png"]];
         }else{
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"female.png"]];
@@ -131,7 +128,7 @@
         if (!cell) {
             cell = [[TJMyItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
         }
-        TJItem *theItem = [myItemsArray objectAtIndex:indexPath.row];
+        TJItem *theItem = [herItemsArray objectAtIndex:indexPath.row];
         [(TJMyItemCell *)cell setItemId:theItem.itemId];
         [[(TJMyItemCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
         float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
@@ -145,7 +142,7 @@
     if (indexPath.section == 0) {
         return;
     }
-    TJItem *item = [myItemsArray objectAtIndex:indexPath.row];
+    TJItem *item = [herItemsArray objectAtIndex:indexPath.row];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
     
     TJMyItemViewController *myItemViewController = [[TJMyItemViewController alloc]init];
@@ -167,10 +164,22 @@
     }
     return headerHeight;
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

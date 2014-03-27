@@ -13,8 +13,10 @@
 #import "TJItem.h"
 #import "TJCommentViewController.h"
 #import "GTScrollNavigationBar.H"
+#import "TJTouchableImageView.h"
+#import "TJUserInfoViewController.h"
 
-@interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJCamViewControllerDelegate,TJItemCellDelegate>
+@interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJCamViewControllerDelegate,TJItemCellDelegate,TJTouchableImageViewDelegate>
 {
     UITableView *itemTableView;
     NSMutableArray *itemsArray;
@@ -171,7 +173,9 @@
 {
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
     TJItem *theItem = [itemsArray objectAtIndex:section];
-    UIImageView *userImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
+    TJTouchableImageView *userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
+    userImageView.sectionNum = section;
+    userImageView.delegate = self;
     userImageView.clipsToBounds = YES;
     [backView addSubview:userImageView];
     userImageView.layer.cornerRadius = 40 / 2.0;
@@ -198,6 +202,20 @@
     [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.95]];
 //    [backView setBackgroundColor:[UIColor whiteColor]];
     return backView;
+}
+#pragma TJTouchableImageViewDelegate
+-(void)selectUserImageView:(int)sectionNum
+{
+    TJItem *theItem = [itemsArray objectAtIndex:sectionNum];
+    
+    self.hidesBottomBarWhenPushed = YES;
+    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
+    userInfoViewController.userImageUrl = theItem.userImg;
+    userInfoViewController.userName = theItem.userName;
+    userInfoViewController.userGender = theItem.userGender;
+    userInfoViewController.uid = theItem.uid;
+    [self.navigationController pushViewController:userInfoViewController animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 #pragma TJItemCellDelegate
 -(void)likeItem:(NSString *)itemId liked:(void (^)(BOOL Liked))hasL

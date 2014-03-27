@@ -23,6 +23,7 @@
 +(id)sharedDataController;
 
 -(BOOL)getUserLoginMask;
+-(NSString *)getMyUserId;
 -(void)saveTencentLoginInfo:(TencentOAuth *)tencentOAuth;
 -(void)getMyUserToken:(TJUser *)theUser myUserToken:(void (^)(NSString *userToken))myUserToken failure:(void (^)(NSError *error))failure;
 -(void)getTencentUserInfo:(void(^)(TJUser *tencentUser))tencentUserInfo failure:(void (^)(NSError *error))failure;
@@ -33,7 +34,8 @@
 -(void)saveComment:(NSString *)itemId commentInfo:(NSString *)commentInfo success:(void (^)(BOOL hasCommented))succeed failure:(void (^)(NSError *error))failure;
 -(void)getLikesComments:(NSString *)itemId likes:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray failure:(void (^)(NSError *error))failure;
 -(TJComment *)getMyOwnCommentItem:(NSString *)commentInfo;
--(void)getMyItems:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure;
+//-(void)getMyItems:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure;
+-(void)getUserItems:(NSString *)userId success:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure;
 
 #pragma XMPP Server
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success;
