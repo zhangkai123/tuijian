@@ -8,8 +8,9 @@
 
 #import "TJMineViewController.h"
 #import "TJUser.h"
+#import "TJMyInfoCell.h"
 #import "TJMyItemCell.h"
-#import "TJCommentViewController.h"
+#import "TJMyItemViewController.h"
 
 @interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -42,32 +43,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, 320, 100)];
-    backView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:backView];
-    
-    TJUser *user = [[TJDataController sharedDataController]getMyUserInfo];
-    UIImageView *profileImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 80, 80)];
-    [profileImageView setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:nil];
-    profileImageView.clipsToBounds = YES;
-    [backView addSubview:profileImageView];
-    profileImageView.layer.cornerRadius = 80 / 2.0;
-    
-    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 20, 100, 40)];
-    nameLabel.text = user.name;
-    nameLabel.textColor = [UIColor whiteColor];
-    [backView addSubview:nameLabel];
-    
-    UIImageView *genderImageView = [[UIImageView alloc]initWithFrame:CGRectMake(100, 60, 20, 20)];
-    if ([user.gender isEqualToString:@"男"]) {
-        [genderImageView setImage:[UIImage imageNamed:@"male.png"]];
-    }else{
-        [genderImageView setImage:[UIImage imageNamed:@"female.png"]];
-    }
-    [backView addSubview:genderImageView];
-
-    myItemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 164, 320, self.view.frame.size.height - 164 - 49) style:UITableViewStylePlain];
+    myItemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
     [myItemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    myItemTableView.showsHorizontalScrollIndicator = NO;
+    myItemTableView.showsVerticalScrollIndicator = NO;
     myItemTableView.dataSource = self;
     myItemTableView.delegate = self;
     [self.view addSubview:myItemTableView];
@@ -106,50 +85,74 @@
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [myItemsArray count];
+    NSInteger rowNum = 0;
+    if (section == 0) {
+        rowNum = 1;
+    }else{
+        rowNum = [myItemsArray count];
+    }
+    return rowNum;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-    return textHeight + 325 + 40;
+    float rowHeight = 0;
+    if (indexPath.section == 0) {
+        rowHeight = 100;
+    }else{
+        float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
+        rowHeight = textHeight + 325 + 40;
+    }
+    return rowHeight;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TJMyItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell = [[TJMyItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    UITableViewCell *cell = nil;
+    if (indexPath.section == 0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cellOne"];
+        if (!cell) {
+            cell = [[TJMyInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
+        }
+        TJUser *user = [[TJDataController sharedDataController]getMyUserInfo];
+        [[(TJMyInfoCell *)cell profileImageView] setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:nil];
+        [[(TJMyInfoCell *)cell nameLabel] setText:user.name];
+        if ([user.gender isEqualToString:@"男"]) {
+            [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"male.png"]];
+        }else{
+            [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"female.png"]];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }else{
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
+        if (!cell) {
+            cell = [[TJMyItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
+        }
+        TJItem *theItem = [myItemsArray objectAtIndex:indexPath.row];
+        [(TJMyItemCell *)cell setItemId:theItem.itemId];
+        [[(TJMyItemCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
+        float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
+        [[(TJMyItemCell *)cell titleLabel] setText:theItem.title];
+        [(TJMyItemCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
     }
-    
-    TJItem *theItem = [myItemsArray objectAtIndex:indexPath.row];
-    cell.itemId = theItem.itemId;
-    [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
-    float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-    cell.titleLabel.text = theItem.title;
-    [cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0) {
+        return;
+    }
     TJItem *item = [myItemsArray objectAtIndex:indexPath.row];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
     
-    TJCommentViewController *commentViewController = [[TJCommentViewController alloc]init];
-    commentViewController.theItem = item;
-    commentViewController.textHeight = textHeight;
-//    [self presentViewController:commentViewController animated:YES completion:nil];
+    TJMyItemViewController *myItemViewController = [[TJMyItemViewController alloc]init];
+    myItemViewController.theItem = item;
+    myItemViewController.textHeight = textHeight;
     
-    self.hidesBottomBarWhenPushed = YES;
-    [UIView  beginAnimations: @"Showinfo"context: nil];
-    [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:0.75];
-    [self.navigationController pushViewController:commentViewController animated:NO];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
-    [UIView commitAnimations];
-     self.hidesBottomBarWhenPushed = NO;
+    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:myItemViewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -157,7 +160,11 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 30;
+    float headerHeight = 0;
+    if (section != 0) {
+        headerHeight = 30;
+    }
+    return headerHeight;
 }
 - (void)didReceiveMemoryWarning
 {

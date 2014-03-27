@@ -226,6 +226,8 @@
 		4BE911BB18DBD81600F4C3B1 /* TJPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */; };
 		4BE911BF18DBE12400F4C3B1 /* TJMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE911BE18DBE12400F4C3B1 /* TJMemoryCache.m */; };
 		4BEFE99118E3B3BE00E2B6A3 /* TJMyItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */; };
+		4BEFE99418E3C1F100E2B6A3 /* TJMyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99318E3C1F100E2B6A3 /* TJMyInfoCell.m */; };
+		4BEFE99718E3CA6B00E2B6A3 /* TJMyItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99618E3CA6B00E2B6A3 /* TJMyItemViewController.m */; };
 		4BF41A2318D299B6004E9A38 /* TJCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */; };
 		4BF41A2718D2E17A004E9A38 /* write.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF41A2618D2E17A004E9A38 /* write.png */; };
 		4BF64BAD18DD39A8005D34C1 /* UIImage+JTImageCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF64BAC18DD39A8005D34C1 /* UIImage+JTImageCrop.m */; };
@@ -673,6 +675,10 @@
 		4BE911BE18DBE12400F4C3B1 /* TJMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMemoryCache.m; sourceTree = "<group>"; };
 		4BEFE98F18E3B3BE00E2B6A3 /* TJMyItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyItemCell.h; sourceTree = "<group>"; };
 		4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyItemCell.m; sourceTree = "<group>"; };
+		4BEFE99218E3C1F100E2B6A3 /* TJMyInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyInfoCell.h; sourceTree = "<group>"; };
+		4BEFE99318E3C1F100E2B6A3 /* TJMyInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyInfoCell.m; sourceTree = "<group>"; };
+		4BEFE99518E3CA6B00E2B6A3 /* TJMyItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyItemViewController.h; sourceTree = "<group>"; };
+		4BEFE99618E3CA6B00E2B6A3 /* TJMyItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyItemViewController.m; sourceTree = "<group>"; };
 		4BF41A2118D299B6004E9A38 /* TJCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCommentViewController.h; sourceTree = "<group>"; };
 		4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCommentViewController.m; sourceTree = "<group>"; };
 		4BF41A2618D2E17A004E9A38 /* write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = write.png; sourceTree = "<group>"; };
@@ -796,6 +802,8 @@
 				4BD48DF718E0144F00D83667 /* TJMessageCell.m */,
 				4BEFE98F18E3B3BE00E2B6A3 /* TJMyItemCell.h */,
 				4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */,
+				4BEFE99218E3C1F100E2B6A3 /* TJMyInfoCell.h */,
+				4BEFE99318E3C1F100E2B6A3 /* TJMyInfoCell.m */,
 			);
 			name = CellView;
 			sourceTree = "<group>";
@@ -1853,6 +1861,15 @@
 			name = MemoryCacheManager;
 			sourceTree = "<group>";
 		};
+		4BEFE99818E3CA8200E2B6A3 /* MyItem */ = {
+			isa = PBXGroup;
+			children = (
+				4BEFE99518E3CA6B00E2B6A3 /* TJMyItemViewController.h */,
+				4BEFE99618E3CA6B00E2B6A3 /* TJMyItemViewController.m */,
+			);
+			name = MyItem;
+			sourceTree = "<group>";
+		};
 		4BFA998218AFA19200D673CB = {
 			isa = PBXGroup;
 			children = (
@@ -1913,6 +1930,7 @@
 				4B1D467E18DA8B870056262B /* Camera */,
 				4B1D467D18DA8B330056262B /* TabControllers */,
 				4B50AC1318D6DCB70028BAF9 /* Comment */,
+				4BEFE99818E3CA8200E2B6A3 /* MyItem */,
 				4B03651B18E2A8DC00D106F1 /* Message */,
 				4B1D467F18DA8BD70056262B /* CellView */,
 				4BFA999D18AFA19200D673CB /* TJAppDelegate.h */,
@@ -2144,6 +2162,7 @@
 				4B9C40EA18D984AF00B9F8E5 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
 				4B47A39918D179B800087BE4 /* UIImage+MultiFormat.m in Sources */,
 				4B47A39018D179B800087BE4 /* SDImageCache.m in Sources */,
+				4BEFE99718E3CA6B00E2B6A3 /* TJMyItemViewController.m in Sources */,
 				4B9C412418D984AF00B9F8E5 /* NSXMLElement+XEP_0335.m in Sources */,
 				4B9C40D818D984AF00B9F8E5 /* XMPPUserMemoryStorageObject.m in Sources */,
 				4B569CDE18CEBB5D000DF219 /* TJTencentAPIClient.m in Sources */,
@@ -2177,6 +2196,7 @@
 				4B9C412918D984AF00B9F8E5 /* XMPPIDTracker.m in Sources */,
 				4B9C411D18D984AF00B9F8E5 /* NSXMLElement+XEP_0203.m in Sources */,
 				4B9C412F18D984AF00B9F8E5 /* DDFileLogger.m in Sources */,
+				4BEFE99418E3C1F100E2B6A3 /* TJMyInfoCell.m in Sources */,
 				4B9C40F618D984AF00B9F8E5 /* XMPPvCardTempAdrTypes.m in Sources */,
 				4B543FD218B4FBA50052DFDD /* TJCropViewController.m in Sources */,
 				4B47A39818D179B800087BE4 /* UIImage+GIF.m in Sources */,
