@@ -176,6 +176,19 @@
     comment.info = commentInfo;
     return comment;
 }
+-(void)getMyItems:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure
+{
+    NSString *myAccessToken = [self getMyUserToken];
+    NSString *myUserId = [self getMyUserId];
+    [[TJNetworkManager sharedNetworkManager]sendFeatchMyItemsRequest:myAccessToken uid:myUserId success:^(id Json){
+        
+        NSArray *itemsArray = [TJParser parseItemsJsonData:Json];
+        success(itemsArray);
+    }failure:^(NSError *error){
+        
+        failure(error);
+    }];
+}
 
 #pragma XMPP Server
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success

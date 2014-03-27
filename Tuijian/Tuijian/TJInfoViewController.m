@@ -10,6 +10,7 @@
 #import "TJMessage.h"
 #import "TJMessageCell.h"
 #import "TJItemMessageViewController.h"
+#import "UIImage+additions.h"
 
 @interface TJInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -82,7 +83,18 @@
     //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     TJMessage *message = [infoListArray objectAtIndex:indexPath.row];
     NSURL *imageUrl = [NSURL URLWithString:message.imageUrl];
-    [cell.theImageView setImageWithURL:imageUrl placeholderImage:nil];
+//    [cell.theImageView setImageWithURL:imageUrl placeholderImage:nil];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageUrl];
+    __block UIImageView *weakImageView = cell.theImageView;
+    [cell.theImageView setImageWithURLRequest:urlRequest
+                                placeholderImage:[UIImage imageNamed:@"photo.png"]
+                                         success:^(NSURLRequest *request ,NSHTTPURLResponse *response ,UIImage *image){
+                                             
+                                             float radius = MAX(image.size.width, image.size.height);
+                                             weakImageView.image = [image makeRoundCornersWithRadius:radius/2];
+                                         }failure:^(NSURLRequest *request ,NSHTTPURLResponse *response ,NSError *error){
+                                             
+                                         }];
     [cell.titleLabel setText:message.messageTitle];
     NSString *messageContent = nil;
     if ([message.messageType isEqualToString:@"itemMessage"]) {

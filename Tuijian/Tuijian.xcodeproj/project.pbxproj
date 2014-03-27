@@ -225,6 +225,7 @@
 		4BE1636318B9D7890009158D /* TJEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1636218B9D7880009158D /* TJEditViewController.m */; };
 		4BE911BB18DBD81600F4C3B1 /* TJPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */; };
 		4BE911BF18DBE12400F4C3B1 /* TJMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE911BE18DBE12400F4C3B1 /* TJMemoryCache.m */; };
+		4BEFE99118E3B3BE00E2B6A3 /* TJMyItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */; };
 		4BF41A2318D299B6004E9A38 /* TJCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */; };
 		4BF41A2718D2E17A004E9A38 /* write.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF41A2618D2E17A004E9A38 /* write.png */; };
 		4BF64BAD18DD39A8005D34C1 /* UIImage+JTImageCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF64BAC18DD39A8005D34C1 /* UIImage+JTImageCrop.m */; };
@@ -670,6 +671,8 @@
 		4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJPostViewController.m; sourceTree = "<group>"; };
 		4BE911BD18DBE12400F4C3B1 /* TJMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMemoryCache.h; sourceTree = "<group>"; };
 		4BE911BE18DBE12400F4C3B1 /* TJMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMemoryCache.m; sourceTree = "<group>"; };
+		4BEFE98F18E3B3BE00E2B6A3 /* TJMyItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyItemCell.h; sourceTree = "<group>"; };
+		4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyItemCell.m; sourceTree = "<group>"; };
 		4BF41A2118D299B6004E9A38 /* TJCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCommentViewController.h; sourceTree = "<group>"; };
 		4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCommentViewController.m; sourceTree = "<group>"; };
 		4BF41A2618D2E17A004E9A38 /* write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = write.png; sourceTree = "<group>"; };
@@ -791,6 +794,8 @@
 				4B31B78018D825BB00F87D71 /* TJCommentCell.m */,
 				4BD48DF618E0144F00D83667 /* TJMessageCell.h */,
 				4BD48DF718E0144F00D83667 /* TJMessageCell.m */,
+				4BEFE98F18E3B3BE00E2B6A3 /* TJMyItemCell.h */,
+				4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */,
 			);
 			name = CellView;
 			sourceTree = "<group>";
@@ -2144,6 +2149,7 @@
 				4B569CDE18CEBB5D000DF219 /* TJTencentAPIClient.m in Sources */,
 				4B9C412718D984AF00B9F8E5 /* GCDMulticastDelegate.m in Sources */,
 				4B9C410318D984AF00B9F8E5 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
+				4BEFE99118E3B3BE00E2B6A3 /* TJMyItemCell.m in Sources */,
 				4B9C410718D984AF00B9F8E5 /* XMPPTransports.m in Sources */,
 				4B9C40BD18D984AF00B9F8E5 /* XMPPPlainAuthentication.m in Sources */,
 				4B9C40C118D984AF00B9F8E5 /* NSNumber+XMPP.m in Sources */,
