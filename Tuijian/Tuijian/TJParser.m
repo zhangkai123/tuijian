@@ -134,11 +134,13 @@
     
     NSString *userProfileImage = [[data elementForName:@"userProfileImage"] stringValue];
     NSString *userName = [[data elementForName:@"messageName"] stringValue];
+    NSString *userGender = [[data elementForName:@"userGender"] stringValue];
     NSString *messageContent = [[data elementForName:@"body"] stringValue];
     
     theMessage.uid = uid;
     theMessage.profileImageUrl = userProfileImage;
     theMessage.userName = userName;
+    theMessage.userGender = userGender;
     theMessage.message = messageContent;
     message(theMessage);
 }

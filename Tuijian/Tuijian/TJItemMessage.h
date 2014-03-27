@@ -14,5 +14,6 @@
 @property(nonatomic,strong) NSString *uid;
 @property(nonatomic,strong) NSString *profileImageUrl;
 @property(nonatomic,strong) NSString *userName;
+@property(nonatomic,strong) NSString *userGender;
 @property(nonatomic,strong) NSString *message;
 @end

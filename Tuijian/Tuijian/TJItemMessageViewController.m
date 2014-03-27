@@ -10,8 +10,9 @@
 #import "TJCommentCell.h"
 #import "UIImage+additions.h"
 #import "TJItemMessage.h"
+#import "TJUserInfoViewController.h"
 
-@interface TJItemMessageViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface TJItemMessageViewController ()<UITableViewDataSource,UITableViewDelegate,TJCommentCellDelegate>
 {
     UITableView *itemMessageTableView;
     NSMutableArray *itemMessageArray;
@@ -123,6 +124,8 @@
         commentMessage = itemMessage.message;
     }
     [[cell commentLable]setText:commentMessage];
+    cell.delegate = (id)self;
+    cell.rowNum = indexPath.row;
     
     float  commentHeight = [[textHeightArray objectAtIndex:indexPath.row]floatValue];
     [cell setCommentHeight:commentHeight];
@@ -131,7 +134,23 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 }
-
+#pragma TJCommentCellDelegate
+-(void)selectCommentUserImage:(int)rowNum
+{
+    TJItemMessage *itemMessage = [itemMessageArray objectAtIndex:rowNum];
+    [self goToUserInformationPage:itemMessage.profileImageUrl userName:itemMessage.userName userGender:itemMessage.userGender userId:itemMessage.uid];
+}
+-(void)goToUserInformationPage:(NSString *)userImage userName:(NSString *)userN userGender:(NSString *)userG userId:(NSString *)uid
+{
+    self.hidesBottomBarWhenPushed = YES;
+    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
+    userInfoViewController.userImageUrl = userImage;
+    userInfoViewController.userName = userN;
+    userInfoViewController.userGender = userG;
+    userInfoViewController.uid = uid;
+    [self.navigationController pushViewController:userInfoViewController animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

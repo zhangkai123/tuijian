@@ -83,7 +83,6 @@
     //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     TJMessage *message = [infoListArray objectAtIndex:indexPath.row];
     NSURL *imageUrl = [NSURL URLWithString:message.imageUrl];
-//    [cell.theImageView setImageWithURL:imageUrl placeholderImage:nil];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageUrl];
     __block UIImageView *weakImageView = cell.theImageView;
     [cell.theImageView setImageWithURLRequest:urlRequest

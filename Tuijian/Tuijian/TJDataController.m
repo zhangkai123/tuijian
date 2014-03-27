@@ -178,19 +178,6 @@
     comment.info = commentInfo;
     return comment;
 }
-//-(void)getMyItems:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure
-//{
-//    NSString *myAccessToken = [self getMyUserToken];
-//    NSString *myUserId = [self getMyUserId];
-//    [[TJNetworkManager sharedNetworkManager]sendFeatchMyItemsRequest:myAccessToken uid:myUserId success:^(id Json){
-//        
-//        NSArray *itemsArray = [TJParser parseItemsJsonData:Json];
-//        success(itemsArray);
-//    }failure:^(NSError *error){
-//        
-//        failure(error);
-//    }];
-//}
 -(void)getUserItems:(NSString *)userId success:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure
 {
     NSString *myAccessToken = [self getMyUserToken];
@@ -220,12 +207,26 @@
 -(void)sendLike:(TJItem *)item
 {
     TJUser *myUserInfo = [self getMyUserInfo];
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:item.uid messageId:item.itemId messageType:@"itemMessage" imageUrl:item.imageUrl title:item.title messageName:myUserInfo.name message:@"赞" userProfileImage:myUserInfo.profile_image_url];
+    TJMessage *basicMessage = [[TJMessage alloc]init];
+    basicMessage.messageId = item.itemId;
+    basicMessage.messageType = @"itemMessage";
+    basicMessage.imageUrl = item.imageUrl;
+    basicMessage.messageTitle = item.title;
+    basicMessage.messageName = myUserInfo.name;
+    basicMessage.message = @"赞";
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:item.uid basicMessage:basicMessage userProfileImage:myUserInfo.profile_image_url userGender:myUserInfo.gender];
 }
 -(void)sendComment:(TJItem *)item comment:(NSString *)commentInfo
 {
     TJUser *myUserInfo = [self getMyUserInfo];
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:item.uid messageId:item.itemId messageType:@"itemMessage" imageUrl:item.imageUrl title:item.title messageName:myUserInfo.name message:commentInfo userProfileImage:myUserInfo.profile_image_url];
+    TJMessage *basicMessage = [[TJMessage alloc]init];
+    basicMessage.messageId = item.itemId;
+    basicMessage.messageType = @"itemMessage";
+    basicMessage.imageUrl = item.imageUrl;
+    basicMessage.messageTitle = item.title;
+    basicMessage.messageName = myUserInfo.name;
+    basicMessage.message = commentInfo;
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:item.uid basicMessage:basicMessage userProfileImage:myUserInfo.profile_image_url userGender:myUserInfo.gender];
 }
 - (void) recieveMessage:(NSNotification *) notification
 {

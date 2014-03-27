@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "XMPP.h"
+#import "TJMessage.h"
 
 @interface TJXMPPServerMananger : NSObject
 {
@@ -19,7 +20,5 @@
 +(id)sharedXMPPServerMananger;
 -(void)userConnectToXMPPServer:(NSString *)userId password:(NSString *)pword success:(void (^)(BOOL hasOnline))success;
 - (void)disconnect;
--(void)sendMessage:(NSString *)userId messageId:(NSString *)mId messageType:(NSString *)mType imageUrl:(NSString *)iUrl title:(NSString *)title messageName:(NSString *)mName message:(NSString *)mes;
--(void)sendItemMessage:(NSString *)userId messageId:(NSString *)mId messageType:(NSString *)mType imageUrl:(NSString *)iUrl title:(NSString *)title messageName:(NSString *)mName message:(NSString *)mes userProfileImage:(NSString *)pImage;
-//- (void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId;
+-(void)sendItemMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userProfileImage:(NSString *)pImage userGender:(NSString *)userG;
 @end

@@ -94,21 +94,20 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 }
 
 #pragma mark send message
--(void)sendItemMessage:(NSString *)userId messageId:(NSString *)mId messageType:(NSString *)mType imageUrl:(NSString *)iUrl title:(NSString *)title messageName:(NSString *)mName message:(NSString *)mes userProfileImage:(NSString *)pImage
+-(void)sendItemMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userProfileImage:(NSString *)pImage userGender:(NSString *)userG
 {
-    NSXMLElement *message = [self constructBasicMessage:userId messageId:mId messageType:mType imageUrl:iUrl title:title messageName:mName message:mes];    
+    NSXMLElement *message = [self constructBasicMessage:userId basicMessage:basicM];
     NSXMLElement *userProfileImage = [NSXMLElement elementWithName:@"userProfileImage"];
     [userProfileImage setStringValue:pImage];
     [message addChild:userProfileImage];
+    NSXMLElement *userGender = [NSXMLElement elementWithName:@"userGender"];
+    [userGender setStringValue:userG];
+    [message addChild:userGender];
+
     [xmppStream sendElement:message];
 }
 
--(void)sendMessage:(NSString *)userId messageId:(NSString *)mId messageType:(NSString *)mType imageUrl:(NSString *)iUrl title:(NSString *)title messageName:(NSString *)mName message:(NSString *)mes
-{
-    NSXMLElement *message = [self constructBasicMessage:userId messageId:mId messageType:mType imageUrl:iUrl title:title messageName:mName message:mes];
-    [xmppStream sendElement:message];
-}
--(NSXMLElement *)constructBasicMessage:(NSString *)userId messageId:(NSString *)mId messageType:(NSString *)mType imageUrl:(NSString *)iUrl title:(NSString *)title messageName:(NSString *)mName message:(NSString *)mes
+-(NSXMLElement *)constructBasicMessage:(NSString *)userId basicMessage:(TJMessage *)basicM
 {
     NSString *jabberID = [NSString stringWithFormat:@"%@@zhangkaemacbook.lan",userId];
     XMPPJID *jid = [XMPPJID jidWithString:jabberID];
@@ -119,48 +118,31 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
     
     
     NSXMLElement *messageId = [NSXMLElement elementWithName:@"messageId"];
-    [messageId setStringValue:mId];
+    [messageId setStringValue:basicM.messageId];
     [message addChild:messageId];
     
     NSXMLElement *messageType = [NSXMLElement elementWithName:@"messageType"];
-    [messageType setStringValue:mType];
+    [messageType setStringValue:basicM.messageType];
     [message addChild:messageType];
     
     NSXMLElement *imageUrl = [NSXMLElement elementWithName:@"imageUrl"];
-    [imageUrl setStringValue:iUrl];
+    [imageUrl setStringValue:basicM.imageUrl];
     [message addChild:imageUrl];
     
     NSXMLElement *messageTitle = [NSXMLElement elementWithName:@"title"];
-    [messageTitle setStringValue:title];
+    [messageTitle setStringValue:basicM.messageTitle];
     [message addChild:messageTitle];
     
     NSXMLElement *messageName = [NSXMLElement elementWithName:@"messageName"];
-    [messageName setStringValue:mName];
+    [messageName setStringValue:basicM.messageName];
     [message addChild:messageName];
     
     NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
-    [body setStringValue:mes];
+    [body setStringValue:basicM.message];
     [message addChild:body];
     
     return message;
 }
-//- (void)sendMessage:(NSString *)msgContent toUser:(NSString *)userId
-//{
-//    NSString *jabberID = [NSString stringWithFormat:@"%@@zhangkaemacbook.lan",userId];
-//    XMPPJID *jid = [XMPPJID jidWithString:jabberID];
-//    if([msgContent length] > 0)
-//    {
-//        NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
-//        [body setStringValue:msgContent];
-//        
-//        NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
-//        [message addAttributeWithName:@"type" stringValue:@"chat"];
-//        [message addAttributeWithName:@"to" stringValue:[jid full]];
-//        [message addChild:body];
-//        
-//        [xmppStream sendElement:message];
-//    }
-//}
 
 #pragma mark XMPP delegates
 - (void)xmppStreamDidConnect:(XMPPStream *)sender {
@@ -208,16 +190,6 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 }
 
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message {
-	
-	
-////	NSString *msg = [[message elementForName:@"body"] stringValue];
-//	NSString *from = [[message attributeForName:@"from"] stringValue];
-//    NSString *type = [[message attributeForName:@"type"] stringValue];
-//    NSString *itemId = [[message attributeForName:@"itemId"] stringValue];
-//    
-//	NSMutableDictionary *m = [[NSMutableDictionary alloc] init];
-////	[m setObject:msg forKey:@"msg"];
-//	[m setObject:from forKey:@"sender"];
 	
 	[[NSNotificationCenter defaultCenter]postNotificationName:TJ_RECIEVE_MESSAGE_NOTIFICATION object:message];
 }
