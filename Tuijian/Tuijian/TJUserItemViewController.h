@@ -8,6 +8,6 @@
 
 #import "TJCommentViewController.h"
 
-@interface TJMyItemViewController : TJCommentViewController
+@interface TJUserItemViewController : TJCommentViewController
 
 @end

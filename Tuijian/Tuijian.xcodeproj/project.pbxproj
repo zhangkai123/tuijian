@@ -227,7 +227,7 @@
 		4BE911BF18DBE12400F4C3B1 /* TJMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE911BE18DBE12400F4C3B1 /* TJMemoryCache.m */; };
 		4BEFE99118E3B3BE00E2B6A3 /* TJMyItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */; };
 		4BEFE99418E3C1F100E2B6A3 /* TJMyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99318E3C1F100E2B6A3 /* TJMyInfoCell.m */; };
-		4BEFE99718E3CA6B00E2B6A3 /* TJMyItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99618E3CA6B00E2B6A3 /* TJMyItemViewController.m */; };
+		4BEFE99718E3CA6B00E2B6A3 /* TJUserItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99618E3CA6B00E2B6A3 /* TJUserItemViewController.m */; };
 		4BEFE99B18E3DA0800E2B6A3 /* TJTouchableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99A18E3DA0800E2B6A3 /* TJTouchableImageView.m */; };
 		4BEFE99E18E3E94600E2B6A3 /* TJUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99D18E3E94600E2B6A3 /* TJUserInfoViewController.m */; };
 		4BF41A2318D299B6004E9A38 /* TJCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */; };
@@ -679,8 +679,8 @@
 		4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyItemCell.m; sourceTree = "<group>"; };
 		4BEFE99218E3C1F100E2B6A3 /* TJMyInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyInfoCell.h; sourceTree = "<group>"; };
 		4BEFE99318E3C1F100E2B6A3 /* TJMyInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyInfoCell.m; sourceTree = "<group>"; };
-		4BEFE99518E3CA6B00E2B6A3 /* TJMyItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyItemViewController.h; sourceTree = "<group>"; };
-		4BEFE99618E3CA6B00E2B6A3 /* TJMyItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyItemViewController.m; sourceTree = "<group>"; };
+		4BEFE99518E3CA6B00E2B6A3 /* TJUserItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJUserItemViewController.h; sourceTree = "<group>"; };
+		4BEFE99618E3CA6B00E2B6A3 /* TJUserItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJUserItemViewController.m; sourceTree = "<group>"; };
 		4BEFE99918E3DA0800E2B6A3 /* TJTouchableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJTouchableImageView.h; sourceTree = "<group>"; };
 		4BEFE99A18E3DA0800E2B6A3 /* TJTouchableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJTouchableImageView.m; sourceTree = "<group>"; };
 		4BEFE99C18E3E94600E2B6A3 /* TJUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJUserInfoViewController.h; sourceTree = "<group>"; };
@@ -1867,13 +1867,13 @@
 			name = MemoryCacheManager;
 			sourceTree = "<group>";
 		};
-		4BEFE99818E3CA8200E2B6A3 /* MyItem */ = {
+		4BEFE99818E3CA8200E2B6A3 /* UserItem */ = {
 			isa = PBXGroup;
 			children = (
-				4BEFE99518E3CA6B00E2B6A3 /* TJMyItemViewController.h */,
-				4BEFE99618E3CA6B00E2B6A3 /* TJMyItemViewController.m */,
+				4BEFE99518E3CA6B00E2B6A3 /* TJUserItemViewController.h */,
+				4BEFE99618E3CA6B00E2B6A3 /* TJUserItemViewController.m */,
 			);
-			name = MyItem;
+			name = UserItem;
 			sourceTree = "<group>";
 		};
 		4BEFE99F18E3E94D00E2B6A3 /* UserInformation */ = {
@@ -1945,7 +1945,7 @@
 				4B1D467E18DA8B870056262B /* Camera */,
 				4B1D467D18DA8B330056262B /* TabControllers */,
 				4B50AC1318D6DCB70028BAF9 /* Comment */,
-				4BEFE99818E3CA8200E2B6A3 /* MyItem */,
+				4BEFE99818E3CA8200E2B6A3 /* UserItem */,
 				4B03651B18E2A8DC00D106F1 /* Message */,
 				4B1D467F18DA8BD70056262B /* CellView */,
 				4BEFE99F18E3E94D00E2B6A3 /* UserInformation */,
@@ -2181,7 +2181,7 @@
 				4B9C40EA18D984AF00B9F8E5 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
 				4B47A39918D179B800087BE4 /* UIImage+MultiFormat.m in Sources */,
 				4B47A39018D179B800087BE4 /* SDImageCache.m in Sources */,
-				4BEFE99718E3CA6B00E2B6A3 /* TJMyItemViewController.m in Sources */,
+				4BEFE99718E3CA6B00E2B6A3 /* TJUserItemViewController.m in Sources */,
 				4B9C412418D984AF00B9F8E5 /* NSXMLElement+XEP_0335.m in Sources */,
 				4B9C40D818D984AF00B9F8E5 /* XMPPUserMemoryStorageObject.m in Sources */,
 				4B569CDE18CEBB5D000DF219 /* TJTencentAPIClient.m in Sources */,

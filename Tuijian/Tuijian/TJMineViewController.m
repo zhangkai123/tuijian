@@ -10,7 +10,7 @@
 #import "TJUser.h"
 #import "TJMyInfoCell.h"
 #import "TJMyItemCell.h"
-#import "TJMyItemViewController.h"
+#import "TJUserItemViewController.h"
 
 @interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -148,11 +148,11 @@
     TJItem *item = [myItemsArray objectAtIndex:indexPath.row];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
     
-    TJMyItemViewController *myItemViewController = [[TJMyItemViewController alloc]init];
-    myItemViewController.theItem = item;
-    myItemViewController.textHeight = textHeight;
+    TJUserItemViewController *userItemViewController = [[TJUserItemViewController alloc]init];
+    userItemViewController.theItem = item;
+    userItemViewController.textHeight = textHeight;
     
-    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:myItemViewController];
+    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:userItemViewController];
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

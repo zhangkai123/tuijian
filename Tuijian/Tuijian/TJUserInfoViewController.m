@@ -10,7 +10,7 @@
 #import "TJUser.h"
 #import "TJMyInfoCell.h"
 #import "TJMyItemCell.h"
-#import "TJMyItemViewController.h"
+#import "TJUserItemViewController.h"
 
 @interface TJUserInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -25,7 +25,7 @@
 -(id)init
 {
     if (self = [super init]) {
-        self.title = @"详细信息";
+        self.title = @"用户信息";
     }
     return self;
 }
@@ -145,11 +145,11 @@
     TJItem *item = [herItemsArray objectAtIndex:indexPath.row];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
     
-    TJMyItemViewController *myItemViewController = [[TJMyItemViewController alloc]init];
-    myItemViewController.theItem = item;
-    myItemViewController.textHeight = textHeight;
+    TJUserItemViewController *userItemViewController = [[TJUserItemViewController alloc]init];
+    userItemViewController.theItem = item;
+    userItemViewController.textHeight = textHeight;
     
-    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:myItemViewController];
+    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:userItemViewController];
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

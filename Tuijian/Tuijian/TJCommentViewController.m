@@ -13,8 +13,10 @@
 #import "TJCommentCell.h"
 #import "TJComment.h"
 #import "UIImage+additions.h"
+#import "TJTouchableImageView.h"
+#import "TJUserInfoViewController.h"
 
-@interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,YFInputBarDelegate>
+@interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,YFInputBarDelegate,TJTouchableImageViewDelegate>
 {
     UITableView *detailTableView;
     YFInputBar *commentInputBar;
@@ -240,7 +242,9 @@
     UIView *backView = nil;
     if (section == 0) {
         backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
-        UIImageView *userImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
+        TJTouchableImageView *userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
+        userImageView.sectionNum = section;
+        userImageView.delegate = self;
         userImageView.clipsToBounds = YES;
         [backView addSubview:userImageView];
         userImageView.layer.cornerRadius = 40 / 2.0;
@@ -267,6 +271,18 @@
         [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.95]];
     }
     return backView;
+}
+#pragma TJTouchableImageViewDelegate
+-(void)selectUserImageView:(int)sectionNum
+{
+    self.hidesBottomBarWhenPushed = YES;
+    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
+    userInfoViewController.userImageUrl = theItem.userImg;
+    userInfoViewController.userName = theItem.userName;
+    userInfoViewController.userGender = theItem.userGender;
+    userInfoViewController.uid = theItem.uid;
+    [self.navigationController pushViewController:userInfoViewController animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 #pragma TJItemCellDelegate
 -(void)likeItem:(NSString *)itemId liked:(void (^)(BOOL Liked))hasL

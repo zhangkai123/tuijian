@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 zhang kai. All rights reserved.
 //
 
-#import "TJMyItemViewController.h"
+#import "TJUserItemViewController.h"
 
-@interface TJMyItemViewController ()
+@interface TJUserItemViewController ()
 
 @end
 
-@implementation TJMyItemViewController
+@implementation TJUserItemViewController
 
 -(id)init
 {
     if (self = [super init]) {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"我的" style:UIBarButtonItemStyleDone target:self action:@selector(goBack)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(goBack)];
     }
     return self;
 }
