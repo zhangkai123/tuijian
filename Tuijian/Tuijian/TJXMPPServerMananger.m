@@ -47,7 +47,7 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
     
     [self setupStream];
     
-    NSString *jabberID = [NSString stringWithFormat:@"%@@zhangkaemacbook.lan",userId];
+    NSString *jabberID = [NSString stringWithFormat:@"%@@115.28.6.27",userId];
     NSString *myPassword = pword;
     
     if (![xmppStream isDisconnected]) {
@@ -109,7 +109,7 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 
 -(NSXMLElement *)constructBasicMessage:(NSString *)userId basicMessage:(TJMessage *)basicM
 {
-    NSString *jabberID = [NSString stringWithFormat:@"%@@zhangkaemacbook.lan",userId];
+    NSString *jabberID = [NSString stringWithFormat:@"%@@AY1310280816398728e0Z",userId];
     XMPPJID *jid = [XMPPJID jidWithString:jabberID];
     
     NSXMLElement *message = [NSXMLElement elementWithName:@"message"];

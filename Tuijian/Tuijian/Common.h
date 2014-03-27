@@ -9,7 +9,8 @@
 #ifndef Tuijian_Common_h
 #define Tuijian_Common_h
 
-#define TJ_MY_SERVER_BASE_URL @"http://192.168.199.109/TJServer/webServices/"
+//#define TJ_MY_SERVER_BASE_URL @"http://192.168.199.109/TJServer/webServices/"
+#define TJ_MY_SERVER_BASE_URL @"http://115.28.6.27/TJServer/webServices/"
 #define TJ_TENCENT_BASE_URL @"https://graph.qq.com/"
 
 #define TJ_USER_HAVE_LOGIN @"user_have_login"
