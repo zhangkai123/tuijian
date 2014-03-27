@@ -16,7 +16,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = UIColorFromRGB(0x242424);
         
         profileImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 80, 80)];
         profileImageView.clipsToBounds = YES;

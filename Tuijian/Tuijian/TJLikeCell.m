@@ -26,8 +26,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-//        self.backgroundColor = UIColorFromRGB(0xD4D4D4);
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = UIColorFromRGB(0x242424);
         
         likeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
         likeTableView.delegate = self;
