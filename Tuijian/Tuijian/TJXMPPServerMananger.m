@@ -109,7 +109,7 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 
 -(NSXMLElement *)constructBasicMessage:(NSString *)userId basicMessage:(TJMessage *)basicM
 {
-    NSString *jabberID = [NSString stringWithFormat:@"%@@AY1310280816398728e0Z",userId];
+    NSString *jabberID = [NSString stringWithFormat:@"%@@115.28.6.27",userId];
     XMPPJID *jid = [XMPPJID jidWithString:jabberID];
     
     NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
