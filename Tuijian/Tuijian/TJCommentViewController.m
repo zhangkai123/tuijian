@@ -278,38 +278,29 @@
 #pragma TJTouchableImageViewDelegate
 -(void)selectUserImageView:(int)sectionNum
 {
-    self.hidesBottomBarWhenPushed = YES;
-    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
-    userInfoViewController.userImageUrl = theItem.userImg;
-    userInfoViewController.userName = theItem.userName;
-    userInfoViewController.userGender = theItem.userGender;
-    userInfoViewController.uid = theItem.uid;
-    [self.navigationController pushViewController:userInfoViewController animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    [self goToUserInformationPage:theItem.userImg userName:theItem.userName userGender:theItem.userGender userId:theItem.uid];
 }
 #pragma TJLikeCellDelegate
 -(void)selectUserCell:(int)rowNum
 {
     TJUser *user = [myLikesArray objectAtIndex:rowNum];
-    self.hidesBottomBarWhenPushed = YES;
-    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
-    userInfoViewController.userImageUrl = user.profile_image_url;
-    userInfoViewController.userName = user.name;
-    userInfoViewController.userGender = user.gender;
-    userInfoViewController.uid = user.myUserId;
-    [self.navigationController pushViewController:userInfoViewController animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    [self goToUserInformationPage:user.profile_image_url userName:user.name userGender:user.gender userId:user.myUserId];
 }
 #pragma TJCommentCellDelegate
 -(void)selectCommentUserImage:(int)rowNum
 {
     TJComment *comment = [myCommentsArray objectAtIndex:rowNum];
+    [self goToUserInformationPage:comment.user.profile_image_url userName:comment.user.name userGender:comment.user.gender userId:comment.user.myUserId];
+}
+
+-(void)goToUserInformationPage:(NSString *)userImage userName:(NSString *)userN userGender:(NSString *)userG userId:(NSString *)uid
+{
     self.hidesBottomBarWhenPushed = YES;
     TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
-    userInfoViewController.userImageUrl = comment.user.profile_image_url;
-    userInfoViewController.userName = comment.user.name;
-    userInfoViewController.userGender = comment.user.gender;
-    userInfoViewController.uid = comment.user.myUserId;
+    userInfoViewController.userImageUrl = userImage;
+    userInfoViewController.userName = userN;
+    userInfoViewController.userGender = userG;
+    userInfoViewController.uid = uid;
     [self.navigationController pushViewController:userInfoViewController animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
