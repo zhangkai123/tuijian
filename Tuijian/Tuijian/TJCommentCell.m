@@ -11,6 +11,7 @@
 @implementation TJCommentCell
 @synthesize userImageView ,nameLable ,commentLable;
 @synthesize commentHeight;
+@synthesize delegate ,rowNum;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -19,9 +20,8 @@
         // Initialization code
 //        self.backgroundColor = UIColorFromRGB(0xEEEEEE);
         
-        self.userImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
-//        userImageView.layer.masksToBounds = YES;
-//        userImageView.layer.cornerRadius = 40 / 2.0;
+        self.userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
+        self.userImageView.delegate = self;
         [self addSubview:self.userImageView];
         
         nameLable = [[UILabel alloc]initWithFrame:CGRectMake(60, 10, 100, 20)];
@@ -42,6 +42,11 @@
 {
     commentHeight =commentH;
     commentLable.frame = CGRectMake(60, 30, 250, commentH);
+}
+#pragma TJTouchableImageViewDelegate
+-(void)selectUserImageView:(int)sectionNum
+{
+    [self.delegate selectCommentUserImage:self.rowNum];
 }
 - (void)awakeFromNib
 {

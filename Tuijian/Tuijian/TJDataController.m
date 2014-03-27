@@ -171,7 +171,9 @@
     TJComment *comment = [[TJComment alloc]init];
     TJUser *user = [self getMyUserInfo];
     NSString *accessToken = [self getMyUserToken];
+    NSString *userId = [self getMyUserId];
     user.accessToken = accessToken;
+    user.myUserId = userId;
     comment.user = user;
     comment.info = commentInfo;
     return comment;

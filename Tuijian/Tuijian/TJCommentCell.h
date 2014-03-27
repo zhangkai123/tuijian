@@ -7,15 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TJTouchableImageView.h"
 
-@interface TJCommentCell : UITableViewCell
+@protocol TJCommentCellDelegate <NSObject>
+
+-(void)selectCommentUserImage:(int)rowNum;
+
+@end
+
+@interface TJCommentCell : UITableViewCell<TJTouchableImageViewDelegate>
 {
-    UIImageView *userImageView;
+    TJTouchableImageView *userImageView;
     UILabel *nameLable;
     UILabel *commentLable;
+    __unsafe_unretained id<TJCommentCellDelegate> delegate;
+    int rowNum;
 }
-@property(nonatomic,strong) UIImageView *userImageView;
+@property(nonatomic,strong) TJTouchableImageView *userImageView;
 @property(nonatomic,strong) UILabel *nameLable;
 @property(nonatomic,strong) UILabel *commentLable;
 @property(nonatomic,assign) float commentHeight;
+
+@property(nonatomic,unsafe_unretained) id<TJCommentCellDelegate> delegate;
+@property(nonatomic,assign) int rowNum;
 @end

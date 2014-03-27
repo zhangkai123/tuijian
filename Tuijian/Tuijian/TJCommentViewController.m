@@ -223,6 +223,8 @@
                                                }];
         [[(TJCommentCell *)cell nameLable]setText:comment.user.name];
         [[(TJCommentCell *)cell commentLable]setText:comment.info];
+        [(TJCommentCell *)cell setDelegate:(id)self];
+        [(TJCommentCell *)cell setRowNum:indexPath.row];
         
         float  commentHeight = [[myCommentHeightArray objectAtIndex:indexPath.row]floatValue];
         [(TJCommentCell *)cell setCommentHeight:commentHeight];
@@ -295,6 +297,19 @@
     userInfoViewController.userName = user.name;
     userInfoViewController.userGender = user.gender;
     userInfoViewController.uid = user.myUserId;
+    [self.navigationController pushViewController:userInfoViewController animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+#pragma TJCommentCellDelegate
+-(void)selectCommentUserImage:(int)rowNum
+{
+    TJComment *comment = [myCommentsArray objectAtIndex:rowNum];
+    self.hidesBottomBarWhenPushed = YES;
+    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
+    userInfoViewController.userImageUrl = comment.user.profile_image_url;
+    userInfoViewController.userName = comment.user.name;
+    userInfoViewController.userGender = comment.user.gender;
+    userInfoViewController.uid = comment.user.myUserId;
     [self.navigationController pushViewController:userInfoViewController animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
