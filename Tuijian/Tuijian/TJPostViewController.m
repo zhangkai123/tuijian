@@ -54,8 +54,6 @@
     [self.view addSubview:titleTextField];
     
     tuijianTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 64 + 10 + 50 + 10, 300, 160)];
-//    tuijianTextView.backgroundColor = [UIColor blueColor];
-//    [tuijianTextView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
     tuijianTextView.font = [UIFont systemFontOfSize:15];
     tuijianTextView.autocorrectionType = UITextAutocorrectionTypeNo;
     tuijianTextView.keyboardType = UIKeyboardTypeDefault;
@@ -78,10 +76,12 @@
 }
 -(void)postItem
 {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSString *title = titleTextField.text;
     NSString *tuijianText = tuijianTextView.text;
     [[TJDataController sharedDataController]saveItem:title recommendMes:tuijianText uploadImage:self.cropedImage success:^(id Json){
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }failure:^(NSError *error){
         
     }];

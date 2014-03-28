@@ -27,9 +27,8 @@
     [contentController didMoveToParentViewController:controller];
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
+{
     NSMutableArray *controllersArray = [[NSMutableArray alloc]initWithCapacity:3];
-    
     TJShowViewController *showViewController = [[TJShowViewController alloc]init];
 //    UINavigationController *showNavController = [[UINavigationController alloc]initWithRootViewController:showViewController];
     UINavigationController *showNavController = [[UINavigationController alloc] initWithNavigationBarClass:[GTScrollNavigationBar class] toolbarClass:nil];

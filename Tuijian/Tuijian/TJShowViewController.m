@@ -26,7 +26,10 @@
 
 @implementation TJShowViewController
 
-
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 -(id)init
 {
     if (self = [super init]) {
@@ -48,7 +51,6 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self refreshTableViewData];
     self.navigationController.scrollNavigationBar.scrollView = itemTableView;
     [super viewWillAppear:animated];
 }
@@ -62,8 +64,6 @@
     self.title = @"推荐";
     [super viewDidLoad];
     itemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
-//    [itemTableView setBackgroundColor:[UIColor clearColor]];
-//    [itemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     itemTableView.dataSource = self;
     itemTableView.delegate = self;
     itemTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
@@ -71,7 +71,10 @@
     
     itemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
-//    [self refreshTableViewData];
+    if ([[TJDataController sharedDataController]getUserLoginMask]) {
+        [self refreshTableViewData];
+    }
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
 }
 -(void)refreshTableViewData
 {
@@ -87,9 +90,6 @@
         for (int i = 0; i < [iteArray count]; i++) {
             TJItem *item = [iteArray objectAtIndex:i];
             NSString *recommendTex = item.recommendReason;
-            //            CGSize expectedLabelSize = [recommendTex sizeWithFont:[UIFont systemFontOfSize:15]
-            //                                              constrainedToSize:CGSizeMake(300, 0)
-            //                                                  lineBreakMode:NSLineBreakByCharWrapping];
             CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(300, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                                                attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
@@ -138,11 +138,9 @@
     if (!cell) {
         cell = [[TJItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     TJItem *theItem = [itemsArray objectAtIndex:indexPath.section];
     cell.itemId = theItem.itemId;
-//    cell.userId = theItem.uid;
     [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
     cell.titleLabel.text = theItem.title;
@@ -200,7 +198,6 @@
     [nameLabel setText:theItem.userName];
     
     [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.95]];
-//    [backView setBackgroundColor:[UIColor whiteColor]];
     return backView;
 }
 #pragma TJTouchableImageViewDelegate
@@ -225,7 +222,6 @@
         hasL(hasLiked);
         theItem.hasLiked = hasLiked;
         if (hasLiked) {
-//            [[TJDataController sharedDataController]sendLike:uid itemId:itemId];
             [[TJDataController sharedDataController]sendLike:theItem];
         }
     }failure:^(NSError *error){
