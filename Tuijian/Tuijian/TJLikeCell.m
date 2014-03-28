@@ -26,7 +26,11 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        self.backgroundColor = UIColorFromRGB(0x242424);
+//        self.backgroundColor = UIColorFromRGB(0x242424);
+        
+        UIImageView *likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0, 32, 32)];
+        likeImageView.image = [UIImage imageNamed:@"like.png"];
+        [self addSubview:likeImageView];
         
         likeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
         likeTableView.delegate = self;
