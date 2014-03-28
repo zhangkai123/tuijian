@@ -225,6 +225,7 @@
 		4BE1636318B9D7890009158D /* TJEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1636218B9D7880009158D /* TJEditViewController.m */; };
 		4BE911BB18DBD81600F4C3B1 /* TJPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */; };
 		4BE911BF18DBE12400F4C3B1 /* TJMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE911BE18DBE12400F4C3B1 /* TJMemoryCache.m */; };
+		4BEE7F3618E53A8900232E6C /* MTStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEE7F3518E53A8900232E6C /* MTStatusBarOverlay.m */; };
 		4BEFE99118E3B3BE00E2B6A3 /* TJMyItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */; };
 		4BEFE99418E3C1F100E2B6A3 /* TJMyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99318E3C1F100E2B6A3 /* TJMyInfoCell.m */; };
 		4BEFE99718E3CA6B00E2B6A3 /* TJUserItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99618E3CA6B00E2B6A3 /* TJUserItemViewController.m */; };
@@ -675,6 +676,8 @@
 		4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJPostViewController.m; sourceTree = "<group>"; };
 		4BE911BD18DBE12400F4C3B1 /* TJMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMemoryCache.h; sourceTree = "<group>"; };
 		4BE911BE18DBE12400F4C3B1 /* TJMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMemoryCache.m; sourceTree = "<group>"; };
+		4BEE7F3418E53A8900232E6C /* MTStatusBarOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTStatusBarOverlay.h; sourceTree = "<group>"; };
+		4BEE7F3518E53A8900232E6C /* MTStatusBarOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTStatusBarOverlay.m; sourceTree = "<group>"; };
 		4BEFE98F18E3B3BE00E2B6A3 /* TJMyItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyItemCell.h; sourceTree = "<group>"; };
 		4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyItemCell.m; sourceTree = "<group>"; };
 		4BEFE99218E3C1F100E2B6A3 /* TJMyInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyInfoCell.h; sourceTree = "<group>"; };
@@ -931,6 +934,7 @@
 		4B569CB418CEB9D5000DF219 /* ThirdPartyLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				4BEE7F3318E53A7B00232E6C /* MTStatusBarOverlay */,
 				4B9C3F6818D9846300B9F8E5 /* XMPP */,
 				4B50AC2518D715960028BAF9 /* GTScrollNavigationBar */,
 				4B47A37018D179B800087BE4 /* SDWebImage */,
@@ -1867,6 +1871,15 @@
 			name = MemoryCacheManager;
 			sourceTree = "<group>";
 		};
+		4BEE7F3318E53A7B00232E6C /* MTStatusBarOverlay */ = {
+			isa = PBXGroup;
+			children = (
+				4BEE7F3418E53A8900232E6C /* MTStatusBarOverlay.h */,
+				4BEE7F3518E53A8900232E6C /* MTStatusBarOverlay.m */,
+			);
+			name = MTStatusBarOverlay;
+			sourceTree = "<group>";
+		};
 		4BEFE99818E3CA8200E2B6A3 /* UserItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -2237,6 +2250,7 @@
 				4B9C410418D984AF00B9F8E5 /* XMPPDateTimeProfiles.m in Sources */,
 				4B9C411718D984AF00B9F8E5 /* XMPPMessageDeliveryReceipts.m in Sources */,
 				4B9C40C618D984AF00B9F8E5 /* XMPPJID.m in Sources */,
+				4BEE7F3618E53A8900232E6C /* MTStatusBarOverlay.m in Sources */,
 				4B9C40D718D984AF00B9F8E5 /* XMPPRosterMemoryStorage.m in Sources */,
 				4B9C411E18D984AF00B9F8E5 /* XEP_0223.m in Sources */,
 				4B9C413818D984AF00B9F8E5 /* DDXMLNode.m in Sources */,

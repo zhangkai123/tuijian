@@ -29,6 +29,11 @@
 #define TJ_USER_GENDER @"user_gender"
 #define TJ_USER_IMAGE_URL @"user_image_url"
 
+//notifications
+#define TJ_UPLOADING_ITEM_NOTIFICATION @"uploading_item_notification"
+#define TJ_UPLOADING_ITEM_SUCCESS @"uploading_item_success"
+#define TJ_UPLOADING_ITEM_FAIL @"uploading_item_fail"
+
 #define TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION @"update_recommend_list_notification"
 #define TJ_RECIEVE_MESSAGE_NOTIFICATION @"recieve_message_notification"
 #define TJ_INFO_VIEWCONTROLLER_NOTIFICATION @"info_viewcontroller_notification"

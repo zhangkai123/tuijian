@@ -15,8 +15,9 @@
 #import "GTScrollNavigationBar.H"
 #import "TJTouchableImageView.h"
 #import "TJUserInfoViewController.h"
+#import "MTStatusBarOverlay.h"
 
-@interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJCamViewControllerDelegate,TJItemCellDelegate,TJTouchableImageViewDelegate>
+@interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJCamViewControllerDelegate,TJItemCellDelegate,TJTouchableImageViewDelegate,MTStatusBarOverlayDelegate>
 {
     UITableView *itemTableView;
     NSMutableArray *itemsArray;
@@ -74,8 +75,35 @@
     if ([[TJDataController sharedDataController]getUserLoginMask]) {
         [self refreshTableViewData];
     }
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadingItem) name:TJ_UPLOADING_ITEM_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadItemSuccess) name:TJ_UPLOADING_ITEM_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadItemFail) name:TJ_UPLOADING_ITEM_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
 }
+-(void)uploadingItem
+{
+    [self showUploadingActivityOnStatusbar];
+}
+-(void)uploadItemSuccess
+{
+    MTStatusBarOverlay *overlay = [MTStatusBarOverlay sharedInstance];
+    [overlay postImmediateFinishMessage:@"发布成功!" duration:2.0 animated:YES];
+    [self refreshTableViewData];
+}
+-(void)uploadItemFail
+{
+    MTStatusBarOverlay *overlay = [MTStatusBarOverlay sharedInstance];
+    [overlay postImmediateErrorMessage:@"发布失败" duration:2.0 animated:YES];
+}
+-(void)showUploadingActivityOnStatusbar
+{
+    MTStatusBarOverlay *overlay = [MTStatusBarOverlay sharedInstance];
+    overlay.animation = MTStatusBarOverlayAnimationFallDown;
+    overlay.detailViewMode = MTDetailViewModeDetailText;
+    overlay.delegate = self;
+    [overlay postMessage:@"正在发布您的推荐…"];
+}
+
 -(void)refreshTableViewData
 {
     __block UITableView *weaktheTalbleView = itemTableView;

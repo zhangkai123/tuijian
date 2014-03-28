@@ -76,14 +76,16 @@
 }
 -(void)postItem
 {
+    [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPLOADING_ITEM_NOTIFICATION object:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSString *title = titleTextField.text;
     NSString *tuijianText = tuijianTextView.text;
     [[TJDataController sharedDataController]saveItem:title recommendMes:tuijianText uploadImage:self.cropedImage success:^(id Json){
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPLOADING_ITEM_SUCCESS object:nil];
     }failure:^(NSError *error){
-        
+        [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPLOADING_ITEM_FAIL object:nil];
     }];
 }
 #pragma text view delegate
