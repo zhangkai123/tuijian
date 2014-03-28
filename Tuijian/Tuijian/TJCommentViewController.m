@@ -25,6 +25,8 @@
     NSMutableArray *myLikesArray;
     NSMutableArray *myCommentsArray;
     NSMutableArray *myCommentHeightArray;
+    
+    TJLikeCell *myLikeCell;
 }
 @end
 
@@ -204,6 +206,7 @@
         }
         [(TJLikeCell *)cell setLikesArray:myLikesArray];
         [(TJLikeCell *)cell setDelegate:(id)self];
+        myLikeCell = (TJLikeCell *)cell;
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
         if (!cell) {
@@ -307,15 +310,39 @@
 #pragma TJItemCellDelegate
 -(void)likeItem:(NSString *)itemId liked:(void (^)(BOOL Liked))hasL
 {
-    __block TJItem *item = theItem;
+    __block TJItem *weakItem = theItem;
+    __block NSMutableArray *weakMyLikesArray = myLikesArray;
+    __block TJLikeCell *weakMyLikeCell = myLikeCell;
     [[TJDataController sharedDataController]saveLike:itemId success:^(BOOL hasLiked){
         hasL(hasLiked);
-        item.hasLiked = hasLiked;
+        weakItem.hasLiked = hasLiked;
+        
+        TJUser *myUserInfo = [[TJDataController sharedDataController] getMyWholeUserInfo];
+        if (hasLiked) {
+            [weakMyLikesArray insertObject:myUserInfo atIndex:0];
+            [weakMyLikeCell setLikesArray:weakMyLikesArray];
+             [[TJDataController sharedDataController]sendLike:weakItem];
+        }else{
+            TJUser *user = [self findUserInLikesArray:myUserInfo.myUserId];
+            if (user != nil) {
+                [weakMyLikesArray removeObject:user];
+                [weakMyLikeCell setLikesArray:weakMyLikesArray];
+            }
+        }
     }failure:^(NSError *error){
         
     }];
 }
-
+-(TJUser *)findUserInLikesArray:(NSString *)userId
+{
+    for (int i = 0; i < [myLikesArray count]; i++) {
+        TJUser *user = [myLikesArray objectAtIndex:i];
+        if ([user.myUserId isEqualToString:userId]) {
+            return user;
+        }
+    }
+    return nil;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

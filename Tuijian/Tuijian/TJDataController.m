@@ -178,6 +178,15 @@
     comment.info = commentInfo;
     return comment;
 }
+-(TJUser *)getMyWholeUserInfo
+{
+    TJUser *user = [self getMyUserInfo];
+    NSString *userId = [self getMyUserId];
+    NSString *userAccessToken = [self getMyUserToken];
+    user.myUserId = userId;
+    user.accessToken = userAccessToken;
+    return user;
+}
 -(void)getUserItems:(NSString *)userId success:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure
 {
     NSString *myAccessToken = [self getMyUserToken];

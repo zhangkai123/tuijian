@@ -52,6 +52,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    [itemTableView reloadData];
     self.navigationController.scrollNavigationBar.scrollView = itemTableView;
     [super viewWillAppear:animated];
 }
@@ -177,6 +178,7 @@
     cell.commentNumLabel.text = theItem.commentNum;
     [cell setLikeButtonColor:theItem.hasLiked];
     cell.delegate = self;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

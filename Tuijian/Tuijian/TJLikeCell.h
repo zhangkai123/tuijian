@@ -21,4 +21,5 @@
 }
 @property(nonatomic,strong) NSMutableArray *likesArray;
 @property(nonatomic,unsafe_unretained) id<TJLikeCellDelegate> delegate;
+
 @end
