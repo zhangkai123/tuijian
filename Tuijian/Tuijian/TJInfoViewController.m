@@ -80,7 +80,6 @@
     if (!cell) {
         cell = [[TJMessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     TJMessage *message = [infoListArray objectAtIndex:indexPath.row];
     NSURL *imageUrl = [NSURL URLWithString:message.imageUrl];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageUrl];

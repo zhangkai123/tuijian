@@ -31,6 +31,8 @@
     UIImageView *likeImageView;
     UILabel *likeNumLabel;
     
+    UIView *bottomLineView;
+    
     __unsafe_unretained id<TJItemCellDelegate> delegate;
 }
 @property(nonatomic,strong) NSString *itemId;

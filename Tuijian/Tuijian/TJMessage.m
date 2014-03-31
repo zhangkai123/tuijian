@@ -10,6 +10,6 @@
 
 @implementation TJMessage
 @synthesize messageId ,messageType;
-@synthesize imageUrl ,messageTitle ,messageName ,message;
+@synthesize imageUrl ,messageTitle ,messageName ,message ,messageNum;
 
 @end

@@ -48,10 +48,10 @@
     [controllersArray addObject:infoNavController];
     [controllersArray addObject:mineNavController];
     
-//    [infoNavController.tabBarItem setBadgeValue:@"10"];
-    
     self.tabBarController = [[UITabBarController alloc]init];
     self.tabBarController.viewControllers = controllersArray;
+    
+    [self updateInfoTabbarBadge];
     
     BOOL haveLogin = [[TJDataController sharedDataController]getUserLoginMask];
     if (!haveLogin) {
@@ -65,6 +65,11 @@
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+-(void)updateInfoTabbarBadge
+{
+    UITabBarItem *infoItem = [self.tabBarController.tabBar.items objectAtIndex:1];
+    [infoItem setBadgeValue:@"10"];
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     return [TencentOAuth HandleOpenURL:url];

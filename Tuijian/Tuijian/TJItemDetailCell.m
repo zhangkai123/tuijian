@@ -18,6 +18,7 @@
         likeNumLabel.hidden = YES;
         commentImageView.hidden = YES;
         commentNumLabel.hidden =YES;
+        bottomLineView.hidden = YES;
     }
     return self;
 }

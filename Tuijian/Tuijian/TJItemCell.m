@@ -9,13 +9,6 @@
 #import "TJItemCell.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface TJItemCell()
-{
-//    BOOL likeButtonRed;
-    UIView *bottomLineView;
-}
-@end
-
 @implementation TJItemCell
 @synthesize itemId;
 @synthesize titleLabel;

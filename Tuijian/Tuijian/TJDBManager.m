@@ -49,22 +49,34 @@
 		const char *getSqlCommand = [getCommand UTF8String];
 		sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
 		
-        //		sqlite3_reset(compiledStatement);
         NSString *theId = nil;
+        int messageNum = 0;
 		while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
 			theId = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)];
+            messageNum = sqlite3_column_int(compiledStatement, 7);
 		}
         if (theId != nil) {
-            NSString *deleteCommand = [NSString stringWithFormat:@"delete from mesList where id='%@'" , theId];
-            const char *deleteSqlCommand = [deleteCommand UTF8String];
-            if (sqlite3_prepare_v2(database, deleteSqlCommand, -1, &compiledStatement, NULL) == SQLITE_OK) {
+            NSString *updateCommand = [NSString stringWithFormat:@"delete from mesList where id='%@'" , theId];
+            const char *updateSqlCommand = [updateCommand UTF8String];
+            if (sqlite3_prepare_v2(database, updateSqlCommand, -1, &compiledStatement, NULL) == SQLITE_OK) {
                 if (sqlite3_step(compiledStatement) == SQLITE_DONE) {
                     compiledStatement = nil;
                 }
             }
+            NSString *insertCommand = [NSString stringWithFormat:
+                                       @"insert into mesList (messageId,messageType,imageUrl,messageTitle,messageName,message,messageNum) VALUES('%@','%@','%@','%@','%@','%@','%d')"
+                                       , messageId,mType,iUrl,mTitle,mName,mes,messageNum + 1];
+            const char *insertSqlCommand = [insertCommand UTF8String];
+            if (sqlite3_prepare_v2(database, insertSqlCommand, -1, &compiledStatement, NULL) == SQLITE_OK) {
+                if (sqlite3_step(compiledStatement) == SQLITE_DONE) {
+                    compiledStatement = nil;
+                }
+            }
+            sqlite3_close(database);
+            return;
         }
         NSString *insertCommand = [NSString stringWithFormat:
-                                   @"insert into mesList (messageId,messageType,imageUrl,messageTitle,messageName,message) VALUES('%@','%@','%@','%@','%@','%@')"
+                                   @"insert into mesList (messageId,messageType,imageUrl,messageTitle,messageName,message,messageNum) VALUES('%@','%@','%@','%@','%@','%@',1)"
                                    , messageId,mType,iUrl,mTitle,mName,mes];
 		const char *insertSqlCommand = [insertCommand UTF8String];
 		if (sqlite3_prepare_v2(database, insertSqlCommand, -1, &compiledStatement, NULL) == SQLITE_OK) {
@@ -94,6 +106,7 @@
             NSString *messageTitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 4)];
             NSString *messageName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 5)];
             NSString *message = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 6)];
+            int messageNum = sqlite3_column_int(compiledStatement, 7);
             TJMessage *theMessage = [[TJMessage alloc]init];
             theMessage.messageId = messageId;
             theMessage.messageType = messageType;
@@ -101,6 +114,7 @@
             theMessage.messageTitle = messageTitle;
             theMessage.messageName = messageName;
             theMessage.message = message;
+            theMessage.messageNum = messageNum;
             [messageListArray addObject:theMessage];
 		}
 	}
