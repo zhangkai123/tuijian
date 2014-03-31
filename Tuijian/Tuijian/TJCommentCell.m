@@ -30,7 +30,6 @@
         // Initialization code
 //        self.backgroundColor = UIColorFromRGB(0xEEEEEE);
         self.commentImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 20, 20)];
-        commentImageView.image = [UIImage imageNamed:@"comment.png"];
         [self addSubview:commentImageView];
         
         self.userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(40, 5, 40, 40)];

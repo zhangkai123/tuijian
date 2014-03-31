@@ -229,6 +229,7 @@
             [[(TJCommentCell *)cell commentImageView]setImage:nil];
             [(TJCommentCell *)cell setLineWidthAndHeight:265 sideLineHeight:commentHeight + 40];
         }else{
+            [[(TJCommentCell *)cell commentImageView]setImage:[UIImage imageNamed:@"comment.png"]];
             [(TJCommentCell *)cell setLineWidthAndHeight:300 sideLineHeight:commentHeight + 40];
         }
         if (indexPath.row == ([myCommentsArray count] - 1)) {
