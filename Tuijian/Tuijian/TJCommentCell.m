@@ -9,6 +9,7 @@
 #import "TJCommentCell.h"
 
 @implementation TJCommentCell
+@synthesize commentImageView;
 @synthesize userImageView ,nameLable ,commentLable;
 @synthesize commentHeight;
 @synthesize delegate ,rowNum;
@@ -19,17 +20,20 @@
     if (self) {
         // Initialization code
 //        self.backgroundColor = UIColorFromRGB(0xEEEEEE);
+        self.commentImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 20, 20)];
+        commentImageView.image = [UIImage imageNamed:@"comment.png"];
+        [self addSubview:commentImageView];
         
-        self.userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
+        self.userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(40, 5, 40, 40)];
         self.userImageView.delegate = self;
         [self addSubview:self.userImageView];
         
-        nameLable = [[UILabel alloc]initWithFrame:CGRectMake(60, 10, 100, 20)];
+        nameLable = [[UILabel alloc]initWithFrame:CGRectMake(90, 10, 100, 20)];
         nameLable.textColor = [UIColor blackColor];
         [nameLable setFont:[UIFont systemFontOfSize:15]];
         [self addSubview:nameLable];
 
-        commentLable = [[UILabel alloc]initWithFrame:CGRectMake(60, 30, 250, 0)];
+        commentLable = [[UILabel alloc]initWithFrame:CGRectMake(90, 30, 220, 0)];
         commentLable.textColor = [UIColor blackColor];
         [commentLable setFont:[UIFont systemFontOfSize:15]];
         commentLable.lineBreakMode = NSLineBreakByCharWrapping;
@@ -41,7 +45,7 @@
 -(void)setCommentHeight:(float)commentH
 {
     commentHeight =commentH;
-    commentLable.frame = CGRectMake(60, 30, 250, commentH);
+    commentLable.frame = CGRectMake(90, 30, 220, commentH);
 }
 #pragma TJTouchableImageViewDelegate
 -(void)selectUserImageView:(int)sectionNum

@@ -48,6 +48,8 @@
     [controllersArray addObject:infoNavController];
     [controllersArray addObject:mineNavController];
     
+//    [infoNavController.tabBarItem setBadgeValue:@"10"];
+    
     self.tabBarController = [[UITabBarController alloc]init];
     self.tabBarController.viewControllers = controllersArray;
     

@@ -27,10 +27,10 @@
 //        likeImageView.image = [UIImage imageNamed:@"favSelectedHighlight@2x.png"];
 //        [self addSubview:likeImageView];
 
-        UILabel *likeLabel = [[UILabel alloc]initWithFrame:CGRectMake(35, 25, 40, 30)];
-        likeLabel.backgroundColor = [UIColor clearColor];
-        likeLabel.text = @"❤";
-        [self addSubview:likeLabel];
+//        UILabel *likeLabel = [[UILabel alloc]initWithFrame:CGRectMake(35, 25, 40, 30)];
+//        likeLabel.backgroundColor = [UIColor clearColor];
+//        likeLabel.text = @"❤";
+//        [self addSubview:likeLabel];
     }
     return self;
 }

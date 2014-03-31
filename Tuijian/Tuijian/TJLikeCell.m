@@ -28,11 +28,11 @@
         // Initialization code
 //        self.backgroundColor = UIColorFromRGB(0x242424);
         
-        UIImageView *likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0, 32, 32)];
+        UIImageView *likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 20, 20)];
         likeImageView.image = [UIImage imageNamed:@"like.png"];
         [self addSubview:likeImageView];
         
-        likeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+        likeTableView = [[UITableView alloc]initWithFrame:CGRectMake(30, 0, 320 - 30, 50)];
         likeTableView.delegate = self;
         likeTableView.dataSource = self;
         likeTableView.transform = CGAffineTransformMakeRotation(-M_PI_2);
@@ -42,7 +42,7 @@
         likeTableView.rowHeight = 50;
         [self addSubview:likeTableView];
         //after transform , should reframe the table
-        likeTableView.frame = CGRectMake(0, 0, 320, 50);
+        likeTableView.frame = CGRectMake(30, 0, 320 - 30, 50);
         likeTableView.backgroundColor = [UIColor clearColor];
 
         likesArray = [[NSMutableArray alloc]init];

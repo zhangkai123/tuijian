@@ -17,12 +17,16 @@
 
 @interface TJCommentCell : UITableViewCell<TJTouchableImageViewDelegate>
 {
+    UIImageView *commentImageView;
+    
     TJTouchableImageView *userImageView;
     UILabel *nameLable;
     UILabel *commentLable;
     __unsafe_unretained id<TJCommentCellDelegate> delegate;
     int rowNum;
 }
+@property(nonatomic,strong) UIImageView *commentImageView;
+
 @property(nonatomic,strong) TJTouchableImageView *userImageView;
 @property(nonatomic,strong) UILabel *nameLable;
 @property(nonatomic,strong) UILabel *commentLable;

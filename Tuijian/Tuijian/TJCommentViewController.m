@@ -88,7 +88,7 @@
     }comments:^(NSArray *commentsArray){
         for (int i = 0; i < [commentsArray count]; i++) {
             TJComment *comment = [commentsArray objectAtIndex:i];
-            CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(250, 0)
+            CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(220, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                                                attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
             [weakmyCommentHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
@@ -211,6 +211,9 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
         if (!cell) {
             cell = [[TJCommentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
+        }
+        if (indexPath.row != 0) {
+            [[(TJCommentCell *)cell commentImageView]setImage:nil];
         }
         TJComment *comment = [myCommentsArray objectAtIndex:indexPath.row];
         __block UIImageView *weakImageView = [(TJCommentCell *)cell userImageView];
