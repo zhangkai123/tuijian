@@ -7,12 +7,13 @@
 //
 
 #import "TJItemMessageViewController.h"
-#import "TJCommentCell.h"
+//#import "TJCommentCell.h"
+#import "TJItemMessageCell.h"
 #import "UIImage+additions.h"
 #import "TJItemMessage.h"
 #import "TJUserInfoViewController.h"
 
-@interface TJItemMessageViewController ()<UITableViewDataSource,UITableViewDelegate,TJCommentCellDelegate>
+@interface TJItemMessageViewController ()<UITableViewDataSource,UITableViewDelegate,TJItemMessageCellDelegate>
 {
     UITableView *itemMessageTableView;
     NSMutableArray *itemMessageArray;
@@ -98,9 +99,9 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TJCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    TJItemMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell = [[TJCommentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[TJItemMessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -108,7 +109,7 @@
     __block UIImageView *weakImageView = [cell userImageView];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:itemMessage.profileImageUrl]];
     [[cell userImageView] setImageWithURLRequest:urlRequest
-                                                 placeholderImage:[UIImage imageNamed:@"photo.png"]
+                                                 placeholderImage:[UIImage imageNamed:@"placeholder.png"]
                                                           success:^(NSURLRequest *request ,NSHTTPURLResponse *response ,UIImage *image){
                                                               
                                                               float radius = MAX(image.size.width, image.size.height);

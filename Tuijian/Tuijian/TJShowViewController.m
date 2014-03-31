@@ -170,7 +170,7 @@
     
     TJItem *theItem = [itemsArray objectAtIndex:indexPath.section];
     cell.itemId = theItem.itemId;
-    [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
+    [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
     cell.titleLabel.text = theItem.title;
     [cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];

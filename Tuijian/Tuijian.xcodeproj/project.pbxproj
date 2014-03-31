@@ -82,6 +82,8 @@
 		4B8B93A618E8F88200459AC2 /* message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93A518E8F88200459AC2 /* message@2x.png */; };
 		4B8B93A818E8F88900459AC2 /* star-outline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93A718E8F88900459AC2 /* star-outline@2x.png */; };
 		4B8B93AA18E8F89100459AC2 /* user-outline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93A918E8F89100459AC2 /* user-outline@2x.png */; };
+		4B8B93AF18E90B0900459AC2 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93AE18E90B0900459AC2 /* placeholder.png */; };
+		4B8B93B218E90C8F00459AC2 /* TJItemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B93B118E90C8F00459AC2 /* TJItemMessageCell.m */; };
 		4B9C3F6718D9234C00B9F8E5 /* UIImage+additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C3F6618D9234C00B9F8E5 /* UIImage+additions.m */; };
 		4B9C40B918D984AF00B9F8E5 /* XMPPAnonymousAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C3F6C18D984AF00B9F8E5 /* XMPPAnonymousAuthentication.m */; };
 		4B9C40BA18D984AF00B9F8E5 /* XMPPDeprecatedDigestAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C3F6F18D984AF00B9F8E5 /* XMPPDeprecatedDigestAuthentication.m */; };
@@ -390,6 +392,9 @@
 		4B8B93A518E8F88200459AC2 /* message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message@2x.png"; sourceTree = "<group>"; };
 		4B8B93A718E8F88900459AC2 /* star-outline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-outline@2x.png"; sourceTree = "<group>"; };
 		4B8B93A918E8F89100459AC2 /* user-outline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-outline@2x.png"; sourceTree = "<group>"; };
+		4B8B93AE18E90B0900459AC2 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		4B8B93B018E90C8F00459AC2 /* TJItemMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJItemMessageCell.h; sourceTree = "<group>"; };
+		4B8B93B118E90C8F00459AC2 /* TJItemMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJItemMessageCell.m; sourceTree = "<group>"; };
 		4B9C3F6518D9234C00B9F8E5 /* UIImage+additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+additions.h"; sourceTree = "<group>"; };
 		4B9C3F6618D9234C00B9F8E5 /* UIImage+additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+additions.m"; sourceTree = "<group>"; };
 		4B9C3F6B18D984AF00B9F8E5 /* XMPPAnonymousAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPAnonymousAuthentication.h; sourceTree = "<group>"; };
@@ -821,6 +826,8 @@
 				4B31B78018D825BB00F87D71 /* TJCommentCell.m */,
 				4BD48DF618E0144F00D83667 /* TJMessageCell.h */,
 				4BD48DF718E0144F00D83667 /* TJMessageCell.m */,
+				4B8B93B018E90C8F00459AC2 /* TJItemMessageCell.h */,
+				4B8B93B118E90C8F00459AC2 /* TJItemMessageCell.m */,
 				4BEFE98F18E3B3BE00E2B6A3 /* TJMyItemCell.h */,
 				4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */,
 				4BEFE99218E3C1F100E2B6A3 /* TJMyInfoCell.h */,
@@ -2008,6 +2015,7 @@
 				4BD48DEF18DFE22600D83667 /* DB */,
 				4B47A3A218D1A9EC00087BE4 /* items */,
 				4B47A3A018D187F600087BE4 /* photo.png */,
+				4B8B93AE18E90B0900459AC2 /* placeholder.png */,
 				4BDEDB3A18CFF47F001C2874 /* gender */,
 				4B569CAF18CEA839000DF219 /* login */,
 				4B543FC918B4F30B0052DFDD /* camera */,
@@ -2135,6 +2143,7 @@
 				4B9C413918D984AF00B9F8E5 /* build-libidn.sh in Resources */,
 				4BFA999918AFA19200D673CB /* InfoPlist.strings in Resources */,
 				4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */,
+				4B8B93AF18E90B0900459AC2 /* placeholder.png in Resources */,
 				4B54577018CDBEF700492F81 /* ChoosePhotoIcon@2x.png in Resources */,
 				4BD48DF518DFFDAB00D83667 /* message.sqlite in Resources */,
 				4B8B93A218E8F80300459AC2 /* star-outline.png in Resources */,
@@ -2222,6 +2231,7 @@
 				4B9C40EF18D984AF00B9F8E5 /* XMPPvCard.xcdatamodeld in Sources */,
 				4B47A39A18D179B800087BE4 /* UIImage+WebP.m in Sources */,
 				4B47A39218D179B800087BE4 /* SDWebImageDecoder.m in Sources */,
+				4B8B93B218E90C8F00459AC2 /* TJItemMessageCell.m in Sources */,
 				4B9C40F518D984AF00B9F8E5 /* XMPPvCardTempAdr.m in Sources */,
 				4B9C40EA18D984AF00B9F8E5 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
 				4B47A39918D179B800087BE4 /* UIImage+MultiFormat.m in Sources */,

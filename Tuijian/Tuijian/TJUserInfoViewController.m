@@ -130,7 +130,7 @@
         }
         TJItem *theItem = [herItemsArray objectAtIndex:indexPath.row];
         [(TJMyItemCell *)cell setItemId:theItem.itemId];
-        [[(TJMyItemCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
+        [[(TJMyItemCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
         float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
         [[(TJMyItemCell *)cell titleLabel] setText:theItem.title];
         [(TJMyItemCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];

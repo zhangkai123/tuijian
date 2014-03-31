@@ -194,7 +194,7 @@
         [(TJItemDetailCell *)cell setItemId:theItem.itemId];
 //        [(TJItemDetailCell *)cell setUserId:theItem.uid];
         [[(TJItemDetailCell *)cell titleLabel] setText:theItem.title];
-        [[(TJItemDetailCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"photo.png"]];
+        [[(TJItemDetailCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
         [(TJItemDetailCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
         [(TJItemDetailCell *)cell setLikeButtonColor:theItem.hasLiked];
         [(TJItemDetailCell *)cell setDelegate:(id)self];
@@ -219,7 +219,7 @@
         __block UIImageView *weakImageView = [(TJCommentCell *)cell userImageView];
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:comment.user.profile_image_url]];
         [[(TJCommentCell *)cell userImageView] setImageWithURLRequest:urlRequest
-                                               placeholderImage:[UIImage imageNamed:@"photo.png"]
+                                               placeholderImage:[UIImage imageNamed:@"placeholder.png"]
                                                success:^(NSURLRequest *request ,NSHTTPURLResponse *response ,UIImage *image){
             
                                                     float radius = MAX(image.size.width, image.size.height);
