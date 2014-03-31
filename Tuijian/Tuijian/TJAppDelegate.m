@@ -40,6 +40,10 @@
     TJMineViewController *mineViewController = [[TJMineViewController alloc]init];
     UINavigationController *mineNavController = [[UINavigationController alloc]initWithRootViewController:mineViewController];
 
+    showNavController.tabBarItem.image = [UIImage imageNamed:@"star-outline"];
+    infoNavController.tabBarItem.image = [UIImage imageNamed:@"message"];
+    mineNavController.tabBarItem.image = [UIImage imageNamed:@"user-outline"];
+    
     [controllersArray addObject:showNavController];
     [controllersArray addObject:infoNavController];
     [controllersArray addObject:mineNavController];
