@@ -34,4 +34,7 @@
 
 @property(nonatomic,unsafe_unretained) id<TJCommentCellDelegate> delegate;
 @property(nonatomic,assign) int rowNum;
+
+-(void)setLineWidthAndHeight:(float)topLineWidth sideLineHeight:(float)sideLineHeight;
+-(void)showBottomLineView;
 @end

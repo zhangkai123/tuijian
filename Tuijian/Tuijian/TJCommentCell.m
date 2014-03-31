@@ -8,6 +8,15 @@
 
 #import "TJCommentCell.h"
 
+@interface TJCommentCell()
+{
+    UIView *topLineView;
+    UIView *leftLineView;
+    UIView *rightLineView;
+    UIView *bottomLineView;
+}
+@end
+
 @implementation TJCommentCell
 @synthesize commentImageView;
 @synthesize userImageView ,nameLable ,commentLable;
@@ -20,7 +29,7 @@
     if (self) {
         // Initialization code
 //        self.backgroundColor = UIColorFromRGB(0xEEEEEE);
-        self.commentImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 20, 20)];
+        self.commentImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 20, 20)];
         commentImageView.image = [UIImage imageNamed:@"comment.png"];
         [self addSubview:commentImageView];
         
@@ -39,6 +48,20 @@
         commentLable.lineBreakMode = NSLineBreakByCharWrapping;
         commentLable.numberOfLines = 0;
         [self addSubview:commentLable];
+        
+        topLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 300, 1)];
+        topLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+        [self addSubview:topLineView];
+        leftLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 1, 50)];
+        leftLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+        [self addSubview:leftLineView];
+        rightLineView = [[UIView alloc]initWithFrame:CGRectMake(309, 0, 1, 50)];
+        rightLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+        [self addSubview:rightLineView];
+        bottomLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 49, 300, 1)];
+        bottomLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+        [self addSubview:bottomLineView];
+        bottomLineView.hidden = YES;
     }
     return self;
 }
@@ -46,6 +69,21 @@
 {
     commentHeight =commentH;
     commentLable.frame = CGRectMake(90, 30, 220, commentH);
+}
+-(void)setLineWidthAndHeight:(float)topLineWidth sideLineHeight:(float)sideLineHeight
+{
+    if (topLineWidth == 300) {
+       topLineView.frame = CGRectMake(10, 0, topLineWidth, 1);
+    }else{
+        topLineView.frame = CGRectMake(45, 0, topLineWidth, 1);
+    }
+    leftLineView.frame = CGRectMake(10, 0, 1, sideLineHeight);
+    rightLineView.frame = CGRectMake(309, 0, 1, sideLineHeight);
+    bottomLineView.frame = CGRectMake(10, sideLineHeight, 300, 1);
+}
+-(void)showBottomLineView
+{
+    bottomLineView.hidden = NO;
 }
 #pragma TJTouchableImageViewDelegate
 -(void)selectUserImageView:(int)sectionNum

@@ -60,7 +60,7 @@
     detailTableView.dataSource = self;
     detailTableView.delegate = self;
     detailTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
-//    detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:detailTableView];
 
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 50, 0);
@@ -200,7 +200,6 @@
             cell = [[TJItemDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         }
         [(TJItemDetailCell *)cell setItemId:theItem.itemId];
-//        [(TJItemDetailCell *)cell setUserId:theItem.uid];
         [[(TJItemDetailCell *)cell titleLabel] setText:theItem.title];
         [[(TJItemDetailCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
         [(TJItemDetailCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
@@ -212,6 +211,11 @@
         if (!cell) {
             cell = [[TJLikeCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
         }
+        if ([myCommentsArray count] == 0) {
+            [(TJLikeCell *)cell setBottomLineViewHidden:NO];
+        }else{
+            [(TJLikeCell *)cell setBottomLineViewHidden:YES];
+        }
         [(TJLikeCell *)cell setLikesArray:myLikesArray];
         [(TJLikeCell *)cell setDelegate:(id)self];
         myLikeCell = (TJLikeCell *)cell;
@@ -220,8 +224,15 @@
         if (!cell) {
             cell = [[TJCommentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
         }
+        float  commentHeight = [[myCommentHeightArray objectAtIndex:indexPath.row]floatValue];
         if (indexPath.row != 0) {
             [[(TJCommentCell *)cell commentImageView]setImage:nil];
+            [(TJCommentCell *)cell setLineWidthAndHeight:265 sideLineHeight:commentHeight + 35];
+        }else{
+            [(TJCommentCell *)cell setLineWidthAndHeight:300 sideLineHeight:commentHeight + 35];
+        }
+        if (indexPath.row == ([myCommentsArray count] - 1)) {
+            [(TJCommentCell *)cell showBottomLineView];
         }
         TJComment *comment = [myCommentsArray objectAtIndex:indexPath.row];
         __block UIImageView *weakImageView = [(TJCommentCell *)cell userImageView];
@@ -240,7 +251,6 @@
         [(TJCommentCell *)cell setDelegate:(id)self];
         [(TJCommentCell *)cell setRowNum:indexPath.row];
         
-        float  commentHeight = [[myCommentHeightArray objectAtIndex:indexPath.row]floatValue];
         [(TJCommentCell *)cell setCommentHeight:commentHeight];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

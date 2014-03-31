@@ -14,6 +14,8 @@
 @interface TJLikeCell()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *likeTableView;
+    
+    UIView *bottomLineView;
 }
 @end
 
@@ -27,10 +29,6 @@
     if (self) {
         // Initialization code
 //        self.backgroundColor = UIColorFromRGB(0x242424);
-        
-        UIImageView *likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 20, 20)];
-        likeImageView.image = [UIImage imageNamed:@"like.png"];
-        [self addSubview:likeImageView];
         
         likeTableView = [[UITableView alloc]initWithFrame:CGRectMake(30, 0, 320 - 30, 50)];
         likeTableView.delegate = self;
@@ -46,6 +44,24 @@
         likeTableView.backgroundColor = [UIColor clearColor];
 
         likesArray = [[NSMutableArray alloc]init];
+        
+        UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 300, 1)];
+        topLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+        [self addSubview:topLineView];
+        UIView *leftLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 1, 50)];
+        leftLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+        [self addSubview:leftLineView];
+        UIView *rightLineView = [[UIView alloc]initWithFrame:CGRectMake(309, 0, 1, 50)];
+        rightLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+        [self addSubview:rightLineView];
+        bottomLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 49, 300, 1)];
+        bottomLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+        [self addSubview:bottomLineView];
+        bottomLineView.hidden = YES;
+        
+        UIImageView *likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 20, 20)];
+        likeImageView.image = [UIImage imageNamed:@"like.png"];
+        [self addSubview:likeImageView];
     }
     return self;
 }
@@ -94,6 +110,10 @@
         genderPlaceHolder = [UIImage imageNamed:@"womanPlaceholder.png"];
     }
     return genderPlaceHolder;
+}
+-(void)setBottomLineViewHidden:(BOOL)hidden
+{
+    bottomLineView.hidden = hidden;
 }
 - (void)awakeFromNib
 {
