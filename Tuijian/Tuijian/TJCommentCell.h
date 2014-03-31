@@ -36,5 +36,5 @@
 @property(nonatomic,assign) int rowNum;
 
 -(void)setLineWidthAndHeight:(float)topLineWidth sideLineHeight:(float)sideLineHeight;
--(void)showBottomLineView;
+-(void)setBottomLineViewHidden:(BOOL)hidden;
 @end

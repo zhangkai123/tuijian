@@ -38,13 +38,13 @@
         [self addSubview:self.userImageView];
         
         nameLable = [[UILabel alloc]initWithFrame:CGRectMake(90, 10, 100, 20)];
-        nameLable.textColor = [UIColor blackColor];
+        nameLable.textColor = UIColorFromRGB(0x336699);
         [nameLable setFont:[UIFont systemFontOfSize:15]];
         [self addSubview:nameLable];
 
-        commentLable = [[UILabel alloc]initWithFrame:CGRectMake(90, 30, 220, 0)];
+        commentLable = [[UILabel alloc]initWithFrame:CGRectMake(90, 35, TJ_COMMENT_LABEL_WIDTH, 0)];
         commentLable.textColor = [UIColor blackColor];
-        [commentLable setFont:[UIFont systemFontOfSize:15]];
+        [commentLable setFont:[UIFont systemFontOfSize:TJ_COMMENT_SIZE]];
         commentLable.lineBreakMode = NSLineBreakByCharWrapping;
         commentLable.numberOfLines = 0;
         [self addSubview:commentLable];
@@ -68,7 +68,7 @@
 -(void)setCommentHeight:(float)commentH
 {
     commentHeight =commentH;
-    commentLable.frame = CGRectMake(90, 30, 220, commentH);
+    commentLable.frame = CGRectMake(90, 35, TJ_COMMENT_LABEL_WIDTH, commentH);
 }
 -(void)setLineWidthAndHeight:(float)topLineWidth sideLineHeight:(float)sideLineHeight
 {
@@ -81,9 +81,9 @@
     rightLineView.frame = CGRectMake(309, 0, 1, sideLineHeight);
     bottomLineView.frame = CGRectMake(10, sideLineHeight, 300, 1);
 }
--(void)showBottomLineView
+-(void)setBottomLineViewHidden:(BOOL)hidden
 {
-    bottomLineView.hidden = NO;
+    bottomLineView.hidden = hidden;
 }
 #pragma TJTouchableImageViewDelegate
 -(void)selectUserImageView:(int)sectionNum

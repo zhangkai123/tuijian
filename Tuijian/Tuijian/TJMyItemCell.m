@@ -21,10 +21,10 @@
         [self addSubview:itemImageView];
         
         titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 325, 300, 30)];
-        [titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
         //        titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
         titleLabel.numberOfLines = 1;
-        [titleLabel setTextColor:UIColorFromRGB(0x029D74)];
+        [titleLabel setTextColor:UIColorFromRGB(0x3399CC)];
         [self addSubview:titleLabel];
         
         recommendInfoLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 0)];

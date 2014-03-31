@@ -88,9 +88,9 @@
     }comments:^(NSArray *commentsArray){
         for (int i = 0; i < [commentsArray count]; i++) {
             TJComment *comment = [commentsArray objectAtIndex:i];
-            CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(220, 0)
+            CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(TJ_COMMENT_LABEL_WIDTH, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_COMMENT_SIZE]} context:nil];
             [weakmyCommentHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
 
         }
@@ -134,9 +134,9 @@
         if (hasCommented) {
            TJComment *comment = [[TJDataController sharedDataController] getMyOwnCommentItem:commentInfo];
             [weakMyCommentsArray insertObject:comment atIndex:0];
-            CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(250, 0)
+            CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(TJ_COMMENT_LABEL_WIDTH, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_COMMENT_SIZE]} context:nil];
             [weakmyCommentHeightArray insertObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height] atIndex:0];
             [weakDetailTableView reloadData];
             [[TJDataController sharedDataController]sendComment:weakItem comment:commentInfo];
@@ -187,7 +187,7 @@
             rowHeight = 50;
         }
     }else{
-        rowHeight = [[myCommentHeightArray objectAtIndex:indexPath.row] floatValue] + 30 + 5;
+        rowHeight = [[myCommentHeightArray objectAtIndex:indexPath.row] floatValue] + 35 + 5;
     }
     return rowHeight;
 }
@@ -227,12 +227,14 @@
         float  commentHeight = [[myCommentHeightArray objectAtIndex:indexPath.row]floatValue];
         if (indexPath.row != 0) {
             [[(TJCommentCell *)cell commentImageView]setImage:nil];
-            [(TJCommentCell *)cell setLineWidthAndHeight:265 sideLineHeight:commentHeight + 35];
+            [(TJCommentCell *)cell setLineWidthAndHeight:265 sideLineHeight:commentHeight + 40];
         }else{
-            [(TJCommentCell *)cell setLineWidthAndHeight:300 sideLineHeight:commentHeight + 35];
+            [(TJCommentCell *)cell setLineWidthAndHeight:300 sideLineHeight:commentHeight + 40];
         }
         if (indexPath.row == ([myCommentsArray count] - 1)) {
-            [(TJCommentCell *)cell showBottomLineView];
+            [(TJCommentCell *)cell setBottomLineViewHidden:NO];
+        }else{
+            [(TJCommentCell *)cell setBottomLineViewHidden:YES];
         }
         TJComment *comment = [myCommentsArray objectAtIndex:indexPath.row];
         __block UIImageView *weakImageView = [(TJCommentCell *)cell userImageView];
@@ -277,7 +279,7 @@
         userImageView.layer.cornerRadius = 40 / 2.0;
         
         UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 10, 100, 20)];
-        nameLabel.textColor = [UIColor blackColor];
+        nameLabel.textColor = UIColorFromRGB(0x336699);
         [nameLabel setFont:[UIFont systemFontOfSize:12]];
         [backView addSubview:nameLabel];
         

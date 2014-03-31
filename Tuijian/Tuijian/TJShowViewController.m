@@ -209,7 +209,7 @@
     userImageView.layer.cornerRadius = 40 / 2.0;
     
     UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 10, 100, 20)];
-    nameLabel.textColor = [UIColor blackColor];
+    nameLabel.textColor = UIColorFromRGB(0x336699);
     [nameLabel setFont:[UIFont systemFontOfSize:12]];
     [backView addSubview:nameLabel];
     

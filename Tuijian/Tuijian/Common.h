@@ -40,5 +40,9 @@
 
 #define TJ_DATABASE_NAME @"message.sqlite"
 
+//text size
+#define TJ_COMMENT_SIZE 15
+#define TJ_COMMENT_LABEL_WIDTH 220
+
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #endif

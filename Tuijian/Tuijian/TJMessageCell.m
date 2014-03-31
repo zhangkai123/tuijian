@@ -19,13 +19,13 @@
         theImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 60, 60)];
         [self addSubview:theImageView];
         
-        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 10, 230, 30)];
-        [titleLabel setFont:[UIFont systemFontOfSize:15]];
+        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 15, 230, 30)];
+        [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
         titleLabel.numberOfLines = 1;
-        [titleLabel setTextColor:[UIColor blackColor]];
+        [titleLabel setTextColor:UIColorFromRGB(0x3399CC)];
         [self addSubview:titleLabel];
         
-        messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 45, 230, 30)];
+        messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 40, 230, 30)];
         [messageLabel setFont:[UIFont systemFontOfSize:15]];
         messageLabel.numberOfLines = 1;
         [messageLabel setTextColor:[UIColor blackColor]];

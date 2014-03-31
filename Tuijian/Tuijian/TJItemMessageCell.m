@@ -23,7 +23,7 @@
         [self addSubview:self.userImageView];
         
         nameLable = [[UILabel alloc]initWithFrame:CGRectMake(60, 10, 100, 20)];
-        nameLable.textColor = [UIColor blackColor];
+        nameLable.textColor = UIColorFromRGB(0x336699);
         [nameLable setFont:[UIFont systemFontOfSize:15]];
         [self addSubview:nameLable];
         
