@@ -41,6 +41,8 @@
 #define TJ_DATABASE_NAME @"message.sqlite"
 
 //text size
+#define TJ_RECOMMEND_SIZE 15
+#define TJ_RECOMMEND_WIDTH 300
 #define TJ_COMMENT_SIZE 15
 #define TJ_COMMENT_LABEL_WIDTH 220
 

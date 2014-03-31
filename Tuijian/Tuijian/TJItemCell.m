@@ -9,11 +9,12 @@
 #import "TJItemCell.h"
 #import <QuartzCore/QuartzCore.h>
 
-//@interface TJItemCell()
-//{
+@interface TJItemCell()
+{
 //    BOOL likeButtonRed;
-//}
-//@end
+    UIView *bottomLineView;
+}
+@end
 
 @implementation TJItemCell
 @synthesize itemId;
@@ -35,8 +36,8 @@
         [titleLabel setTextColor:UIColorFromRGB(0x3399CC)];
         [self addSubview:titleLabel];
         
-        recommendInfoLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 0)];
-        [recommendInfoLabel setFont:[UIFont systemFontOfSize:15]];
+        recommendInfoLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, TJ_RECOMMEND_WIDTH, 0)];
+        [recommendInfoLabel setFont:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]];
         recommendInfoLabel.lineBreakMode = NSLineBreakByCharWrapping;
         recommendInfoLabel.numberOfLines = 0;
         [recommendInfoLabel setTextColor:[UIColor blackColor]];
@@ -78,17 +79,23 @@
         commentNumLabel.textAlignment = NSTextAlignmentCenter;
         commentNumLabel.textColor = [UIColor redColor];
         [commentImageView addSubview:commentNumLabel];
+        
+        bottomLineView = [[UIView alloc]initWithFrame:CGRectZero];
+        bottomLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+        [self addSubview:bottomLineView];
     }
     return self;
 }
 -(void)setRecommendInfoAndHeight:(NSString *)recommendInfo textHeight:(float)textH
 {
     recommendInfoLabel.text = recommendInfo;
-    recommendInfoLabel.frame = CGRectMake(10, 325 + 30, 300, textH);
+    recommendInfoLabel.frame = CGRectMake(10, 325 + 25, TJ_RECOMMEND_WIDTH, textH);
     
     likeButton.frame = CGRectMake(10, 330 + 30 + textH + 1, 70, 28);
     likeImageView.frame = CGRectMake(240, 330 + 30 + textH, 32, 32);
     commentImageView.frame = CGRectMake(240 + 32 + 5, 330 + 30 + textH + 2, 28, 28);
+    
+    bottomLineView.frame = CGRectMake(0, textH + 325 + 40 + 29, 320, 1);
 }
 -(void)like
 {

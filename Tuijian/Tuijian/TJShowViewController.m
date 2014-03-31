@@ -69,6 +69,7 @@
     itemTableView.dataSource = self;
     itemTableView.delegate = self;
     itemTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
+    itemTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:itemTableView];
     
     itemsArray = [[NSMutableArray alloc]init];
@@ -119,9 +120,9 @@
         for (int i = 0; i < [iteArray count]; i++) {
             TJItem *item = [iteArray objectAtIndex:i];
             NSString *recommendTex = item.recommendReason;
-            CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(300, 0)
+            CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(TJ_RECOMMEND_WIDTH, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]} context:nil];
             [weakTextHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
         }
         [weakItemsArray addObjectsFromArray:iteArray];
