@@ -271,5 +271,8 @@
     }
     return itemsMessageArray;
 }
-
+-(int)getTotalInfoMessageNum
+{
+    return [[TJDBManager sharedDBManager]getInfoMessageNum];
+}
 @end

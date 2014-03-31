@@ -46,4 +46,5 @@
 #pragma database
 -(NSArray *)featchMessageList;
 -(NSArray *)featchItemMessage:(NSString *)mId;
+-(int)getTotalInfoMessageNum;
 @end
