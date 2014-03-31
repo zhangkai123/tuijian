@@ -67,9 +67,9 @@
     [itemMessageArray addObjectsFromArray:mArray];
     for (int i = 0; i < [itemMessageArray count]; i++) {
         TJItemMessage *itemMessage = [itemMessageArray objectAtIndex:i];
-        CGRect expectedLabelRect = [itemMessage.message boundingRectWithSize:CGSizeMake(250, 0)
+        CGRect expectedLabelRect = [itemMessage.message boundingRectWithSize:CGSizeMake(TJ_ITEM_MESSAGE_WIDTH, 0)
                                                                      options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                                  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+                                                                  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_ITEM_MESSAGE_SIZE]} context:nil];
         [textHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
     }
     [itemMessageTableView reloadData];
@@ -80,9 +80,9 @@
     [itemMessageArray addObjectsFromArray:mArray];
     for (int i = 0; i < [itemMessageArray count]; i++) {
         TJItemMessage *itemMessage = [itemMessageArray objectAtIndex:i];
-        CGRect expectedLabelRect = [itemMessage.message boundingRectWithSize:CGSizeMake(250, 0)
+        CGRect expectedLabelRect = [itemMessage.message boundingRectWithSize:CGSizeMake(TJ_ITEM_MESSAGE_WIDTH, 0)
                                                               options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                           attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+                                                           attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_ITEM_MESSAGE_SIZE]} context:nil];
         [textHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
     }
     [super viewWillAppear:animated];
@@ -95,7 +95,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-    return textHeight + 30 + 5;
+    return textHeight + 30 + 10;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -45,6 +45,8 @@
 #define TJ_RECOMMEND_WIDTH 300
 #define TJ_COMMENT_SIZE 15
 #define TJ_COMMENT_LABEL_WIDTH 220
+#define TJ_ITEM_MESSAGE_SIZE 15
+#define TJ_ITEM_MESSAGE_WIDTH 250
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #endif

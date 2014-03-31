@@ -27,9 +27,9 @@
         [nameLable setFont:[UIFont systemFontOfSize:15]];
         [self addSubview:nameLable];
         
-        commentLable = [[UILabel alloc]initWithFrame:CGRectMake(60, 30, 250, 0)];
+        commentLable = [[UILabel alloc]initWithFrame:CGRectMake(60, 35, TJ_ITEM_MESSAGE_WIDTH, 0)];
         commentLable.textColor = [UIColor blackColor];
-        [commentLable setFont:[UIFont systemFontOfSize:15]];
+        [commentLable setFont:[UIFont systemFontOfSize:TJ_ITEM_MESSAGE_SIZE]];
         commentLable.lineBreakMode = NSLineBreakByCharWrapping;
         commentLable.numberOfLines = 0;
         [self addSubview:commentLable];
@@ -39,7 +39,7 @@
 -(void)setCommentHeight:(float)commentH
 {
     commentHeight =commentH;
-    commentLable.frame = CGRectMake(60, 30, 250, commentH);
+    commentLable.frame = CGRectMake(60, 35, TJ_ITEM_MESSAGE_WIDTH, commentH);
 }
 #pragma TJTouchableImageViewDelegate
 -(void)selectUserImageView:(int)sectionNum

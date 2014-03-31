@@ -22,7 +22,6 @@
         
         titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 325, 300, 30)];
         [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
-        //        titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
         titleLabel.numberOfLines = 1;
         [titleLabel setTextColor:UIColorFromRGB(0x3399CC)];
         [self addSubview:titleLabel];
@@ -39,7 +38,7 @@
 -(void)setRecommendInfoAndHeight:(NSString *)recommendInfo textHeight:(float)textH
 {
     recommendInfoLabel.text = recommendInfo;
-    recommendInfoLabel.frame = CGRectMake(10, 325 + 30, 300, textH);
+    recommendInfoLabel.frame = CGRectMake(10, 325 + 25, 300, textH);
 }
 
 - (void)awakeFromNib
