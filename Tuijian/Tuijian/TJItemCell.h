@@ -17,7 +17,6 @@
 @interface TJItemCell : UITableViewCell
 {
     NSString *itemId;
-//    NSString *userId;
     
     UIImageView *itemImageView;
     UILabel *titleLabel;
@@ -35,7 +34,6 @@
     __unsafe_unretained id<TJItemCellDelegate> delegate;
 }
 @property(nonatomic,strong) NSString *itemId;
-//@property(nonatomic,strong) NSString *userId;
 
 @property(nonatomic,strong) UILabel *titleLabel;
 

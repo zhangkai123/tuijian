@@ -9,6 +9,12 @@
 #import "TJItemCell.h"
 #import <QuartzCore/QuartzCore.h>
 
+//@interface TJItemCell()
+//{
+//    BOOL likeButtonRed;
+//}
+//@end
+
 @implementation TJItemCell
 @synthesize itemId;
 @synthesize titleLabel;
@@ -61,7 +67,6 @@
         [likeNumLabel setFont:[UIFont systemFontOfSize:8]];
         likeNumLabel.textAlignment = NSTextAlignmentCenter;
         likeNumLabel.textColor = [UIColor redColor];
-        likeNumLabel.text = @"1000";
         [likeImageView addSubview:likeNumLabel];
         
         commentImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 28, 28)];
@@ -73,7 +78,6 @@
         [commentNumLabel setFont:[UIFont systemFontOfSize:8]];
         commentNumLabel.textAlignment = NSTextAlignmentCenter;
         commentNumLabel.textColor = [UIColor redColor];
-        commentNumLabel.text = @"1000";
         [commentImageView addSubview:commentNumLabel];
     }
     return self;
@@ -89,12 +93,20 @@
 }
 -(void)like
 {
+//    int likeNum;
+//    if (likeButtonRed) {
+//        likeNum = [likeNumLabel.text intValue] - 1;
+//    }else{
+//        likeNum = [likeNumLabel.text intValue] + 1;
+//    }
+//    likeNumLabel.text = [NSString stringWithFormat:@"%d",likeNum];
     [self.delegate likeItem:self.itemId liked:^(BOOL hasLiked){
         [self setLikeButtonColor:hasLiked];
     }];
 }
 -(void)setLikeButtonColor:(BOOL)hasLiked
 {
+//    likeButtonRed = hasLiked;
     if (hasLiked) {
         [likeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [likeButton setImage:[UIImage imageNamed:@"favSelectedHighlight@2x.png"] forState:UIControlStateNormal];

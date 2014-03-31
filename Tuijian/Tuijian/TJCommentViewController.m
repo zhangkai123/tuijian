@@ -140,6 +140,8 @@
             [weakmyCommentHeightArray insertObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height] atIndex:0];
             [weakDetailTableView reloadData];
             [[TJDataController sharedDataController]sendComment:weakItem comment:commentInfo];
+            
+            theItem.commentNum = [NSString stringWithFormat:@"%d",[theItem.commentNum intValue] + 1];
         }
     }failure:^(NSError *error){
         
@@ -164,8 +166,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     int rowNum = 0;
-    if ((section == 0) || (section == 1)) {
+    if (section == 0) {
         rowNum = 1;
+    }else if(section == 1){
+        if ([myLikesArray count] != 0) {
+            rowNum = 1;
+        }
     }else{
         rowNum = (NSInteger)[myCommentsArray count];
     }
@@ -177,7 +183,9 @@
     if (indexPath.section == 0) {
         rowHeight = textHeight + 325 + 40 + 30;
     }else if (indexPath.section == 1){
-        rowHeight = 50;
+        if ([myLikesArray count] != 0) {
+            rowHeight = 50;
+        }
     }else{
         rowHeight = [[myCommentHeightArray objectAtIndex:indexPath.row] floatValue] + 30 + 5;
     }
@@ -313,6 +321,11 @@
 #pragma TJItemCellDelegate
 -(void)likeItem:(NSString *)itemId liked:(void (^)(BOOL Liked))hasL
 {
+    if (theItem.hasLiked) {
+        theItem.likeNum = [NSString stringWithFormat:@"%d",[theItem.likeNum intValue] - 1];
+    }else{
+        theItem.likeNum = [NSString stringWithFormat:@"%d",[theItem.likeNum intValue] + 1];
+    }
     __block TJItem *weakItem = theItem;
     __block NSMutableArray *weakMyLikesArray = myLikesArray;
     __block TJLikeCell *weakMyLikeCell = myLikeCell;
@@ -332,6 +345,7 @@
                 [weakMyLikeCell setLikesArray:weakMyLikesArray];
             }
         }
+        [detailTableView reloadData];
     }failure:^(NSError *error){
         
     }];
