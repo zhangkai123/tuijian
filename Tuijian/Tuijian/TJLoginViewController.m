@@ -27,13 +27,33 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
-    UIButton *loginButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 92, 120)];
-    UIImage *loginImage = [UIImage imageNamed:@"bt_92X120.png"];
-    [loginButton setImage:loginImage forState:UIControlStateNormal];
-    [loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:loginButton];
-    loginButton.center = self.view.center;
+    self.view.backgroundColor = UIColorFromRGB(0xA0BFFB);
+    
+    UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 30)];
+    [loginLabel setFont:[UIFont boldSystemFontOfSize:25]];
+    loginLabel.numberOfLines = 1;
+    [loginLabel setTextColor:[UIColor whiteColor]];
+    loginLabel.textAlignment = NSTextAlignmentCenter;
+    loginLabel.text = @"登录";
+    [self.view addSubview:loginLabel];
+    loginLabel.center = CGPointMake(160, 60);
+    
+    UIButton *sinaloginButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 120, 120)];
+    UIImage *sinaloginImage = [UIImage imageNamed:@"weibo-icon.png"];
+    [sinaloginButton setImage:sinaloginImage forState:UIControlStateNormal];
+    [sinaloginButton addTarget:self action:@selector(sinalogin) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:sinaloginButton];
+    sinaloginButton.center = CGPointMake(160, 180);
+    
+    UIButton *qqloginButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 120, 120)];
+    qqloginButton.backgroundColor = [UIColor whiteColor];
+    qqloginButton.clipsToBounds = YES;
+    qqloginButton.layer.cornerRadius = 60;
+    UIImage *qqloginImage = [UIImage imageNamed:@"Tencent_QQ.png"];
+    [qqloginButton setImage:qqloginImage forState:UIControlStateNormal];
+    [qqloginButton addTarget:self action:@selector(qqlogin) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:qqloginButton];
+    qqloginButton.center = CGPointMake(160, 320);
     
     _permissions = [NSArray arrayWithObjects:
                      kOPEN_PERMISSION_GET_USER_INFO,
@@ -42,7 +62,11 @@
                      nil];
     _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"101035345" andDelegate:self];
 }
--(void)login
+-(void)sinalogin
+{
+    
+}
+-(void)qqlogin
 {
     [_tencentOAuth authorize:_permissions inSafari:NO];
 }

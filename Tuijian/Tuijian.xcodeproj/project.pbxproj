@@ -257,6 +257,8 @@
 		4BFB64CC18C07ACA00C304BB /* TJInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB64CB18C07ACA00C304BB /* TJInfoViewController.m */; };
 		4BFB64CF18C07AEC00C304BB /* TJMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB64CE18C07AEC00C304BB /* TJMineViewController.m */; };
 		4BFB64D218C187F800C304BB /* TJBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB64D118C187F800C304BB /* TJBaseViewController.m */; };
+		4BFB834518EBD529008651DA /* Tencent_QQ.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BFB834418EBD529008651DA /* Tencent_QQ.png */; };
+		4BFB834718EBD531008651DA /* weibo-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BFB834618EBD531008651DA /* weibo-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -732,6 +734,8 @@
 		4BFB64CE18C07AEC00C304BB /* TJMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMineViewController.m; sourceTree = "<group>"; };
 		4BFB64D018C187F800C304BB /* TJBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJBaseViewController.h; sourceTree = "<group>"; };
 		4BFB64D118C187F800C304BB /* TJBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJBaseViewController.m; sourceTree = "<group>"; };
+		4BFB834418EBD529008651DA /* Tencent_QQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tencent_QQ.png; sourceTree = "<group>"; };
+		4BFB834618EBD531008651DA /* weibo-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -944,6 +948,8 @@
 		4B569CAF18CEA839000DF219 /* login */ = {
 			isa = PBXGroup;
 			children = (
+				4BFB834418EBD529008651DA /* Tencent_QQ.png */,
+				4BFB834618EBD531008651DA /* weibo-icon.png */,
 				4B569CB218CEAAE9000DF219 /* bt_blue_76X24.png */,
 				4B569CB018CEA848000DF219 /* bt_92X120.png */,
 			);
@@ -2128,6 +2134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B47A39D18D17BB100087BE4 /* man_placeholder.png in Resources */,
+				4BFB834718EBD531008651DA /* weibo-icon.png in Resources */,
 				4B47A3AA18D1B40500087BE4 /* favSelectedHighlight@2x.png in Resources */,
 				4B50AC1A18D6EDF20028BAF9 /* writing.png in Resources */,
 				4B47A3A118D187F600087BE4 /* photo.png in Resources */,
@@ -2136,6 +2143,7 @@
 				4B569C9918CE9E36000DF219 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */,
 				4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */,
+				4BFB834518EBD529008651DA /* Tencent_QQ.png in Resources */,
 				4B8B93AA18E8F89100459AC2 /* user-outline@2x.png in Resources */,
 				4B47A3AC18D1B42300087BE4 /* share.png in Resources */,
 				4B569CB318CEAAE9000DF219 /* bt_blue_76X24.png in Resources */,
