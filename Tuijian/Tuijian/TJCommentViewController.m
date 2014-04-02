@@ -329,7 +329,6 @@
     userInfoViewController.userGender = userG;
     userInfoViewController.uid = uid;
     [self.navigationController pushViewController:userInfoViewController animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 #pragma TJItemCellDelegate
 -(void)likeItem:(NSString *)itemId liked:(void (^)(BOOL Liked))hasL

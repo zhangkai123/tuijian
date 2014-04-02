@@ -121,9 +121,11 @@
     TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     [appDelegate updateInfoTabbarBadge];
     
+    self.hidesBottomBarWhenPushed = YES;
     TJItemMessageViewController *itemMessageViewController = [[TJItemMessageViewController alloc]initWithTitle:message.messageTitle];
     itemMessageViewController.messageId = message.messageId;
     [self.navigationController pushViewController:itemMessageViewController animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)didReceiveMemoryWarning
