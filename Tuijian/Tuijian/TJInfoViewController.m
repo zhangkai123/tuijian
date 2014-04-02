@@ -11,6 +11,7 @@
 #import "TJMessageCell.h"
 #import "TJItemMessageViewController.h"
 #import "UIImage+additions.h"
+#import "TJAppDelegate.h"
 
 @interface TJInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -38,6 +39,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    [infoTableView reloadData];
     [super viewWillAppear:animated];
 }
 - (void)viewDidLoad
@@ -103,12 +105,22 @@
         }
     }
     [cell.messageLabel setText:messageContent];
+    if (message.messageNum > 0) {
+        cell.notificationView.hidden = NO;
+    }else{
+        cell.notificationView.hidden = YES;
+    }
     
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     TJMessage *message = [infoListArray objectAtIndex:indexPath.row];
+    TJMessage *message = [infoListArray objectAtIndex:indexPath.row];
+    [[TJDataController sharedDataController]clearInfoMessageNum:[message.messageId intValue]];
+    message.messageNum = 0;
+    TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    [appDelegate updateInfoTabbarBadge];
+    
     TJItemMessageViewController *itemMessageViewController = [[TJItemMessageViewController alloc]initWithTitle:message.messageTitle];
     itemMessageViewController.messageId = message.messageId;
     [self.navigationController pushViewController:itemMessageViewController animated:YES];

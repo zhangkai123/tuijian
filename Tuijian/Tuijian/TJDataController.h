@@ -47,4 +47,5 @@
 -(NSArray *)featchMessageList;
 -(NSArray *)featchItemMessage:(NSString *)mId;
 -(int)getTotalInfoMessageNum;
+-(void)clearInfoMessageNum:(int)messageId;
 @end

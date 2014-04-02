@@ -142,7 +142,22 @@
 	sqlite3_close(database);
 	return totalMessageNum;
 }
-
+-(void)clearInfoMessageNum:(int)messageId
+{
+    sqlite3 *database;
+	sqlite3_stmt *compiledStatement;
+    
+	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
+		NSString *updateCommand = [NSString stringWithFormat:@"update mesList set messageNum = 0 where messageId = '%d'",messageId];
+		const char *updateSqlCommand = [updateCommand UTF8String];
+		sqlite3_prepare_v2(database, updateSqlCommand, -1, &compiledStatement, NULL);
+		
+		while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+            compiledStatement = nil;
+		}
+	}
+	sqlite3_close(database);
+}
 -(void)insertMessage:(NSString *)theMessage messageType:(NSString *)messageT messageId:(NSString *)mId
 {
 	sqlite3 *database;

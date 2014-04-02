@@ -275,4 +275,8 @@
 {
     return [[TJDBManager sharedDBManager]getInfoMessageNum];
 }
+-(void)clearInfoMessageNum:(int)messageId
+{
+    [[TJDBManager sharedDBManager] clearInfoMessageNum:messageId];
+}
 @end

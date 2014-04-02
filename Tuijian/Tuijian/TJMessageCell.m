@@ -9,7 +9,7 @@
 #import "TJMessageCell.h"
 
 @implementation TJMessageCell
-@synthesize theImageView ,titleLabel ,messageLabel;
+@synthesize theImageView ,notificationView ,titleLabel ,messageLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -18,6 +18,12 @@
         // Initialization code
         theImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 60, 60)];
         [self addSubview:theImageView];
+        
+        notificationView = [[UIView alloc]initWithFrame:CGRectMake(48, 5, 12, 12)];
+        notificationView.clipsToBounds = YES;
+        notificationView.layer.cornerRadius = 6;
+        notificationView.backgroundColor = [UIColor redColor];
+        [theImageView addSubview:notificationView];
         
         titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 15, 230, 30)];
         [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
