@@ -87,7 +87,7 @@
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageUrl];
     __block UIImageView *weakImageView = cell.theImageView;
     [cell.theImageView setImageWithURLRequest:urlRequest
-                                placeholderImage:[UIImage imageNamed:@"placeholder.png"]
+                                placeholderImage:[UIImage imageNamed:@"message_placeholder.png"]
                                          success:^(NSURLRequest *request ,NSHTTPURLResponse *response ,UIImage *image){
                                              
                                              float radius = MAX(image.size.width, image.size.height);

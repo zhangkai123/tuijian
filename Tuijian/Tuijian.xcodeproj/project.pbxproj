@@ -33,7 +33,6 @@
 		4B47A39B18D179B800087BE4 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B47A38D18D179B800087BE4 /* UIImageView+WebCache.m */; };
 		4B47A39D18D17BB100087BE4 /* man_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A39C18D17BB100087BE4 /* man_placeholder.png */; };
 		4B47A39F18D17BB700087BE4 /* womanPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A39E18D17BB700087BE4 /* womanPlaceholder.png */; };
-		4B47A3A118D187F600087BE4 /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A018D187F600087BE4 /* photo.png */; };
 		4B47A3A418D1AA0100087BE4 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A318D1AA0100087BE4 /* comment.png */; };
 		4B47A3A618D1AA1600087BE4 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A518D1AA1600087BE4 /* like.png */; };
 		4B47A3A918D1B40500087BE4 /* favhighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A718D1B40400087BE4 /* favhighlight@2x.png */; };
@@ -82,7 +81,6 @@
 		4B8B93A618E8F88200459AC2 /* message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93A518E8F88200459AC2 /* message@2x.png */; };
 		4B8B93A818E8F88900459AC2 /* star-outline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93A718E8F88900459AC2 /* star-outline@2x.png */; };
 		4B8B93AA18E8F89100459AC2 /* user-outline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93A918E8F89100459AC2 /* user-outline@2x.png */; };
-		4B8B93AF18E90B0900459AC2 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93AE18E90B0900459AC2 /* placeholder.png */; };
 		4B8B93B218E90C8F00459AC2 /* TJItemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B93B118E90C8F00459AC2 /* TJItemMessageCell.m */; };
 		4B8B93B618E975C200459AC2 /* message.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93B518E975C200459AC2 /* message.sqlite */; };
 		4B9C3F6718D9234C00B9F8E5 /* UIImage+additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C3F6618D9234C00B9F8E5 /* UIImage+additions.m */; };
@@ -262,6 +260,8 @@
 		4BFB834C18EBD8E4008651DA /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFB834918EBD8E4008651DA /* libWeiboSDK.a */; };
 		4BFB834D18EBD8E4008651DA /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BFB834A18EBD8E4008651DA /* WeiboSDK.bundle */; };
 		4BFB835018EBF0A1008651DA /* TJSinaAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB834F18EBF0A1008651DA /* TJSinaAPIClient.m */; };
+		4BFB839518EC160C008651DA /* message_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BFB839418EC160C008651DA /* message_placeholder.png */; };
+		4BFB839918EC1752008651DA /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BFB839818EC1752008651DA /* placeholder.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -326,7 +326,6 @@
 		4B47A38D18D179B800087BE4 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		4B47A39C18D17BB100087BE4 /* man_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man_placeholder.png; sourceTree = "<group>"; };
 		4B47A39E18D17BB700087BE4 /* womanPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = womanPlaceholder.png; sourceTree = "<group>"; };
-		4B47A3A018D187F600087BE4 /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
 		4B47A3A318D1AA0100087BE4 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		4B47A3A518D1AA1600087BE4 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
 		4B47A3A718D1B40400087BE4 /* favhighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favhighlight@2x.png"; sourceTree = "<group>"; };
@@ -397,7 +396,6 @@
 		4B8B93A518E8F88200459AC2 /* message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message@2x.png"; sourceTree = "<group>"; };
 		4B8B93A718E8F88900459AC2 /* star-outline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-outline@2x.png"; sourceTree = "<group>"; };
 		4B8B93A918E8F89100459AC2 /* user-outline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-outline@2x.png"; sourceTree = "<group>"; };
-		4B8B93AE18E90B0900459AC2 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		4B8B93B018E90C8F00459AC2 /* TJItemMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJItemMessageCell.h; sourceTree = "<group>"; };
 		4B8B93B118E90C8F00459AC2 /* TJItemMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJItemMessageCell.m; sourceTree = "<group>"; };
 		4B8B93B518E975C200459AC2 /* message.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sqlite; sourceTree = "<group>"; };
@@ -744,6 +742,8 @@
 		4BFB834B18EBD8E4008651DA /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		4BFB834E18EBF0A1008651DA /* TJSinaAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJSinaAPIClient.h; sourceTree = "<group>"; };
 		4BFB834F18EBF0A1008651DA /* TJSinaAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJSinaAPIClient.m; sourceTree = "<group>"; };
+		4BFB839418EC160C008651DA /* message_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message_placeholder.png; sourceTree = "<group>"; };
+		4BFB839818EC1752008651DA /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2032,12 +2032,12 @@
 				4B8B939618E8F4D000459AC2 /* Tabs */,
 				4BD48DEF18DFE22600D83667 /* DB */,
 				4B47A3A218D1A9EC00087BE4 /* items */,
-				4B47A3A018D187F600087BE4 /* photo.png */,
-				4B8B93AE18E90B0900459AC2 /* placeholder.png */,
 				4BDEDB3A18CFF47F001C2874 /* gender */,
 				4B569CAF18CEA839000DF219 /* login */,
 				4B543FC918B4F30B0052DFDD /* camera */,
 				4B7A421318B0DCE2009356F4 /* camera_18_2x.png */,
+				4BFB839818EC1752008651DA /* placeholder.png */,
+				4BFB839418EC160C008651DA /* message_placeholder.png */,
 				4BF41A2618D2E17A004E9A38 /* write.png */,
 				4B50AC1918D6EDF20028BAF9 /* writing.png */,
 				4BFA999618AFA19200D673CB /* Tuijian-Info.plist */,
@@ -2159,7 +2159,6 @@
 				4BFB834718EBD531008651DA /* weibo-icon.png in Resources */,
 				4B47A3AA18D1B40500087BE4 /* favSelectedHighlight@2x.png in Resources */,
 				4B50AC1A18D6EDF20028BAF9 /* writing.png in Resources */,
-				4B47A3A118D187F600087BE4 /* photo.png in Resources */,
 				4B47A3A618D1AA1600087BE4 /* like.png in Resources */,
 				4B8B93A618E8F88200459AC2 /* message@2x.png in Resources */,
 				4B569C9918CE9E36000DF219 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -2167,14 +2166,15 @@
 				4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */,
 				4BFB834518EBD529008651DA /* Tencent_QQ.png in Resources */,
 				4B8B93AA18E8F89100459AC2 /* user-outline@2x.png in Resources */,
+				4BFB839918EC1752008651DA /* placeholder.png in Resources */,
 				4B47A3AC18D1B42300087BE4 /* share.png in Resources */,
 				4B569CB318CEAAE9000DF219 /* bt_blue_76X24.png in Resources */,
 				4BFB834D18EBD8E4008651DA /* WeiboSDK.bundle in Resources */,
 				4BDEDB3C18CFF48A001C2874 /* male.png in Resources */,
+				4BFB839518EC160C008651DA /* message_placeholder.png in Resources */,
 				4B9C413918D984AF00B9F8E5 /* build-libidn.sh in Resources */,
 				4BFA999918AFA19200D673CB /* InfoPlist.strings in Resources */,
 				4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */,
-				4B8B93AF18E90B0900459AC2 /* placeholder.png in Resources */,
 				4B54577018CDBEF700492F81 /* ChoosePhotoIcon@2x.png in Resources */,
 				4B8B93A218E8F80300459AC2 /* star-outline.png in Resources */,
 				4B9C413418D984AF00B9F8E5 /* README.txt in Resources */,
