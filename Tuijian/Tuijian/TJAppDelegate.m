@@ -7,7 +7,6 @@
 //
 
 #import "TJAppDelegate.h"
-#import "TJLoginViewController.h"
 #import "TJShowViewController.h"
 #import "TJInfoViewController.h"
 #import "TJMineViewController.h"
@@ -53,7 +52,7 @@
     
     BOOL haveLogin = [[TJDataController sharedDataController]getUserLoginMask];
     if (!haveLogin) {
-        TJLoginViewController *loginViewController = [[TJLoginViewController alloc]init];
+        loginViewController = [[TJLoginViewController alloc]init];
         [self displayContentControllerOnController:loginViewController onController:self.tabBarController];
     }
     
@@ -79,7 +78,13 @@
     [self updateInfoTabbarBadge];
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    return [TencentOAuth HandleOpenURL:url];
+    BOOL openUrl = NO;
+    if ([[TJDataController sharedDataController]sinaWeiboLogin]) {
+        openUrl = [WeiboSDK handleOpenURL:url delegate:(id)loginViewController];
+    }else{
+        openUrl = [TencentOAuth HandleOpenURL:url];
+    }
+    return openUrl;
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
     return [TencentOAuth HandleOpenURL:url];

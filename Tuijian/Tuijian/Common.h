@@ -12,14 +12,28 @@
 //#define TJ_MY_SERVER_BASE_URL @"http://192.168.199.109/TJServer/webServices/"
 #define TJ_MY_SERVER_BASE_URL @"http://115.28.6.27/TJServer/webServices/"
 #define TJ_TENCENT_BASE_URL @"https://graph.qq.com/"
+#define TJ_TENCENT_APP_ID @"101035345"
+
+//sina weibo
+#define TJ_SINA_BASE_URL @"https://api.weibo.com/2/"
+#define TJ_SINA_kAppKey         @"2773657914"
+#define TJ_SINA_kRedirectURI    @"https://api.weibo.com/oauth2/default.html"
 
 #define TJ_USER_HAVE_LOGIN @"user_have_login"
 
+//tencent user info
 #define TJ_TENCENT_USER_LOGIN_INFO @"tencent_user_login_info"
 #define TJ_TENCENT_USER_ID @"tencent_user_id"
 #define TJ_TENCENT_ACCESS_TOKEN @"tencent_access_token"
 #define TJ_TENCENT_TOKEN_EXPIRATION_DATE @"tencent_token_expiration_date"
 
+//sina user info
+#define TJ_SINA_USER_LOGIN_INFO @"sina_user_login_info"
+#define TJ_SINA_USER_ID @"sina_user_id"
+#define TJ_SINA_ACCESS_TOKEN @"sina_access_token"
+#define TJ_SINA_TOKEN_EXPIRATION_DATE @"sina_token_expiration_date"
+
+//my user info
 #define TJ_MY_ACCESS_TOKEN @"my_access_token"
 #define TJ_MY_USER_ID @"my_user_id"
 #define TJ_MY_USER_PASSWORD @"my_user_password"//password for openfire 

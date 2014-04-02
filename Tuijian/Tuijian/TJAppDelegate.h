@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TJLoginViewController.h"
 
 @interface TJAppDelegate : UIResponder <UIApplicationDelegate>
-
+{
+    TJLoginViewController *loginViewController;
+}
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,retain) UITabBarController *tabBarController;
 

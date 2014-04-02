@@ -44,12 +44,29 @@
     [userDefaults setObject:tencentUserLoginInfo forKey:TJ_TENCENT_USER_LOGIN_INFO];
     [userDefaults synchronize];
 }
-
 -(NSDictionary *)getTencentLoginInfo
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *tencentUserLoginInfo = [userDefaults objectForKey:TJ_TENCENT_USER_LOGIN_INFO];
     return tencentUserLoginInfo;
+}
+-(void)saveSinaLoginInfo:(WBBaseResponse *)response
+{
+    NSString *sinaUserID = [(WBAuthorizeResponse *)response userID];
+    NSString *sinaUserAccessToken = [(WBAuthorizeResponse *)response accessToken];
+    NSDate *sinaUserExpirationDate = [(WBAuthorizeResponse *)response expirationDate];
+    NSDictionary *sinaUserLoginInfo = [NSDictionary dictionaryWithObjectsAndKeys:sinaUserID,TJ_SINA_USER_ID,
+                                       sinaUserAccessToken,TJ_SINA_ACCESS_TOKEN,
+                                       sinaUserExpirationDate,TJ_SINA_TOKEN_EXPIRATION_DATE,nil];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:sinaUserLoginInfo forKey:TJ_SINA_USER_LOGIN_INFO];
+    [userDefaults synchronize];
+}
+-(NSDictionary *)getSinaLoginInfo
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *sinaUserLoginInfo = [userDefaults objectForKey:TJ_SINA_USER_LOGIN_INFO];
+    return sinaUserLoginInfo;
 }
 
 -(void)saveUserInfo:(TJUser *)user

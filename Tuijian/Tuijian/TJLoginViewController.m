@@ -46,7 +46,8 @@
     sinaloginButton.center = CGPointMake(160, 180);
     
     UIButton *qqloginButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 120, 120)];
-    qqloginButton.backgroundColor = [UIColor whiteColor];
+    qqloginButton.backgroundColor = [UIColor darkGrayColor];
+    [qqloginButton setAlpha:0.4];
     qqloginButton.clipsToBounds = YES;
     qqloginButton.layer.cornerRadius = 60;
     UIImage *qqloginImage = [UIImage imageNamed:@"Tencent_QQ.png"];
@@ -60,15 +61,68 @@
                      kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,
                      kOPEN_PERMISSION_ADD_SHARE,
                      nil];
-    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"101035345" andDelegate:self];
+    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:TJ_TENCENT_APP_ID andDelegate:self];
+    
+    [WeiboSDK registerApp:TJ_SINA_kAppKey];
 }
 -(void)sinalogin
 {
-    
+    [[TJDataController sharedDataController] setSinaWeiboLogin:YES];
+    WBAuthorizeRequest *request = [WBAuthorizeRequest request];
+    request.redirectURI = TJ_SINA_kRedirectURI;
+    request.scope = @"all";
+    request.userInfo = @{@"SSO_From": @"TJLoginViewController"};
+    [WeiboSDK sendRequest:request];
 }
 -(void)qqlogin
 {
+    [[TJDataController sharedDataController] setSinaWeiboLogin:NO];
     [_tencentOAuth authorize:_permissions inSafari:NO];
+}
+#pragma sina weibo delegate
+- (void)didReceiveWeiboRequest:(WBBaseRequest *)request
+{
+    if ([request isKindOfClass:WBProvideMessageForWeiboRequest.class])
+    {
+        //        ProvideMessageForWeiboViewController *controller = [[[ProvideMessageForWeiboViewController alloc] init] autorelease];
+        //        [self.viewController presentModalViewController:controller animated:YES];
+    }
+}
+
+- (void)didReceiveWeiboResponse:(WBBaseResponse *)response
+{
+    if ([response isKindOfClass:WBSendMessageToWeiboResponse.class])
+    {
+        NSString *title = @"发送结果";
+        NSString *message = [NSString stringWithFormat:@"响应状态: %d\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",
+                             response.statusCode, response.userInfo, response.requestUserInfo];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else if ([response isKindOfClass:WBAuthorizeResponse.class])
+    {
+        NSString *userInfoStr = [response.requestUserInfo objectForKey:@"SSO_From"];
+        if ([userInfoStr isEqualToString:@"TJLoginViewController"]) {
+            
+            if (response.statusCode == WeiboSDKResponseStatusCodeSuccess) {
+                [[TJDataController sharedDataController]saveSinaLoginInfo:response];
+                [[TJDataController sharedDataController]getSinaUserInfo:^(TJUser *sinaUser){
+                    [[TJDataController sharedDataController]getMyUserToken:sinaUser userCate:@"sina" myUserToken:^(NSString *myUserToken){
+                        [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
+                        [self dismissMyViewController:self];
+                    }failure:^(NSError *error){
+                        
+                    }];
+                }failure:^(NSError *error){
+                    
+                }];
+            }
+        }
+    }
 }
 #pragma tencent delegate
 - (void)tencentDidLogin
@@ -80,7 +134,7 @@
         [[TJDataController sharedDataController]saveTencentLoginInfo:_tencentOAuth];
         
         [[TJDataController sharedDataController]getTencentUserInfo:^(TJUser *tencentUser){
-            [[TJDataController sharedDataController]getMyUserToken:tencentUser myUserToken:^(NSString *myUserToken){
+            [[TJDataController sharedDataController]getMyUserToken:tencentUser userCate:@"tencent" myUserToken:^(NSString *myUserToken){
                 [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
                 [self dismissMyViewController:self];
             }failure:^(NSError *error){

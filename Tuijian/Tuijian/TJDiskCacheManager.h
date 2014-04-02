@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <TencentOpenAPI/TencentOAuth.h>
+#import "WeiboSDK.h"
 #import "TJUser.h"
 
 @interface TJDiskCacheManager : NSObject
@@ -18,6 +19,8 @@
 -(BOOL)getUserLoginMask;
 -(void)saveTencentLoginInfo:(TencentOAuth *)tencentOAuth;
 -(NSDictionary *)getTencentLoginInfo;
+-(void)saveSinaLoginInfo:(WBBaseResponse *)response;
+-(NSDictionary *)getSinaLoginInfo;
 -(void)saveUserInfo:(TJUser *)user;
 -(void)saveUserLoginMask:(BOOL)logined;
 -(NSDictionary *)getUserInfoFromDisk;

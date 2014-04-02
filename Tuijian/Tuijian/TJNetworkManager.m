@@ -8,6 +8,7 @@
 
 #import "TJNetworkManager.h"
 #import "TJTencentAPIClient.h"
+#import "TJSinaAPIClient.h"
 #import "TJMyServerClient.h"
 
 @implementation TJNetworkManager
@@ -36,7 +37,7 @@
     NSString *accessToken = [sinaUserInfo objectForKey:TJ_TENCENT_ACCESS_TOKEN];
     
     NSString *path = @"user/get_user_info";
-    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"openid",accessToken,@"access_token",@"101035345",@"oauth_consumer_key", nil];
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"openid",accessToken,@"access_token",TJ_TENCENT_APP_ID,@"oauth_consumer_key", nil];
     NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
     
     [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
@@ -49,11 +50,31 @@
     }];
     [operation start];
 }
--(void)sendUserTokenToServerForLogin:(NSString *)access_token userInfo:(NSDictionary *)userInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)sendSinaUserInfoRequest:(NSDictionary *)sinaUserInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+{
+    TJSinaAPIClient *client = [TJSinaAPIClient sharedClient];
+    
+    NSString *userId = [sinaUserInfo objectForKey:TJ_SINA_USER_ID];
+    NSString *accessToken = [sinaUserInfo objectForKey:TJ_SINA_ACCESS_TOKEN];
+    
+    NSString *path = @"users/show.json";
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"uid",accessToken,@"access_token", nil];
+    NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        
+        success(JSON);
+    }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        failure(error);
+    }];
+    [operation start];
+}
+-(void)sendUserTokenToServerForLogin:(NSString *)access_token userCate:(NSString *)uCate userInfo:(NSDictionary *)userInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     TJMyServerClient *client = [TJMyServerClient sharedClient];
     NSString *path = @"Login/ThirdPartyUserLogin";
-    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:@"tencent",@"user_category",access_token,@"access_token",userInfo,@"userInfomation", nil];
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:uCate,@"user_category",access_token,@"access_token",userInfo,@"userInfomation", nil];
     NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {

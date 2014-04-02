@@ -9,8 +9,9 @@
 #import "TJBaseViewController.h"
 
 #import <TencentOpenAPI/TencentOAuth.h>
+#import "WeiboSDK.h"
 
-@interface TJLoginViewController : TJBaseViewController<TencentSessionDelegate>
+@interface TJLoginViewController : TJBaseViewController<TencentSessionDelegate ,WeiboSDKDelegate>
 {
     TencentOAuth* _tencentOAuth;
     NSArray* _permissions;

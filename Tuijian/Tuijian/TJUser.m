@@ -12,13 +12,23 @@
 @synthesize myUserId ,accessToken;
 @synthesize name = _name ,gender = _gender, profile_image_url = _profile_image_url;
 
--(id)initWithJsonData:(id)json
+-(id)initWithTencentJsonData:(id)json
 {
     if (self = [super init]) {
         
         self.name = [json objectForKey:@"nickname"];
         self.gender = [json objectForKey:@"gender"];
         self.profile_image_url = [json objectForKey:@"figureurl_qq_2"];
+    }
+    return self;
+}
+-(id)initWithSinaJsonData:(id)json
+{
+    if (self = [super init]) {
+        
+        self.name = [json objectForKey:@"name"];
+        self.gender = [json objectForKey:@"gender"];
+        self.profile_image_url = [json objectForKey:@"profile_image_url"];
     }
     return self;
 }

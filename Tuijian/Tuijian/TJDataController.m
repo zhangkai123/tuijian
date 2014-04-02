@@ -10,6 +10,8 @@
 #import "TJParser.h"
 
 @implementation TJDataController
+@synthesize sinaWeiboLogin;
+
 +(id)sharedDataController
 {
     static TJDataController *dataController;
@@ -41,25 +43,48 @@
 {
     [[TJDiskCacheManager sharedDiskCacheManager]saveTencentLoginInfo:tencentOAuth];
 }
-
 -(void)getTencentUserInfo:(void(^)(TJUser *tencentUser))tencentUserInfo failure:(void (^)(NSError *error))failure
 {
     NSDictionary *tencentLoginInfo = [[TJDiskCacheManager sharedDiskCacheManager]getTencentLoginInfo];
     [[TJNetworkManager sharedNetworkManager] sendTencentUserInfoRequest:tencentLoginInfo success:^(id JSON){
         
-        TJUser *userInfo = [[TJUser alloc]initWithJsonData:JSON];
+        TJUser *userInfo = [[TJUser alloc]initWithTencentJsonData:JSON];
         [[TJDiskCacheManager sharedDiskCacheManager]saveUserInfo:userInfo];
         tencentUserInfo(userInfo);
     } failure:^(NSError *error){
         failure(error);
     }];
 }
--(void)getMyUserToken:(TJUser *)theUser myUserToken:(void (^)(NSString *userToken))myUserToken failure:(void (^)(NSError *error))failure
+
+-(void)saveSinaLoginInfo:(WBBaseResponse *)response
 {
-    NSDictionary *tencentLoginInfo = [[TJDiskCacheManager sharedDiskCacheManager]getTencentLoginInfo];
-    NSString *tencentUserAccessToken = [tencentLoginInfo objectForKey:TJ_TENCENT_ACCESS_TOKEN];
+    [[TJDiskCacheManager sharedDiskCacheManager]saveSinaLoginInfo:response];
+}
+-(void)getSinaUserInfo:(void(^)(TJUser *sinaUser))sinaUserInfo failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *sinaLoginInfo = [[TJDiskCacheManager sharedDiskCacheManager]getSinaLoginInfo];
+    [[TJNetworkManager sharedNetworkManager]sendSinaUserInfoRequest:sinaLoginInfo success:^(id JSON){
+        
+        TJUser *userInfo = [[TJUser alloc]initWithSinaJsonData:JSON];
+        [[TJDiskCacheManager sharedDiskCacheManager]saveUserInfo:userInfo];
+        sinaUserInfo(userInfo);
+    }failure:^(NSError *error){
+        failure(error);
+    }];
+}
+
+-(void)getMyUserToken:(TJUser *)theUser userCate:(NSString *)uCate myUserToken:(void (^)(NSString *userToken))myUserToken failure:(void (^)(NSError *error))failure
+{
+    NSString *thirdPartAccessToken = nil;
+    if ([uCate isEqualToString:@"tencent"]) {
+        NSDictionary *tencentLoginInfo = [[TJDiskCacheManager sharedDiskCacheManager]getTencentLoginInfo];
+        thirdPartAccessToken = [tencentLoginInfo objectForKey:TJ_TENCENT_ACCESS_TOKEN];
+    }else{
+        NSDictionary *sinaLoginInfo = [[TJDiskCacheManager sharedDiskCacheManager]getSinaLoginInfo];
+        thirdPartAccessToken = [sinaLoginInfo objectForKey:TJ_SINA_ACCESS_TOKEN];
+    }
     NSDictionary *userInfoDic = [NSDictionary dictionaryWithObjectsAndKeys:theUser.name,@"userName",theUser.profile_image_url,@"profileUrl",theUser.gender,@"gender",nil];
-    [[TJNetworkManager sharedNetworkManager]sendUserTokenToServerForLogin:tencentUserAccessToken userInfo:userInfoDic success:^(id JSON){
+    [[TJNetworkManager sharedNetworkManager]sendUserTokenToServerForLogin:thirdPartAccessToken userCate:uCate userInfo:userInfoDic success:^(id JSON){
 
         NSString *success = [JSON objectForKey:@"status"];
         if ([success isEqualToString:@"success"]) {

@@ -259,6 +259,9 @@
 		4BFB64D218C187F800C304BB /* TJBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB64D118C187F800C304BB /* TJBaseViewController.m */; };
 		4BFB834518EBD529008651DA /* Tencent_QQ.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BFB834418EBD529008651DA /* Tencent_QQ.png */; };
 		4BFB834718EBD531008651DA /* weibo-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BFB834618EBD531008651DA /* weibo-icon.png */; };
+		4BFB834C18EBD8E4008651DA /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFB834918EBD8E4008651DA /* libWeiboSDK.a */; };
+		4BFB834D18EBD8E4008651DA /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BFB834A18EBD8E4008651DA /* WeiboSDK.bundle */; };
+		4BFB835018EBF0A1008651DA /* TJSinaAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFB834F18EBF0A1008651DA /* TJSinaAPIClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -736,6 +739,11 @@
 		4BFB64D118C187F800C304BB /* TJBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJBaseViewController.m; sourceTree = "<group>"; };
 		4BFB834418EBD529008651DA /* Tencent_QQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tencent_QQ.png; sourceTree = "<group>"; };
 		4BFB834618EBD531008651DA /* weibo-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo-icon.png"; sourceTree = "<group>"; };
+		4BFB834918EBD8E4008651DA /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
+		4BFB834A18EBD8E4008651DA /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		4BFB834B18EBD8E4008651DA /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		4BFB834E18EBF0A1008651DA /* TJSinaAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJSinaAPIClient.h; sourceTree = "<group>"; };
+		4BFB834F18EBF0A1008651DA /* TJSinaAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJSinaAPIClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -756,6 +764,7 @@
 				4B569CA018CE9EB8000DF219 /* SystemConfiguration.framework in Frameworks */,
 				4B569C9E18CE9EAE000DF219 /* libiconv.dylib in Frameworks */,
 				4B569C9C18CE9EA2000DF219 /* Security.framework in Frameworks */,
+				4BFB834C18EBD8E4008651DA /* libWeiboSDK.a in Frameworks */,
 				4B569C9A18CE9E36000DF219 /* TencentOpenAPI.framework in Frameworks */,
 				4B9C413A18D984AF00B9F8E5 /* libidn.a in Frameworks */,
 				4BFA999318AFA19200D673CB /* UIKit.framework in Frameworks */,
@@ -965,6 +974,7 @@
 				4B47A37018D179B800087BE4 /* SDWebImage */,
 				4B569CB518CEBA0D000DF219 /* AFNetworking */,
 				4B569C9618CE9DCC000DF219 /* Tencent */,
+				4BFB834818EBD8E4008651DA /* libWeiboSDK */,
 			);
 			name = ThirdPartyLibrary;
 			sourceTree = "<group>";
@@ -1013,6 +1023,8 @@
 				4B569CDA18CEBB5D000DF219 /* TJTencentAPIClient.m */,
 				4B569CDB18CEBB5D000DF219 /* TJMyServerClient.h */,
 				4B569CDC18CEBB5D000DF219 /* TJMyServerClient.m */,
+				4BFB834E18EBF0A1008651DA /* TJSinaAPIClient.h */,
+				4BFB834F18EBF0A1008651DA /* TJSinaAPIClient.m */,
 			);
 			name = WebServerManager;
 			sourceTree = "<group>";
@@ -2054,6 +2066,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4BFB834818EBD8E4008651DA /* libWeiboSDK */ = {
+			isa = PBXGroup;
+			children = (
+				4BFB834918EBD8E4008651DA /* libWeiboSDK.a */,
+				4BFB834A18EBD8E4008651DA /* WeiboSDK.bundle */,
+				4BFB834B18EBD8E4008651DA /* WeiboSDK.h */,
+			);
+			path = libWeiboSDK;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2147,6 +2169,7 @@
 				4B8B93AA18E8F89100459AC2 /* user-outline@2x.png in Resources */,
 				4B47A3AC18D1B42300087BE4 /* share.png in Resources */,
 				4B569CB318CEAAE9000DF219 /* bt_blue_76X24.png in Resources */,
+				4BFB834D18EBD8E4008651DA /* WeiboSDK.bundle in Resources */,
 				4BDEDB3C18CFF48A001C2874 /* male.png in Resources */,
 				4B9C413918D984AF00B9F8E5 /* build-libidn.sh in Resources */,
 				4BFA999918AFA19200D673CB /* InfoPlist.strings in Resources */,
@@ -2238,6 +2261,7 @@
 				4B9C410518D984AF00B9F8E5 /* XMPPMessage+XEP_0085.m in Sources */,
 				4B9C40EF18D984AF00B9F8E5 /* XMPPvCard.xcdatamodeld in Sources */,
 				4B47A39A18D179B800087BE4 /* UIImage+WebP.m in Sources */,
+				4BFB835018EBF0A1008651DA /* TJSinaAPIClient.m in Sources */,
 				4B47A39218D179B800087BE4 /* SDWebImageDecoder.m in Sources */,
 				4B8B93B218E90C8F00459AC2 /* TJItemMessageCell.m in Sources */,
 				4B9C40F518D984AF00B9F8E5 /* XMPPvCardTempAdr.m in Sources */,
@@ -2508,6 +2532,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tuijian/Vendor/libidn",
+					"$(PROJECT_DIR)/Tuijian/libWeiboSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2534,6 +2559,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tuijian/Vendor/libidn",
+					"$(PROJECT_DIR)/Tuijian/libWeiboSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

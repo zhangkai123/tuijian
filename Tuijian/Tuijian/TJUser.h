@@ -16,6 +16,7 @@
 @property(nonatomic,retain) NSString *gender;
 @property(nonatomic,retain) NSString *profile_image_url;
 
--(id)initWithJsonData:(id)json;
+-(id)initWithTencentJsonData:(id)json;
+-(id)initWithSinaJsonData:(id)json;
 -(id)initWithDictionaryData:(NSDictionary *)dic;
 @end
