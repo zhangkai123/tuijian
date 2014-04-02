@@ -120,7 +120,7 @@
         TJUser *user = [[TJDataController sharedDataController]getMyUserInfo];
         [[(TJMyInfoCell *)cell profileImageView] setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:nil];
         [[(TJMyInfoCell *)cell nameLabel] setText:user.name];
-        if ([user.gender isEqualToString:@"男"]) {
+        if ([user.gender isEqualToString:@"男"] || [user.gender isEqualToString:@"m"]) {
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"male.png"]];
         }else{
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"female.png"]];

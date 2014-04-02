@@ -28,7 +28,7 @@
         
         self.name = [json objectForKey:@"name"];
         self.gender = [json objectForKey:@"gender"];
-        self.profile_image_url = [json objectForKey:@"profile_image_url"];
+        self.profile_image_url = [json objectForKey:@"avatar_large"];
     }
     return self;
 }
