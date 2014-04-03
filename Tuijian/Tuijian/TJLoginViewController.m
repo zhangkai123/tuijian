@@ -112,6 +112,7 @@
                 [[TJDataController sharedDataController]saveSinaLoginInfo:response];
                 [[TJDataController sharedDataController]getSinaUserInfo:^(TJUser *sinaUser){
                     [[TJDataController sharedDataController]getMyUserToken:sinaUser userCate:@"sina" myUserToken:^(NSString *myUserToken){
+                        [[NSNotificationCenter defaultCenter]postNotificationName:TJ_CONNECT_XMPP_NOTIFICATION object:nil];
                         [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
                         [self dismissMyViewController:self];
                     }failure:^(NSError *error){
@@ -135,6 +136,7 @@
         
         [[TJDataController sharedDataController]getTencentUserInfo:^(TJUser *tencentUser){
             [[TJDataController sharedDataController]getMyUserToken:tencentUser userCate:@"tencent" myUserToken:^(NSString *myUserToken){
+                [[NSNotificationCenter defaultCenter]postNotificationName:TJ_CONNECT_XMPP_NOTIFICATION object:nil];
                 [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
                 [self dismissMyViewController:self];
             }failure:^(NSError *error){

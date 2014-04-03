@@ -115,12 +115,17 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveMessage) name:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
     [self updateInfoTabbarBadge];
     if ([[TJDataController sharedDataController]getUserLoginMask]) {
-        [[TJDataController sharedDataController]connectToXMPPServer:^(BOOL hasOnline){
-            
-        }];
+        [self connectToXMPPServer];
+    }else{
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(connectToXMPPServer) name:TJ_CONNECT_XMPP_NOTIFICATION object:nil];
     }
 }
-
+-(void)connectToXMPPServer
+{
+    [[TJDataController sharedDataController]connectToXMPPServer:^(BOOL hasOnline){
+        
+    }];
+}
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
