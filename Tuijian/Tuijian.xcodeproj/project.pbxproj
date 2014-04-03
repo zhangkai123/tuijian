@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		4B03651E18E2A91400D106F1 /* TJItemMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B03651D18E2A91400D106F1 /* TJItemMessageViewController.m */; };
 		4B1D468218DAF1240056262B /* TJMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1D468118DAF1240056262B /* TJMessage.m */; };
+		4B31404618ED01C6007A00F2 /* HPGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31404318ED01C6007A00F2 /* HPGrowingTextView.m */; };
+		4B31404718ED01C6007A00F2 /* HPTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31404518ED01C6007A00F2 /* HPTextViewInternal.m */; };
+		4B31404A18ED061C007A00F2 /* TJCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31404918ED061C007A00F2 /* TJCommentView.m */; };
+		4B31405418ED0B35007A00F2 /* MessageEntrySendButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B31404C18ED0B35007A00F2 /* MessageEntrySendButton.png */; };
+		4B31405518ED0B35007A00F2 /* MessageEntrySendButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B31404D18ED0B35007A00F2 /* MessageEntrySendButton@2x.png */; };
+		4B31405618ED0B35007A00F2 /* MessageEntrySendButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B31404E18ED0B35007A00F2 /* MessageEntrySendButtonPressed.png */; };
+		4B31405718ED0B35007A00F2 /* MessageEntrySendButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B31404F18ED0B35007A00F2 /* MessageEntrySendButtonPressed@2x.png */; };
+		4B31405818ED0B35007A00F2 /* MessageEntryBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B31405018ED0B35007A00F2 /* MessageEntryBackground.png */; };
+		4B31405918ED0B35007A00F2 /* MessageEntryBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B31405118ED0B35007A00F2 /* MessageEntryBackground@2x.png */; };
+		4B31405A18ED0B35007A00F2 /* MessageEntryInputField.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B31405218ED0B35007A00F2 /* MessageEntryInputField.png */; };
+		4B31405B18ED0B35007A00F2 /* MessageEntryInputField@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B31405318ED0B35007A00F2 /* MessageEntryInputField@2x.png */; };
 		4B31B77518D7F75400F87D71 /* TJComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B77418D7F75400F87D71 /* TJComment.m */; };
 		4B31B77818D8123F00F87D71 /* TJItemDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B77718D8123F00F87D71 /* TJItemDetailCell.m */; };
 		4B31B77B18D813F400F87D71 /* TJLikeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B77A18D813F400F87D71 /* TJLikeCell.m */; };
@@ -279,6 +290,20 @@
 		4B03651D18E2A91400D106F1 /* TJItemMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJItemMessageViewController.m; sourceTree = "<group>"; };
 		4B1D468018DAF1240056262B /* TJMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMessage.h; sourceTree = "<group>"; };
 		4B1D468118DAF1240056262B /* TJMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMessage.m; sourceTree = "<group>"; };
+		4B31404218ED01C6007A00F2 /* HPGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPGrowingTextView.h; sourceTree = "<group>"; };
+		4B31404318ED01C6007A00F2 /* HPGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPGrowingTextView.m; sourceTree = "<group>"; };
+		4B31404418ED01C6007A00F2 /* HPTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTextViewInternal.h; sourceTree = "<group>"; };
+		4B31404518ED01C6007A00F2 /* HPTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPTextViewInternal.m; sourceTree = "<group>"; };
+		4B31404818ED061C007A00F2 /* TJCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCommentView.h; sourceTree = "<group>"; };
+		4B31404918ED061C007A00F2 /* TJCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCommentView.m; sourceTree = "<group>"; };
+		4B31404C18ED0B35007A00F2 /* MessageEntrySendButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntrySendButton.png; sourceTree = "<group>"; };
+		4B31404D18ED0B35007A00F2 /* MessageEntrySendButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntrySendButton@2x.png"; sourceTree = "<group>"; };
+		4B31404E18ED0B35007A00F2 /* MessageEntrySendButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntrySendButtonPressed.png; sourceTree = "<group>"; };
+		4B31404F18ED0B35007A00F2 /* MessageEntrySendButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntrySendButtonPressed@2x.png"; sourceTree = "<group>"; };
+		4B31405018ED0B35007A00F2 /* MessageEntryBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntryBackground.png; sourceTree = "<group>"; };
+		4B31405118ED0B35007A00F2 /* MessageEntryBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntryBackground@2x.png"; sourceTree = "<group>"; };
+		4B31405218ED0B35007A00F2 /* MessageEntryInputField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntryInputField.png; sourceTree = "<group>"; };
+		4B31405318ED0B35007A00F2 /* MessageEntryInputField@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntryInputField@2x.png"; sourceTree = "<group>"; };
 		4B31B77318D7F75400F87D71 /* TJComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJComment.h; sourceTree = "<group>"; };
 		4B31B77418D7F75400F87D71 /* TJComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJComment.m; sourceTree = "<group>"; };
 		4B31B77618D8123F00F87D71 /* TJItemDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJItemDetailCell.h; sourceTree = "<group>"; };
@@ -849,6 +874,32 @@
 			name = CellView;
 			sourceTree = "<group>";
 		};
+		4B31404118ED01B9007A00F2 /* HPGrowingTextView */ = {
+			isa = PBXGroup;
+			children = (
+				4B31404218ED01C6007A00F2 /* HPGrowingTextView.h */,
+				4B31404318ED01C6007A00F2 /* HPGrowingTextView.m */,
+				4B31404418ED01C6007A00F2 /* HPTextViewInternal.h */,
+				4B31404518ED01C6007A00F2 /* HPTextViewInternal.m */,
+			);
+			name = HPGrowingTextView;
+			sourceTree = "<group>";
+		};
+		4B31404B18ED0B28007A00F2 /* CommentView */ = {
+			isa = PBXGroup;
+			children = (
+				4B31404C18ED0B35007A00F2 /* MessageEntrySendButton.png */,
+				4B31404D18ED0B35007A00F2 /* MessageEntrySendButton@2x.png */,
+				4B31404E18ED0B35007A00F2 /* MessageEntrySendButtonPressed.png */,
+				4B31404F18ED0B35007A00F2 /* MessageEntrySendButtonPressed@2x.png */,
+				4B31405018ED0B35007A00F2 /* MessageEntryBackground.png */,
+				4B31405118ED0B35007A00F2 /* MessageEntryBackground@2x.png */,
+				4B31405218ED0B35007A00F2 /* MessageEntryInputField.png */,
+				4B31405318ED0B35007A00F2 /* MessageEntryInputField@2x.png */,
+			);
+			name = CommentView;
+			sourceTree = "<group>";
+		};
 		4B47A36C18D1625900087BE4 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -911,6 +962,8 @@
 			children = (
 				4B50AC1418D6DE120028BAF9 /* YFInputBar.h */,
 				4B50AC1518D6DE120028BAF9 /* YFInputBar.m */,
+				4B31404818ED061C007A00F2 /* TJCommentView.h */,
+				4B31404918ED061C007A00F2 /* TJCommentView.m */,
 				4BF41A2118D299B6004E9A38 /* TJCommentViewController.h */,
 				4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */,
 			);
@@ -968,6 +1021,7 @@
 		4B569CB418CEB9D5000DF219 /* ThirdPartyLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				4B31404118ED01B9007A00F2 /* HPGrowingTextView */,
 				4BEE7F3318E53A7B00232E6C /* MTStatusBarOverlay */,
 				4B9C3F6818D9846300B9F8E5 /* XMPP */,
 				4B50AC2518D715960028BAF9 /* GTScrollNavigationBar */,
@@ -2029,6 +2083,7 @@
 		4BFA999518AFA19200D673CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B31404B18ED0B28007A00F2 /* CommentView */,
 				4B8B939618E8F4D000459AC2 /* Tabs */,
 				4BD48DEF18DFE22600D83667 /* DB */,
 				4B47A3A218D1A9EC00087BE4 /* items */,
@@ -2161,26 +2216,33 @@
 				4B50AC1A18D6EDF20028BAF9 /* writing.png in Resources */,
 				4B47A3A618D1AA1600087BE4 /* like.png in Resources */,
 				4B8B93A618E8F88200459AC2 /* message@2x.png in Resources */,
+				4B31405718ED0B35007A00F2 /* MessageEntrySendButtonPressed@2x.png in Resources */,
 				4B569C9918CE9E36000DF219 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				4B31405818ED0B35007A00F2 /* MessageEntryBackground.png in Resources */,
 				4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */,
 				4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */,
+				4B31405518ED0B35007A00F2 /* MessageEntrySendButton@2x.png in Resources */,
 				4BFB834518EBD529008651DA /* Tencent_QQ.png in Resources */,
 				4B8B93AA18E8F89100459AC2 /* user-outline@2x.png in Resources */,
 				4BFB839918EC1752008651DA /* placeholder.png in Resources */,
 				4B47A3AC18D1B42300087BE4 /* share.png in Resources */,
 				4B569CB318CEAAE9000DF219 /* bt_blue_76X24.png in Resources */,
 				4BFB834D18EBD8E4008651DA /* WeiboSDK.bundle in Resources */,
+				4B31405B18ED0B35007A00F2 /* MessageEntryInputField@2x.png in Resources */,
 				4BDEDB3C18CFF48A001C2874 /* male.png in Resources */,
 				4BFB839518EC160C008651DA /* message_placeholder.png in Resources */,
+				4B31405918ED0B35007A00F2 /* MessageEntryBackground@2x.png in Resources */,
 				4B9C413918D984AF00B9F8E5 /* build-libidn.sh in Resources */,
 				4BFA999918AFA19200D673CB /* InfoPlist.strings in Resources */,
 				4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */,
+				4B31405618ED0B35007A00F2 /* MessageEntrySendButtonPressed.png in Resources */,
 				4B54577018CDBEF700492F81 /* ChoosePhotoIcon@2x.png in Resources */,
 				4B8B93A218E8F80300459AC2 /* star-outline.png in Resources */,
 				4B9C413418D984AF00B9F8E5 /* README.txt in Resources */,
 				4B9C412518D984AF00B9F8E5 /* README.markdown in Resources */,
 				4BFA99A118AFA19200D673CB /* Images.xcassets in Resources */,
 				4B47A3A418D1AA0100087BE4 /* comment.png in Resources */,
+				4B31405418ED0B35007A00F2 /* MessageEntrySendButton.png in Resources */,
 				4B47A3A918D1B40500087BE4 /* favhighlight@2x.png in Resources */,
 				4BDEDB3E18CFF490001C2874 /* female.png in Resources */,
 				4B47A39F18D17BB700087BE4 /* womanPlaceholder.png in Resources */,
@@ -2189,6 +2251,7 @@
 				4BF41A2718D2E17A004E9A38 /* write.png in Resources */,
 				4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */,
 				4B8B93A018E8F7FD00459AC2 /* user-outline.png in Resources */,
+				4B31405A18ED0B35007A00F2 /* MessageEntryInputField.png in Resources */,
 				4B8B93B618E975C200459AC2 /* message.sqlite in Resources */,
 				4B9C40C318D984AF00B9F8E5 /* copying.txt in Resources */,
 				4B8B93A418E8F80900459AC2 /* message.png in Resources */,
@@ -2261,6 +2324,7 @@
 				4B9C410518D984AF00B9F8E5 /* XMPPMessage+XEP_0085.m in Sources */,
 				4B9C40EF18D984AF00B9F8E5 /* XMPPvCard.xcdatamodeld in Sources */,
 				4B47A39A18D179B800087BE4 /* UIImage+WebP.m in Sources */,
+				4B31404618ED01C6007A00F2 /* HPGrowingTextView.m in Sources */,
 				4BFB835018EBF0A1008651DA /* TJSinaAPIClient.m in Sources */,
 				4B47A39218D179B800087BE4 /* SDWebImageDecoder.m in Sources */,
 				4B8B93B218E90C8F00459AC2 /* TJItemMessageCell.m in Sources */,
@@ -2331,6 +2395,8 @@
 				4B569CCA18CEBA0D000DF219 /* AFHTTPRequestOperation.m in Sources */,
 				4BE1636318B9D7890009158D /* TJEditViewController.m in Sources */,
 				4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */,
+				4B31404A18ED061C007A00F2 /* TJCommentView.m in Sources */,
+				4B31404718ED01C6007A00F2 /* HPTextViewInternal.m in Sources */,
 				4B9C40F718D984AF00B9F8E5 /* XMPPvCardTempBase.m in Sources */,
 				4B9C40E718D984AF00B9F8E5 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				4B9C3F6718D9234C00B9F8E5 /* UIImage+additions.m in Sources */,

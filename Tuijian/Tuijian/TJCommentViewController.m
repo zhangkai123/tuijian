@@ -9,17 +9,17 @@
 #import "TJCommentViewController.h"
 #import "TJItemDetailCell.h"
 #import "TJLikeCell.h"
-#import "YFInputBar.h"
+#import "TJCommentView.h"
 #import "TJCommentCell.h"
 #import "TJComment.h"
 #import "UIImage+additions.h"
 #import "TJTouchableImageView.h"
 #import "TJUserInfoViewController.h"
 
-@interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,YFInputBarDelegate,TJTouchableImageViewDelegate>
+@interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,TJTouchableImageViewDelegate,TJCommentViewDelegate>
 {
     UITableView *detailTableView;
-    YFInputBar *commentInputBar;
+    TJCommentView *commentInputView;
     BOOL isWirting;
     
     NSMutableArray *myLikesArray;
@@ -55,7 +55,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     detailTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
-//    [detailTableView setBackgroundColor:UIColorFromRGB(0xEEEEEE)];
     detailTableView.rowHeight = 500;
     detailTableView.dataSource = self;
     detailTableView.delegate = self;
@@ -65,12 +64,11 @@
 
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 50, 0);
     detailTableView.contentInset = insets;
-    
-    commentInputBar = [[YFInputBar alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY([UIScreen mainScreen].bounds), 320, 44)];
-    commentInputBar.backgroundColor = [UIColor lightGrayColor];
-    commentInputBar.delegate = self;
-    commentInputBar.clearInputWhenSend = YES;
-    [self.view addSubview:commentInputBar];
+
+    commentInputView = [[TJCommentView alloc]initWithFrame:self.view.frame];
+    commentInputView.delegate = self;
+    commentInputView.hidden = YES;
+    [self.view addSubview:commentInputView];
     
     myLikesArray = [[NSMutableArray alloc]init];
     myCommentsArray = [[NSMutableArray alloc]init];
@@ -113,26 +111,32 @@
 -(void)enterWriteStatus
 {
     isWirting = YES;
-    [commentInputBar.textField becomeFirstResponder];
+    commentInputView.hidden = NO;
+    [commentInputView showKeyboard:YES];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"writing.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeComment)];
 }
 -(void)exitWriteStatus
 {
     isWirting = NO;
-    [commentInputBar.textField resignFirstResponder];
+    commentInputView.hidden = YES;
+    [commentInputView showKeyboard:NO];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"write.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeComment)];
 }
-#pragma YFInputBar delegate
--(void)inputBar:(YFInputBar *)inputBar sendBtnPress:(UIButton *)sendBtn withInputString:(NSString *)str
+#pragma TJCommentViewDelegate
+-(void)exitInputMode
+{
+    [self exitWriteStatus];
+}
+-(void)sendComment:(NSString *)theComment
 {
     __block TJItem *weakItem = self.theItem;
-    __block NSString *commentInfo = str;
+    __block NSString *commentInfo = theComment;
     __block UITableView *weakDetailTableView = detailTableView;
     __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
     __block NSMutableArray *weakmyCommentHeightArray = myCommentHeightArray;
-    [[TJDataController sharedDataController]saveComment:self.theItem.itemId commentInfo:str success:^(BOOL hasCommented){
+    [[TJDataController sharedDataController]saveComment:self.theItem.itemId commentInfo:theComment success:^(BOOL hasCommented){
         if (hasCommented) {
-           TJComment *comment = [[TJDataController sharedDataController] getMyOwnCommentItem:commentInfo];
+            TJComment *comment = [[TJDataController sharedDataController] getMyOwnCommentItem:commentInfo];
             [weakMyCommentsArray insertObject:comment atIndex:0];
             CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(TJ_COMMENT_LABEL_WIDTH, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
@@ -147,15 +151,6 @@
         
     }];
     [self exitWriteStatus];
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.view.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        isWirting = NO;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"write.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeComment)];
-        [((UIView*)obj) resignFirstResponder];
-    }];
 }
 
 #pragma uitableview delegate and datasource
