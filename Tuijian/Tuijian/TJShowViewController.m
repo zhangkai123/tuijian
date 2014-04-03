@@ -20,6 +20,8 @@
 @interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJCamViewControllerDelegate,TJItemCellDelegate,TJTouchableImageViewDelegate,MTStatusBarOverlayDelegate>
 {
     UITableView *itemTableView;
+    UIRefreshControl *refreshControl;
+    
     NSMutableArray *itemsArray;
     NSMutableArray *textHeightArray;
 }
@@ -71,6 +73,10 @@
     itemTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
     itemTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:itemTableView];
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshTableViewData) forControlEvents:UIControlEventValueChanged];
+    [itemTableView addSubview:refreshControl];
     
     itemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
@@ -127,6 +133,7 @@
         }
         [weakItemsArray addObjectsFromArray:iteArray];
         [weaktheTalbleView reloadData];
+        [refreshControl endRefreshing];
 //        [weaktheTalbleView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
     }failure:^(NSError *error){
         
