@@ -18,13 +18,18 @@
 
 @implementation TJPostViewController
 @synthesize cropedImage;
-
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 -(id)init
 {
     if (self = [super init]) {
         
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelPost)];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"发布" style:UIBarButtonItemStyleDone target:self action:@selector(postItem)];
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor lightGrayColor];
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     }
     return self;
 }
@@ -78,6 +83,8 @@
     [placeHolderLabel setFont:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]];
     [placeHolderLabel setAlpha:0.6];
     [tuijianTextView addSubview:placeHolderLabel];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldHaveBeenChanged) name:UITextFieldTextDidChangeNotification object:nil];
 }
 -(void)cancelPost
 {
@@ -98,6 +105,10 @@
     }];
 }
 #pragma text field delegate
+-(void)textFieldHaveBeenChanged
+{
+    [self adjustRightButtonItem];
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [tuijianTextView becomeFirstResponder];
     return NO;
@@ -111,6 +122,10 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     placeHolderLabel.hidden = YES;
 }
+- (void)textViewDidChange:(UITextView *)textView
+{
+    [self adjustRightButtonItem];
+}
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView{
     return YES;
 }
@@ -120,7 +135,16 @@
     }
 }
 
-
+-(void)adjustRightButtonItem
+{
+    if ((![titleTextField.text isEqualToString:@""]) && (![tuijianTextView.text isEqualToString:@""])) {
+        self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0x4876FF);
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }else{
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor lightGrayColor];
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
