@@ -110,7 +110,12 @@
 }
 -(void)sendComment
 {
-	[self.delegate sendComment:textView.text];
+    NSString * textWithoutWhiteSpace = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if ([textWithoutWhiteSpace isEqualToString:@""]) {
+        return;
+    }
+    NSString *resultStr = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	[self.delegate sendComment:resultStr];
     textView.text = nil;
 }
 

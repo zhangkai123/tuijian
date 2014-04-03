@@ -95,8 +95,8 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPLOADING_ITEM_NOTIFICATION object:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    NSString *title = titleTextField.text;
-    NSString *tuijianText = tuijianTextView.text;
+    NSString *title = [titleTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *tuijianText = [tuijianTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [[TJDataController sharedDataController]saveItem:title recommendMes:tuijianText uploadImage:self.cropedImage success:^(id Json){
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPLOADING_ITEM_SUCCESS object:nil];
@@ -137,7 +137,9 @@
 
 -(void)adjustRightButtonItem
 {
-    if ((![titleTextField.text isEqualToString:@""]) && (![tuijianTextView.text isEqualToString:@""])) {
+    NSString * titleWithoutWhiteSpace = [titleTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString * tuijianWithoutWhiteSpace = [tuijianTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if ((![titleWithoutWhiteSpace isEqualToString:@""]) && (![tuijianWithoutWhiteSpace isEqualToString:@""])) {
         self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0x4876FF);
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }else{

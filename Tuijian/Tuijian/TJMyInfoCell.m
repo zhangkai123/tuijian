@@ -24,7 +24,7 @@
         profileImageView.layer.cornerRadius = 80 / 2.0;
         
         nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 20, 100, 40)];
-        nameLabel.textColor = UIColorFromRGB(0x336699);
+        nameLabel.textColor = [UIColor whiteColor];
         [self addSubview:nameLabel];
         
         genderImageView = [[UIImageView alloc]initWithFrame:CGRectMake(100, 60, 20, 20)];
