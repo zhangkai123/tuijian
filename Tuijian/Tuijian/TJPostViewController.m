@@ -50,14 +50,21 @@
     titleTextField.backgroundColor = [UIColor whiteColor];
     titleTextField.placeholder = @"标题";
     titleTextField.delegate = self;
+    [titleTextField setFont:[UIFont boldSystemFontOfSize:16]];
+    [titleTextField setTextColor:UIColorFromRGB(0x3399CC)];
     [titleTextField becomeFirstResponder];
     [self.view addSubview:titleTextField];
     
-    tuijianTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 64 + 10 + 50 + 10, 300, 160)];
-    tuijianTextView.font = [UIFont systemFontOfSize:15];
+    UIView *seperateLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 64 + 10 + 50 + 9, 310, 1)];
+    seperateLineView.backgroundColor = [UIColor grayColor];
+    [seperateLineView setAlpha:0.1];
+    [self.view addSubview:seperateLineView];
+    
+    tuijianTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 64 + 10 + 50 + 10, 310, 160)];
+    [tuijianTextView setFont:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]];
     tuijianTextView.autocorrectionType = UITextAutocorrectionTypeNo;
     tuijianTextView.keyboardType = UIKeyboardTypeDefault;
-    tuijianTextView.returnKeyType = UIReturnKeyDone;
+    tuijianTextView.returnKeyType = UIReturnKeyDefault;
     tuijianTextView.textAlignment = NSTextAlignmentLeft;
     tuijianTextView.scrollEnabled = NO;
     tuijianTextView.delegate = self;
@@ -68,6 +75,8 @@
     placeHolderLabel.textAlignment = NSTextAlignmentLeft;
     [placeHolderLabel setBackgroundColor:[UIColor clearColor]];
     [placeHolderLabel setTextColor:[UIColor lightGrayColor]];
+    [placeHolderLabel setFont:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]];
+    [placeHolderLabel setAlpha:0.6];
     [tuijianTextView addSubview:placeHolderLabel];
 }
 -(void)cancelPost
@@ -88,6 +97,12 @@
         [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPLOADING_ITEM_FAIL object:nil];
     }];
 }
+#pragma text field delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [tuijianTextView becomeFirstResponder];
+    return NO;
+}
+
 #pragma text view delegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
     return YES;
