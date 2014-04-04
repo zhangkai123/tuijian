@@ -7,18 +7,16 @@
 //
 
 #import "TJShowViewController.h"
-#import "TJCamViewController.h"
-#import "TJPostViewController.h"
 #import "TJItemCell.h"
 #import "TJItem.h"
 #import "TJCommentViewController.h"
-#import "GTScrollNavigationBar.H"
 #import "TJTouchableImageView.h"
 #import "TJUserInfoViewController.h"
-#import "MTStatusBarOverlay.h"
 
-@interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJCamViewControllerDelegate,TJItemCellDelegate,TJTouchableImageViewDelegate,MTStatusBarOverlayDelegate>
+@interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJItemCellDelegate,TJTouchableImageViewDelegate>
 {
+    NSUInteger _pageIndex;
+    
     UITableView *itemTableView;
     UIRefreshControl *refreshControl;
     
@@ -33,16 +31,31 @@
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
--(id)init
++ (TJShowViewController *)showViewControllerForPageIndex:(NSUInteger)pageIndex
 {
-    if (self = [super init]) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"camera_18_2x.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(takePhoto:)];
+    if (pageIndex < 2)
+    {
+        return [[self alloc] initWithPageIndex:pageIndex];
+    }
+    return nil;
+}
+- (id)initWithPageIndex:(NSInteger)pageIndex
+{
+    self = [super init];
+    if (self)
+    {
+        _pageIndex = pageIndex;
     }
     return self;
 }
+- (NSInteger)pageIndex
+{
+    return _pageIndex;
+}
+
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
 {
-    [self.navigationController.scrollNavigationBar resetToDefaultPosition:YES];
+//    [self.navigationController.scrollNavigationBar resetToDefaultPosition:YES];
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,19 +68,19 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [itemTableView reloadData];
-    self.navigationController.scrollNavigationBar.scrollView = itemTableView;
+//    self.navigationController.scrollNavigationBar.scrollView = itemTableView;
     [super viewWillAppear:animated];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
-    self.navigationController.scrollNavigationBar.scrollView = nil;
+//    self.navigationController.scrollNavigationBar.scrollView = nil;
     [super viewWillDisappear:animated];
 }
 - (void)viewDidLoad
 {
     self.title = @"推荐";
     [super viewDidLoad];
-    itemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
+    itemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height - 64 - 49) style:UITableViewStylePlain];
     itemTableView.dataSource = self;
     itemTableView.delegate = self;
     itemTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
@@ -83,33 +96,7 @@
     if ([[TJDataController sharedDataController]getUserLoginMask]) {
         [self refreshTableViewData];
     }
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadingItem) name:TJ_UPLOADING_ITEM_NOTIFICATION object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadItemSuccess) name:TJ_UPLOADING_ITEM_SUCCESS object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadItemFail) name:TJ_UPLOADING_ITEM_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
-}
--(void)uploadingItem
-{
-    [self showUploadingActivityOnStatusbar];
-}
--(void)uploadItemSuccess
-{
-    MTStatusBarOverlay *overlay = [MTStatusBarOverlay sharedInstance];
-    [overlay postImmediateFinishMessage:@"发布成功!" duration:2.0 animated:YES];
-    [self refreshTableViewData];
-}
--(void)uploadItemFail
-{
-    MTStatusBarOverlay *overlay = [MTStatusBarOverlay sharedInstance];
-    [overlay postImmediateErrorMessage:@"发布失败" duration:2.0 animated:YES];
-}
--(void)showUploadingActivityOnStatusbar
-{
-    MTStatusBarOverlay *overlay = [MTStatusBarOverlay sharedInstance];
-    overlay.animation = MTStatusBarOverlayAnimationFallDown;
-    overlay.detailViewMode = MTDetailViewModeDetailText;
-    overlay.delegate = self;
-    [overlay postMessage:@"正在发布您的推荐…"];
 }
 
 -(void)refreshTableViewData
@@ -138,21 +125,6 @@
     }failure:^(NSError *error){
         
     }];
-}
--(void)takePhoto:(id)sender
-{
-    TJCamViewController *camViewController = [[TJCamViewController alloc]init];
-    camViewController.delegate = self;
-    [self presentViewController:camViewController animated:YES completion:^(void){
-    }];
-}
-#pragma TJCamViewControllerDelegate
--(void)getTheCropedImage:(UIImage *)cropedImage
-{
-    TJPostViewController *postViewController =[[TJPostViewController alloc]init];
-    postViewController.cropedImage = cropedImage;
-    UINavigationController *navcont = [[UINavigationController alloc] initWithRootViewController:postViewController];
-    [self presentViewController:navcont animated:YES completion:nil];
 }
 
 #pragma uitableview delegate and datasource
@@ -194,12 +166,10 @@
     TJItem *item = [itemsArray objectAtIndex:indexPath.section];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
     
-    self.hidesBottomBarWhenPushed = YES;
     TJCommentViewController *commentViewController = [[TJCommentViewController alloc]init];
     commentViewController.theItem = item;
     commentViewController.textHeight = textHeight;
     [self.navigationController pushViewController:commentViewController animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {

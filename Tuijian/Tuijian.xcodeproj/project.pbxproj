@@ -239,6 +239,7 @@
 		4BDEDB3E18CFF490001C2874 /* female.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3D18CFF490001C2874 /* female.png */; };
 		4BE1636018B869040009158D /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1635F18B869040009158D /* ImageScrollView.m */; };
 		4BE1636318B9D7890009158D /* TJEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1636218B9D7880009158D /* TJEditViewController.m */; };
+		4BE5A37618EE52AB006A8A1E /* TJRootShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE5A37518EE52AB006A8A1E /* TJRootShowController.m */; };
 		4BE911BB18DBD81600F4C3B1 /* TJPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */; };
 		4BE911BF18DBE12400F4C3B1 /* TJMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE911BE18DBE12400F4C3B1 /* TJMemoryCache.m */; };
 		4BEE7F3618E53A8900232E6C /* MTStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEE7F3518E53A8900232E6C /* MTStatusBarOverlay.m */; };
@@ -714,6 +715,8 @@
 		4BE1635F18B869040009158D /* ImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollView.m; sourceTree = "<group>"; };
 		4BE1636118B9D7880009158D /* TJEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJEditViewController.h; sourceTree = "<group>"; };
 		4BE1636218B9D7880009158D /* TJEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJEditViewController.m; sourceTree = "<group>"; };
+		4BE5A37418EE52AB006A8A1E /* TJRootShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJRootShowController.h; sourceTree = "<group>"; };
+		4BE5A37518EE52AB006A8A1E /* TJRootShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJRootShowController.m; sourceTree = "<group>"; };
 		4BE911B918DBD81600F4C3B1 /* TJPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJPostViewController.h; sourceTree = "<group>"; };
 		4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJPostViewController.m; sourceTree = "<group>"; };
 		4BE911BD18DBE12400F4C3B1 /* TJMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMemoryCache.h; sourceTree = "<group>"; };
@@ -821,6 +824,8 @@
 			children = (
 				4B7A420E18B0CF66009356F4 /* TJShowViewController.h */,
 				4B7A420F18B0CF66009356F4 /* TJShowViewController.m */,
+				4BE5A37418EE52AB006A8A1E /* TJRootShowController.h */,
+				4BE5A37518EE52AB006A8A1E /* TJRootShowController.m */,
 				4BFB64CA18C07ACA00C304BB /* TJInfoViewController.h */,
 				4BFB64CB18C07ACA00C304BB /* TJInfoViewController.m */,
 				4BFB64CD18C07AEC00C304BB /* TJMineViewController.h */,
@@ -2282,6 +2287,7 @@
 				4B9C410918D984AF00B9F8E5 /* XMPPCapabilities.xcdatamodel in Sources */,
 				4BE911BB18DBD81600F4C3B1 /* TJPostViewController.m in Sources */,
 				4B9C40F818D984AF00B9F8E5 /* XMPPvCardTempEmail.m in Sources */,
+				4BE5A37618EE52AB006A8A1E /* TJRootShowController.m in Sources */,
 				4B9C40B918D984AF00B9F8E5 /* XMPPAnonymousAuthentication.m in Sources */,
 				4B1D468218DAF1240056262B /* TJMessage.m in Sources */,
 				4B9C413318D984AF00B9F8E5 /* DispatchQueueLogFormatter.m in Sources */,

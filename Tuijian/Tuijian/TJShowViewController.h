@@ -10,4 +10,7 @@
 
 @interface TJShowViewController : UIViewController
 
+
+- (NSInteger)pageIndex;
++ (TJShowViewController *)showViewControllerForPageIndex:(NSUInteger)pageIndex;
 @end

@@ -7,7 +7,8 @@
 //
 
 #import "TJAppDelegate.h"
-#import "TJShowViewController.h"
+//#import "TJShowViewController.h"
+#import "TJRootShowController.h"
 #import "TJInfoViewController.h"
 #import "TJMineViewController.h"
 
@@ -28,10 +29,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSMutableArray *controllersArray = [[NSMutableArray alloc]initWithCapacity:3];
-    TJShowViewController *showViewController = [[TJShowViewController alloc]init];
-//    UINavigationController *showNavController = [[UINavigationController alloc]initWithRootViewController:showViewController];
-    UINavigationController *showNavController = [[UINavigationController alloc] initWithNavigationBarClass:[GTScrollNavigationBar class] toolbarClass:nil];
-    [showNavController setViewControllers:@[showViewController] animated:NO];
+//    TJShowViewController *showViewController = [[TJShowViewController alloc]init];
+//    UINavigationController *showNavController = [[UINavigationController alloc] initWithNavigationBarClass:[GTScrollNavigationBar class] toolbarClass:nil];
+//    [showNavController setViewControllers:@[showViewController] animated:NO];
+    TJRootShowController *rootShowController = [[TJRootShowController alloc]init];
+//    UINavigationController *rootShowNavController = [[UINavigationController alloc] initWithNavigationBarClass:[GTScrollNavigationBar class] toolbarClass:nil];
+//    [rootShowNavController setViewControllers:@[rootShowController] animated:NO];
+    UINavigationController *rootShowNavController = [[UINavigationController alloc]initWithRootViewController:rootShowController];
     
     TJInfoViewController *infoViewController = [[TJInfoViewController alloc]init];
     UINavigationController *infoNavController = [[UINavigationController alloc]initWithRootViewController:infoViewController];
@@ -39,11 +43,13 @@
     TJMineViewController *mineViewController = [[TJMineViewController alloc]init];
     UINavigationController *mineNavController = [[UINavigationController alloc]initWithRootViewController:mineViewController];
 
-    showNavController.tabBarItem.image = [UIImage imageNamed:@"star-outline"];
+//    showNavController.tabBarItem.image = [UIImage imageNamed:@"star-outline"];
+    rootShowNavController.tabBarItem.image = [UIImage imageNamed:@"star-outline"];
     infoNavController.tabBarItem.image = [UIImage imageNamed:@"message"];
     mineNavController.tabBarItem.image = [UIImage imageNamed:@"user-outline"];
     
-    [controllersArray addObject:showNavController];
+//    [controllersArray addObject:showNavController];
+    [controllersArray addObject:rootShowNavController];
     [controllersArray addObject:infoNavController];
     [controllersArray addObject:mineNavController];
     
