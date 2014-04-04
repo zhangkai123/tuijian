@@ -12,13 +12,15 @@
 #import "MTStatusBarOverlay.h"
 #import "TJPostViewController.h"
 
-@interface TJRootShowController ()<UIPageViewControllerDataSource,TJCamViewControllerDelegate,MTStatusBarOverlayDelegate>
+@interface TJRootShowController ()<UIPageViewControllerDataSource,UIPageViewControllerDelegate,TJCamViewControllerDelegate,MTStatusBarOverlayDelegate>
 {
     UIView *titleView;
     UIPageControl *pageControl;
     UILabel *lblTitle;
     
+    TJShowViewController *pendingShowViewController;
     int currentIndex;
+    int pendingIndex;
 }
 @end
 
@@ -88,6 +90,7 @@
                                                                                    navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                                                                                  options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:0.0f] forKey:UIPageViewControllerOptionInterPageSpacingKey]];
         pageViewController.dataSource = self;
+        pageViewController.delegate = self;
         
         [pageViewController setViewControllers:@[pageZero]
                                      direction:UIPageViewControllerNavigationDirectionForward
@@ -106,19 +109,31 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pvc viewControllerBeforeViewController:(TJShowViewController *)vc
 {
     NSUInteger index = vc.pageIndex;
-    currentIndex = index;
-    if (currentIndex == 0) {
-        lblTitle.text = @"动态";
-    }else if(currentIndex == 1){
-        lblTitle.text = @"关注过";
-    }
-    pageControl.currentPage = currentIndex;
     return [TJShowViewController showViewControllerForPageIndex:(index - 1)];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pvc viewControllerAfterViewController:(TJShowViewController *)vc
 {
     NSUInteger index = vc.pageIndex;
+    return [TJShowViewController showViewControllerForPageIndex:(index + 1)];
+}
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
+{
+    pendingShowViewController = nil;
+    if ([pendingViewControllers count] > 0) {
+        pendingShowViewController = [pendingViewControllers objectAtIndex:0];
+        NSUInteger index = pendingShowViewController.pageIndex;
+        pendingIndex = index;
+    }
+}
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
+{
+    if (completed) {
+        [self setNavigationBar:pendingIndex];
+    }
+}
+-(void)setNavigationBar:(int)index
+{
     currentIndex = index;
     if (currentIndex == 0) {
         lblTitle.text = @"动态";
@@ -126,9 +141,7 @@
         lblTitle.text = @"关注过";
     }
     pageControl.currentPage = currentIndex;
-    return [TJShowViewController showViewControllerForPageIndex:(index + 1)];
 }
-
 -(void)uploadingItem
 {
     [self showUploadingActivityOnStatusbar];

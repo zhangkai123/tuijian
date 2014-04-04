@@ -12,7 +12,7 @@
 #import "TJCommentViewController.h"
 #import "TJTouchableImageView.h"
 #import "TJUserInfoViewController.h"
-//#import "GTScrollNavigationBar.h"
+#import "GTScrollNavigationBar.h"
 
 @interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJItemCellDelegate,TJTouchableImageViewDelegate>
 {
@@ -69,12 +69,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [itemTableView reloadData];
-//    self.navigationController.scrollNavigationBar.scrollView = itemTableView;
+    self.navigationController.scrollNavigationBar.scrollView = itemTableView;
     [super viewWillAppear:animated];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
-//    self.navigationController.scrollNavigationBar.scrollView = nil;
+    self.navigationController.scrollNavigationBar.scrollView = nil;
     [super viewWillDisappear:animated];
 }
 - (void)viewDidLoad
