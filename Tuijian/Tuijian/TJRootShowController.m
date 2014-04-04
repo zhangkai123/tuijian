@@ -101,7 +101,10 @@
         pageViewController.view.frame = CGRectMake(0,64,320,self.view.frame.size.height - 64 - 49);
         [self.view addSubview:pageViewController.view];
         [pageViewController didMoveToParentViewController:self];
+        
+        currentIndex = 0;
     }
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadingItem) name:TJ_UPLOADING_ITEM_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadItemSuccess) name:TJ_UPLOADING_ITEM_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadItemFail) name:TJ_UPLOADING_ITEM_FAIL object:nil];
@@ -150,7 +153,6 @@
 {
     MTStatusBarOverlay *overlay = [MTStatusBarOverlay sharedInstance];
     [overlay postImmediateFinishMessage:@"发布成功!" duration:2.0 animated:YES];
-//    [self refreshTableViewData];
     [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
 }
 -(void)uploadItemFail

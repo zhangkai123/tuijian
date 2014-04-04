@@ -24,7 +24,7 @@
 +(NSArray *)parseItemsJsonData:(id)json
 {
     NSMutableArray *itemsArray = [[NSMutableArray alloc]init];
-    NSArray *jsonArray = json;
+    NSArray *jsonArray = [json objectForKey:@"items"];
     for (int i = 0; i < [jsonArray count]; i++) {
         NSDictionary *itemDic = [jsonArray objectAtIndex:i];
         TJItem *item = [[TJItem alloc]init];

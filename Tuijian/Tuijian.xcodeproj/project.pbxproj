@@ -50,7 +50,6 @@
 		4B47A3AA18D1B40500087BE4 /* favSelectedHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A818D1B40400087BE4 /* favSelectedHighlight@2x.png */; };
 		4B47A3AC18D1B42300087BE4 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3AB18D1B42300087BE4 /* share.png */; };
 		4B50AC1A18D6EDF20028BAF9 /* writing.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B50AC1918D6EDF20028BAF9 /* writing.png */; };
-		4B50AC2818D715960028BAF9 /* GTScrollNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B50AC2718D715960028BAF9 /* GTScrollNavigationBar.m */; };
 		4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */; };
 		4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */; };
 		4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */; };
@@ -357,8 +356,6 @@
 		4B47A3A818D1B40400087BE4 /* favSelectedHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favSelectedHighlight@2x.png"; sourceTree = "<group>"; };
 		4B47A3AB18D1B42300087BE4 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		4B50AC1918D6EDF20028BAF9 /* writing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = writing.png; sourceTree = "<group>"; };
-		4B50AC2618D715960028BAF9 /* GTScrollNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTScrollNavigationBar.h; sourceTree = "<group>"; };
-		4B50AC2718D715960028BAF9 /* GTScrollNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTScrollNavigationBar.m; sourceTree = "<group>"; };
 		4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon-highlighted@2x.png"; sourceTree = "<group>"; };
 		4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon@2x.png"; sourceTree = "<group>"; };
 		4B543FCE18B4F4EC0052DFDD /* CameraFlipIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CameraFlipIcon@2x.png"; sourceTree = "<group>"; };
@@ -970,15 +967,6 @@
 			name = Comment;
 			sourceTree = "<group>";
 		};
-		4B50AC2518D715960028BAF9 /* GTScrollNavigationBar */ = {
-			isa = PBXGroup;
-			children = (
-				4B50AC2618D715960028BAF9 /* GTScrollNavigationBar.h */,
-				4B50AC2718D715960028BAF9 /* GTScrollNavigationBar.m */,
-			);
-			path = GTScrollNavigationBar;
-			sourceTree = "<group>";
-		};
 		4B543FC918B4F30B0052DFDD /* camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -1024,7 +1012,6 @@
 				4B31404118ED01B9007A00F2 /* HPGrowingTextView */,
 				4BEE7F3318E53A7B00232E6C /* MTStatusBarOverlay */,
 				4B9C3F6818D9846300B9F8E5 /* XMPP */,
-				4B50AC2518D715960028BAF9 /* GTScrollNavigationBar */,
 				4B47A37018D179B800087BE4 /* SDWebImage */,
 				4B569CB518CEBA0D000DF219 /* AFNetworking */,
 				4B569C9618CE9DCC000DF219 /* Tencent */,
@@ -2274,7 +2261,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B9C413218D984AF00B9F8E5 /* ContextFilterLogFormatter.m in Sources */,
-				4B50AC2818D715960028BAF9 /* GTScrollNavigationBar.m in Sources */,
 				4B9C410A18D984AF00B9F8E5 /* XMPPCapabilitiesCoreDataStorage.m in Sources */,
 				4BD48DF818E0144F00D83667 /* TJMessageCell.m in Sources */,
 				4B9C40CF18D984AF00B9F8E5 /* XMPPProcessOne.m in Sources */,

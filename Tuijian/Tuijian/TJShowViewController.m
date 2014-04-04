@@ -12,13 +12,10 @@
 #import "TJCommentViewController.h"
 #import "TJTouchableImageView.h"
 #import "TJUserInfoViewController.h"
-#import "GTScrollNavigationBar.h"
 
 @interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJItemCellDelegate,TJTouchableImageViewDelegate>
 {
     NSUInteger _pageIndex;
-    
-    UITableView *itemTableView;
     UIRefreshControl *refreshControl;
     
     NSMutableArray *itemsArray;
@@ -27,6 +24,7 @@
 @end
 
 @implementation TJShowViewController
+@synthesize itemTableView;
 
 -(void)dealloc
 {
@@ -46,6 +44,9 @@
     if (self)
     {
         _pageIndex = pageIndex;
+        if (pageIndex == 0) {
+            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
+        }
     }
     return self;
 }
@@ -69,12 +70,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [itemTableView reloadData];
-    self.navigationController.scrollNavigationBar.scrollView = itemTableView;
     [super viewWillAppear:animated];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
-    self.navigationController.scrollNavigationBar.scrollView = nil;
     [super viewWillDisappear:animated];
 }
 - (void)viewDidLoad
@@ -97,7 +96,6 @@
     if ([[TJDataController sharedDataController]getUserLoginMask]) {
         [self refreshTableViewData];
     }
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
 }
 
 -(void)refreshTableViewData
@@ -105,7 +103,13 @@
     __block UITableView *weaktheTalbleView = itemTableView;
     __block NSMutableArray *weakItemsArray = itemsArray;
     __block NSMutableArray *weakTextHeightArray = textHeightArray;
-    [[TJDataController sharedDataController]getItems:^(NSArray *iteArray){
+    NSString *category = nil;
+    if (_pageIndex == 0) {
+        category = @"all";
+    }else if(_pageIndex == 1){
+        category = @"focus";
+    }
+    [[TJDataController sharedDataController]getItems:category success:^(NSArray *iteArray){
         if ([iteArray count] == 0) {
             return;
         }

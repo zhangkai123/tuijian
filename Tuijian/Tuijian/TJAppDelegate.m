@@ -11,8 +11,6 @@
 #import "TJInfoViewController.h"
 #import "TJMineViewController.h"
 
-#import "GTScrollNavigationBar.h"
-
 #import <TencentOpenAPI/TencentOAuth.h>
 
 @implementation TJAppDelegate
@@ -29,9 +27,7 @@
 {
     NSMutableArray *controllersArray = [[NSMutableArray alloc]initWithCapacity:3];
     TJRootShowController *rootShowController = [[TJRootShowController alloc]init];
-    UINavigationController *rootShowNavController = [[UINavigationController alloc] initWithNavigationBarClass:[GTScrollNavigationBar class] toolbarClass:nil];
-    [rootShowNavController setViewControllers:@[rootShowController] animated:NO];
-//    UINavigationController *rootShowNavController = [[UINavigationController alloc]initWithRootViewController:rootShowController];
+    UINavigationController *rootShowNavController = [[UINavigationController alloc]initWithRootViewController:rootShowController];
     
     TJInfoViewController *infoViewController = [[TJInfoViewController alloc]init];
     UINavigationController *infoNavController = [[UINavigationController alloc]initWithRootViewController:infoViewController];
@@ -39,12 +35,10 @@
     TJMineViewController *mineViewController = [[TJMineViewController alloc]init];
     UINavigationController *mineNavController = [[UINavigationController alloc]initWithRootViewController:mineViewController];
 
-//    showNavController.tabBarItem.image = [UIImage imageNamed:@"star-outline"];
     rootShowNavController.tabBarItem.image = [UIImage imageNamed:@"star-outline"];
     infoNavController.tabBarItem.image = [UIImage imageNamed:@"message"];
     mineNavController.tabBarItem.image = [UIImage imageNamed:@"user-outline"];
     
-//    [controllersArray addObject:showNavController];
     [controllersArray addObject:rootShowNavController];
     [controllersArray addObject:infoNavController];
     [controllersArray addObject:mineNavController];
