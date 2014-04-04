@@ -51,6 +51,37 @@
     }
     return rootViewController;
 }
+
+- (void)stoppedScrolling
+{
+    CGRect frame = self.navigationController.navigationBar.frame;
+    if (frame.origin.y < 20) {
+        [self animateNavBarTo:-(frame.size.height - 21)];
+    }
+}
+- (void)updateBarButtonItems:(CGFloat)alpha
+{
+    UIViewController *rootViewController = [self getTheNavigationRootViewController];
+    [rootViewController.navigationItem.leftBarButtonItems enumerateObjectsUsingBlock:^(UIBarButtonItem* item, NSUInteger i, BOOL *stop) {
+        item.customView.alpha = alpha;
+    }];
+    [rootViewController.navigationItem.rightBarButtonItems enumerateObjectsUsingBlock:^(UIBarButtonItem* item, NSUInteger i, BOOL *stop) {
+        item.customView.alpha = alpha;
+    }];
+    rootViewController.navigationItem.titleView.alpha = alpha;
+    rootViewController.navigationController.navigationBar.tintColor = [self.navigationController.navigationBar.tintColor colorWithAlphaComponent:alpha];
+}
+
+- (void)animateNavBarTo:(CGFloat)y
+{
+    [UIView animateWithDuration:0.2 animations:^{
+        CGRect frame = self.navigationController.navigationBar.frame;
+        CGFloat alpha = (frame.origin.y >= y ? 0 : 1);
+        frame.origin.y = y;
+        [self.navigationController.navigationBar setFrame:frame];
+        [self updateBarButtonItems:alpha];
+    }];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

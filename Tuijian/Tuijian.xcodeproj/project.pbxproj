@@ -819,8 +819,6 @@
 		4B1D467D18DA8B330056262B /* TabControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4B7A420E18B0CF66009356F4 /* TJShowViewController.h */,
-				4B7A420F18B0CF66009356F4 /* TJShowViewController.m */,
 				4BE5A37418EE52AB006A8A1E /* TJRootShowController.h */,
 				4BE5A37518EE52AB006A8A1E /* TJRootShowController.m */,
 				4BFB64CA18C07ACA00C304BB /* TJInfoViewController.h */,
@@ -2057,6 +2055,8 @@
 				4BFA999E18AFA19200D673CB /* TJAppDelegate.m */,
 				4BFB64D018C187F800C304BB /* TJBaseViewController.h */,
 				4BFB64D118C187F800C304BB /* TJBaseViewController.m */,
+				4B7A420E18B0CF66009356F4 /* TJShowViewController.h */,
+				4B7A420F18B0CF66009356F4 /* TJShowViewController.m */,
 				4BE911B918DBD81600F4C3B1 /* TJPostViewController.h */,
 				4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */,
 				4BEFE99918E3DA0800E2B6A3 /* TJTouchableImageView.h */,

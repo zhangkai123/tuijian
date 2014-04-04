@@ -42,7 +42,11 @@
 -(id)init
 {
     if (self = [super init]) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"camera_18_2x.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(takePhoto:)];
+        UIButton *cameraButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 36)];
+        [cameraButton setImage:[UIImage imageNamed:@"camera_18_2x.png"] forState:UIControlStateNormal];
+        [cameraButton addTarget:self action:@selector(takePhoto:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *cameraButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cameraButton];
+        self.navigationItem.rightBarButtonItem = cameraButtonItem;
         
         titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 160, 44)];
         titleView.backgroundColor = [UIColor clearColor];
@@ -98,7 +102,7 @@
                                     completion:NULL];
         
         [self addChildViewController:pageViewController];
-        pageViewController.view.frame = CGRectMake(0,64,320,self.view.frame.size.height - 64 - 49);
+        pageViewController.view.frame = CGRectMake(0,20,320,self.view.frame.size.height - 20 - 49);
         [self.view addSubview:pageViewController.view];
         [pageViewController didMoveToParentViewController:self];
         

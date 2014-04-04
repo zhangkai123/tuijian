@@ -13,4 +13,7 @@
 - (void) displayContentController: (UIViewController*) content;
 -(void)dismissMyViewController: (UIViewController*) content;
 -(UIViewController *)getTheNavigationRootViewController;
+- (void)stoppedScrolling;
+- (void)updateBarButtonItems:(CGFloat)alpha;
+- (void)animateNavBarTo:(CGFloat)y;
 @end

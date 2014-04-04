@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJBaseViewController.m"
-            timestampString = "418285943.602383"
+            timestampString = "418296703.373141"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "-didReceiveMemoryWarning"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJShowViewController.m"
-            timestampString = "418291536.927549"
+            timestampString = "418308577.340092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307">
+            startingLineNumber = "366"
+            endingLineNumber = "366">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -232,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJRootShowController.m"
-            timestampString = "418294166.497639"
+            timestampString = "418298932.076544"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "-didReceiveMemoryWarning"
             landmarkType = "5">
          </BreakpointContent>

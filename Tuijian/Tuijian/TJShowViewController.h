@@ -9,10 +9,6 @@
 #import "TJBaseViewController.h"
 
 @interface TJShowViewController : TJBaseViewController
-{
-    UITableView *itemTableView;
-}
-@property(nonatomic,strong) UITableView *itemTableView;
 
 - (NSInteger)pageIndex;
 + (TJShowViewController *)showViewControllerForPageIndex:(NSUInteger)pageIndex;
