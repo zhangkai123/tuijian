@@ -166,10 +166,14 @@
     TJItem *item = [itemsArray objectAtIndex:indexPath.section];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
     
+    NSArray *viewControllers = self.navigationController.viewControllers;
+    UIViewController *rootViewController = [viewControllers objectAtIndex:0];
+    rootViewController.hidesBottomBarWhenPushed = YES;
     TJCommentViewController *commentViewController = [[TJCommentViewController alloc]init];
     commentViewController.theItem = item;
     commentViewController.textHeight = textHeight;
     [self.navigationController pushViewController:commentViewController animated:YES];
+    rootViewController.hidesBottomBarWhenPushed = NO;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
