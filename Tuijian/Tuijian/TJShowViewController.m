@@ -12,6 +12,7 @@
 #import "TJCommentViewController.h"
 #import "TJTouchableImageView.h"
 #import "TJUserInfoViewController.h"
+//#import "GTScrollNavigationBar.h"
 
 @interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJItemCellDelegate,TJTouchableImageViewDelegate>
 {
@@ -53,10 +54,10 @@
     return _pageIndex;
 }
 
-- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
-{
+//- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+//{
 //    [self.navigationController.scrollNavigationBar resetToDefaultPosition:YES];
-}
+//}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -166,8 +167,7 @@
     TJItem *item = [itemsArray objectAtIndex:indexPath.section];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
     
-    NSArray *viewControllers = self.navigationController.viewControllers;
-    UIViewController *rootViewController = [viewControllers objectAtIndex:0];
+    UIViewController *rootViewController = [self getTheNavigationRootViewController];
     rootViewController.hidesBottomBarWhenPushed = YES;
     TJCommentViewController *commentViewController = [[TJCommentViewController alloc]init];
     commentViewController.theItem = item;
@@ -217,14 +217,15 @@
 {
     TJItem *theItem = [itemsArray objectAtIndex:sectionNum];
     
-    self.hidesBottomBarWhenPushed = YES;
+    UIViewController *rootViewController = [self getTheNavigationRootViewController];
+    rootViewController.hidesBottomBarWhenPushed = YES;
     TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
     userInfoViewController.userImageUrl = theItem.userImg;
     userInfoViewController.userName = theItem.userName;
     userInfoViewController.userGender = theItem.userGender;
     userInfoViewController.uid = theItem.uid;
     [self.navigationController pushViewController:userInfoViewController animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    rootViewController.hidesBottomBarWhenPushed = NO;
 }
 #pragma TJItemCellDelegate
 -(void)likeItem:(NSString *)itemId liked:(void (^)(BOOL Liked))hasL

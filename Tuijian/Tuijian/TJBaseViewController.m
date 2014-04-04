@@ -42,7 +42,15 @@
     [content.view removeFromSuperview];
     [content removeFromParentViewController];
 }
-
+-(UIViewController *)getTheNavigationRootViewController
+{
+    NSArray *viewControllers = self.navigationController.viewControllers;
+    UIViewController *rootViewController = nil;
+    if ([viewControllers count] > 0) {
+        rootViewController = [viewControllers objectAtIndex:0];
+    }
+    return rootViewController;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 zhang kai. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TJBaseViewController.h"
 
-@interface TJShowViewController : UIViewController
+@interface TJShowViewController : TJBaseViewController
 
 
 - (NSInteger)pageIndex;

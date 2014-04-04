@@ -12,4 +12,5 @@
 
 - (void) displayContentController: (UIViewController*) content;
 -(void)dismissMyViewController: (UIViewController*) content;
+-(UIViewController *)getTheNavigationRootViewController;
 @end

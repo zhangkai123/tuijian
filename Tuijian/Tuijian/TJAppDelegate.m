@@ -12,7 +12,7 @@
 #import "TJInfoViewController.h"
 #import "TJMineViewController.h"
 
-#import "GTScrollNavigationBar.h"
+//#import "GTScrollNavigationBar.h"
 
 #import <TencentOpenAPI/TencentOAuth.h>
 

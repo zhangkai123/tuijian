@@ -78,7 +78,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"动态";
+    self.title = @"推荐";
     // kick things off by making the first page
     TJShowViewController *pageZero = [TJShowViewController showViewControllerForPageIndex:0];
     if (pageZero != nil)
