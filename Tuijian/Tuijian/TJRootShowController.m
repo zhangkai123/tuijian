@@ -53,7 +53,7 @@
         self.navigationItem.titleView = titleView;
         
         lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 160, 24)];
-        lblTitle.text = @"动态";
+        lblTitle.text = @"美食";
         lblTitle.backgroundColor = [UIColor clearColor];
         lblTitle.textColor = [UIColor colorWithRed:77.0/255.0 green:77.0/255.0 blue:77.0/255.0 alpha:1.0];
         lblTitle.shadowColor = [UIColor whiteColor];
@@ -66,7 +66,7 @@
         pageControl.frame = CGRectMake(0,30,160,10);
         pageControl.pageIndicatorTintColor = UIColorFromRGB(0xA0BFFB);
         pageControl.currentPageIndicatorTintColor = UIColorFromRGB(0xF29A0B);
-        pageControl.numberOfPages = 2;
+        pageControl.numberOfPages = 4;
         pageControl.currentPage = 0;
         [titleView addSubview:pageControl];
     }
@@ -143,8 +143,12 @@
 {
     currentIndex = index;
     if (currentIndex == 0) {
-        lblTitle.text = @"动态";
+        lblTitle.text = @"美食";
     }else if(currentIndex == 1){
+        lblTitle.text = @"玩乐";
+    }else if(currentIndex == 2){
+        lblTitle.text = @"动态";
+    }else if(currentIndex == 3){
         lblTitle.text = @"关注过";
     }
     pageControl.currentPage = currentIndex;

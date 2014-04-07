@@ -34,7 +34,7 @@
 }
 + (TJShowViewController *)showViewControllerForPageIndex:(NSUInteger)pageIndex
 {
-    if (pageIndex < 2)
+    if (pageIndex < 4)
     {
         return [[self alloc] initWithPageIndex:pageIndex];
     }
@@ -109,8 +109,12 @@
     __block NSMutableArray *weakTextHeightArray = textHeightArray;
     NSString *category = nil;
     if (_pageIndex == 0) {
-        category = @"all";
+        category = @"美食";
     }else if(_pageIndex == 1){
+        category = @"玩乐";
+    }else if(_pageIndex == 2){
+        category = @"all";
+    }else if(_pageIndex == 3){
         category = @"focus";
     }
     [[TJDataController sharedDataController]getItems:category success:^(NSArray *iteArray){

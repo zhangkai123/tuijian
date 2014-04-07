@@ -16,6 +16,7 @@
     UILabel *placeHolderLabel;
     
     UIView *tagView;
+    TJRadioButtonView *radioButtonView;
 }
 @end
 
@@ -120,7 +121,7 @@
     [tagLabel setFont:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]];
     [tagView addSubview:tagLabel];
     
-    TJRadioButtonView *radioButtonView = [[TJRadioButtonView alloc]initWithTitleArray:[NSArray arrayWithObjects:@"美食",@"玩乐", nil] theFrame:CGRectMake(50, 5, 200, 30)];
+    radioButtonView = [[TJRadioButtonView alloc]initWithTitleArray:[NSArray arrayWithObjects:@"美食",@"玩乐", nil] theFrame:CGRectMake(50, 5, 200, 30)];
     radioButtonView.backgroundColor = [UIColor clearColor];
     [tagView addSubview:radioButtonView];
     
@@ -137,7 +138,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSString *title = [titleTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *tuijianText = [tuijianTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    [[TJDataController sharedDataController]saveItem:title recommendMes:tuijianText uploadImage:self.cropedImage success:^(id Json){
+    [[TJDataController sharedDataController]saveItem:title category:radioButtonView.selectedTag recommendMes:tuijianText uploadImage:self.cropedImage success:^(id Json){
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPLOADING_ITEM_SUCCESS object:nil];
     }failure:^(NSError *error){

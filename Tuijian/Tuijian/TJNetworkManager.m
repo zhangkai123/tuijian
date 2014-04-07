@@ -86,11 +86,11 @@
     }];
     [operation start];
 }
--(void)uploadItem:(NSString *)accessT uid:(NSString *)uid title:(NSString *)title recMes:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)uploadItem:(NSString *)accessT uid:(NSString *)uid title:(NSString *)title category:(NSString *)category recMes:(NSString *)recommendMes uploadImage:(UIImage *)ulImage success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     TJMyServerClient *client = [TJMyServerClient sharedClient];
     NSString *path = @"uploadItem";
-    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken",uid,@"uid",title,@"title",recommendMes,@"recommendMessage", nil];
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken",uid,@"uid",title,@"title",recommendMes,@"recommendMessage",category,@"itemTag", nil];
     NSData *imgData = UIImagePNGRepresentation(ulImage);
     NSMutableURLRequest *myRequest = [client multipartFormRequestWithMethod:@"POST" path:path
                                                                  parameters:paraDic constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
