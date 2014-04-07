@@ -57,7 +57,7 @@
 }
 -(void)refreshTableViewData
 {
-    __block UITableView *weaktheTalbleView = herItemTableView;
+    __weak UITableView *weaktheTalbleView = herItemTableView;
     __block NSMutableArray *weakItemsArray = herItemsArray;
     __block NSMutableArray *weakTextHeightArray = textHeightArray;
     [[TJDataController sharedDataController]getUserItems:self.uid success:^(NSArray *iteArray){
@@ -75,8 +75,10 @@
             [weakTextHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
         }
         [weakItemsArray addObjectsFromArray:iteArray];
-        [weaktheTalbleView reloadData];
-        //        [weaktheTalbleView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+        UITableView *strongTableView = weaktheTalbleView;
+        if (strongTableView) {
+           [strongTableView reloadData];
+        }
     }failure:^(NSError *error){
         
     }];
