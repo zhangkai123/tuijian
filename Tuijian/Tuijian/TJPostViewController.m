@@ -7,6 +7,7 @@
 //
 
 #import "TJPostViewController.h"
+#import "TJRadioButtonView.h"
 
 @interface TJPostViewController ()<UITextFieldDelegate,UITextViewDelegate>
 {
@@ -73,6 +74,7 @@
     tuijianTextView.textAlignment = NSTextAlignmentLeft;
     tuijianTextView.scrollEnabled = NO;
     tuijianTextView.delegate = self;
+    tuijianTextView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:tuijianTextView];
     
     placeHolderLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0,tuijianTextView.frame.size.width - 10.0, 34.0)];
@@ -83,6 +85,20 @@
     [placeHolderLabel setFont:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]];
     [placeHolderLabel setAlpha:0.6];
     [tuijianTextView addSubview:placeHolderLabel];
+    
+    UIView *tagView = [[UIView alloc]initWithFrame:CGRectMake(0, 294, 320, 100)];
+    tagView.backgroundColor = UIColorFromRGB(0xE0E0E0);
+    [self.view addSubview:tagView];
+    UILabel *tagLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0, 5.0, 50, 30)];
+    [tagLabel setText:@"标签:"];
+    [tagLabel setBackgroundColor:[UIColor clearColor]];
+    [tagLabel setTextColor:[UIColor lightGrayColor]];
+    [tagLabel setFont:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]];
+    [tagView addSubview:tagLabel];
+    
+    TJRadioButtonView *radioButtonView = [[TJRadioButtonView alloc]initWithTitleArray:[NSArray arrayWithObjects:@"美食",@"玩乐", nil] theFrame:CGRectMake(50, 5, 200, 30)];
+    radioButtonView.backgroundColor = [UIColor clearColor];
+    [tagView addSubview:radioButtonView];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldHaveBeenChanged) name:UITextFieldTextDidChangeNotification object:nil];
 }
