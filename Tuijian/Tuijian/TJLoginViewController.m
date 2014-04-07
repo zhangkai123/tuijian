@@ -9,7 +9,10 @@
 #import "TJLoginViewController.h"
 
 @interface TJLoginViewController ()
-
+{
+    UIView *coverView;
+    UIActivityIndicatorView *activityIndicator;
+}
 @end
 
 @implementation TJLoginViewController
@@ -29,20 +32,24 @@
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = UIColorFromRGB(0xA0BFFB);
     
+    coverView = [[UIView alloc]initWithFrame:self.view.frame];
+    coverView.backgroundColor = UIColorFromRGB(0xA0BFFB);
+    [self.view addSubview:coverView];
+    
     UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 30)];
     [loginLabel setFont:[UIFont boldSystemFontOfSize:25]];
     loginLabel.numberOfLines = 1;
     [loginLabel setTextColor:[UIColor whiteColor]];
     loginLabel.textAlignment = NSTextAlignmentCenter;
     loginLabel.text = @"登录";
-    [self.view addSubview:loginLabel];
+    [coverView addSubview:loginLabel];
     loginLabel.center = CGPointMake(160, 60);
     
     UIButton *sinaloginButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 120, 120)];
     UIImage *sinaloginImage = [UIImage imageNamed:@"weibo-icon.png"];
     [sinaloginButton setImage:sinaloginImage forState:UIControlStateNormal];
     [sinaloginButton addTarget:self action:@selector(sinalogin) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:sinaloginButton];
+    [coverView addSubview:sinaloginButton];
     sinaloginButton.center = CGPointMake(160, 180);
     
     UIButton *qqloginButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 120, 120)];
@@ -53,7 +60,7 @@
     UIImage *qqloginImage = [UIImage imageNamed:@"Tencent_QQ.png"];
     [qqloginButton setImage:qqloginImage forState:UIControlStateNormal];
     [qqloginButton addTarget:self action:@selector(qqlogin) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:qqloginButton];
+    [coverView addSubview:qqloginButton];
     qqloginButton.center = CGPointMake(160, 320);
     
     _permissions = [NSArray arrayWithObjects:
@@ -79,6 +86,26 @@
     [[TJDataController sharedDataController] setSinaWeiboLogin:NO];
     [_tencentOAuth authorize:_permissions inSafari:NO];
 }
+-(void)loadingToLogin
+{
+    coverView.hidden = YES;
+    
+    UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 30)];
+    [loginLabel setFont:[UIFont boldSystemFontOfSize:25]];
+    loginLabel.numberOfLines = 1;
+    [loginLabel setTextColor:[UIColor whiteColor]];
+    loginLabel.textAlignment = NSTextAlignmentCenter;
+    loginLabel.text = @"正在登录...";
+    [self.view addSubview:loginLabel];
+    loginLabel.center = CGPointMake(160, 100);
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    activityIndicator.alpha = 1.0;
+    activityIndicator.center = self.view.center;
+    activityIndicator.hidesWhenStopped = YES;
+    [self.view addSubview:activityIndicator];
+    [activityIndicator startAnimating];
+}
 #pragma sina weibo delegate
 - (void)didReceiveWeiboRequest:(WBBaseRequest *)request
 {
@@ -93,15 +120,6 @@
 {
     if ([response isKindOfClass:WBSendMessageToWeiboResponse.class])
     {
-        NSString *title = @"发送结果";
-        NSString *message = [NSString stringWithFormat:@"响应状态: %d\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",
-                             response.statusCode, response.userInfo, response.requestUserInfo];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
-                                                       delegate:nil
-                                              cancelButtonTitle:@"确定"
-                                              otherButtonTitles:nil];
-        [alert show];
     }
     else if ([response isKindOfClass:WBAuthorizeResponse.class])
     {
@@ -109,11 +127,13 @@
         if ([userInfoStr isEqualToString:@"TJLoginViewController"]) {
             
             if (response.statusCode == WeiboSDKResponseStatusCodeSuccess) {
+                [self loadingToLogin];
                 [[TJDataController sharedDataController]saveSinaLoginInfo:response];
                 [[TJDataController sharedDataController]getSinaUserInfo:^(TJUser *sinaUser){
                     [[TJDataController sharedDataController]getMyUserToken:sinaUser userCate:@"sina" myUserToken:^(NSString *myUserToken){
                         [[NSNotificationCenter defaultCenter]postNotificationName:TJ_CONNECT_XMPP_NOTIFICATION object:nil];
                         [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
+                        [activityIndicator stopAnimating];
                         [self dismissMyViewController:self];
                     }failure:^(NSError *error){
                         
@@ -131,13 +151,14 @@
     if (_tencentOAuth.accessToken
         && 0 != [_tencentOAuth.accessToken length])
     {
+        [self loadingToLogin];
         // 记录登录用户的OpenID、Token以及过期时间
         [[TJDataController sharedDataController]saveTencentLoginInfo:_tencentOAuth];
-        
         [[TJDataController sharedDataController]getTencentUserInfo:^(TJUser *tencentUser){
             [[TJDataController sharedDataController]getMyUserToken:tencentUser userCate:@"tencent" myUserToken:^(NSString *myUserToken){
                 [[NSNotificationCenter defaultCenter]postNotificationName:TJ_CONNECT_XMPP_NOTIFICATION object:nil];
                 [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
+                [activityIndicator stopAnimating];
                 [self dismissMyViewController:self];
             }failure:^(NSError *error){
                 
