@@ -14,6 +14,8 @@
     UITextField *titleTextField;
     UITextView *tuijianTextView;
     UILabel *placeHolderLabel;
+    
+    UIView *tagView;
 }
 @end
 
@@ -42,11 +44,33 @@
     }
     return self;
 }
-
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    
+    // Get the size of the keyboard.
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    tagView.frame = CGRectMake(0, self.view.frame.size.height - keyboardSize.height - 40, 320, 40);
+}
+- (void)keyboardFrameChange:(NSNotification *)notification
+{
+    
+    // Get the size of the keyboard.
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    tagView.frame = CGRectMake(0, self.view.frame.size.height - keyboardSize.height - 40, 320, 40);
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardFrameChange:)
+                                                 name:UIKeyboardDidChangeFrameNotification
+                                               object:nil];
+
     self.view.backgroundColor = [UIColor whiteColor];
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 64 + 10, 50, 50)];
     imageView.image = self.cropedImage;
@@ -66,13 +90,13 @@
     [seperateLineView setAlpha:0.1];
     [self.view addSubview:seperateLineView];
     
-    tuijianTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 64 + 10 + 50 + 10, 310, 160)];
+    tuijianTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 64 + 10 + 50 + 10, 310, 130)];
     [tuijianTextView setFont:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]];
     tuijianTextView.autocorrectionType = UITextAutocorrectionTypeNo;
     tuijianTextView.keyboardType = UIKeyboardTypeDefault;
     tuijianTextView.returnKeyType = UIReturnKeyDefault;
     tuijianTextView.textAlignment = NSTextAlignmentLeft;
-    tuijianTextView.scrollEnabled = NO;
+    tuijianTextView.scrollEnabled = YES;
     tuijianTextView.delegate = self;
     tuijianTextView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:tuijianTextView];
@@ -86,7 +110,7 @@
     [placeHolderLabel setAlpha:0.6];
     [tuijianTextView addSubview:placeHolderLabel];
     
-    UIView *tagView = [[UIView alloc]initWithFrame:CGRectMake(0, 294, 320, 100)];
+    tagView = [[UIView alloc]initWithFrame:CGRectMake(0, 294, 320, 40)];
     tagView.backgroundColor = UIColorFromRGB(0xE0E0E0);
     [self.view addSubview:tagView];
     UILabel *tagLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0, 5.0, 50, 30)];
