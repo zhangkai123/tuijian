@@ -104,7 +104,7 @@
 
 -(void)refreshTableViewData
 {
-    __block UITableView *weaktheTalbleView = itemTableView;
+    __weak UITableView *weaktheTalbleView = itemTableView;
     __block NSMutableArray *weakItemsArray = itemsArray;
     __block NSMutableArray *weakTextHeightArray = textHeightArray;
     NSString *category = nil;
@@ -133,9 +133,11 @@
             [weakTextHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
         }
         [weakItemsArray addObjectsFromArray:iteArray];
-        [weaktheTalbleView reloadData];
+        UITableView *strongTableView = weaktheTalbleView;
+        if (strongTableView != nil) {
+            [strongTableView reloadData];
+        }
         [refreshControl endRefreshing];
-//        [weaktheTalbleView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
     }failure:^(NSError *error){
         [refreshControl endRefreshing];
     }];

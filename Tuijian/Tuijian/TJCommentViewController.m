@@ -76,7 +76,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    __block UITableView *weakDetailTableView = detailTableView;
+    __weak UITableView *weakDetailTableView = detailTableView;
     __block NSMutableArray *weakMyLikesArray = myLikesArray;
     __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
     __block NSMutableArray *weakmyCommentHeightArray = myCommentHeightArray;
@@ -94,7 +94,10 @@
         }
         [weakMyCommentsArray removeAllObjects];
         [weakMyCommentsArray addObjectsFromArray:commentsArray];
-        [weakDetailTableView reloadData];
+        UITableView *strongTableView = weakDetailTableView;
+        if (strongTableView != nil) {
+             [strongTableView reloadData];
+        }
     }failure:^(NSError *error){
         
     }];
@@ -131,7 +134,7 @@
 {
     __block TJItem *weakItem = self.theItem;
     __block NSString *commentInfo = theComment;
-    __block UITableView *weakDetailTableView = detailTableView;
+    __weak UITableView *weakDetailTableView = detailTableView;
     __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
     __block NSMutableArray *weakmyCommentHeightArray = myCommentHeightArray;
     [[TJDataController sharedDataController]saveComment:self.theItem.itemId commentInfo:theComment success:^(BOOL hasCommented){
@@ -142,7 +145,10 @@
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                                                attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_COMMENT_SIZE]} context:nil];
             [weakmyCommentHeightArray insertObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height] atIndex:0];
-            [weakDetailTableView reloadData];
+            UITableView *strongTableView = weakDetailTableView;
+            if (strongTableView != nil) {
+                [strongTableView reloadData];
+            }
             [[TJDataController sharedDataController]sendComment:weakItem comment:commentInfo];
             
             theItem.commentNum = [NSString stringWithFormat:@"%d",[theItem.commentNum intValue] + 1];
