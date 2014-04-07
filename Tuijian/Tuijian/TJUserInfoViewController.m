@@ -119,7 +119,7 @@
         }
         [[(TJMyInfoCell *)cell profileImageView] setImageWithURL:[NSURL URLWithString:self.userImageUrl] placeholderImage:nil];
         [[(TJMyInfoCell *)cell nameLabel] setText:self.userName];
-        if (([self.userGender intValue] == 1) || [self.userGender isEqualToString:@"男"]) {
+        if (([self.userGender intValue] == 1) || [self.userGender isEqualToString:@"男"] || [self.userGender isEqualToString:@"m"]) {
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"male.png"]];
         }else{
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"female.png"]];
