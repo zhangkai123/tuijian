@@ -149,7 +149,7 @@
     }else if(currentIndex == 2){
         lblTitle.text = @"动态";
     }else if(currentIndex == 3){
-        lblTitle.text = @"关注过";
+        lblTitle.text = @"关注";
     }
     pageControl.currentPage = currentIndex;
 }

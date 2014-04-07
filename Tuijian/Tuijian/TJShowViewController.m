@@ -119,6 +119,7 @@
     }
     [[TJDataController sharedDataController]getItems:category success:^(NSArray *iteArray){
         if ([iteArray count] == 0) {
+            [refreshControl endRefreshing];
             return;
         }
         [weakTextHeightArray removeAllObjects];
@@ -136,7 +137,7 @@
         [refreshControl endRefreshing];
 //        [weaktheTalbleView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
     }failure:^(NSError *error){
-        
+        [refreshControl endRefreshing];
     }];
 }
 

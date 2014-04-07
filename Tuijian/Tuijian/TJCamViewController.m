@@ -59,6 +59,15 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor blackColor];
     
+    UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 30)];
+    [loginLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    loginLabel.numberOfLines = 1;
+    [loginLabel setTextColor:UIColorFromRGB(0x3399CC)];
+    loginLabel.textAlignment = NSTextAlignmentCenter;
+    loginLabel.text = @"我来推荐";
+    [self.view addSubview:loginLabel];
+    loginLabel.center = CGPointMake(160, 40);
+    
     UIButton *cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(5 , 25, 60, 30)];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
