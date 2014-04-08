@@ -18,7 +18,7 @@
     NSUInteger _pageIndex;
     UIRefreshControl *refreshControl;
     
-    UITableView *itemTableView;
+//    UITableView *itemTableView;
     NSMutableArray *itemsArray;
     NSMutableArray *textHeightArray;
     
@@ -27,6 +27,7 @@
 @end
 
 @implementation TJShowViewController
+@synthesize itemTableView;
 
 -(void)dealloc
 {

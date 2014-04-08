@@ -136,6 +136,9 @@
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
     if (completed) {
+        TJShowViewController *preShowViewController = [previousViewControllers objectAtIndex:0];
+        preShowViewController.itemTableView.scrollsToTop = NO;
+        pendingShowViewController.itemTableView.scrollsToTop = YES;
         [self setNavigationBar:pendingIndex];
     }
 }

@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJShowViewController.m"
-            timestampString = "418556594.261843"
+            timestampString = "418612260.410473"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373">
+            startingLineNumber = "375"
+            endingLineNumber = "375">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -232,29 +232,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJRootShowController.m"
-            timestampString = "418542777.561242"
+            timestampString = "418612260.410473"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "-didReceiveMemoryWarning"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tuijian/TJShowViewController.m"
-            timestampString = "418556594.261843"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "-refreshTableViewData"
-            landmarkType = "5">
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "@implementation TJRootShowController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
