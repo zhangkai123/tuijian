@@ -260,15 +260,15 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    [self stoppedScrolling];
+ //   [self stoppedScrolling];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                   willDecelerate:(BOOL)decelerate
 {
-    if (!decelerate) {
-        [self stoppedScrolling];
-    }
+//    if (!decelerate) {
+//        [self stoppedScrolling];
+//    }
 }
 -(void)showNavigationBar
 {
