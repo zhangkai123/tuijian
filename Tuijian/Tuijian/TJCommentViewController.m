@@ -21,6 +21,8 @@
     UITableView *detailTableView;
     TJCommentView *commentInputView;
     BOOL isWirting;
+    BOOL replyStatus;
+    TJUser *replyedUser;
     
     NSMutableArray *myLikesArray;
     NSMutableArray *myCommentsArray;
@@ -62,7 +64,7 @@
     detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:detailTableView];
 
-    UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 50, 0);
+    UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 200, 0);
     detailTableView.contentInset = insets;
 
     commentInputView = [[TJCommentView alloc]initWithFrame:self.view.frame];
@@ -103,7 +105,18 @@
     }];
     [super viewWillAppear:animated];
 }
+-(void)replyCommentTo:(TJUser *)theUser
+{
+    replyStatus = YES;
+    replyedUser = theUser;
+    [self enterOrExitWrite];
+}
 -(void)writeComment
+{
+    replyStatus = NO;
+    [self enterOrExitWrite];
+}
+-(void)enterOrExitWrite
 {
     if (isWirting) {
         [self exitWriteStatus];
@@ -132,6 +145,9 @@
 }
 -(void)sendComment:(NSString *)theComment
 {
+    if (replyStatus) {
+        theComment = [NSString stringWithFormat:@"回复%@:%@",replyedUser.name,theComment];
+    }
     TJComment *comment = [[TJDataController sharedDataController] getMyOwnCommentItem:theComment];
     [myCommentsArray insertObject:comment atIndex:0];
     CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(TJ_COMMENT_LABEL_WIDTH, 0)
@@ -144,7 +160,7 @@
     __block TJItem *weakItem = self.theItem;
     __block NSString *commentInfo = theComment;
     [[TJDataController sharedDataController]saveComment:self.theItem.itemId commentInfo:theComment success:^(BOOL hasCommented){
-        if (hasCommented) {
+        if (hasCommented && !replyStatus) {
             [[TJDataController sharedDataController]sendComment:weakItem comment:commentInfo];
         }
     }failure:^(NSError *error){
@@ -253,6 +269,13 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 2) {
+        TJComment *comment = [myCommentsArray objectAtIndex:indexPath.row];
+        [self replyCommentTo:comment.user];
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
