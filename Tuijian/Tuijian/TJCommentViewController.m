@@ -132,26 +132,20 @@
 }
 -(void)sendComment:(NSString *)theComment
 {
+    TJComment *comment = [[TJDataController sharedDataController] getMyOwnCommentItem:theComment];
+    [myCommentsArray insertObject:comment atIndex:0];
+    CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(TJ_COMMENT_LABEL_WIDTH, 0)
+                                                          options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                       attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_COMMENT_SIZE]} context:nil];
+    [myCommentHeightArray insertObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height] atIndex:0];
+    [detailTableView reloadData];
+    theItem.commentNum = [NSString stringWithFormat:@"%d",[theItem.commentNum intValue] + 1];
+
     __block TJItem *weakItem = self.theItem;
     __block NSString *commentInfo = theComment;
-    __weak UITableView *weakDetailTableView = detailTableView;
-    __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
-    __block NSMutableArray *weakmyCommentHeightArray = myCommentHeightArray;
     [[TJDataController sharedDataController]saveComment:self.theItem.itemId commentInfo:theComment success:^(BOOL hasCommented){
         if (hasCommented) {
-            TJComment *comment = [[TJDataController sharedDataController] getMyOwnCommentItem:commentInfo];
-            [weakMyCommentsArray insertObject:comment atIndex:0];
-            CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(TJ_COMMENT_LABEL_WIDTH, 0)
-                                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_COMMENT_SIZE]} context:nil];
-            [weakmyCommentHeightArray insertObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height] atIndex:0];
-            UITableView *strongTableView = weakDetailTableView;
-            if (strongTableView != nil) {
-                [strongTableView reloadData];
-            }
             [[TJDataController sharedDataController]sendComment:weakItem comment:commentInfo];
-            
-            theItem.commentNum = [NSString stringWithFormat:@"%d",[theItem.commentNum intValue] + 1];
         }
     }failure:^(NSError *error){
         
