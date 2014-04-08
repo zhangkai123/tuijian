@@ -137,6 +137,10 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
     [messageName setStringValue:basicM.messageName];
     [message addChild:messageName];
     
+    NSXMLElement *messageContentType = [NSXMLElement elementWithName:@"messageContentType"];
+    [messageContentType setStringValue:basicM.messageContentType];
+    [message addChild:messageContentType];
+    
     NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
     [body setStringValue:basicM.message];
     [message addChild:body];

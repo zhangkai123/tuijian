@@ -40,7 +40,7 @@
 	
 }
 #pragma mesList table
--(void)insertMessageList:(NSString *)messageId type:(NSString *)mType url:(NSString *)iUrl title:(NSString *)mTitle name:(NSString *)mName message:(NSString *)mes
+-(void)insertMessageList:(NSString *)messageId type:(NSString *)mType url:(NSString *)iUrl title:(NSString *)mTitle name:(NSString *)mName message:(NSString *)mes messageContentType:(NSString *)messageContentType
 {
 	sqlite3 *database;
 	sqlite3_stmt *compiledStatement;
@@ -65,8 +65,8 @@
                 }
             }
             NSString *insertCommand = [NSString stringWithFormat:
-                                       @"insert into mesList (messageId,messageType,imageUrl,messageTitle,messageName,message,messageNum) VALUES('%@','%@','%@','%@','%@','%@','%d')"
-                                       , messageId,mType,iUrl,mTitle,mName,mes,messageNum + 1];
+                                       @"insert into mesList (messageId,messageType,imageUrl,messageTitle,messageName,message,messageContentType,messageNum) VALUES('%@','%@','%@','%@','%@','%@','%@','%d')"
+                                       , messageId,mType,iUrl,mTitle,mName,mes,messageContentType,messageNum + 1];
             const char *insertSqlCommand = [insertCommand UTF8String];
             if (sqlite3_prepare_v2(database, insertSqlCommand, -1, &compiledStatement, NULL) == SQLITE_OK) {
                 if (sqlite3_step(compiledStatement) == SQLITE_DONE) {
@@ -77,8 +77,8 @@
             return;
         }
         NSString *insertCommand = [NSString stringWithFormat:
-                                   @"insert into mesList (messageId,messageType,imageUrl,messageTitle,messageName,message,messageNum) VALUES('%@','%@','%@','%@','%@','%@',1)"
-                                   , messageId,mType,iUrl,mTitle,mName,mes];
+                                   @"insert into mesList (messageId,messageType,imageUrl,messageTitle,messageName,message,messageContentType,messageNum) VALUES('%@','%@','%@','%@','%@','%@','%@',1)"
+                                   , messageId,mType,iUrl,mTitle,mName,mes,messageContentType];
 		const char *insertSqlCommand = [insertCommand UTF8String];
 		if (sqlite3_prepare_v2(database, insertSqlCommand, -1, &compiledStatement, NULL) == SQLITE_OK) {
 			if (sqlite3_step(compiledStatement) == SQLITE_DONE) {
@@ -107,7 +107,8 @@
             NSString *messageTitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 4)];
             NSString *messageName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 5)];
             NSString *message = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 6)];
-            int messageNum = sqlite3_column_int(compiledStatement, 7);
+            NSString *messageContentType = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 7)];
+            int messageNum = sqlite3_column_int(compiledStatement, 8);
             TJMessage *theMessage = [[TJMessage alloc]init];
             theMessage.messageId = messageId;
             theMessage.messageType = messageType;
@@ -115,6 +116,7 @@
             theMessage.messageTitle = messageTitle;
             theMessage.messageName = messageName;
             theMessage.message = message;
+            theMessage.messageContentType = messageContentType;
             theMessage.messageNum = messageNum;
             [messageListArray addObject:theMessage];
 		}
@@ -134,7 +136,7 @@
 		sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
 		
 		while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
-            int messageNum = sqlite3_column_int(compiledStatement, 7);
+            int messageNum = sqlite3_column_int(compiledStatement, 8);
             if (messageNum > 0) {
                 totalMessageNum++;
             }
@@ -184,13 +186,13 @@
 	sqlite3_close(database);
 }
 #pragma mes table
--(void)insertMessage:(NSString *)theMessage messageType:(NSString *)messageT messageId:(NSString *)mId
+-(void)insertMessage:(NSString *)theMessage messageType:(NSString *)messageT messageId:(NSString *)mId messageContentType:(NSString *)messageContentType
 {
 	sqlite3 *database;
 	sqlite3_stmt *compiledStatement;
 	
 	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-		NSString *insertCommand = [NSString stringWithFormat:@"insert into mes (messageId,messageType,message) VALUES('%@','%@','%@')" ,mId ,messageT ,theMessage];
+		NSString *insertCommand = [NSString stringWithFormat:@"insert into mes (messageId,messageType,message,messageContentType) VALUES('%@','%@','%@','%@')" ,mId ,messageT ,theMessage,messageContentType];
 		const char *insertSqlCommand = [insertCommand UTF8String];
 		if (sqlite3_prepare_v2(database, insertSqlCommand, -1, &compiledStatement, NULL) == SQLITE_OK) {
 			if (sqlite3_step(compiledStatement) == SQLITE_DONE) {

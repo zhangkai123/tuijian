@@ -98,7 +98,7 @@
     [cell.titleLabel setText:message.messageTitle];
     NSString *messageContent = nil;
     if ([message.messageType isEqualToString:@"itemMessage"]) {
-        if ([message.message isEqualToString:@"赞"]) {
+        if ([message.messageContentType isEqualToString:@"like"]) {
             messageContent = [NSString stringWithFormat:@"%@给了你一个赞",message.messageName];
         }else{
             messageContent = [NSString stringWithFormat:@"%@评论%@",message.messageName,message.message];

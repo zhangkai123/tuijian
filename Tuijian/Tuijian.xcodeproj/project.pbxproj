@@ -82,6 +82,7 @@
 		4B569CDF18CEBB5D000DF219 /* TJMyServerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CDC18CEBB5D000DF219 /* TJMyServerClient.m */; };
 		4B569CE318CED1E4000DF219 /* TJDiskCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CE218CED1E4000DF219 /* TJDiskCacheManager.m */; };
 		4B569CEA18CF0BE9000DF219 /* TJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CE918CF0BE9000DF219 /* TJUser.m */; };
+		4B6A862A18F3E15F00E27AAE /* message.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A862918F3E15F00E27AAE /* message.sqlite */; };
 		4B7A421018B0CF66009356F4 /* TJShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A420F18B0CF66009356F4 /* TJShowViewController.m */; };
 		4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A421318B0DCE2009356F4 /* camera_18_2x.png */; };
 		4B8B93A018E8F7FD00459AC2 /* user-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B939F18E8F7FD00459AC2 /* user-outline.png */; };
@@ -91,7 +92,6 @@
 		4B8B93A818E8F88900459AC2 /* star-outline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93A718E8F88900459AC2 /* star-outline@2x.png */; };
 		4B8B93AA18E8F89100459AC2 /* user-outline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93A918E8F89100459AC2 /* user-outline@2x.png */; };
 		4B8B93B218E90C8F00459AC2 /* TJItemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B93B118E90C8F00459AC2 /* TJItemMessageCell.m */; };
-		4B8B93B618E975C200459AC2 /* message.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93B518E975C200459AC2 /* message.sqlite */; };
 		4B9C3F6718D9234C00B9F8E5 /* UIImage+additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C3F6618D9234C00B9F8E5 /* UIImage+additions.m */; };
 		4B9C40B918D984AF00B9F8E5 /* XMPPAnonymousAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C3F6C18D984AF00B9F8E5 /* XMPPAnonymousAuthentication.m */; };
 		4B9C40BA18D984AF00B9F8E5 /* XMPPDeprecatedDigestAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C3F6F18D984AF00B9F8E5 /* XMPPDeprecatedDigestAuthentication.m */; };
@@ -410,6 +410,7 @@
 		4B569CE618CED567000DF219 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		4B569CE818CF0BE9000DF219 /* TJUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJUser.h; sourceTree = "<group>"; };
 		4B569CE918CF0BE9000DF219 /* TJUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJUser.m; sourceTree = "<group>"; };
+		4B6A862918F3E15F00E27AAE /* message.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sqlite; sourceTree = "<group>"; };
 		4B7A420E18B0CF66009356F4 /* TJShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJShowViewController.h; sourceTree = "<group>"; };
 		4B7A420F18B0CF66009356F4 /* TJShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJShowViewController.m; sourceTree = "<group>"; };
 		4B7A421318B0DCE2009356F4 /* camera_18_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_18_2x.png; sourceTree = "<group>"; };
@@ -421,7 +422,6 @@
 		4B8B93A918E8F89100459AC2 /* user-outline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-outline@2x.png"; sourceTree = "<group>"; };
 		4B8B93B018E90C8F00459AC2 /* TJItemMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJItemMessageCell.h; sourceTree = "<group>"; };
 		4B8B93B118E90C8F00459AC2 /* TJItemMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJItemMessageCell.m; sourceTree = "<group>"; };
-		4B8B93B518E975C200459AC2 /* message.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sqlite; sourceTree = "<group>"; };
 		4B9C3F6518D9234C00B9F8E5 /* UIImage+additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+additions.h"; sourceTree = "<group>"; };
 		4B9C3F6618D9234C00B9F8E5 /* UIImage+additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+additions.m"; sourceTree = "<group>"; };
 		4B9C3F6B18D984AF00B9F8E5 /* XMPPAnonymousAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPAnonymousAuthentication.h; sourceTree = "<group>"; };
@@ -1959,7 +1959,7 @@
 		4BD48DEF18DFE22600D83667 /* DB */ = {
 			isa = PBXGroup;
 			children = (
-				4B8B93B518E975C200459AC2 /* message.sqlite */,
+				4B6A862918F3E15F00E27AAE /* message.sqlite */,
 			);
 			name = DB;
 			sourceTree = "<group>";
@@ -2245,6 +2245,7 @@
 				4B31405B18ED0B35007A00F2 /* MessageEntryInputField@2x.png in Resources */,
 				4BDEDB3C18CFF48A001C2874 /* male.png in Resources */,
 				4BFB839518EC160C008651DA /* message_placeholder.png in Resources */,
+				4B6A862A18F3E15F00E27AAE /* message.sqlite in Resources */,
 				4B31405918ED0B35007A00F2 /* MessageEntryBackground@2x.png in Resources */,
 				4BB6C05F18F2464000DB13C9 /* RadioButton-Unselected.png in Resources */,
 				4B9C413918D984AF00B9F8E5 /* build-libidn.sh in Resources */,
@@ -2268,7 +2269,6 @@
 				4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */,
 				4B8B93A018E8F7FD00459AC2 /* user-outline.png in Resources */,
 				4B31405A18ED0B35007A00F2 /* MessageEntryInputField.png in Resources */,
-				4B8B93B618E975C200459AC2 /* message.sqlite in Resources */,
 				4B9C40C318D984AF00B9F8E5 /* copying.txt in Resources */,
 				4B8B93A418E8F80900459AC2 /* message.png in Resources */,
 			);

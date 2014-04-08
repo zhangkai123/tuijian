@@ -112,6 +112,7 @@
     NSString *title = [[data elementForName:@"title"] stringValue];
     NSString *messageName = [[data elementForName:@"messageName"] stringValue];
     NSString *messageContent = [[data elementForName:@"body"] stringValue];
+    NSString *messageContentType = [[data elementForName:@"messageContentType"] stringValue];
     
     theMessage.messageId = messageId;
     theMessage.messageType = type;
@@ -119,6 +120,7 @@
     theMessage.messageTitle = title;
     theMessage.messageName = messageName;
     theMessage.message = messageContent;
+    theMessage.messageContentType = messageContentType;
     message(theMessage);
 }
 

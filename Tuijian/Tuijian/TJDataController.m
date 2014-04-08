@@ -248,6 +248,7 @@
     basicMessage.messageTitle = item.title;
     basicMessage.messageName = myUserInfo.name;
     basicMessage.message = @"赞";
+    basicMessage.messageContentType = @"like";
     [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:item.uid basicMessage:basicMessage userProfileImage:myUserInfo.profile_image_url userGender:myUserInfo.gender];
 }
 -(void)sendComment:(TJItem *)item comment:(NSString *)commentInfo
@@ -260,6 +261,7 @@
     basicMessage.messageTitle = item.title;
     basicMessage.messageName = myUserInfo.name;
     basicMessage.message = commentInfo;
+    basicMessage.messageContentType = @"comment";
     [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:item.uid basicMessage:basicMessage userProfileImage:myUserInfo.profile_image_url userGender:myUserInfo.gender];
 }
 - (void) recieveMessage:(NSNotification *) notification
@@ -268,8 +270,8 @@
         id message = notification.object;
         __block id weakMessage = message;
         [TJParser parseMessage:message parsedMessage:^(TJMessage *mes){
-            [[TJDBManager sharedDBManager]insertMessageList:mes.messageId type:mes.messageType url:mes.imageUrl title:mes.messageTitle name:mes.messageName message:mes.message];
-            [[TJDBManager sharedDBManager]insertMessage:weakMessage messageType:mes.messageType messageId:mes.messageId];
+            [[TJDBManager sharedDBManager]insertMessageList:mes.messageId type:mes.messageType url:mes.imageUrl title:mes.messageTitle name:mes.messageName message:mes.message messageContentType:mes.messageContentType];
+            [[TJDBManager sharedDBManager]insertMessage:weakMessage messageType:mes.messageType messageId:mes.messageId messageContentType:mes.messageContentType];
             [[NSNotificationCenter defaultCenter]postNotificationName:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
         }];
     }

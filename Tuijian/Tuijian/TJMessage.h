@@ -17,5 +17,6 @@
 @property(nonatomic,strong) NSString *messageTitle;
 @property(nonatomic,strong) NSString *messageName;
 @property(nonatomic,strong) NSString *message;
+@property(nonatomic,strong) NSString *messageContentType;
 @property(nonatomic,assign) int messageNum;
 @end
