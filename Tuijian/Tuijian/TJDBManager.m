@@ -39,6 +39,7 @@
 	return self;
 	
 }
+#pragma mesList table
 -(void)insertMessageList:(NSString *)messageId type:(NSString *)mType url:(NSString *)iUrl title:(NSString *)mTitle name:(NSString *)mName message:(NSString *)mes
 {
 	sqlite3 *database;
@@ -158,6 +159,31 @@
 	}
 	sqlite3_close(database);
 }
+-(void)deleteFromMeslist:(NSString *)messageType messageId:(NSString *)messageId
+{
+    sqlite3 *database;
+	sqlite3_stmt *compiledStatement;
+    
+	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
+        //delete from meslist
+		NSString *deleteMeslistCommand = [NSString stringWithFormat:@"delete from mesList where messageId='%@' and messageType='%@'" , messageId,messageType];
+		const char *deleteMeslistSqlCommand = [deleteMeslistCommand UTF8String];
+		sqlite3_prepare_v2(database, deleteMeslistSqlCommand, -1, &compiledStatement, NULL);
+		while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+            compiledStatement = nil;
+		}
+        
+        //delete all the messages from mes
+        NSString *deleteMesCommand = [NSString stringWithFormat:@"delete from mes where messageId='%@' and messageType='%@'" , messageId,messageType];
+		const char *deleteMesSqlCommand = [deleteMesCommand UTF8String];
+		sqlite3_prepare_v2(database, deleteMesSqlCommand, -1, &compiledStatement, NULL);
+		while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+            compiledStatement = nil;
+		}
+	}
+	sqlite3_close(database);
+}
+#pragma mes table
 -(void)insertMessage:(NSString *)theMessage messageType:(NSString *)messageT messageId:(NSString *)mId
 {
 	sqlite3 *database;

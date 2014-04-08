@@ -58,9 +58,9 @@
     NSArray *messageListArray = [[TJDataController sharedDataController]featchMessageList];
     [infoListArray addObjectsFromArray:messageListArray];
     
-     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveMessage) name:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
+     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshMessageList) name:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
 }
--(void)recieveMessage
+-(void)refreshMessageList
 {
     NSArray *messageListArray = [[TJDataController sharedDataController]featchMessageList];
     [infoListArray removeAllObjects];
@@ -127,7 +127,18 @@
     [self.navigationController pushViewController:itemMessageViewController animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
-
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+        TJMessage *message = [infoListArray objectAtIndex:indexPath.row];
+        [[TJDataController sharedDataController]deleteFromMessageList:message.messageId messageType:message.messageType];
+        [self refreshMessageList];
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

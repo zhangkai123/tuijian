@@ -281,6 +281,10 @@
     NSArray *messageListArray = [[TJDBManager sharedDBManager]getMessageList];
     return messageListArray;
 }
+-(void)deleteFromMessageList:(NSString *)mId messageType:(NSString *)mType
+{
+    [[TJDBManager sharedDBManager]deleteFromMeslist:mType messageId:mId];
+}
 -(NSArray *)featchItemMessage:(NSString *)mId
 {
     NSArray *messageArray = [[TJDBManager sharedDBManager]getMessages:@"itemMessage" messageId:mId];
