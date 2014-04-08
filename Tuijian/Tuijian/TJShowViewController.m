@@ -307,10 +307,12 @@
     }else{
         theItem.likeNum = [NSString stringWithFormat:@"%d",[theItem.likeNum intValue] + 1];
     }
+    theItem.hasLiked = !theItem.hasLiked;
+    hasL(theItem.hasLiked);
     [itemTableView reloadData];
     [[TJDataController sharedDataController]saveLike:itemId success:^(BOOL hasLiked){
-        hasL(hasLiked);
-        theItem.hasLiked = hasLiked;
+//        hasL(hasLiked);
+//        theItem.hasLiked = hasLiked;
         if (hasLiked) {
             [[TJDataController sharedDataController]sendLike:theItem];
         }

@@ -92,20 +92,12 @@
 }
 -(void)like
 {
-//    int likeNum;
-//    if (likeButtonRed) {
-//        likeNum = [likeNumLabel.text intValue] - 1;
-//    }else{
-//        likeNum = [likeNumLabel.text intValue] + 1;
-//    }
-//    likeNumLabel.text = [NSString stringWithFormat:@"%d",likeNum];
     [self.delegate likeItem:self.itemId liked:^(BOOL hasLiked){
         [self setLikeButtonColor:hasLiked];
     }];
 }
 -(void)setLikeButtonColor:(BOOL)hasLiked
 {
-//    likeButtonRed = hasLiked;
     if (hasLiked) {
         [likeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [likeButton setImage:[UIImage imageNamed:@"favSelectedHighlight@2x.png"] forState:UIControlStateNormal];
