@@ -264,6 +264,18 @@
     basicMessage.messageContentType = @"comment";
     [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:item.uid basicMessage:basicMessage userProfileImage:myUserInfo.profile_image_url userGender:myUserInfo.gender];
 }
+-(void)replyComment:(TJUser *)user theItem:(TJItem *)item comment:(NSString *)commentInfo
+{
+    TJMessage *basicMessage = [[TJMessage alloc]init];
+    basicMessage.messageId = item.itemId;
+    basicMessage.messageType = @"itemMessage";
+    basicMessage.imageUrl = item.imageUrl;
+    basicMessage.messageTitle = item.title;
+    basicMessage.messageName = user.name;
+    basicMessage.message = commentInfo;
+    basicMessage.messageContentType = @"replyComment";
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:user.myUserId basicMessage:basicMessage userProfileImage:user.profile_image_url userGender:user.gender];
+}
 - (void) recieveMessage:(NSNotification *) notification
 {
     if ([[notification name] isEqualToString:TJ_RECIEVE_MESSAGE_NOTIFICATION]){

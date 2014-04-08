@@ -145,6 +145,7 @@
 }
 -(void)sendComment:(NSString *)theComment
 {
+    __block NSString *commentInfo = theComment;
     if (replyStatus) {
         theComment = [NSString stringWithFormat:@"回复%@:%@",replyedUser.name,theComment];
     }
@@ -158,10 +159,13 @@
     theItem.commentNum = [NSString stringWithFormat:@"%d",[theItem.commentNum intValue] + 1];
 
     __block TJItem *weakItem = self.theItem;
-    __block NSString *commentInfo = theComment;
     [[TJDataController sharedDataController]saveComment:self.theItem.itemId commentInfo:theComment success:^(BOOL hasCommented){
-        if (hasCommented && !replyStatus) {
-            [[TJDataController sharedDataController]sendComment:weakItem comment:commentInfo];
+        if (hasCommented) {
+            if (replyStatus) {
+                [[TJDataController sharedDataController]replyComment:replyedUser theItem:weakItem comment:commentInfo];
+            }else{
+                [[TJDataController sharedDataController]sendComment:weakItem comment:commentInfo];
+            }
         }
     }failure:^(NSError *error){
         

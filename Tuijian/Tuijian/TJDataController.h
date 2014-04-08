@@ -48,6 +48,7 @@
 -(void)disConnectToXMPPServer;
 -(void)sendLike:(TJItem *)item;
 -(void)sendComment:(TJItem *)item comment:(NSString *)commentInfo;
+-(void)replyComment:(TJUser *)user theItem:(TJItem *)item comment:(NSString *)commentInfo;
 
 #pragma database
 -(NSArray *)featchMessageList;
