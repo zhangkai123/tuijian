@@ -95,7 +95,8 @@
                                          }failure:^(NSURLRequest *request ,NSHTTPURLResponse *response ,NSError *error){
                                              
                                          }];
-    [cell.titleLabel setText:message.messageTitle];
+//    [cell.titleLabel setText:message.messageTitle];
+    [cell setMessageTitle:message.messageTitle];
     NSString *messageContent = nil;
     if ([message.messageType isEqualToString:@"itemMessage"]) {
         if ([message.messageContentType isEqualToString:@"like"]) {

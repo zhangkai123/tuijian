@@ -8,8 +8,14 @@
 
 #import "TJMessageCell.h"
 
+@interface TJMessageCell()<TTTAttributedLabelDelegate>
+{
+    TTTAttributedLabel *titleLabel;
+}
+@end
+
 @implementation TJMessageCell
-@synthesize theImageView ,notificationView ,titleLabel ,messageLabel;
+@synthesize theImageView ,notificationView ,messageLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -25,10 +31,10 @@
         notificationView.backgroundColor = [UIColor redColor];
         [theImageView addSubview:notificationView];
         
-        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 15, 230, 30)];
-        [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
-        titleLabel.numberOfLines = 1;
-        [titleLabel setTextColor:UIColorFromRGB(0x3399CC)];
+        titleLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(80, 15, 230, 30)];
+        titleLabel.delegate = self;
+        titleLabel.numberOfLines = 0;
+        [titleLabel createNoLineLinkAttributes:UIColorFromRGB(0x3399CC)];
         [self addSubview:titleLabel];
         
         messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 40, 230, 30)];
@@ -39,7 +45,18 @@
     }
     return self;
 }
-
+-(void)setMessageTitle:(NSString *)messageTitle
+{
+    titleLabel.text = messageTitle;
+    [titleLabel addLinkToURL:[NSURL URLWithString:@"action://gotoItemPage"] withRange:[messageTitle rangeOfString:messageTitle]];
+}
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    if ([[url scheme] hasPrefix:@"action"]) {
+        if ([[url host] hasPrefix:@"gotoItemPage"]) {
+            
+        }
+    }
+}
 - (void)awakeFromNib
 {
     // Initialization code

@@ -18,4 +18,6 @@
     #import "AFNetworking.h"
     #import "TJDataController.h"
     #import "SDWebImage/UIImageView+WebCache.h"
+    #import "TTTAttributedLabel.h"
+#import "TTTAttributedLabel+link.h"
 #endif

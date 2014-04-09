@@ -235,6 +235,8 @@
 		4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7D08018B394A40055D40B /* TJCamViewController.m */; };
 		4BD3A06818F5197400C6B6AE /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BD3A06718F5197400C6B6AE /* comment.png */; };
 		4BD3A06A18F5197C00C6B6AE /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BD3A06918F5197C00C6B6AE /* like.png */; };
+		4BD3A06E18F528FB00C6B6AE /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD3A06D18F528FB00C6B6AE /* TTTAttributedLabel.m */; };
+		4BD3A07118F532CB00C6B6AE /* TTTAttributedLabel+link.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD3A07018F532CB00C6B6AE /* TTTAttributedLabel+link.m */; };
 		4BD48DEE18DFDF8D00D83667 /* TJDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD48DED18DFDF8D00D83667 /* TJDBManager.m */; };
 		4BD48DF818E0144F00D83667 /* TJMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD48DF718E0144F00D83667 /* TJMessageCell.m */; };
 		4BDEDB3C18CFF48A001C2874 /* male.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3B18CFF48A001C2874 /* male.png */; };
@@ -709,6 +711,10 @@
 		4BC7D08018B394A40055D40B /* TJCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCamViewController.m; sourceTree = "<group>"; };
 		4BD3A06718F5197400C6B6AE /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		4BD3A06918F5197C00C6B6AE /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
+		4BD3A06C18F528FB00C6B6AE /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
+		4BD3A06D18F528FB00C6B6AE /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
+		4BD3A06F18F532CB00C6B6AE /* TTTAttributedLabel+link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TTTAttributedLabel+link.h"; sourceTree = "<group>"; };
+		4BD3A07018F532CB00C6B6AE /* TTTAttributedLabel+link.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTTAttributedLabel+link.m"; sourceTree = "<group>"; };
 		4BD48DEC18DFDF8D00D83667 /* TJDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJDBManager.h; sourceTree = "<group>"; };
 		4BD48DED18DFDF8D00D83667 /* TJDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJDBManager.m; sourceTree = "<group>"; };
 		4BD48DF618E0144F00D83667 /* TJMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMessageCell.h; sourceTree = "<group>"; };
@@ -1014,6 +1020,7 @@
 		4B569CB418CEB9D5000DF219 /* ThirdPartyLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				4BD3A06B18F528E800C6B6AE /* TTTAttributedLabel */,
 				4BB6C05018F2430700DB13C9 /* RadioButton */,
 				4B31404118ED01B9007A00F2 /* HPGrowingTextView */,
 				4BEE7F3318E53A7B00232E6C /* MTStatusBarOverlay */,
@@ -1132,6 +1139,8 @@
 				4B9C3F6618D9234C00B9F8E5 /* UIImage+additions.m */,
 				4BF64BAB18DD39A8005D34C1 /* UIImage+JTImageCrop.h */,
 				4BF64BAC18DD39A8005D34C1 /* UIImage+JTImageCrop.m */,
+				4BD3A06F18F532CB00C6B6AE /* TTTAttributedLabel+link.h */,
+				4BD3A07018F532CB00C6B6AE /* TTTAttributedLabel+link.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -1956,6 +1965,15 @@
 			name = radioButton;
 			sourceTree = "<group>";
 		};
+		4BD3A06B18F528E800C6B6AE /* TTTAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				4BD3A06C18F528FB00C6B6AE /* TTTAttributedLabel.h */,
+				4BD3A06D18F528FB00C6B6AE /* TTTAttributedLabel.m */,
+			);
+			name = TTTAttributedLabel;
+			sourceTree = "<group>";
+		};
 		4BD48DEF18DFE22600D83667 /* DB */ = {
 			isa = PBXGroup;
 			children = (
@@ -2410,6 +2428,7 @@
 				4B9C413818D984AF00B9F8E5 /* DDXMLNode.m in Sources */,
 				4B569CCA18CEBA0D000DF219 /* AFHTTPRequestOperation.m in Sources */,
 				4BE1636318B9D7890009158D /* TJEditViewController.m in Sources */,
+				4BD3A07118F532CB00C6B6AE /* TTTAttributedLabel+link.m in Sources */,
 				4BC7D08118B394A40055D40B /* TJCamViewController.m in Sources */,
 				4B31404A18ED061C007A00F2 /* TJCommentView.m in Sources */,
 				4B31404718ED01C6007A00F2 /* HPTextViewInternal.m in Sources */,
@@ -2451,6 +2470,7 @@
 				4B47A39318D179B800087BE4 /* SDWebImageDownloader.m in Sources */,
 				4B9C413718D984AF00B9F8E5 /* DDXMLElement.m in Sources */,
 				4B9C40DF18D984AF00B9F8E5 /* XMPPLastActivity.m in Sources */,
+				4BD3A06E18F528FB00C6B6AE /* TTTAttributedLabel.m in Sources */,
 				4BB6C05A18F244CB00DB13C9 /* TJRadioButtonView.m in Sources */,
 				4B9C40D018D984AF00B9F8E5 /* XMPPReconnect.m in Sources */,
 				4B31B77518D7F75400F87D71 /* TJComment.m in Sources */,
