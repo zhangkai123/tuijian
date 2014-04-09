@@ -18,6 +18,7 @@
 +(void)parseLikesCommentsData:(id)json likesArray:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray failed:(void (^)(NSError *error))failed;
 
 +(void)parseMessage:(id)data parsedMessage:(void (^)(TJMessage *message))message;
-
 +(void)parseItemMessage:(id)data parsedMessage:(void (^)(TJItemMessage *message))message;
+
++(NSString *)getMessageFromUserId:(id)data;
 @end

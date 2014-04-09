@@ -149,4 +149,13 @@
     message(theMessage);
 }
 
++(NSString *)getMessageFromUserId:(id)data
+{
+    NSString *uid = [[data attributeForName:@"from"] stringValue];
+    NSArray *strArray = [uid componentsSeparatedByString:@"@"];
+    if ([strArray count] > 0) {
+        uid = [strArray objectAtIndex:0];
+    }
+    return uid;
+}
 @end

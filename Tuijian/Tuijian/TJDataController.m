@@ -326,6 +326,12 @@
         id message = notification.object;
         __block id weakMessage = message;
         [TJParser parseMessage:message parsedMessage:^(TJMessage *mes){
+            if ([mes.messageContentType isEqualToString:@"like"]) {
+                NSString *fromUserId = [TJParser getMessageFromUserId:weakMessage];
+                if ([self checkIfUserLikedInItemMessages:fromUserId messageId:mes.messageId]) {
+                    return;
+                }
+            }
             [[TJDBManager sharedDBManager]insertMessageList:mes.messageId type:mes.messageType url:mes.imageUrl title:mes.messageTitle name:mes.messageName message:mes.message messageContentType:mes.messageContentType];
             [[TJDBManager sharedDBManager]insertMessage:weakMessage messageType:mes.messageType messageId:mes.messageId messageContentType:mes.messageContentType];
             [[NSNotificationCenter defaultCenter]postNotificationName:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
@@ -333,6 +339,17 @@
     }
 }
 
+-(BOOL)checkIfUserLikedInItemMessages:(NSString *)userId messageId:(NSString *)mId
+{
+    NSArray *itemMessagesArray = [self featchItemMessage:mId];
+    for (int i = 0; i < [itemMessagesArray count]; i++) {
+        TJItemMessage *itemMessage = [itemMessagesArray objectAtIndex:i];
+        if ([itemMessage.uid isEqualToString:userId] && [itemMessage.messageContentType isEqualToString:@"like"]) {
+            return YES;
+        }
+    }
+    return NO;
+}
 #pragma database
 -(NSArray *)featchMessageList
 {
