@@ -16,4 +16,5 @@
 @property(nonatomic,strong) NSString *userName;
 @property(nonatomic,strong) NSString *userGender;
 @property(nonatomic,strong) NSString *message;
+@property(nonatomic,strong) NSString *messageContentType;
 @end

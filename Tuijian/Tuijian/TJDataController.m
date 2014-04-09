@@ -203,6 +203,20 @@
     comment.info = commentInfo;
     return comment;
 }
+-(TJItemMessage *)getMyOwnMessageItem:(NSString *)replyMessage
+{
+    TJItemMessage *itemMessage = [[TJItemMessage alloc]init];
+    TJUser *user = [self getMyUserInfo];
+    NSString *userId = [self getMyUserId];
+    itemMessage.uid = userId;
+    itemMessage.profileImageUrl = user.profile_image_url;
+    itemMessage.userName = user.name;
+    itemMessage.userGender = user.gender;
+    itemMessage.message = replyMessage;
+    itemMessage.messageContentType = @"replyComment";
+    return itemMessage;
+}
+
 -(TJUser *)getMyWholeUserInfo
 {
     TJUser *user = [self getMyUserInfo];
@@ -266,15 +280,29 @@
 }
 -(void)replyComment:(TJUser *)user theItem:(TJItem *)item comment:(NSString *)commentInfo
 {
+    TJUser *myUserInfo = [self getMyUserInfo];
     TJMessage *basicMessage = [[TJMessage alloc]init];
     basicMessage.messageId = item.itemId;
     basicMessage.messageType = @"itemMessage";
     basicMessage.imageUrl = item.imageUrl;
     basicMessage.messageTitle = item.title;
-    basicMessage.messageName = user.name;
+    basicMessage.messageName = myUserInfo.name;
     basicMessage.message = commentInfo;
     basicMessage.messageContentType = @"replyComment";
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:user.myUserId basicMessage:basicMessage userProfileImage:user.profile_image_url userGender:user.gender];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:user.myUserId basicMessage:basicMessage userProfileImage:myUserInfo.profile_image_url userGender:myUserInfo.gender];
+}
+-(void)replyMessage:(TJItemMessage *)itemMessage theMessage:(TJMessage *)theMessage comment:(NSString *)commentInfo
+{
+    TJUser *userInfo = [self getMyUserInfo];
+    TJMessage *basicMessage = [[TJMessage alloc]init];
+    basicMessage.messageId = theMessage.messageId;
+    basicMessage.messageType = @"itemMessage";
+    basicMessage.imageUrl = theMessage.imageUrl;
+    basicMessage.messageTitle = theMessage.messageTitle;
+    basicMessage.messageName = userInfo.name;
+    basicMessage.message = commentInfo;
+    basicMessage.messageContentType = @"replyComment";
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:itemMessage.uid basicMessage:basicMessage userProfileImage:userInfo.profile_image_url userGender:userInfo.gender];
 }
 - (void) recieveMessage:(NSNotification *) notification
 {

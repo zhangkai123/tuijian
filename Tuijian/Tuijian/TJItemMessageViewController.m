@@ -7,22 +7,26 @@
 //
 
 #import "TJItemMessageViewController.h"
-//#import "TJCommentCell.h"
 #import "TJItemMessageCell.h"
 #import "UIImage+additions.h"
 #import "TJItemMessage.h"
 #import "TJUserInfoViewController.h"
+#import "TJCommentView.h"
 
-@interface TJItemMessageViewController ()<UITableViewDataSource,UITableViewDelegate,TJItemMessageCellDelegate>
+@interface TJItemMessageViewController ()<UITableViewDataSource,UITableViewDelegate,TJItemMessageCellDelegate,TJCommentViewDelegate>
 {
     UITableView *itemMessageTableView;
     NSMutableArray *itemMessageArray;
     NSMutableArray *textHeightArray;
+    
+    TJCommentView *commentInputView;
+    BOOL isWirting;
+    TJItemMessage *repliedItemMessage;
 }
 @end
 
 @implementation TJItemMessageViewController
-@synthesize messageId;
+@synthesize theMessage;
 
 -(void)dealloc
 {
@@ -49,8 +53,6 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     itemMessageTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
-    //    [itemTableView setBackgroundColor:[UIColor clearColor]];
-    //    [itemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     itemMessageTableView.dataSource = self;
     itemMessageTableView.delegate = self;
     [self.view addSubview:itemMessageTableView];
@@ -58,11 +60,16 @@
     itemMessageArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
     
+    commentInputView = [[TJCommentView alloc]initWithFrame:self.view.frame];
+    commentInputView.delegate = self;
+    commentInputView.hidden = YES;
+    [self.view addSubview:commentInputView];
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveMessage) name:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
 }
 -(void)recieveMessage
 {
-    NSArray *mArray = [[TJDataController sharedDataController]featchItemMessage:self.messageId];
+    NSArray *mArray = [[TJDataController sharedDataController]featchItemMessage:self.theMessage.messageId];
     [itemMessageArray removeAllObjects];
     [itemMessageArray addObjectsFromArray:mArray];
     for (int i = 0; i < [itemMessageArray count]; i++) {
@@ -76,7 +83,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSArray *mArray = [[TJDataController sharedDataController]featchItemMessage:self.messageId];
+    NSArray *mArray = [[TJDataController sharedDataController]featchItemMessage:theMessage.messageId];
     [itemMessageArray addObjectsFromArray:mArray];
     for (int i = 0; i < [itemMessageArray count]; i++) {
         TJItemMessage *itemMessage = [itemMessageArray objectAtIndex:i];
@@ -86,6 +93,42 @@
         [textHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
     }
     [super viewWillAppear:animated];
+}
+-(void)enterWriteStatus
+{
+    [commentInputView showReplyCommentPlaceHolder:repliedItemMessage.userName];
+    isWirting = YES;
+    commentInputView.hidden = NO;
+    [commentInputView showKeyboard:YES];
+}
+-(void)exitWriteStatus
+{
+    isWirting = NO;
+    commentInputView.hidden = YES;
+    [commentInputView showKeyboard:NO];
+}
+
+#pragma TJCommentViewDelegate
+-(void)exitInputMode
+{
+    [self exitWriteStatus];
+    
+}
+-(void)sendComment:(NSString *)theComment
+{
+    __block NSString *commentInfo = theComment;
+    
+    NSString *nameComment = [NSString stringWithFormat:@"回复%@:%@",repliedItemMessage.userName,theComment];
+    __block TJMessage *weakMessage = self.theMessage;
+    //message id is the same as the item id
+    [[TJDataController sharedDataController]saveComment:self.theMessage.messageId commentInfo:nameComment success:^(BOOL hasCommented){
+        if (hasCommented) {
+            [[TJDataController sharedDataController]replyMessage:repliedItemMessage theMessage:weakMessage comment:commentInfo];
+        }
+    }failure:^(NSError *error){
+        
+    }];
+    [self exitWriteStatus];
 }
 #pragma uitableview delegate and datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -119,10 +162,12 @@
                                                           }];
     [[cell nameLable]setText:itemMessage.userName];
     NSString *commentMessage = nil;
-    if ([itemMessage.message isEqualToString:@"赞"]) {
+    if ([itemMessage.messageContentType isEqualToString:@"like"]) {
         commentMessage = [NSString stringWithFormat:@"给了你一个赞！"];
-    }else{
+    }else if([itemMessage.messageContentType isEqualToString:@"comment"]) {
         commentMessage = itemMessage.message;
+    }else if([itemMessage.messageContentType isEqualToString:@"replyComment"]){
+        commentMessage = [NSString stringWithFormat:@"回复你的评论:%@",itemMessage.message];
     }
     [[cell commentLable]setText:commentMessage];
     cell.delegate = (id)self;
@@ -134,6 +179,8 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    repliedItemMessage = [itemMessageArray objectAtIndex:indexPath.row];
+    [self enterWriteStatus];
 }
 #pragma TJCommentCellDelegate
 -(void)selectCommentUserImage:(int)rowNum

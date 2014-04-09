@@ -14,6 +14,7 @@
 #import "TJUser.h"
 #import "TJComment.h"
 #import "TJItem.h"
+#import "TJItemMessage.h"
 
 #import <TencentOpenAPI/TencentOAuth.h>
 
@@ -40,6 +41,7 @@
 -(void)saveComment:(NSString *)itemId commentInfo:(NSString *)commentInfo success:(void (^)(BOOL hasCommented))succeed failure:(void (^)(NSError *error))failure;
 -(void)getLikesComments:(NSString *)itemId likes:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray failure:(void (^)(NSError *error))failure;
 -(TJComment *)getMyOwnCommentItem:(NSString *)commentInfo;
+-(TJItemMessage *)getMyOwnMessageItem:(NSString *)replyMessage;
 -(TJUser *)getMyWholeUserInfo;
 -(void)getUserItems:(NSString *)userId success:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure;
 
@@ -49,7 +51,7 @@
 -(void)sendLike:(TJItem *)item;
 -(void)sendComment:(TJItem *)item comment:(NSString *)commentInfo;
 -(void)replyComment:(TJUser *)user theItem:(TJItem *)item comment:(NSString *)commentInfo;
-
+-(void)replyMessage:(TJItemMessage *)itemMessage theMessage:(TJMessage *)theMessage comment:(NSString *)commentInfo;
 #pragma database
 -(NSArray *)featchMessageList;
 -(void)deleteFromMessageList:(NSString *)mId messageType:(NSString *)mType;

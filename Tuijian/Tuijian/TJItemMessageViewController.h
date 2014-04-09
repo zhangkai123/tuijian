@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TJMessage.h"
 
 @interface TJItemMessageViewController : UIViewController
 
-@property(nonatomic,strong) NSString *messageId;
+@property(nonatomic,strong) TJMessage *theMessage;
 
 -(id)initWithTitle:(NSString *)title;
 @end

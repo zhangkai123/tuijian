@@ -125,7 +125,7 @@
     
     self.hidesBottomBarWhenPushed = YES;
     TJItemMessageViewController *itemMessageViewController = [[TJItemMessageViewController alloc]initWithTitle:message.messageTitle];
-    itemMessageViewController.messageId = message.messageId;
+    itemMessageViewController.theMessage = message;
     [self.navigationController pushViewController:itemMessageViewController animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
