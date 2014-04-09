@@ -255,6 +255,10 @@
 -(void)sendLike:(TJItem *)item
 {
     TJUser *myUserInfo = [self getMyUserInfo];
+    NSString *myUserId = [self getMyUserId];
+    if ([item.uid isEqualToString:myUserId]) {
+        return;
+    }
     TJMessage *basicMessage = [[TJMessage alloc]init];
     basicMessage.messageId = item.itemId;
     basicMessage.messageType = @"itemMessage";
@@ -268,6 +272,10 @@
 -(void)sendComment:(TJItem *)item comment:(NSString *)commentInfo
 {
     TJUser *myUserInfo = [self getMyUserInfo];
+    NSString *myUserId = [self getMyUserId];
+    if ([item.uid isEqualToString:myUserId]) {
+        return;
+    }
     TJMessage *basicMessage = [[TJMessage alloc]init];
     basicMessage.messageId = item.itemId;
     basicMessage.messageType = @"itemMessage";
@@ -281,6 +289,10 @@
 -(void)replyComment:(TJUser *)user theItem:(TJItem *)item comment:(NSString *)commentInfo
 {
     TJUser *myUserInfo = [self getMyUserInfo];
+    NSString *myUserId = [self getMyUserId];
+    if ([user.myUserId isEqualToString:myUserId]) {
+        return;
+    }
     TJMessage *basicMessage = [[TJMessage alloc]init];
     basicMessage.messageId = item.itemId;
     basicMessage.messageType = @"itemMessage";
@@ -294,6 +306,10 @@
 -(void)replyMessage:(TJItemMessage *)itemMessage theMessage:(TJMessage *)theMessage comment:(NSString *)commentInfo
 {
     TJUser *userInfo = [self getMyUserInfo];
+    NSString *myUserId = [self getMyUserId];
+    if ([itemMessage.uid isEqualToString:myUserId]) {
+        return;
+    }
     TJMessage *basicMessage = [[TJMessage alloc]init];
     basicMessage.messageId = theMessage.messageId;
     basicMessage.messageType = @"itemMessage";
