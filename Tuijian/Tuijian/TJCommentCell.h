@@ -37,4 +37,5 @@
 
 -(void)setLineWidthAndHeight:(float)topLineWidth sideLineHeight:(float)sideLineHeight;
 -(void)setBottomLineViewHidden:(BOOL)hidden;
+-(void)showSelectedAnimation;
 @end

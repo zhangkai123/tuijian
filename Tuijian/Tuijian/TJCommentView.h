@@ -26,4 +26,6 @@
 @property(nonatomic,unsafe_unretained) id<TJCommentViewDelegate> delegate;
 
 -(void)showKeyboard:(BOOL)showK;
+-(void)showCommentPlaceHolder;
+-(void)showReplyCommentPlaceHolder:(NSString *)userName;
 @end

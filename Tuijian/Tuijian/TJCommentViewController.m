@@ -126,6 +126,11 @@
 }
 -(void)enterWriteStatus
 {
+    if (replyStatus) {
+        [commentInputView showReplyCommentPlaceHolder:replyedUser.name];
+    }else{
+        [commentInputView showCommentPlaceHolder];
+    }
     isWirting = YES;
     commentInputView.hidden = NO;
     [commentInputView showKeyboard:YES];
@@ -150,7 +155,7 @@
         theComment = [NSString stringWithFormat:@"回复%@:%@",replyedUser.name,theComment];
     }
     TJComment *comment = [[TJDataController sharedDataController] getMyOwnCommentItem:theComment];
-    [myCommentsArray insertObject:comment atIndex:0];
+    [myCommentsArray addObject:comment];
     CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(TJ_COMMENT_LABEL_WIDTH, 0)
                                                           options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                                        attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_COMMENT_SIZE]} context:nil];
@@ -277,6 +282,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 2) {
+        TJCommentCell *cell = (TJCommentCell *)[tableView cellForRowAtIndexPath:indexPath];
+        [cell showSelectedAnimation];
         TJComment *comment = [myCommentsArray objectAtIndex:indexPath.row];
         [self replyCommentTo:comment.user];
     }

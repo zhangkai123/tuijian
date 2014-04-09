@@ -32,8 +32,8 @@
         
         self.backgroundColor = [UIColor clearColor];
         UIButton *coverButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 320, self.frame.size.height - 40)];
-        coverButton.backgroundColor = [UIColor blackColor];
-        [coverButton setAlpha:0.2];
+//        coverButton.backgroundColor = [UIColor blackColor];
+//        [coverButton setAlpha:0.1];
         [coverButton addTarget:self action:@selector(exitInputMode) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:coverButton];
         
@@ -95,6 +95,14 @@
         containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     }
     return self;
+}
+-(void)showCommentPlaceHolder
+{
+    textView.placeholder = @"发表评论";
+}
+-(void)showReplyCommentPlaceHolder:(NSString *)userName
+{
+    textView.placeholder = [NSString stringWithFormat:@"回复%@",userName];
 }
 -(void)exitInputMode
 {

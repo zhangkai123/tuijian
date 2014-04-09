@@ -14,6 +14,8 @@
     UIView *leftLineView;
     UIView *rightLineView;
     UIView *bottomLineView;
+    
+    UIView *selectedCoverView;
 }
 @end
 
@@ -28,7 +30,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-//        self.backgroundColor = UIColorFromRGB(0xEEEEEE);
         self.commentImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 20, 20)];
         [self addSubview:commentImageView];
         
@@ -61,6 +62,12 @@
         bottomLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
         [self addSubview:bottomLineView];
         bottomLineView.hidden = YES;
+        
+        selectedCoverView = [[UIView alloc]initWithFrame:CGRectZero];
+        selectedCoverView.backgroundColor = [UIColor lightGrayColor];
+        [selectedCoverView setAlpha:0.3];
+        [self addSubview:selectedCoverView];
+        selectedCoverView.hidden = YES;
     }
     return self;
 }
@@ -79,10 +86,20 @@
     leftLineView.frame = CGRectMake(10, 0, 1, sideLineHeight);
     rightLineView.frame = CGRectMake(309, 0, 1, sideLineHeight);
     bottomLineView.frame = CGRectMake(10, sideLineHeight, 300, 1);
+    selectedCoverView.frame = CGRectMake(40, 0, 270, sideLineHeight);
 }
 -(void)setBottomLineViewHidden:(BOOL)hidden
 {
     bottomLineView.hidden = hidden;
+}
+-(void)showSelectedAnimation
+{
+    selectedCoverView.hidden = NO;
+    [self performSelector:@selector(hideSelectedCoverView) withObject:nil afterDelay:0.2];
+}
+-(void)hideSelectedCoverView
+{
+    selectedCoverView.hidden = YES;
 }
 #pragma TJTouchableImageViewDelegate
 -(void)selectUserImageView:(int)sectionNum
