@@ -175,6 +175,23 @@
     }];
     [operation start];
 }
+-(void)getItemWholeInfo:(NSString *)itemId myUserId:(NSString *)myUserId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+{
+    TJMyServerClient *client = [TJMyServerClient sharedClient];
+    NSString *path = @"GetPostItemsLikesCommentsByItemID";
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:itemId,@"itemId",myUserId,@"uid", nil];
+    NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
+    
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        
+        success(JSON);
+    }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        failure(error);
+    }];
+    [operation start];
+}
 -(void)sendFeatchUserItemsRequest:(NSString *)accessT uid:(NSString *)uid success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     TJMyServerClient *client = [TJMyServerClient sharedClient];

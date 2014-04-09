@@ -8,12 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TJMessageCellDelegate <NSObject>
+
+-(void)goToMessageParent:(NSString *)messageId;
+
+@end
+
 @interface TJMessageCell : UITableViewCell
 {
+    __unsafe_unretained id<TJMessageCellDelegate> delegate;
+    
     UIImageView *theImageView;
     UIView *notificationView;
     UILabel *messageLabel;
 }
+@property(nonatomic,strong) NSString *messageId;
+@property(nonatomic,unsafe_unretained) id<TJMessageCellDelegate> delegate;
 
 @property(nonatomic,strong) UIImageView *theImageView;
 @property(nonatomic,strong) UIView *notificationView;

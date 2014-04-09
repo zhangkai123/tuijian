@@ -15,6 +15,7 @@
 @end
 
 @implementation TJMessageCell
+@synthesize messageId ,delegate;
 @synthesize theImageView ,notificationView ,messageLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -53,7 +54,7 @@
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
     if ([[url scheme] hasPrefix:@"action"]) {
         if ([[url host] hasPrefix:@"gotoItemPage"]) {
-            
+            [self.delegate goToMessageParent:self.messageId];
         }
     }
 }

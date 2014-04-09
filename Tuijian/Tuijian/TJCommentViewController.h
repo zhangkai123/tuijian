@@ -14,7 +14,7 @@
     TJItem *theItem;
     float textHeight;
 }
-
+@property(nonatomic,strong) NSString *theItemId;
 @property(nonatomic,strong) TJItem *theItem;
 @property(nonatomic,assign) float textHeight;
 @end

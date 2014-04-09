@@ -21,6 +21,7 @@
     if (self) {
         // Initialization code
         itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
+        itemImageView.backgroundColor = UIColorFromRGB(0xF5F5F5);
         [self addSubview:itemImageView];
         
         titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 325, 300, 30)];

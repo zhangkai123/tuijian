@@ -40,6 +40,7 @@
 -(void)saveLike:(NSString *)itemId success:(void (^)(BOOL hasLiked))liked failure:(void (^)(NSError *error))failure;
 -(void)saveComment:(NSString *)itemId commentInfo:(NSString *)commentInfo success:(void (^)(BOOL hasCommented))succeed failure:(void (^)(NSError *error))failure;
 -(void)getLikesComments:(NSString *)itemId likes:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray failure:(void (^)(NSError *error))failure;
+-(void)getItemWholeInfo:(NSString *)itemId theItem:(void (^)(TJItem *theItem))item likesArray:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray failed:(void (^)(NSError *error))failed;
 -(TJComment *)getMyOwnCommentItem:(NSString *)commentInfo;
 -(TJItemMessage *)getMyOwnMessageItem:(NSString *)replyMessage;
 -(TJUser *)getMyWholeUserInfo;

@@ -19,6 +19,8 @@
 @interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,TJTouchableImageViewDelegate,TJCommentViewDelegate>
 {
     UITableView *detailTableView;
+    int numberOfSections;
+    
     TJCommentView *commentInputView;
     BOOL isWirting;
     BOOL replyStatus;
@@ -33,6 +35,8 @@
 @end
 
 @implementation TJCommentViewController
+//two different way to get the item information
+@synthesize theItemId;
 @synthesize theItem ,textHeight;
 
 -(id)init
@@ -75,6 +79,7 @@
     myLikesArray = [[NSMutableArray alloc]init];
     myCommentsArray = [[NSMutableArray alloc]init];
     myCommentHeightArray = [[NSMutableArray alloc]init];
+    numberOfSections = 0;
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -82,27 +87,68 @@
     __block NSMutableArray *weakMyLikesArray = myLikesArray;
     __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
     __block NSMutableArray *weakmyCommentHeightArray = myCommentHeightArray;
-    [[TJDataController sharedDataController]getLikesComments:self.theItem.itemId likes:^(NSArray *likesArray){
-        [weakMyLikesArray removeAllObjects];
-        [weakMyLikesArray addObjectsFromArray:likesArray];
-    }comments:^(NSArray *commentsArray){
-        for (int i = 0; i < [commentsArray count]; i++) {
-            TJComment *comment = [commentsArray objectAtIndex:i];
-            CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(TJ_COMMENT_LABEL_WIDTH, 0)
+    if (self.theItem != nil) {
+        //get item info from pre vie controller
+        [[TJDataController sharedDataController]getLikesComments:self.theItem.itemId likes:^(NSArray *likesArray){
+            numberOfSections = 3;
+            [weakMyLikesArray removeAllObjects];
+            [weakMyLikesArray addObjectsFromArray:likesArray];
+        }comments:^(NSArray *commentsArray){
+            for (int i = 0; i < [commentsArray count]; i++) {
+                TJComment *comment = [commentsArray objectAtIndex:i];
+                CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(TJ_COMMENT_LABEL_WIDTH, 0)
+                                                                      options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                                   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_COMMENT_SIZE]} context:nil];
+                [weakmyCommentHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
+                
+            }
+            [weakMyCommentsArray removeAllObjects];
+            [weakMyCommentsArray addObjectsFromArray:commentsArray];
+            UITableView *strongTableView = weakDetailTableView;
+            if (strongTableView != nil) {
+                [strongTableView reloadData];
+            }
+        }failure:^(NSError *error){
+            
+        }];
+    }else{
+        //get item info from server
+        __weak UITableView *weakDetailTableView = detailTableView;
+//        __block TJItem *weakItem = self.theItem;
+//        __block float weakRecommendHeight = self.textHeight;
+        __block NSMutableArray *weakMyLikesArray = myLikesArray;
+        __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
+        __block NSMutableArray *weakmyCommentHeightArray = myCommentHeightArray;
+        [[TJDataController sharedDataController]getItemWholeInfo:self.theItemId theItem:^(TJItem *item){
+            numberOfSections = 3;
+            NSString *recommendTex = item.recommendReason;
+            CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(TJ_RECOMMEND_WIDTH, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_COMMENT_SIZE]} context:nil];
-            [weakmyCommentHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
-
-        }
-        [weakMyCommentsArray removeAllObjects];
-        [weakMyCommentsArray addObjectsFromArray:commentsArray];
-        UITableView *strongTableView = weakDetailTableView;
-        if (strongTableView != nil) {
-             [strongTableView reloadData];
-        }
-    }failure:^(NSError *error){
-        
-    }];
+                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]} context:nil];
+             self.textHeight = expectedLabelRect.size.height;
+            self.theItem = item;
+        }likesArray:^(NSArray *likesArray){
+            [weakMyLikesArray removeAllObjects];
+            [weakMyLikesArray addObjectsFromArray:likesArray];
+        }comments:^(NSArray *commentsArray){
+            for (int i = 0; i < [commentsArray count]; i++) {
+                TJComment *comment = [commentsArray objectAtIndex:i];
+                CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(TJ_COMMENT_LABEL_WIDTH, 0)
+                                                                      options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                                   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_COMMENT_SIZE]} context:nil];
+                [weakmyCommentHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
+                
+            }
+            [weakMyCommentsArray removeAllObjects];
+            [weakMyCommentsArray addObjectsFromArray:commentsArray];
+            UITableView *strongTableView = weakDetailTableView;
+            if (strongTableView != nil) {
+                [strongTableView reloadData];
+            }
+        }failed:^(NSError *error){
+            
+        }];
+    }
     [super viewWillAppear:animated];
 }
 -(void)replyCommentTo:(TJUser *)theUser
@@ -181,7 +227,7 @@
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return numberOfSections;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

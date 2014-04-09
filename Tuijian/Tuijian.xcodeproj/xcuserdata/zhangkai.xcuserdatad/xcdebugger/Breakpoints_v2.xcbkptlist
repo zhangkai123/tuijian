@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJCommentViewController.m"
-            timestampString = "418700949.992413"
+            timestampString = "418731554.412259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "403"
-            endingLineNumber = "403"
+            startingLineNumber = "449"
+            endingLineNumber = "449"
             landmarkName = "-didReceiveMemoryWarning"
             landmarkType = "5">
          </BreakpointContent>
@@ -264,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJParser.m"
-            timestampString = "418712707.885921"
+            timestampString = "418730195.758373"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "+parseMessage:parsedMessage:"
             landmarkType = "5">
          </BreakpointContent>
@@ -279,13 +279,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tuijian/TJMessageCell.m"
-            timestampString = "418723920.055902"
+            filePath = "Tuijian/TJNetworkManager.m"
+            timestampString = "418728776.877253"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "-attributedLabel:didSelectLinkWithURL:"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "-getItemWholeInfo:myUserId:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tuijian/TJDataController.m"
+            timestampString = "418730001.948467"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "-getLikesComments:likes:comments:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tuijian/TJDataController.m"
+            timestampString = "418731713.145704"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "-getItemWholeInfo:theItem:likesArray:comments:failed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -12,8 +12,9 @@
 #import "TJItemMessageViewController.h"
 #import "UIImage+additions.h"
 #import "TJAppDelegate.h"
+#import "TJCommentViewController.h"
 
-@interface TJInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TJInfoViewController ()<UITableViewDelegate,UITableViewDataSource,TJMessageCellDelegate>
 {
     UITableView *infoTableView;
     NSMutableArray *infoListArray;
@@ -86,6 +87,8 @@
     NSURL *imageUrl = [NSURL URLWithString:message.imageUrl];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageUrl];
     __block UIImageView *weakImageView = cell.theImageView;
+    [cell setDelegate:self];
+    cell.messageId = message.messageId;
     [cell.theImageView setImageWithURLRequest:urlRequest
                                 placeholderImage:[UIImage imageNamed:@"message_placeholder.png"]
                                          success:^(NSURLRequest *request ,NSHTTPURLResponse *response ,UIImage *image){
@@ -95,7 +98,6 @@
                                          }failure:^(NSURLRequest *request ,NSHTTPURLResponse *response ,NSError *error){
                                              
                                          }];
-//    [cell.titleLabel setText:message.messageTitle];
     [cell setMessageTitle:message.messageTitle];
     NSString *messageContent = nil;
     if ([message.messageType isEqualToString:@"itemMessage"]) {
@@ -141,6 +143,16 @@
         [[TJDataController sharedDataController]deleteFromMessageList:message.messageId messageType:message.messageType];
         [self refreshMessageList];
     }
+}
+#pragma TJMessageCellDelegate
+-(void)goToMessageParent:(NSString *)messageId
+{
+    UIViewController *rootViewController = [self getTheNavigationRootViewController];
+    rootViewController.hidesBottomBarWhenPushed = YES;
+    TJCommentViewController *commentViewController = [[TJCommentViewController alloc]init];
+    commentViewController.theItemId = messageId;
+    [self.navigationController pushViewController:commentViewController animated:YES];
+    rootViewController.hidesBottomBarWhenPushed = NO;
 }
 - (void)didReceiveMemoryWarning
 {

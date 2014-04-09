@@ -191,6 +191,23 @@
         failure(error);
     }];
 }
+-(void)getItemWholeInfo:(NSString *)itemId theItem:(void (^)(TJItem *theItem))item likesArray:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray failed:(void (^)(NSError *error))failed
+{
+    NSString *myUserId = [self getMyUserId];
+    [[TJNetworkManager sharedNetworkManager]getItemWholeInfo:itemId myUserId:myUserId success:^(id Json){
+        [TJParser parseItemWholeInfoData:Json theItem:^(TJItem *theItem){
+            item(theItem);
+        }likesArray:^(NSArray *likesArray){
+            lArray(likesArray);
+        }comments:^(NSArray *commentsArray){
+            cArray(commentsArray);
+        }failed:^(NSError *error){
+            
+        }];
+    }failure:^(NSError *error){
+        failed(error);
+    }];
+}
 -(TJComment *)getMyOwnCommentItem:(NSString *)commentInfo
 {
     TJComment *comment = [[TJComment alloc]init];
