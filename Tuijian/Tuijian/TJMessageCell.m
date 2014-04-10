@@ -42,6 +42,8 @@
 //        [self addSubview:titleLabel];
         
         titleLabel = [[TJSelectableLabel alloc] initWithFrameAndTextColor:CGRectMake(80, 15, 230, 30) andTextColor:UIColorFromRGB(0x3399CC)];
+        [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+        titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.delegate = self;
         titleLabel.numberOfLines = 0;
         [self addSubview:titleLabel];
@@ -57,6 +59,11 @@
 -(void)setMessageTitle:(NSString *)messageTitle
 {
     titleLabel.text = messageTitle;
+    CGRect expectedLabelRect = [messageTitle boundingRectWithSize:CGSizeMake(0, 30)
+                                                          options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                       attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16]} context:nil];
+    titleLabel.frame = CGRectMake(80, 15, expectedLabelRect.size.width, 30);
+
     //    [titleLabel addLinkToURL:[NSURL URLWithString:@"action://gotoItemPage"] withRange:[messageTitle rangeOfString:messageTitle]];
 }
 #pragma TJSelectableLabelDelegate
