@@ -70,8 +70,15 @@
     self.zoomScale = 1.0;
 
     // make a new UIImageView for the new image
-    float width = 320;
-    float height = image.size.height*320/image.size.width;
+    float width = 0.0;
+    float height = 0.0;
+    if (image.size.height >= image.size.width) {
+        width = 320;
+        height = image.size.height*320/image.size.width;
+    }else{
+        height = 320;
+        width = image.size.width*320/image.size.height;
+    }
 
     imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
     imageView.image = image;

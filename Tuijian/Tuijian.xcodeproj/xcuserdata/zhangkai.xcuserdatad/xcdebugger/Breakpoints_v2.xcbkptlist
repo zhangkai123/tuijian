@@ -285,7 +285,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "191"
             endingLineNumber = "191"
-            landmarkName = "-getItemWholeInfo:myUserId:"
+            landmarkName = "-getItemWholeInfo:myUserId:success:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

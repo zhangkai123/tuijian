@@ -92,12 +92,22 @@
 }
 -(CGRect)getCropRect:(UIImage *)theImage
 {
-    CGPoint offset = imageScrollView.contentOffset;
-    float imageScale = theImage.size.width/320;
-    float actualXOffset = offset.x/imageScrollView.zoomScale * imageScale;
-    float actualYOffset = offset.y/imageScrollView.zoomScale * imageScale;
-    float imageWidth = theImage.size.width/imageScrollView.zoomScale;
-    CGRect cropRect = CGRectMake(actualXOffset, actualYOffset, imageWidth, imageWidth);
+    CGRect cropRect;
+    if (theImage.size.height >= theImage.size.width) {
+        CGPoint offset = imageScrollView.contentOffset;
+        float imageScale = theImage.size.width/320;
+        float actualXOffset = offset.x/imageScrollView.zoomScale * imageScale;
+        float actualYOffset = offset.y/imageScrollView.zoomScale * imageScale;
+        float imageWidth = theImage.size.width/imageScrollView.zoomScale;
+        cropRect = CGRectMake(actualXOffset, actualYOffset, imageWidth, imageWidth);
+    }else{
+        CGPoint offset = imageScrollView.contentOffset;
+        float imageScale = theImage.size.height/320;
+        float actualXOffset = offset.x/imageScrollView.zoomScale * imageScale;
+        float actualYOffset = offset.y/imageScrollView.zoomScale * imageScale;
+        float imageHeight = theImage.size.height/imageScrollView.zoomScale;
+        cropRect = CGRectMake(actualXOffset, actualYOffset, imageHeight, imageHeight);
+    }
     return cropRect;
 }
 - (void)didReceiveMemoryWarning
