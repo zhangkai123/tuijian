@@ -119,6 +119,7 @@
     }else{
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(connectToXMPPServer) name:TJ_CONNECT_XMPP_NOTIFICATION object:nil];
     }
+//    [[NSNotificationCenter defaultCenter]postNotificationName:TJ_APP_ACTIVE_UPDATE_ALL_DATA object:nil];
 }
 -(void)connectToXMPPServer
 {

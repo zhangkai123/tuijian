@@ -49,6 +49,7 @@
 #define TJ_UPLOADING_ITEM_FAIL @"uploading_item_fail"
 
 #define TJ_CONNECT_XMPP_NOTIFICATION @"connect_xmpp_notification"
+#define TJ_APP_ACTIVE_UPDATE_ALL_DATA @"app_active_update_all_data"
 #define TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION @"update_recommend_list_notification"
 #define TJ_RECIEVE_MESSAGE_NOTIFICATION @"recieve_message_notification"
 #define TJ_INFO_VIEWCONTROLLER_NOTIFICATION @"info_viewcontroller_notification"
