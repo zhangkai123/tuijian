@@ -316,7 +316,7 @@
                                                }failure:^(NSURLRequest *request ,NSHTTPURLResponse *response ,NSError *error){
             
                                                }];
-        [[(TJCommentCell *)cell nameLable]setText:comment.user.name];
+        [(TJCommentCell *)cell setUserName:comment.user.name];
         [[(TJCommentCell *)cell commentLable]setText:comment.info];
         [(TJCommentCell *)cell setDelegate:(id)self];
         [(TJCommentCell *)cell setRowNum:indexPath.row];

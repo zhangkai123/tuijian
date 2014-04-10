@@ -11,7 +11,6 @@
 
 @interface TJMessageCell()<TJSelectableLabelDelegate>
 {
-//    TTTAttributedLabel *titleLabel;
     TJSelectableLabel *titleLabel;
 }
 @end
@@ -35,12 +34,6 @@
         notificationView.backgroundColor = [UIColor redColor];
         [theImageView addSubview:notificationView];
         
-//        titleLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(80, 15, 230, 30)];
-//        titleLabel.delegate = self;
-//        titleLabel.numberOfLines = 0;
-//        [titleLabel createNoLineLinkAttributes:UIColorFromRGB(0x3399CC)];
-//        [self addSubview:titleLabel];
-        
         titleLabel = [[TJSelectableLabel alloc] initWithFrameAndTextColor:CGRectMake(80, 15, 230, 30) andTextColor:UIColorFromRGB(0x3399CC)];
         [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
         titleLabel.backgroundColor = [UIColor clearColor];
@@ -63,8 +56,6 @@
                                                           options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                                        attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16]} context:nil];
     titleLabel.frame = CGRectMake(80, 15, expectedLabelRect.size.width, 30);
-
-    //    [titleLabel addLinkToURL:[NSURL URLWithString:@"action://gotoItemPage"] withRange:[messageTitle rangeOfString:messageTitle]];
 }
 #pragma TJSelectableLabelDelegate
 -(void)selectLabel:(int)rowNum
@@ -76,13 +67,6 @@
 {
     [self.delegate goToMessageParent:self.messageId];
 }
-//- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
-//    if ([[url scheme] hasPrefix:@"action"]) {
-//        if ([[url host] hasPrefix:@"gotoItemPage"]) {
-//            [self.delegate goToMessageParent:self.messageId];
-//        }
-//    }
-//}
 - (void)awakeFromNib
 {
     // Initialization code

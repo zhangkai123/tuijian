@@ -21,7 +21,7 @@
 
 @implementation TJCommentCell
 @synthesize commentImageView;
-@synthesize userImageView ,nameLable ,commentLable;
+@synthesize userImageView ,commentLable;
 @synthesize commentHeight;
 @synthesize delegate ,rowNum;
 
@@ -37,8 +37,8 @@
         self.userImageView.delegate = self;
         [self addSubview:self.userImageView];
         
-        nameLable = [[UILabel alloc]initWithFrame:CGRectMake(90, 10, 100, 20)];
-        nameLable.textColor = UIColorFromRGB(0x336699);
+        nameLable = [[TJSelectableLabel alloc]initWithFrameAndTextColor:CGRectMake(90, 10, 100, 20) andTextColor:UIColorFromRGB(0x336699)];
+        nameLable.delegate = self;
         [nameLable setFont:[UIFont systemFontOfSize:15]];
         [self addSubview:nameLable];
 
@@ -70,6 +70,15 @@
         selectedCoverView.hidden = YES;
     }
     return self;
+}
+-(void)setUserName:(NSString *)theName
+{
+    nameLable.text = theName;
+    CGRect expectedLabelRect = [theName boundingRectWithSize:CGSizeMake(0, 20)
+                                                          options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                       attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+    nameLable.frame = CGRectMake(90, 10, expectedLabelRect.size.width, 20);
+
 }
 -(void)setCommentHeight:(float)commentH
 {
@@ -103,6 +112,11 @@
 }
 #pragma TJTouchableImageViewDelegate
 -(void)selectUserImageView:(int)sectionNum
+{
+    [self.delegate selectCommentUserImage:self.rowNum];
+}
+#pragma TJSelectableLabelDelegate
+-(void)selectLabel:(int)rowNum
 {
     [self.delegate selectCommentUserImage:self.rowNum];
 }
