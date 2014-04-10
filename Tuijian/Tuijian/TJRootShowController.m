@@ -18,6 +18,8 @@
     UIPageControl *pageControl;
     UILabel *lblTitle;
     
+    NSMutableArray *controllersArray;
+    
     TJShowViewController *pendingShowViewController;
     int currentIndex;
     int pendingIndex;
@@ -87,6 +89,14 @@
     self.title = @"推荐";
     // kick things off by making the first page
     TJShowViewController *pageZero = [TJShowViewController showViewControllerForPageIndex:0];
+    TJShowViewController *pageOne = [TJShowViewController showViewControllerForPageIndex:1];
+    TJShowViewController *pageTwo = [TJShowViewController showViewControllerForPageIndex:2];
+    TJShowViewController *pageThree = [TJShowViewController showViewControllerForPageIndex:3];
+    controllersArray = [[NSMutableArray alloc]init];
+    [controllersArray addObject:pageZero];
+    [controllersArray addObject:pageOne];
+    [controllersArray addObject:pageTwo];
+    [controllersArray addObject:pageThree];
     if (pageZero != nil)
     {
         // assign the first page to the pageViewController (our rootViewController)
@@ -116,13 +126,23 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pvc viewControllerBeforeViewController:(TJShowViewController *)vc
 {
     NSUInteger index = vc.pageIndex;
-    return [TJShowViewController showViewControllerForPageIndex:(index - 1)];
+    if (index == 0) {
+        return nil;
+    }
+    TJShowViewController *showViewController = [controllersArray objectAtIndex:index - 1];
+    return showViewController;
+//    return [TJShowViewController showViewControllerForPageIndex:(index - 1)];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pvc viewControllerAfterViewController:(TJShowViewController *)vc
 {
     NSUInteger index = vc.pageIndex;
-    return [TJShowViewController showViewControllerForPageIndex:(index + 1)];
+    if (index == [controllersArray count] - 1) {
+        return nil;
+    }
+    TJShowViewController *showViewController = [controllersArray objectAtIndex:index + 1];
+    return showViewController;
+//    return [TJShowViewController showViewControllerForPageIndex:(index + 1)];
 }
 - (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
 {

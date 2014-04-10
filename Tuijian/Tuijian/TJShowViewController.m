@@ -47,7 +47,7 @@
     if (self)
     {
         _pageIndex = pageIndex;
-        if (pageIndex == 0) {
+        if (pageIndex != 3) {
             [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
         }
     }
@@ -57,11 +57,6 @@
 {
     return _pageIndex;
 }
-
-//- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
-//{
-//    [self.navigationController.scrollNavigationBar resetToDefaultPosition:YES];
-//}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
