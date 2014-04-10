@@ -192,11 +192,11 @@
     }];
     [operation start];
 }
--(void)sendFeatchUserItemsRequest:(NSString *)accessT uid:(NSString *)uid success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)sendFeatchUserItemsRequest:(NSString *)ownUid uid:(NSString *)uid success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     TJMyServerClient *client = [TJMyServerClient sharedClient];
     NSString *path = @"featchUserItems";
-    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken",uid,@"uid", nil];
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:ownUid,@"myuid",uid,@"uid", nil];
     NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
     
     [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];

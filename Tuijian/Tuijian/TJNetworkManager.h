@@ -20,5 +20,5 @@
 -(void)sendComment:(NSString *)accessT uid:(NSString *)uid itemId:(NSString *)itemId commentInfo:(NSString *)commentInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 -(void)getLikesAndComments:(NSString *)itemId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 -(void)getItemWholeInfo:(NSString *)itemId myUserId:(NSString *)myUserId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
--(void)sendFeatchUserItemsRequest:(NSString *)accessT uid:(NSString *)uid success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
+-(void)sendFeatchUserItemsRequest:(NSString *)ownUid uid:(NSString *)uid success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 @end

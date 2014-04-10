@@ -245,8 +245,9 @@
 }
 -(void)getUserItems:(NSString *)userId success:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure
 {
-    NSString *myAccessToken = [self getMyUserToken];
-    [[TJNetworkManager sharedNetworkManager]sendFeatchUserItemsRequest:myAccessToken uid:userId success:^(id Json){
+//    NSString *myAccessToken = [self getMyUserToken];
+    NSString *myOwnUserId = [self getMyUserId];
+    [[TJNetworkManager sharedNetworkManager]sendFeatchUserItemsRequest:myOwnUserId uid:userId success:^(id Json){
         
         NSArray *itemsArray = [TJParser parseItemsJsonData:Json];
         success(itemsArray);

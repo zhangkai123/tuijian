@@ -21,7 +21,10 @@
 @end
 
 @implementation TJMineViewController
-
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 -(id)init
 {
     if (self = [super init]) {
@@ -55,6 +58,7 @@
     textHeightArray = [[NSMutableArray alloc]init];
     
     [self refreshTableViewData];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
 }
 -(void)refreshTableViewData
 {

@@ -47,9 +47,6 @@
     if (self)
     {
         _pageIndex = pageIndex;
-        if (pageIndex != 3) {
-            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
-        }
     }
     return self;
 }
@@ -95,6 +92,9 @@
     textHeightArray = [[NSMutableArray alloc]init];
     if ([[TJDataController sharedDataController]getUserLoginMask]) {
         [self refreshTableViewData];
+    }
+    if (_pageIndex == 2) {
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
     }
 }
 
