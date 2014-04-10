@@ -97,7 +97,7 @@
     loginLabel.textAlignment = NSTextAlignmentCenter;
     loginLabel.text = @"正在登录...";
     [self.view addSubview:loginLabel];
-    loginLabel.center = CGPointMake(160, 100);
+    loginLabel.center = CGPointMake(160, self.view.center.y - 60);
     
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     activityIndicator.alpha = 1.0;
