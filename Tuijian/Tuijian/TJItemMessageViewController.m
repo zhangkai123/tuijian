@@ -146,7 +146,7 @@
     if (!cell) {
         cell = [[TJItemMessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     TJItemMessage *itemMessage = [itemMessageArray objectAtIndex:indexPath.row];
     __block UIImageView *weakImageView = [cell userImageView];
@@ -160,7 +160,7 @@
                                                           }failure:^(NSURLRequest *request ,NSHTTPURLResponse *response ,NSError *error){
                                                               
                                                           }];
-    [[cell nameLable]setText:itemMessage.userName];
+    [cell setUserName:itemMessage.userName];
     NSString *commentMessage = nil;
     if ([itemMessage.messageContentType isEqualToString:@"like"]) {
         commentMessage = [NSString stringWithFormat:@"给了你一个赞！"];
