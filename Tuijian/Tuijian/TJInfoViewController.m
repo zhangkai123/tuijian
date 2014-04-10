@@ -83,6 +83,7 @@
     if (!cell) {
         cell = [[TJMessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     TJMessage *message = [infoListArray objectAtIndex:indexPath.row];
     NSURL *imageUrl = [NSURL URLWithString:message.imageUrl];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageUrl];

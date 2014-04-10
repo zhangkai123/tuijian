@@ -8,6 +8,12 @@
 
 #import "TJTouchableImageView.h"
 
+@interface TJTouchableImageView()
+{
+    UIView *coverView;
+}
+@end
+
 @implementation TJTouchableImageView
 @synthesize delegate;
 @synthesize sectionNum;
@@ -21,18 +27,32 @@
     }
     return self;
 }
-
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self addCoverView];
+}
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self performSelector:@selector(removeCoverView) withObject:nil afterDelay:0.5];
+}
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    [self performSelector:@selector(removeCoverView) withObject:nil afterDelay:0.5];
     [self.delegate selectUserImageView:self.sectionNum];
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+-(void)addCoverView
 {
-    // Drawing code
+    coverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    coverView.layer.cornerRadius = self.frame.size.width/2;
+    coverView.layer.masksToBounds = YES;
+    coverView.backgroundColor = [UIColor whiteColor];
+    [coverView setAlpha:0.8];
+    [self addSubview:coverView];
 }
-*/
+-(void)removeCoverView
+{
+    [coverView removeFromSuperview];
+    coverView = nil;
+}
 
 @end
