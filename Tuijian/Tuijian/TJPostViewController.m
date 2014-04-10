@@ -9,7 +9,7 @@
 #import "TJPostViewController.h"
 #import "TJRadioButtonView.h"
 
-@interface TJPostViewController ()<UITextFieldDelegate,UITextViewDelegate>
+@interface TJPostViewController ()<UITextFieldDelegate,UITextViewDelegate,TJRadioButtonViewDelegate>
 {
     UITextField *titleTextField;
     UITextView *tuijianTextView;
@@ -117,11 +117,12 @@
     UILabel *tagLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0, 5.0, 50, 30)];
     [tagLabel setText:@"标签:"];
     [tagLabel setBackgroundColor:[UIColor clearColor]];
-    [tagLabel setTextColor:[UIColor lightGrayColor]];
+    [tagLabel setTextColor:[UIColor blackColor]];
     [tagLabel setFont:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]];
     [tagView addSubview:tagLabel];
     
     radioButtonView = [[TJRadioButtonView alloc]initWithTitleArray:[NSArray arrayWithObjects:@"美食",@"玩乐", nil] theFrame:CGRectMake(50, 5, 200, 30)];
+    radioButtonView.delegate = self;
     radioButtonView.backgroundColor = [UIColor clearColor];
     [tagView addSubview:radioButtonView];
     
@@ -175,12 +176,17 @@
         placeHolderLabel.hidden = NO;
     }
 }
+#pragma TJRadioButtonViewDelegate
+-(void)haveSelectedTag
+{
+    [self adjustRightButtonItem];
+}
 
 -(void)adjustRightButtonItem
 {
     NSString * titleWithoutWhiteSpace = [titleTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString * tuijianWithoutWhiteSpace = [tuijianTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if ((![titleWithoutWhiteSpace isEqualToString:@""]) && (![tuijianWithoutWhiteSpace isEqualToString:@""])) {
+    if ((![titleWithoutWhiteSpace isEqualToString:@""]) && (![tuijianWithoutWhiteSpace isEqualToString:@""]) && (radioButtonView.selectedTag != nil)) {
         self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0x4876FF);
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }else{
@@ -193,16 +199,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

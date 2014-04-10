@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TJRadioButtonViewDelegate <NSObject>
+
+-(void)haveSelectedTag;
+
+@end
+
 @interface TJRadioButtonView : UIView
-
-
+{
+    __unsafe_unretained id<TJRadioButtonViewDelegate> delegate;
+}
+@property(nonatomic,unsafe_unretained) id<TJRadioButtonViewDelegate> delegate;
 @property(nonatomic,strong) NSMutableArray *titleArray;
 @property(nonatomic,strong) NSString *selectedTag;
 -(id)initWithTitleArray:(NSArray *)titleArray theFrame:(CGRect)frame;
