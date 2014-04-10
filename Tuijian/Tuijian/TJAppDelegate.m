@@ -46,18 +46,22 @@
     self.tabBarController = [[UITabBarController alloc]init];
     self.tabBarController.viewControllers = controllersArray;
     
-    BOOL haveLogin = [[TJDataController sharedDataController]getUserLoginMask];
-    if (!haveLogin) {
-        loginViewController = [[TJLoginViewController alloc]init];
-        [self displayContentControllerOnController:loginViewController onController:self.tabBarController];
-    }
-    
+    BOOL haveLogin = [[TJDataController sharedDataController]getUserLoginMask];    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = self.tabBarController;
+    if (haveLogin) {
+        self.window.rootViewController = self.tabBarController;
+    }else{
+        loginViewController = [[TJLoginViewController alloc]init];
+        self.window.rootViewController = loginViewController;
+    }
     [self.window makeKeyAndVisible];
     return YES;
+}
+-(void)loginToShowTabViewController
+{
+    self.window.rootViewController = self.tabBarController;
 }
 -(void)updateInfoTabbarBadge
 {

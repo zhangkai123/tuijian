@@ -7,6 +7,7 @@
 //
 
 #import "TJLoginViewController.h"
+#import "TJAppDelegate.h"
 
 @interface TJLoginViewController ()
 {
@@ -132,7 +133,8 @@
                 [[TJDataController sharedDataController]getSinaUserInfo:^(TJUser *sinaUser){
                     [[TJDataController sharedDataController]getMyUserToken:sinaUser userCate:@"sina" myUserToken:^(NSString *myUserToken){
                         [[NSNotificationCenter defaultCenter]postNotificationName:TJ_CONNECT_XMPP_NOTIFICATION object:nil];
-                        [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
+                        TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+                        [appDelegate loginToShowTabViewController];
                         [activityIndicator stopAnimating];
                         [self dismissMyViewController:self];
                     }failure:^(NSError *error){
@@ -157,7 +159,8 @@
         [[TJDataController sharedDataController]getTencentUserInfo:^(TJUser *tencentUser){
             [[TJDataController sharedDataController]getMyUserToken:tencentUser userCate:@"tencent" myUserToken:^(NSString *myUserToken){
                 [[NSNotificationCenter defaultCenter]postNotificationName:TJ_CONNECT_XMPP_NOTIFICATION object:nil];
-                [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
+                TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+                [appDelegate loginToShowTabViewController];
                 [activityIndicator stopAnimating];
                 [self dismissMyViewController:self];
             }failure:^(NSError *error){

@@ -96,8 +96,8 @@
             [userDefaults setObject:[NSString stringWithFormat:@"%@",myUserId] forKey:TJ_MY_USER_ID];
             [userDefaults setObject:myUserPassword forKey:TJ_MY_USER_PASSWORD];
             [userDefaults synchronize];
-            myUserToken(myAccessToken);
             [[TJDiskCacheManager sharedDiskCacheManager]saveUserLoginMask:YES];
+            myUserToken(myAccessToken);
         }
     }failure:^(NSError *error){
 

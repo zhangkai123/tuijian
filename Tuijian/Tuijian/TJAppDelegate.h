@@ -17,4 +17,5 @@
 @property (nonatomic,retain) UITabBarController *tabBarController;
 
 -(void)updateInfoTabbarBadge;
+-(void)loginToShowTabViewController;
 @end
