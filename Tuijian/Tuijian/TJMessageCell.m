@@ -7,10 +7,12 @@
 //
 
 #import "TJMessageCell.h"
+#import "TJSelectableLabel.h"
 
-@interface TJMessageCell()<TTTAttributedLabelDelegate>
+@interface TJMessageCell()<TJSelectableLabelDelegate>
 {
-    TTTAttributedLabel *titleLabel;
+//    TTTAttributedLabel *titleLabel;
+    TJSelectableLabel *titleLabel;
 }
 @end
 
@@ -32,10 +34,15 @@
         notificationView.backgroundColor = [UIColor redColor];
         [theImageView addSubview:notificationView];
         
-        titleLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(80, 15, 230, 30)];
+//        titleLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(80, 15, 230, 30)];
+//        titleLabel.delegate = self;
+//        titleLabel.numberOfLines = 0;
+//        [titleLabel createNoLineLinkAttributes:UIColorFromRGB(0x3399CC)];
+//        [self addSubview:titleLabel];
+        
+        titleLabel = [[TJSelectableLabel alloc] initWithFrameAndTextColor:CGRectMake(80, 15, 230, 30) andTextColor:UIColorFromRGB(0x3399CC)];
         titleLabel.delegate = self;
         titleLabel.numberOfLines = 0;
-        [titleLabel createNoLineLinkAttributes:UIColorFromRGB(0x3399CC)];
         [self addSubview:titleLabel];
         
         messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 40, 230, 30)];
@@ -49,15 +56,20 @@
 -(void)setMessageTitle:(NSString *)messageTitle
 {
     titleLabel.text = messageTitle;
-    [titleLabel addLinkToURL:[NSURL URLWithString:@"action://gotoItemPage"] withRange:[messageTitle rangeOfString:messageTitle]];
+    //    [titleLabel addLinkToURL:[NSURL URLWithString:@"action://gotoItemPage"] withRange:[messageTitle rangeOfString:messageTitle]];
 }
-- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
-    if ([[url scheme] hasPrefix:@"action"]) {
-        if ([[url host] hasPrefix:@"gotoItemPage"]) {
-            [self.delegate goToMessageParent:self.messageId];
-        }
-    }
+#pragma TJSelectableLabelDelegate
+-(void)selectLabel
+{
+    [self.delegate goToMessageParent:self.messageId];
 }
+//- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+//    if ([[url scheme] hasPrefix:@"action"]) {
+//        if ([[url host] hasPrefix:@"gotoItemPage"]) {
+//            [self.delegate goToMessageParent:self.messageId];
+//        }
+//    }
+//}
 - (void)awakeFromNib
 {
     // Initialization code
