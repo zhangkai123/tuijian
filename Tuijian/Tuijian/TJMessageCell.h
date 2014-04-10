@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TJTouchableImageView.h"
 
 @protocol TJMessageCellDelegate <NSObject>
 
@@ -14,18 +15,18 @@
 
 @end
 
-@interface TJMessageCell : UITableViewCell
+@interface TJMessageCell : UITableViewCell<TJTouchableImageViewDelegate>
 {
     __unsafe_unretained id<TJMessageCellDelegate> delegate;
     
-    UIImageView *theImageView;
+    TJTouchableImageView *theImageView;
     UIView *notificationView;
     UILabel *messageLabel;
 }
 @property(nonatomic,strong) NSString *messageId;
 @property(nonatomic,unsafe_unretained) id<TJMessageCellDelegate> delegate;
 
-@property(nonatomic,strong) UIImageView *theImageView;
+@property(nonatomic,strong) TJTouchableImageView *theImageView;
 @property(nonatomic,strong) UIView *notificationView;
 @property(nonatomic,strong) UILabel *messageLabel;
 

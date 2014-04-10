@@ -25,7 +25,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        theImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 60, 60)];
+        theImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 10, 60, 60)];
+        theImageView.delegate = self;
         [self addSubview:theImageView];
         
         notificationView = [[UIView alloc]initWithFrame:CGRectMake(48, 5, 12, 12)];
@@ -60,6 +61,11 @@
 }
 #pragma TJSelectableLabelDelegate
 -(void)selectLabel
+{
+    [self.delegate goToMessageParent:self.messageId];
+}
+#pragma TJTouchableImageViewDelegate
+-(void)selectUserImageView:(int)sectionNum
 {
     [self.delegate goToMessageParent:self.messageId];
 }
