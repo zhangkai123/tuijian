@@ -117,8 +117,8 @@
     UILabel *tagLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0, 5.0, 50, 30)];
     [tagLabel setText:@"标签:"];
     [tagLabel setBackgroundColor:[UIColor clearColor]];
-    [tagLabel setTextColor:[UIColor blackColor]];
-    [tagLabel setFont:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]];
+    [tagLabel setTextColor:[UIColor darkGrayColor]];
+    [tagLabel setFont:[UIFont boldSystemFontOfSize:TJ_RECOMMEND_SIZE]];
     [tagView addSubview:tagLabel];
     
     radioButtonView = [[TJRadioButtonView alloc]initWithTitleArray:[NSArray arrayWithObjects:@"美食",@"玩乐", nil] theFrame:CGRectMake(50, 5, 200, 30)];
