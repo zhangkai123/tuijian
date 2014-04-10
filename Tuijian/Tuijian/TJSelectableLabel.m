@@ -16,7 +16,7 @@
 @end
 
 @implementation TJSelectableLabel
-@synthesize delegate;
+@synthesize delegate ,theRowNum;
 
 - (id)initWithFrameAndTextColor:(CGRect)frame andTextColor:(UIColor *)initTextColor
 {
@@ -43,7 +43,7 @@
 {
     [self performSelector:@selector(removeCoverView) withObject:nil afterDelay:0.5];
     self.textColor = _initTextColor;
-    [self.delegate selectLabel];
+    [self.delegate selectLabel:self.theRowNum];
 }
 
 -(void)addCoverView

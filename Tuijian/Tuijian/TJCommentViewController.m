@@ -14,6 +14,7 @@
 #import "TJComment.h"
 #import "UIImage+additions.h"
 #import "TJTouchableImageView.h"
+#import "TJSelectableLabel.h"
 #import "TJUserInfoViewController.h"
 
 @interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,TJTouchableImageViewDelegate,TJCommentViewDelegate>
@@ -354,8 +355,16 @@
         [backView addSubview:userImageView];
         userImageView.layer.cornerRadius = 40 / 2.0;
         
-        UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 10, 100, 20)];
-        nameLabel.textColor = UIColorFromRGB(0x336699);
+        CGRect expectedLabelRect = [theItem.userName boundingRectWithSize:CGSizeMake(0, 20)
+                                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+        float nameLabelWidth = expectedLabelRect.size.width;
+        if (nameLabelWidth > 150) {
+            nameLabelWidth = 150;
+        }
+        TJSelectableLabel *nameLabel = [[TJSelectableLabel alloc]initWithFrameAndTextColor:CGRectMake(60, 10, nameLabelWidth, 20) andTextColor:UIColorFromRGB(0x336699)];
+        nameLabel.delegate = (id)self;
+        nameLabel.theRowNum = section;
         [nameLabel setFont:[UIFont systemFontOfSize:12]];
         [backView addSubview:nameLabel];
         
@@ -379,6 +388,11 @@
 }
 #pragma TJTouchableImageViewDelegate
 -(void)selectUserImageView:(int)sectionNum
+{
+    [self goToUserInformationPage:theItem.userImg userName:theItem.userName userGender:theItem.userGender userId:theItem.uid];
+}
+#pragma TJSelectableLabelDelegate
+-(void)selectLabel:(int)rowNum
 {
     [self goToUserInformationPage:theItem.userImg userName:theItem.userName userGender:theItem.userGender userId:theItem.uid];
 }

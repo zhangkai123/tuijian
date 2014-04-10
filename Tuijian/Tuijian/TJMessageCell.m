@@ -67,7 +67,7 @@
     //    [titleLabel addLinkToURL:[NSURL URLWithString:@"action://gotoItemPage"] withRange:[messageTitle rangeOfString:messageTitle]];
 }
 #pragma TJSelectableLabelDelegate
--(void)selectLabel
+-(void)selectLabel:(int)rowNum
 {
     [self.delegate goToMessageParent:self.messageId];
 }

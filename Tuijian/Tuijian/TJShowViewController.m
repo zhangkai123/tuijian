@@ -11,6 +11,7 @@
 #import "TJItem.h"
 #import "TJCommentViewController.h"
 #import "TJTouchableImageView.h"
+#import "TJSelectableLabel.h"
 #import "TJUserInfoViewController.h"
 
 @interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJItemCellDelegate,TJTouchableImageViewDelegate>
@@ -201,8 +202,16 @@
     [backView addSubview:userImageView];
     userImageView.layer.cornerRadius = 40 / 2.0;
     
-    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 10, 100, 20)];
-    nameLabel.textColor = UIColorFromRGB(0x336699);
+    CGRect expectedLabelRect = [theItem.userName boundingRectWithSize:CGSizeMake(0, 20)
+                                                          options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                       attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+    float nameLabelWidth = expectedLabelRect.size.width;
+    if (nameLabelWidth > 150) {
+        nameLabelWidth = 150;
+    }
+    TJSelectableLabel *nameLabel = [[TJSelectableLabel alloc]initWithFrameAndTextColor:CGRectMake(60, 10, nameLabelWidth, 20) andTextColor:UIColorFromRGB(0x336699)];
+    nameLabel.delegate = (id)self;
+    nameLabel.theRowNum = section;
     [nameLabel setFont:[UIFont systemFontOfSize:12]];
     [backView addSubview:nameLabel];
     
@@ -282,6 +291,21 @@
 -(void)selectUserImageView:(int)sectionNum
 {
     TJItem *theItem = [itemsArray objectAtIndex:sectionNum];
+    
+    UIViewController *rootViewController = [self getTheNavigationRootViewController];
+    rootViewController.hidesBottomBarWhenPushed = YES;
+    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
+    userInfoViewController.userImageUrl = theItem.userImg;
+    userInfoViewController.userName = theItem.userName;
+    userInfoViewController.userGender = theItem.userGender;
+    userInfoViewController.uid = theItem.uid;
+    [self.navigationController pushViewController:userInfoViewController animated:YES];
+    rootViewController.hidesBottomBarWhenPushed = NO;
+}
+#pragma TJSelectableLabelDelegate
+-(void)selectLabel:(int)rowNum
+{
+    TJItem *theItem = [itemsArray objectAtIndex:rowNum];
     
     UIViewController *rootViewController = [self getTheNavigationRootViewController];
     rootViewController.hidesBottomBarWhenPushed = YES;
