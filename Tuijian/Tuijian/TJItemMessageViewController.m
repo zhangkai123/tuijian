@@ -22,6 +22,7 @@
     TJCommentView *commentInputView;
     BOOL isWirting;
     TJItemMessage *repliedItemMessage;
+    NSIndexPath *selectedIndexPath;
 }
 @end
 
@@ -106,6 +107,7 @@
     isWirting = NO;
     commentInputView.hidden = YES;
     [commentInputView showKeyboard:NO];
+    [itemMessageTableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
 }
 
 #pragma TJCommentViewDelegate
@@ -180,6 +182,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     repliedItemMessage = [itemMessageArray objectAtIndex:indexPath.row];
+    selectedIndexPath = indexPath;
     [self enterWriteStatus];
 }
 #pragma TJCommentCellDelegate
