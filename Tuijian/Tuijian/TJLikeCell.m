@@ -11,7 +11,7 @@
 #import "TJUser.h"
 #import "UIImage+additions.h"
 
-@interface TJLikeCell()<UITableViewDelegate,UITableViewDataSource>
+@interface TJLikeCell()<UITableViewDelegate,UITableViewDataSource,TJLikeCellDelegate>
 {
     UITableView *likeTableView;
     
@@ -82,6 +82,8 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.transform = CGAffineTransformMakeRotation(M_PI_2);
+    cell.delegate = (id)self;
+    cell.theRowNum = indexPath.row;
     TJUser *user = [self.likesArray objectAtIndex:indexPath.row];
     UIImage *placeHoder = [self getGenderPlaceHolder:user];
     __block UIImageView *weakImageView = cell.userImageView;
@@ -96,10 +98,10 @@
      }];
     return cell;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.delegate selectUserCell:indexPath.row];
-}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [self.delegate selectUserCell:indexPath.row];
+//}
 
 -(UIImage *)getGenderPlaceHolder:(TJUser *)theUser
 {
@@ -115,11 +117,11 @@
 {
     bottomLineView.hidden = hidden;
 }
-- (void)awakeFromNib
+#pragma TJLikeUserCellDelegate
+-(void)clickImageViewAtRow:(int)rowNum
 {
-    // Initialization code
+    [self.delegate selectUserCell:rowNum];
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];

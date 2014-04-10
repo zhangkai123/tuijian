@@ -7,10 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TJTouchableImageView.h"
 
-@interface TJLikeUserCell : UITableViewCell
+@protocol TJLikeUserCellDelegate <NSObject>
+
+-(void)clickImageViewAtRow:(int)rowNum;
+
+@end
+
+@interface TJLikeUserCell : UITableViewCell<TJTouchableImageViewDelegate>
 {
-    UIImageView *userImageView;
+    __unsafe_unretained id<TJLikeUserCellDelegate> delegate;
+    int theRowNum;
+    TJTouchableImageView *userImageView;
 }
-@property(nonatomic,strong) UIImageView *userImageView;
+@property(nonatomic,unsafe_unretained) id<TJLikeUserCellDelegate> delegate;
+@property(nonatomic,assign) int theRowNum;
+@property(nonatomic,strong) TJTouchableImageView *userImageView;
 @end

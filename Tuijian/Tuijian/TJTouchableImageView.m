@@ -46,7 +46,7 @@
     coverView.layer.cornerRadius = self.frame.size.width/2;
     coverView.layer.masksToBounds = YES;
     coverView.backgroundColor = [UIColor whiteColor];
-    [coverView setAlpha:0.8];
+    [coverView setAlpha:0.9];
     [self addSubview:coverView];
 }
 -(void)removeCoverView

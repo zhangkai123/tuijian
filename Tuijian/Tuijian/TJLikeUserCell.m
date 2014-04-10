@@ -9,6 +9,7 @@
 #import "TJLikeUserCell.h"
 
 @implementation TJLikeUserCell
+@synthesize delegate ,theRowNum;
 @synthesize userImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -18,23 +19,18 @@
         // Initialization code
 //        self.backgroundColor = UIColorFromRGB(0x242424);
         
-        self.userImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
+        self.userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
+        userImageView.delegate = self;
         userImageView.clipsToBounds = YES;
         userImageView.layer.cornerRadius = 40 / 2.0;
-        [self addSubview:self.userImageView];
-        
-//        UIImageView *likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(25, 25, 40, 30)];
-//        likeImageView.image = [UIImage imageNamed:@"favSelectedHighlight@2x.png"];
-//        [self addSubview:likeImageView];
-
-//        UILabel *likeLabel = [[UILabel alloc]initWithFrame:CGRectMake(35, 25, 40, 30)];
-//        likeLabel.backgroundColor = [UIColor clearColor];
-//        likeLabel.text = @"❤";
-//        [self addSubview:likeLabel];
+        [self addSubview:self.userImageView];        
     }
     return self;
 }
-
+-(void)selectUserImageView:(int)sectionNum
+{
+    [self.delegate clickImageViewAtRow:self.theRowNum];
+}
 - (void)awakeFromNib
 {
     // Initialization code
