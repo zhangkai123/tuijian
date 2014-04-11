@@ -223,6 +223,23 @@
         
     }];
     [self exitWriteStatus];
+    [self showHUDAfterComment];
+}
+- (void)showHUDAfterComment {
+	
+	MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	
+	// Configure for text only and offset down
+	hud.mode = MBProgressHUDModeText;
+    if (replyStatus) {
+        hud.labelText = @"回复成功";
+    }else{
+        hud.labelText = @"评论成功";
+    }
+	hud.margin = 10.f;
+	hud.removeFromSuperViewOnHide = YES;
+	
+	[hud hide:YES afterDelay:1];
 }
 
 #pragma uitableview delegate and datasource

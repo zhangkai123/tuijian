@@ -83,6 +83,7 @@
 		4B6A862A18F3E15F00E27AAE /* message.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A862918F3E15F00E27AAE /* message.sqlite */; };
 		4B7A421018B0CF66009356F4 /* TJShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A420F18B0CF66009356F4 /* TJShowViewController.m */; };
 		4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A421318B0DCE2009356F4 /* camera_18_2x.png */; };
+		4B82B08118F7F17E00920EC2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B82B08018F7F17E00920EC2 /* MBProgressHUD.m */; };
 		4B8B93A018E8F7FD00459AC2 /* user-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B939F18E8F7FD00459AC2 /* user-outline.png */; };
 		4B8B93A218E8F80300459AC2 /* star-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93A118E8F80300459AC2 /* star-outline.png */; };
 		4B8B93A418E8F80900459AC2 /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8B93A318E8F80900459AC2 /* message.png */; };
@@ -415,6 +416,8 @@
 		4B7A420E18B0CF66009356F4 /* TJShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJShowViewController.h; sourceTree = "<group>"; };
 		4B7A420F18B0CF66009356F4 /* TJShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJShowViewController.m; sourceTree = "<group>"; };
 		4B7A421318B0DCE2009356F4 /* camera_18_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_18_2x.png; sourceTree = "<group>"; };
+		4B82B07F18F7F17E00920EC2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		4B82B08018F7F17E00920EC2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		4B8B939F18E8F7FD00459AC2 /* user-outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-outline.png"; sourceTree = "<group>"; };
 		4B8B93A118E8F80300459AC2 /* star-outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-outline.png"; sourceTree = "<group>"; };
 		4B8B93A318E8F80900459AC2 /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
@@ -1023,6 +1026,7 @@
 		4B569CB418CEB9D5000DF219 /* ThirdPartyLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				4B82B07E18F7F17100920EC2 /* MBProgressHUD */,
 				4BD3A06B18F528E800C6B6AE /* TTTAttributedLabel */,
 				4BB6C05018F2430700DB13C9 /* RadioButton */,
 				4B31404118ED01B9007A00F2 /* HPGrowingTextView */,
@@ -1120,6 +1124,15 @@
 				4BACDCB518E2C5B00074F0F1 /* TJItemMessage.m */,
 			);
 			name = DataModel;
+			sourceTree = "<group>";
+		};
+		4B82B07E18F7F17100920EC2 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				4B82B07F18F7F17E00920EC2 /* MBProgressHUD.h */,
+				4B82B08018F7F17E00920EC2 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		4B8B939618E8F4D000459AC2 /* Tabs */ = {
@@ -2459,6 +2472,7 @@
 				4B9C412818D984AF00B9F8E5 /* RFImageToDataTransformer.m in Sources */,
 				4B9C40E318D984AF00B9F8E5 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				4B9C40BB18D984AF00B9F8E5 /* XMPPDeprecatedPlainAuthentication.m in Sources */,
+				4B82B08118F7F17E00920EC2 /* MBProgressHUD.m in Sources */,
 				4B9C40F118D984AF00B9F8E5 /* XMPPvCardCoreDataStorage.m in Sources */,
 				4BFA999B18AFA19200D673CB /* main.m in Sources */,
 				4B9C414B18D98F0E00B9F8E5 /* TJXMPPServerMananger.m in Sources */,

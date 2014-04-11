@@ -19,5 +19,6 @@
     #import "TJDataController.h"
     #import "SDWebImage/UIImageView+WebCache.h"
     #import "TTTAttributedLabel.h"
-#import "TTTAttributedLabel+link.h"
+    #import "TTTAttributedLabel+link.h"
+    #import "MBProgressHUD.h"
 #endif
