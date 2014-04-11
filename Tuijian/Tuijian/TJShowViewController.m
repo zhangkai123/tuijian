@@ -13,6 +13,7 @@
 #import "TJTouchableImageView.h"
 #import "TJSelectableLabel.h"
 #import "TJUserInfoViewController.h"
+#import "UIImage+additions.h"
 
 @interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJItemCellDelegate,TJTouchableImageViewDelegate>
 {
@@ -201,9 +202,9 @@
     TJTouchableImageView *userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
     userImageView.sectionNum = section;
     userImageView.delegate = self;
-    userImageView.clipsToBounds = YES;
+//    userImageView.clipsToBounds = YES;
     [backView addSubview:userImageView];
-    userImageView.layer.cornerRadius = 40 / 2.0;
+//    userImageView.layer.cornerRadius = 40 / 2.0;
     
     CGRect expectedLabelRect = [theItem.userName boundingRectWithSize:CGSizeMake(0, 20)
                                                           options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
@@ -229,7 +230,17 @@
         [genderImageView setImage:[UIImage imageNamed:@"female.png"]];
         genderPlaceHolder = [UIImage imageNamed:@"womanPlaceholder.png"];
     }
-    [userImageView setImageWithURL:[NSURL URLWithString:theItem.userImg] placeholderImage:genderPlaceHolder];
+    __block UIImageView *weakImageView = userImageView;
+     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:theItem.userImg]];
+    [userImageView setImageWithURLRequest:urlRequest
+                         placeholderImage:genderPlaceHolder
+                                  success:^(NSURLRequest *request ,NSHTTPURLResponse *response ,UIImage *image){
+                                      
+                                      float radius = MAX(image.size.width, image.size.height);
+                                      weakImageView.image = [image makeRoundCornersWithRadius:radius/2];
+                                  }failure:^(NSURLRequest *request ,NSHTTPURLResponse *response ,NSError *error){
+                                      
+                                  }];
     [nameLabel setText:theItem.userName];
     
     [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.95]];
