@@ -101,6 +101,11 @@
     tuijianTextView.delegate = self;
     tuijianTextView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:tuijianTextView];
+    if (IS_IPHONE_5) {
+        tuijianTextView.frame = CGRectMake(10, 64 + 10 + 50 + 10, 310, 130);
+    }else{
+        tuijianTextView.frame = CGRectMake(10, 64 + 10 + 50 + 10, 310, 50);
+    }
     
     placeHolderLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0,tuijianTextView.frame.size.width - 10.0, 34.0)];
     [placeHolderLabel setText:@"推荐理由"];
