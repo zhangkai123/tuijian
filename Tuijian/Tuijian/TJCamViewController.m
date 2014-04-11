@@ -59,14 +59,14 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor blackColor];
     
-    UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 30)];
-    [loginLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    loginLabel.numberOfLines = 1;
-    [loginLabel setTextColor:UIColorFromRGB(0x3399CC)];
-    loginLabel.textAlignment = NSTextAlignmentCenter;
-    loginLabel.text = @"我来推荐";
-    [self.view addSubview:loginLabel];
-    loginLabel.center = CGPointMake(160, 40);
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 30)];
+    [titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    titleLabel.numberOfLines = 1;
+    [titleLabel setTextColor:UIColorFromRGB(0x3399CC)];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.text = @"我来推荐";
+    [self.view addSubview:titleLabel];
+    titleLabel.center = CGPointMake(160, 40);
     
     UIButton *cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(5 , 25, 60, 30)];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
@@ -77,16 +77,23 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     
     self.previewView = [[AVCamPreviewView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
     [(AVCaptureVideoPreviewLayer *)self.previewView.layer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-//    self.previewView.layer.cornerRadius = 2;
-//    self.previewView.layer.masksToBounds = YES;
     [self.view addSubview:self.previewView];
-    self.previewView.center = CGPointMake(self.view.center.x, self.view.center.y - 30);
+    if (IS_IPHONE_5) {
+        self.previewView.center = CGPointMake(self.view.center.x, 255);
+    }else{
+        self.previewView.center = CGPointMake(self.view.center.x, 235);
+    }
     
-    UIButton *stillButton = [[UIButton alloc]initWithFrame:CGRectMake(130, 440, 60, 60)];
+    UIButton *stillButton = [[UIButton alloc]initWithFrame:CGRectZero];
     [stillButton setImage:[UIImage imageNamed:@"CaptureIcon"] forState:UIControlStateNormal];
     stillButton.backgroundColor = [UIColor clearColor];
     [stillButton addTarget:self action:@selector(takePhoto) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:stillButton];
+    if (IS_IPHONE_5) {
+        stillButton.frame = CGRectMake(130, self.previewView.frame.origin.y + self.previewView.frame.size.height + 25, 60, 60);
+    }else{
+        stillButton.frame = CGRectMake(130, self.previewView.frame.origin.y + self.previewView.frame.size.height + 15, 60, 60);
+    }
     
     UIButton *cameraButton = [[UIButton alloc]initWithFrame:CGRectMake(320 - 29 - 10, 10, 29, 25)];
     [cameraButton setImage:[UIImage imageNamed:@"CameraFlipIcon"] forState:UIControlStateNormal];

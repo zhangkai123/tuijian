@@ -56,11 +56,13 @@
     
     imageScrollView = [[ImageScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
     imageScrollView.backgroundColor = [UIColor blackColor];
-//    imageScrollView.layer.cornerRadius = 2;
-//    imageScrollView.layer.masksToBounds = YES;
     [imageScrollView displayImage:self.thePhoto];
     [self.view addSubview:imageScrollView];
-    imageScrollView.center = CGPointMake(self.view.center.x, self.view.center.y - 30);
+    if (IS_IPHONE_5) {
+        imageScrollView.center = CGPointMake(self.view.center.x, 255);
+    }else{
+        imageScrollView.center = CGPointMake(self.view.center.x, 235);
+    }
 }
 -(void)cancelCrop
 {
