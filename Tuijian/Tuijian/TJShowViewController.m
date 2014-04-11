@@ -337,6 +337,9 @@
     __block TJItem *theItem = [self getItemFromId:itemId];
     if (theItem.hasLiked) {
         theItem.likeNum = [NSString stringWithFormat:@"%d",[theItem.likeNum intValue] - 1];
+        if ([theItem.likeNum intValue] < 0) {
+            theItem.likeNum = @"0";
+        }
     }else{
         theItem.likeNum = [NSString stringWithFormat:@"%d",[theItem.likeNum intValue] + 1];
     }
