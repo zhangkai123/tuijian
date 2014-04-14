@@ -317,7 +317,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 	}
 	else if (context == SessionRunningAndDeviceAuthorizedContext)
 	{
-		BOOL isRunning = [change[NSKeyValueChangeNewKey] boolValue];
+//		BOOL isRunning = [change[NSKeyValueChangeNewKey] boolValue];
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
 //			if (isRunning)

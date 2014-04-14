@@ -10,6 +10,7 @@
 
 @protocol TJLikeCellDelegate <NSObject>
 
+@optional
 -(void)selectUserCell:(int)rowNum;
 
 @end
