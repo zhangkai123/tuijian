@@ -20,7 +20,8 @@
     NSUInteger _pageIndex;
     UIRefreshControl *refreshControl;
     
-//    UITableView *itemTableView;
+//    UIActivityIndicatorView *activityIndicator;
+    
     NSMutableArray *itemsArray;
     NSMutableArray *textHeightArray;
     
@@ -85,6 +86,8 @@
     itemTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
     itemTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:itemTableView];
+    UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 50, 0);
+    itemTableView.contentInset = insets;
     
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshTableViewData) forControlEvents:UIControlEventValueChanged];
@@ -93,6 +96,7 @@
     itemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
     if ([[TJDataController sharedDataController]getUserLoginMask]) {
+        [self startActivityIndicator];
         [self refreshTableViewData];
     }
     if (_pageIndex == 2) {
@@ -120,6 +124,7 @@
     }
     [[TJDataController sharedDataController]getItems:category success:^(NSArray *iteArray){
         if ([iteArray count] == 0) {
+            [activityIndicator stopAnimating];
             [refreshControl endRefreshing];
             return;
         }
@@ -139,8 +144,10 @@
             [strongTableView reloadData];
         }
         [refreshControl endRefreshing];
+        [activityIndicator stopAnimating];
     }failure:^(NSError *error){
         [refreshControl endRefreshing];
+        [activityIndicator stopAnimating];
     }];
 }
 

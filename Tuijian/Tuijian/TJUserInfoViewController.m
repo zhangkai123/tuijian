@@ -53,6 +53,7 @@
     herItemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
     
+    [self startActivityIndicator];
     [self refreshTableViewData];
 }
 -(void)refreshTableViewData
@@ -62,6 +63,7 @@
     __block NSMutableArray *weakTextHeightArray = textHeightArray;
     [[TJDataController sharedDataController]getUserItems:self.uid success:^(NSArray *iteArray){
         if ([iteArray count] == 0) {
+            [activityIndicator stopAnimating];
             return;
         }
         [weakTextHeightArray removeAllObjects];
@@ -79,8 +81,9 @@
         if (strongTableView) {
            [strongTableView reloadData];
         }
+        [activityIndicator stopAnimating];
     }failure:^(NSError *error){
-        
+        [activityIndicator stopAnimating];
     }];
 }
 #pragma uitableview delegate and datasource

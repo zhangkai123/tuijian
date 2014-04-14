@@ -82,6 +82,17 @@
         [self updateBarButtonItems:alpha];
     }];
 }
+
+-(void)startActivityIndicator
+{
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.alpha = 1.0;
+    activityIndicator.center = CGPointMake(self.view.center.x, self.view.center.y - 50);
+    activityIndicator.hidesWhenStopped = YES;
+    [self.view addSubview:activityIndicator];
+    [activityIndicator startAnimating];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
