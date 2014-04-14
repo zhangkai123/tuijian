@@ -84,6 +84,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self startActivityIndicator];
     __weak UITableView *weakDetailTableView = detailTableView;
     __block NSMutableArray *weakMyLikesArray = myLikesArray;
     __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
@@ -91,6 +92,7 @@
     if (self.theItem != nil) {
         //get item info from pre vie controller
         [[TJDataController sharedDataController]getLikesComments:self.theItem.itemId likes:^(NSArray *likesArray){
+            [activityIndicator stopAnimating];
             numberOfSections = 3;
             [weakMyLikesArray removeAllObjects];
             [weakMyLikesArray addObjectsFromArray:likesArray];
@@ -121,6 +123,7 @@
         __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
         __block NSMutableArray *weakmyCommentHeightArray = myCommentHeightArray;
         [[TJDataController sharedDataController]getItemWholeInfo:self.theItemId theItem:^(TJItem *item){
+            [activityIndicator stopAnimating];
             numberOfSections = 3;
             NSString *recommendTex = item.recommendReason;
             CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(TJ_RECOMMEND_WIDTH, 0)

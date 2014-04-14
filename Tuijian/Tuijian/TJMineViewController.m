@@ -57,6 +57,7 @@
     myItemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
     
+    [self startActivityIndicator];
     [self refreshTableViewData];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
 }
@@ -68,6 +69,7 @@
     NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
     [[TJDataController sharedDataController]getUserItems:myUserId success:^(NSArray *iteArray){
         if ([iteArray count] == 0) {
+            [activityIndicator stopAnimating];
             return;
         }
         [weakTextHeightArray removeAllObjects];
@@ -85,8 +87,9 @@
         if (strongTableView != nil) {
             [strongTableView reloadData];
         }
+        [activityIndicator stopAnimating];
     }failure:^(NSError *error){
-        
+        [activityIndicator stopAnimating];
     }];
 }
 #pragma uitableview delegate and datasource

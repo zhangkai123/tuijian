@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 zhang kai. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TJBaseViewController.h"
 #import "TJItem.h"
 
-@interface TJCommentViewController : UIViewController
+@interface TJCommentViewController : TJBaseViewController
 {
     TJItem *theItem;
     float textHeight;
