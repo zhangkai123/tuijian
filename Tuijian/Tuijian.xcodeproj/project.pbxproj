@@ -81,6 +81,8 @@
 		4B569CE318CED1E4000DF219 /* TJDiskCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CE218CED1E4000DF219 /* TJDiskCacheManager.m */; };
 		4B569CEA18CF0BE9000DF219 /* TJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CE918CF0BE9000DF219 /* TJUser.m */; };
 		4B6A862A18F3E15F00E27AAE /* message.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A862918F3E15F00E27AAE /* message.sqlite */; };
+		4B6BD7B918FBA7DA0059C46E /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */; };
+		4B6BD7BA18FBA7DA0059C46E /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */; };
 		4B7A421018B0CF66009356F4 /* TJShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A420F18B0CF66009356F4 /* TJShowViewController.m */; };
 		4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A421318B0DCE2009356F4 /* camera_18_2x.png */; };
 		4B82B08118F7F17E00920EC2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B82B08018F7F17E00920EC2 /* MBProgressHUD.m */; };
@@ -413,6 +415,9 @@
 		4B569CE818CF0BE9000DF219 /* TJUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJUser.h; sourceTree = "<group>"; };
 		4B569CE918CF0BE9000DF219 /* TJUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJUser.m; sourceTree = "<group>"; };
 		4B6A862918F3E15F00E27AAE /* message.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sqlite; sourceTree = "<group>"; };
+		4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
+		4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		4B6BD7B818FBA7DA0059C46E /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		4B7A420E18B0CF66009356F4 /* TJShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJShowViewController.h; sourceTree = "<group>"; };
 		4B7A420F18B0CF66009356F4 /* TJShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJShowViewController.m; sourceTree = "<group>"; };
 		4B7A421318B0DCE2009356F4 /* camera_18_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_18_2x.png; sourceTree = "<group>"; };
@@ -796,6 +801,7 @@
 				4B9C414318D9856600B9F8E5 /* CFNetwork.framework in Frameworks */,
 				4B9C414118D9855400B9F8E5 /* libresolv.dylib in Frameworks */,
 				4B9C413F18D9853B00B9F8E5 /* CoreData.framework in Frameworks */,
+				4B6BD7B918FBA7DA0059C46E /* libMobClickLibrary_armv6.a in Frameworks */,
 				4B9C413D18D9852800B9F8E5 /* CoreLocation.framework in Frameworks */,
 				4B569CA818CE9EF4000DF219 /* libz.dylib in Frameworks */,
 				4B569CA618CE9EE8000DF219 /* libstdc++.dylib in Frameworks */,
@@ -810,6 +816,7 @@
 				4B9C413A18D984AF00B9F8E5 /* libidn.a in Frameworks */,
 				4BFA999318AFA19200D673CB /* UIKit.framework in Frameworks */,
 				4BFA998F18AFA19200D673CB /* Foundation.framework in Frameworks */,
+				4B6BD7BA18FBA7DA0059C46E /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1026,6 +1033,7 @@
 		4B569CB418CEB9D5000DF219 /* ThirdPartyLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				4B6BD7B518FBA7CD0059C46E /* UMAnalytics */,
 				4B82B07E18F7F17100920EC2 /* MBProgressHUD */,
 				4BD3A06B18F528E800C6B6AE /* TTTAttributedLabel */,
 				4BB6C05018F2430700DB13C9 /* RadioButton */,
@@ -1124,6 +1132,16 @@
 				4BACDCB518E2C5B00074F0F1 /* TJItemMessage.m */,
 			);
 			name = DataModel;
+			sourceTree = "<group>";
+		};
+		4B6BD7B518FBA7CD0059C46E /* UMAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */,
+				4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */,
+				4B6BD7B818FBA7DA0059C46E /* MobClick.h */,
+			);
+			name = UMAnalytics;
 			sourceTree = "<group>";
 		};
 		4B82B07E18F7F17100920EC2 /* MBProgressHUD */ = {
@@ -2655,6 +2673,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tuijian/Vendor/libidn",
 					"$(PROJECT_DIR)/Tuijian/libWeiboSDK",
+					"$(PROJECT_DIR)/Tuijian",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2682,6 +2701,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Tuijian/Vendor/libidn",
 					"$(PROJECT_DIR)/Tuijian/libWeiboSDK",
+					"$(PROJECT_DIR)/Tuijian",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

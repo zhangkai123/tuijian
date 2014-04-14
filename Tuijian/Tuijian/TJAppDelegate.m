@@ -12,6 +12,7 @@
 #import "TJMineViewController.h"
 
 #import <TencentOpenAPI/TencentOAuth.h>
+#import "MobClick.h"
 
 @implementation TJAppDelegate
 @synthesize tabBarController = _tabBarController;
@@ -25,6 +26,11 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //友盟
+    [MobClick startWithAppkey:@"534634c556240b06ff0fd099"];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
+    
     NSMutableArray *controllersArray = [[NSMutableArray alloc]initWithCapacity:3];
     TJRootShowController *rootShowController = [[TJRootShowController alloc]init];
     UINavigationController *rootShowNavController = [[UINavigationController alloc]initWithRootViewController:rootShowController];
