@@ -73,7 +73,7 @@
     UIButton *acceptButton = [[UIButton alloc]initWithFrame:CGRectMake(60, scrrenHeight - 55, 20, 20)];
     [acceptButton addTarget:self action:@selector(acceptAgreement) forControlEvents:UIControlEventTouchUpInside];
     acceptButton.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:acceptButton];
+    [coverView addSubview:acceptButton];
     
     acceptImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
     acceptImageView.image = [UIImage imageNamed:@"accept.png"];
@@ -89,7 +89,7 @@
     [acceptLabel createNoLineLinkAttributes:[UIColor whiteColor]];
     acceptLabel.text = acceptText;
     [acceptLabel addLinkToURL:[NSURL URLWithString:@"action://gotoItemPage"] withRange:[acceptText rangeOfString:@"《用户协议》"]];
-    [self.view addSubview:acceptLabel];
+    [coverView addSubview:acceptLabel];
     
     haveAgreed = YES;
     
