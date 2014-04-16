@@ -230,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJLoginViewController.m"
-            timestampString = "418816733.773036"
+            timestampString = "419307784.075335"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "-tencentDidNotNetWork"
             landmarkType = "5">
          </BreakpointContent>

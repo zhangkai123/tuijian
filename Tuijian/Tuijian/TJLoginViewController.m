@@ -8,9 +8,13 @@
 
 #import "TJLoginViewController.h"
 #import "TJAppDelegate.h"
+#import "TJAcceptViewController.h"
 
-@interface TJLoginViewController ()
+@interface TJLoginViewController ()<TTTAttributedLabelDelegate>
 {
+    UIImageView *acceptImageView;
+    BOOL haveAgreed;
+    
     UIView *coverView;
     UIActivityIndicatorView *activityIndicator;
 }
@@ -64,6 +68,31 @@
     [coverView addSubview:qqloginButton];
     qqloginButton.center = CGPointMake(160, 320);
     
+    
+    float scrrenHeight = [[UIScreen mainScreen]bounds].size.height;
+    UIButton *acceptButton = [[UIButton alloc]initWithFrame:CGRectMake(60, scrrenHeight - 55, 20, 20)];
+    [acceptButton addTarget:self action:@selector(acceptAgreement) forControlEvents:UIControlEventTouchUpInside];
+    acceptButton.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:acceptButton];
+    
+    acceptImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
+    acceptImageView.image = [UIImage imageNamed:@"accept.png"];
+    [acceptButton addSubview:acceptImageView];
+    acceptImageView.center = CGPointMake(10, 10);
+    
+    NSString *acceptText = @"我已阅读并接受《用户协议》";
+    TTTAttributedLabel *acceptLabel = [[TTTAttributedLabel alloc]initWithFrame:CGRectMake(90, scrrenHeight - 60, 300, 30)];
+    acceptLabel.delegate = self;
+    [acceptLabel setFont:[UIFont boldSystemFontOfSize:14]];
+    acceptLabel.numberOfLines = 1;
+    [acceptLabel setTextColor:[UIColor lightTextColor]];
+    [acceptLabel createNoLineLinkAttributes:[UIColor whiteColor]];
+    acceptLabel.text = acceptText;
+    [acceptLabel addLinkToURL:[NSURL URLWithString:@"action://gotoItemPage"] withRange:[acceptText rangeOfString:@"《用户协议》"]];
+    [self.view addSubview:acceptLabel];
+    
+    haveAgreed = YES;
+    
     _permissions = [NSArray arrayWithObjects:
                      kOPEN_PERMISSION_GET_USER_INFO,
                      kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,
@@ -75,6 +104,9 @@
 }
 -(void)sinalogin
 {
+    if (!haveAgreed) {
+        return;
+    }
     [[TJDataController sharedDataController] setSinaWeiboLogin:YES];
     WBAuthorizeRequest *request = [WBAuthorizeRequest request];
     request.redirectURI = TJ_SINA_kRedirectURI;
@@ -84,8 +116,30 @@
 }
 -(void)qqlogin
 {
+    if (!haveAgreed) {
+        return;
+    }
     [[TJDataController sharedDataController] setSinaWeiboLogin:NO];
     [_tencentOAuth authorize:_permissions inSafari:NO];
+}
+-(void)acceptAgreement
+{
+    if (haveAgreed) {
+        haveAgreed = NO;
+        acceptImageView.hidden = YES;
+    }else{
+        haveAgreed = YES;
+        acceptImageView.hidden = NO;
+    }
+}
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    if ([[url scheme] hasPrefix:@"action"]) {
+        if ([[url host] hasPrefix:@"gotoItemPage"]) {
+            TJAcceptViewController *acceptViewController = [[TJAcceptViewController alloc]init];
+            UINavigationController *acceptNaviagtionController = [[UINavigationController alloc]initWithRootViewController:acceptViewController];
+            [self presentViewController:acceptNaviagtionController animated:YES completion:nil];
+        }
+    }
 }
 -(void)loadingToLogin
 {
