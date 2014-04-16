@@ -44,6 +44,14 @@
 -(id)init
 {
     if (self = [super init]) {
+        UIButton *placeButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 36)];
+        [[placeButton titleLabel]setFont:[UIFont systemFontOfSize:16]];
+        [placeButton setTitle:@"武汉" forState:UIControlStateNormal];
+        [placeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [placeButton addTarget:self action:@selector(changePlace) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *placeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:placeButton];
+        self.navigationItem.leftBarButtonItem = placeButtonItem;
+
         UIButton *cameraButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 36)];
         [cameraButton setImage:[UIImage imageNamed:@"camera_18_2x.png"] forState:UIControlStateNormal];
         [cameraButton addTarget:self action:@selector(takePhoto:) forControlEvents:UIControlEventTouchUpInside];
@@ -73,6 +81,20 @@
         [titleView addSubview:pageControl];
     }
     return self;
+}
+-(void)changePlace
+{
+    [self showPlaceHUD];
+}
+- (void)showPlaceHUD {
+	
+	MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	// Configure for text only and offset down
+	hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"亲，目前只支持武汉地区";
+	hud.margin = 10.f;
+	hud.removeFromSuperViewOnHide = YES;
+	[hud hide:YES afterDelay:2.0];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
