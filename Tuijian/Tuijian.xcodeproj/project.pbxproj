@@ -83,6 +83,11 @@
 		4B569CDF18CEBB5D000DF219 /* TJMyServerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CDC18CEBB5D000DF219 /* TJMyServerClient.m */; };
 		4B569CE318CED1E4000DF219 /* TJDiskCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CE218CED1E4000DF219 /* TJDiskCacheManager.m */; };
 		4B569CEA18CF0BE9000DF219 /* TJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B569CE918CF0BE9000DF219 /* TJUser.m */; };
+		4B57DA181900D828006F0355 /* TJMyPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA171900D828006F0355 /* TJMyPhotoCell.m */; };
+		4B57DA1B1900EB34006F0355 /* TJValueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA1A1900EB34006F0355 /* TJValueCell.m */; };
+		4B57DA1E1900EE1C006F0355 /* flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B57DA1D1900EE1C006F0355 /* flower.png */; };
+		4B57DA201900F0E3006F0355 /* likeNum.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B57DA1F1900F0E3006F0355 /* likeNum.png */; };
+		4B57DA221900F38A006F0355 /* Diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B57DA211900F38A006F0355 /* Diamond.png */; };
 		4B6A862A18F3E15F00E27AAE /* message.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A862918F3E15F00E27AAE /* message.sqlite */; };
 		4B6BD7B918FBA7DA0059C46E /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */; };
 		4B6BD7BA18FBA7DA0059C46E /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */; };
@@ -421,6 +426,13 @@
 		4B569CE618CED567000DF219 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		4B569CE818CF0BE9000DF219 /* TJUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJUser.h; sourceTree = "<group>"; };
 		4B569CE918CF0BE9000DF219 /* TJUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJUser.m; sourceTree = "<group>"; };
+		4B57DA161900D828006F0355 /* TJMyPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyPhotoCell.h; sourceTree = "<group>"; };
+		4B57DA171900D828006F0355 /* TJMyPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyPhotoCell.m; sourceTree = "<group>"; };
+		4B57DA191900EB34006F0355 /* TJValueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJValueCell.h; sourceTree = "<group>"; };
+		4B57DA1A1900EB34006F0355 /* TJValueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJValueCell.m; sourceTree = "<group>"; };
+		4B57DA1D1900EE1C006F0355 /* flower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flower.png; sourceTree = "<group>"; };
+		4B57DA1F1900F0E3006F0355 /* likeNum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = likeNum.png; sourceTree = "<group>"; };
+		4B57DA211900F38A006F0355 /* Diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Diamond.png; sourceTree = "<group>"; };
 		4B6A862918F3E15F00E27AAE /* message.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sqlite; sourceTree = "<group>"; };
 		4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
 		4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -900,6 +912,10 @@
 				4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */,
 				4BEFE99218E3C1F100E2B6A3 /* TJMyInfoCell.h */,
 				4BEFE99318E3C1F100E2B6A3 /* TJMyInfoCell.m */,
+				4B57DA161900D828006F0355 /* TJMyPhotoCell.h */,
+				4B57DA171900D828006F0355 /* TJMyPhotoCell.m */,
+				4B57DA191900EB34006F0355 /* TJValueCell.h */,
+				4B57DA1A1900EB34006F0355 /* TJValueCell.m */,
 			);
 			name = CellView;
 			sourceTree = "<group>";
@@ -1141,6 +1157,16 @@
 				4BACDCB518E2C5B00074F0F1 /* TJItemMessage.m */,
 			);
 			name = DataModel;
+			sourceTree = "<group>";
+		};
+		4B57DA1C1900EE12006F0355 /* mine */ = {
+			isa = PBXGroup;
+			children = (
+				4B57DA1D1900EE1C006F0355 /* flower.png */,
+				4B57DA1F1900F0E3006F0355 /* likeNum.png */,
+				4B57DA211900F38A006F0355 /* Diamond.png */,
+			);
+			name = mine;
 			sourceTree = "<group>";
 		};
 		4B6BD7B518FBA7CD0059C46E /* UMAnalytics */ = {
@@ -2161,6 +2187,7 @@
 		4BFA999518AFA19200D673CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B57DA1C1900EE12006F0355 /* mine */,
 				4BB6C05B18F2462E00DB13C9 /* radioButton */,
 				4B31404B18ED0B28007A00F2 /* CommentView */,
 				4B8B939618E8F4D000459AC2 /* Tabs */,
@@ -2291,6 +2318,7 @@
 			files = (
 				4B14F38B18FE27DD0063C89E /* agreement.txt in Resources */,
 				4B47A39D18D17BB100087BE4 /* man_placeholder.png in Resources */,
+				4B57DA1E1900EE1C006F0355 /* flower.png in Resources */,
 				4BFB834718EBD531008651DA /* weibo-icon.png in Resources */,
 				4B47A3AA18D1B40500087BE4 /* favSelectedHighlight@2x.png in Resources */,
 				4B50AC1A18D6EDF20028BAF9 /* writing.png in Resources */,
@@ -2326,11 +2354,13 @@
 				4B9C412518D984AF00B9F8E5 /* README.markdown in Resources */,
 				4BFA99A118AFA19200D673CB /* Images.xcassets in Resources */,
 				4B31405418ED0B35007A00F2 /* MessageEntrySendButton.png in Resources */,
+				4B57DA201900F0E3006F0355 /* likeNum.png in Resources */,
 				4B47A3A918D1B40500087BE4 /* favhighlight@2x.png in Resources */,
 				4BDEDB3E18CFF490001C2874 /* female.png in Resources */,
 				4B47A39F18D17BB700087BE4 /* womanPlaceholder.png in Resources */,
 				4B569CB118CEA848000DF219 /* bt_92X120.png in Resources */,
 				4B14F38218FE1B4D0063C89E /* accept.png in Resources */,
+				4B57DA221900F38A006F0355 /* Diamond.png in Resources */,
 				4B8B93A818E8F88900459AC2 /* star-outline@2x.png in Resources */,
 				4BF41A2718D2E17A004E9A38 /* write.png in Resources */,
 				4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */,
@@ -2363,6 +2393,7 @@
 				4B9C40C218D984AF00B9F8E5 /* NSXMLElement+XMPP.m in Sources */,
 				4B569CAD18CEA573000DF219 /* TJLoginViewController.m in Sources */,
 				4B9C412618D984AF00B9F8E5 /* DDList.m in Sources */,
+				4B57DA1B1900EB34006F0355 /* TJValueCell.m in Sources */,
 				4B9C411918D984AF00B9F8E5 /* XMPPAutoPing.m in Sources */,
 				4B569CDF18CEBB5D000DF219 /* TJMyServerClient.m in Sources */,
 				4BE1636018B869040009158D /* ImageScrollView.m in Sources */,
@@ -2528,6 +2559,7 @@
 				4B31B77518D7F75400F87D71 /* TJComment.m in Sources */,
 				4B03651E18E2A91400D106F1 /* TJItemMessageViewController.m in Sources */,
 				4B9C411818D984AF00B9F8E5 /* XMPPBlocking.m in Sources */,
+				4B57DA181900D828006F0355 /* TJMyPhotoCell.m in Sources */,
 				4B9C412018D984AF00B9F8E5 /* XMPPMessage+XEP_0224.m in Sources */,
 				4B9C410D18D984AF00B9F8E5 /* XMPPCapabilities.m in Sources */,
 				4B31B78118D825BB00F87D71 /* TJCommentCell.m in Sources */,

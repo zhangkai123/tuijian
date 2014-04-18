@@ -9,6 +9,8 @@
 #import "TJMineViewController.h"
 #import "TJUser.h"
 #import "TJMyInfoCell.h"
+#import "TJMyPhotoCell.h"
+#import "TJValueCell.h"
 #import "TJMyItemCell.h"
 #import "TJUserItemViewController.h"
 
@@ -95,12 +97,16 @@
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 4;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger rowNum = 0;
     if (section == 0) {
+        rowNum = 1;
+    }else if(section == 1){
+        rowNum = 1;
+    }else if(section == 2){
         rowNum = 1;
     }else{
         rowNum = [myItemsArray count];
@@ -111,7 +117,11 @@
 {
     float rowHeight = 0;
     if (indexPath.section == 0) {
-        rowHeight = 100;
+        rowHeight = 130;
+    }else if(indexPath.section == 1){
+        rowHeight = 163;
+    }else if(indexPath.section == 2){
+        rowHeight = 40;
     }else{
         float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
         rowHeight = textHeight + 325 + 40;
@@ -135,10 +145,20 @@
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"female.png"]];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }else{
+    }else if (indexPath.section == 1) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
         if (!cell) {
-            cell = [[TJMyItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
+            cell = [[TJMyPhotoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
+        }
+    }else if (indexPath.section == 2) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
+        if (!cell) {
+            cell = [[TJValueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
+        }
+    }else{
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cellFour"];
+        if (!cell) {
+            cell = [[TJMyItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
         }
         TJItem *theItem = [myItemsArray objectAtIndex:indexPath.row];
         [(TJMyItemCell *)cell setItemId:theItem.itemId];
@@ -151,18 +171,17 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        return;
+    if (indexPath.section == 3) {
+        TJItem *item = [myItemsArray objectAtIndex:indexPath.row];
+        float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
+        
+        TJUserItemViewController *userItemViewController = [[TJUserItemViewController alloc]init];
+        userItemViewController.theItem = item;
+        userItemViewController.textHeight = textHeight;
+        
+        UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:userItemViewController];
+        [self presentViewController:navigationController animated:YES completion:nil];
     }
-    TJItem *item = [myItemsArray objectAtIndex:indexPath.row];
-    float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-    
-    TJUserItemViewController *userItemViewController = [[TJUserItemViewController alloc]init];
-    userItemViewController.theItem = item;
-    userItemViewController.textHeight = textHeight;
-    
-    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:userItemViewController];
-    [self presentViewController:navigationController animated:YES completion:nil];
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -171,7 +190,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     float headerHeight = 0;
-    if (section != 0) {
+    if (section == 3) {
         headerHeight = 30;
     }
     return headerHeight;

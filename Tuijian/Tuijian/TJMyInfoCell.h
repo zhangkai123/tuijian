@@ -13,8 +13,12 @@
     UIImageView *profileImageView;
     UILabel *nameLabel;
     UIImageView *genderImageView;
+    
+    UILabel *moodLabel;
 }
 @property(nonatomic,strong) UIImageView *profileImageView;
 @property(nonatomic,strong) UILabel *nameLabel;
 @property(nonatomic,strong) UIImageView *genderImageView;
+
+@property(nonatomic,strong) UILabel *moodLabel;
 @end
