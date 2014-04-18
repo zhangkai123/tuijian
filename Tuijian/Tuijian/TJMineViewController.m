@@ -20,6 +20,8 @@
     UITableView *myItemTableView;
     NSMutableArray *myItemsArray;
     NSMutableArray *textHeightArray;
+    
+    NSMutableArray *photoUrlArray;
 }
 @end
 
@@ -60,41 +62,44 @@
     myItemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
     
-    [self startActivityIndicator];
-    [self refreshTableViewData];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
+    photoUrlArray = [[NSMutableArray alloc]initWithCapacity:8];
+    TJUser *user = [[TJDataController sharedDataController]getMyUserInfo];
+    [photoUrlArray addObject:user.profile_image_url];
+//    [self startActivityIndicator];
+//    [self refreshTableViewData];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
 }
--(void)refreshTableViewData
-{
-    __weak UITableView *weaktheTalbleView = myItemTableView;
-    __block NSMutableArray *weakItemsArray = myItemsArray;
-    __block NSMutableArray *weakTextHeightArray = textHeightArray;
-    NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
-    [[TJDataController sharedDataController]getUserItems:myUserId success:^(NSArray *iteArray){
-        if ([iteArray count] == 0) {
-            [activityIndicator stopAnimating];
-            return;
-        }
-        [weakTextHeightArray removeAllObjects];
-        [weakItemsArray removeAllObjects];
-        for (int i = 0; i < [iteArray count]; i++) {
-            TJItem *item = [iteArray objectAtIndex:i];
-            NSString *recommendTex = item.recommendReason;
-            CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(300, 0)
-                                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
-            [weakTextHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
-        }
-        [weakItemsArray addObjectsFromArray:iteArray];
-        UITableView *strongTableView = weaktheTalbleView;
-        if (strongTableView != nil) {
-            [strongTableView reloadData];
-        }
-        [activityIndicator stopAnimating];
-    }failure:^(NSError *error){
-        [activityIndicator stopAnimating];
-    }];
-}
+//-(void)refreshTableViewData
+//{
+//    __weak UITableView *weaktheTalbleView = myItemTableView;
+//    __block NSMutableArray *weakItemsArray = myItemsArray;
+//    __block NSMutableArray *weakTextHeightArray = textHeightArray;
+//    NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
+//    [[TJDataController sharedDataController]getUserItems:myUserId success:^(NSArray *iteArray){
+//        if ([iteArray count] == 0) {
+//            [activityIndicator stopAnimating];
+//            return;
+//        }
+//        [weakTextHeightArray removeAllObjects];
+//        [weakItemsArray removeAllObjects];
+//        for (int i = 0; i < [iteArray count]; i++) {
+//            TJItem *item = [iteArray objectAtIndex:i];
+//            NSString *recommendTex = item.recommendReason;
+//            CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(300, 0)
+//                                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+//                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+//            [weakTextHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
+//        }
+//        [weakItemsArray addObjectsFromArray:iteArray];
+//        UITableView *strongTableView = weaktheTalbleView;
+//        if (strongTableView != nil) {
+//            [strongTableView reloadData];
+//        }
+//        [activityIndicator stopAnimating];
+//    }failure:^(NSError *error){
+//        [activityIndicator stopAnimating];
+//    }];
+//}
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -118,9 +123,9 @@
 {
     float rowHeight = 0;
     if (indexPath.section == 0) {
-        rowHeight = 130;
+        rowHeight = 120;
     }else if(indexPath.section == 1){
-        rowHeight = 163;
+        rowHeight = 165;
     }else if(indexPath.section == 2){
         rowHeight = 40;
     }else{
@@ -148,10 +153,12 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else if (indexPath.section == 1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
-        if (!cell) {
-            cell = [[TJMyPhotoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
+        TJMyPhotoCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
+        if (!cellTwo) {
+            cellTwo = [[TJMyPhotoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
         }
+        cellTwo.photoUrlArray = photoUrlArray;
+        cell = cellTwo;
     }else if (indexPath.section == 2) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
         if (!cell) {
@@ -181,6 +188,7 @@
             cell.textLabel.text = @"最近访客";
         }
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

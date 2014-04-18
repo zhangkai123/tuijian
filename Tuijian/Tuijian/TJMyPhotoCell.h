@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface TJMyPhotoCell : UITableViewCell
-
+{
+    NSMutableArray *photoUrlArray;
+}
+@property(nonatomic,strong) NSMutableArray *photoUrlArray;
 @end

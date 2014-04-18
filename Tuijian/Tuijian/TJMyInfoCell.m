@@ -32,9 +32,15 @@
         [self addSubview:genderImageView];
         
         moodLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 95, 300, 20)];
-        [moodLabel setTextColor:[UIColor whiteColor]];
+        [moodLabel setTextColor:UIColorFromRGB(0xADD8E6)];
+        [moodLabel setFont:[UIFont systemFontOfSize:13]];
         moodLabel.text = @"今天好开心呀！";
+//        moodLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:moodLabel];
+        
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 119, 320, 1)];
+        lineView.backgroundColor = [UIColor blackColor];
+        [self addSubview:lineView];
     }
     return self;
 }
