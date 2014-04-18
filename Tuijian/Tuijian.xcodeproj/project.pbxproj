@@ -89,6 +89,8 @@
 		4B57DA201900F0E3006F0355 /* likeNum.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B57DA1F1900F0E3006F0355 /* likeNum.png */; };
 		4B57DA221900F38A006F0355 /* Diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B57DA211900F38A006F0355 /* Diamond.png */; };
 		4B57DA251901007A006F0355 /* TJMyRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA241901007A006F0355 /* TJMyRecommendCell.m */; };
+		4B57DA2919011B76006F0355 /* addPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B57DA2819011B76006F0355 /* addPhoto.png */; };
+		4B57DA3019011FDF006F0355 /* TJTouchablePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA2F19011FDF006F0355 /* TJTouchablePhotoView.m */; };
 		4B6A862A18F3E15F00E27AAE /* message.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A862918F3E15F00E27AAE /* message.sqlite */; };
 		4B6BD7B918FBA7DA0059C46E /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */; };
 		4B6BD7BA18FBA7DA0059C46E /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */; };
@@ -436,6 +438,9 @@
 		4B57DA211900F38A006F0355 /* Diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Diamond.png; sourceTree = "<group>"; };
 		4B57DA231901007A006F0355 /* TJMyRecommendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyRecommendCell.h; sourceTree = "<group>"; };
 		4B57DA241901007A006F0355 /* TJMyRecommendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyRecommendCell.m; sourceTree = "<group>"; };
+		4B57DA2819011B76006F0355 /* addPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addPhoto.png; sourceTree = "<group>"; };
+		4B57DA2E19011FDF006F0355 /* TJTouchablePhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJTouchablePhotoView.h; sourceTree = "<group>"; };
+		4B57DA2F19011FDF006F0355 /* TJTouchablePhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJTouchablePhotoView.m; sourceTree = "<group>"; };
 		4B6A862918F3E15F00E27AAE /* message.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sqlite; sourceTree = "<group>"; };
 		4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
 		4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -1167,6 +1172,7 @@
 		4B57DA1C1900EE12006F0355 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				4B57DA2819011B76006F0355 /* addPhoto.png */,
 				4B57DA1D1900EE1C006F0355 /* flower.png */,
 				4B57DA1F1900F0E3006F0355 /* likeNum.png */,
 				4B57DA211900F38A006F0355 /* Diamond.png */,
@@ -2183,6 +2189,8 @@
 				4BB6C05918F244CB00DB13C9 /* TJRadioButtonView.m */,
 				4B8EADB118F628CD00BDDD91 /* TJSelectableLabel.h */,
 				4B8EADB218F628CD00BDDD91 /* TJSelectableLabel.m */,
+				4B57DA2E19011FDF006F0355 /* TJTouchablePhotoView.h */,
+				4B57DA2F19011FDF006F0355 /* TJTouchablePhotoView.m */,
 				4BFA99A018AFA19200D673CB /* Images.xcassets */,
 				4BFA999518AFA19200D673CB /* Supporting Files */,
 			);
@@ -2354,6 +2362,7 @@
 				4B31405618ED0B35007A00F2 /* MessageEntrySendButtonPressed.png in Resources */,
 				4B54577018CDBEF700492F81 /* ChoosePhotoIcon@2x.png in Resources */,
 				4B8B93A218E8F80300459AC2 /* star-outline.png in Resources */,
+				4B57DA2919011B76006F0355 /* addPhoto.png in Resources */,
 				4BB6C05E18F2464000DB13C9 /* RadioButton-Selected.png in Resources */,
 				4B9C413418D984AF00B9F8E5 /* README.txt in Resources */,
 				4B9C412518D984AF00B9F8E5 /* README.markdown in Resources */,
@@ -2428,6 +2437,7 @@
 				4B9C40BF18D984AF00B9F8E5 /* XMPPXOAuth2Google.m in Sources */,
 				4B9C40CC18D984AF00B9F8E5 /* XMPPBandwidthMonitor.m in Sources */,
 				4BF41A2318D299B6004E9A38 /* TJCommentViewController.m in Sources */,
+				4B57DA3019011FDF006F0355 /* TJTouchablePhotoView.m in Sources */,
 				4B9C412218D984AF00B9F8E5 /* XMPPMessage+XEP_0308.m in Sources */,
 				4B9C40D218D984AF00B9F8E5 /* XMPPResourceCoreDataStorageObject.m in Sources */,
 				4B9C413618D984AF00B9F8E5 /* DDXMLDocument.m in Sources */,

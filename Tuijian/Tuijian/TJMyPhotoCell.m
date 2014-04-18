@@ -7,6 +7,11 @@
 //
 
 #import "TJMyPhotoCell.h"
+#import "TJTouchablePhotoView.h"
+
+@interface TJMyPhotoCell()<TJTouchablePhotoViewDelegate>
+
+@end
 
 @implementation TJMyPhotoCell
 @synthesize photoUrlArray;
@@ -20,11 +25,12 @@
         for (int i = 0; i < 8; i++) {
             int colomeNum = i/4;
             int rowNum = i%4;
-            UIImageView *photoView = [[UIImageView alloc]initWithFrame:CGRectMake(8 + rowNum*(70 + 8), 8 + colomeNum*(70 + 8), 70, 70)];
+            TJTouchablePhotoView *photoView = [[TJTouchablePhotoView alloc]initWithFrame:CGRectMake(8 + rowNum*(70 + 8), 8 + colomeNum*(70 + 8), 70, 70)];
             photoView.layer.cornerRadius = 5;
             photoView.layer.masksToBounds = YES;
             photoView.backgroundColor = [UIColor darkGrayColor];
             photoView.tag = 1000 + i;
+            photoView.alpha = 0.5;
             [self addSubview:photoView];
         }
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 164, 320, 1)];
@@ -38,9 +44,21 @@
     photoUrlArray = pUrlArray;
     for (int i = 0; i < [photoUrlArray count]; i++) {
         UIImageView *photoView = (UIImageView *)[self viewWithTag:1000 + i];
+        photoView.alpha = 1.0;
         NSString *photoUrl = [photoUrlArray objectAtIndex:i];
         [photoView setImageWithURL:[NSURL URLWithString:photoUrl] placeholderImage:nil];
     }
+    if ([photoUrlArray count] < 8) {
+        TJTouchablePhotoView *addPhotoView = (TJTouchablePhotoView *)[self viewWithTag:1000 + [photoUrlArray count]];
+        addPhotoView.image = [UIImage imageNamed:@"addPhoto.png"];
+        [addPhotoView setAlpha:0.2];
+        addPhotoView.delegate = self;
+    }
+}
+#pragma TJTouchableImageViewDelegate
+-(void)selectPhotoView
+{
+    
 }
 - (void)awakeFromNib
 {
