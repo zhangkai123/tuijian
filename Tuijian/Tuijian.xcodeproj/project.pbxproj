@@ -88,6 +88,7 @@
 		4B57DA1E1900EE1C006F0355 /* flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B57DA1D1900EE1C006F0355 /* flower.png */; };
 		4B57DA201900F0E3006F0355 /* likeNum.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B57DA1F1900F0E3006F0355 /* likeNum.png */; };
 		4B57DA221900F38A006F0355 /* Diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B57DA211900F38A006F0355 /* Diamond.png */; };
+		4B57DA251901007A006F0355 /* TJMyRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA241901007A006F0355 /* TJMyRecommendCell.m */; };
 		4B6A862A18F3E15F00E27AAE /* message.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A862918F3E15F00E27AAE /* message.sqlite */; };
 		4B6BD7B918FBA7DA0059C46E /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */; };
 		4B6BD7BA18FBA7DA0059C46E /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */; };
@@ -433,6 +434,8 @@
 		4B57DA1D1900EE1C006F0355 /* flower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flower.png; sourceTree = "<group>"; };
 		4B57DA1F1900F0E3006F0355 /* likeNum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = likeNum.png; sourceTree = "<group>"; };
 		4B57DA211900F38A006F0355 /* Diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Diamond.png; sourceTree = "<group>"; };
+		4B57DA231901007A006F0355 /* TJMyRecommendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyRecommendCell.h; sourceTree = "<group>"; };
+		4B57DA241901007A006F0355 /* TJMyRecommendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyRecommendCell.m; sourceTree = "<group>"; };
 		4B6A862918F3E15F00E27AAE /* message.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sqlite; sourceTree = "<group>"; };
 		4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
 		4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -916,6 +919,8 @@
 				4B57DA171900D828006F0355 /* TJMyPhotoCell.m */,
 				4B57DA191900EB34006F0355 /* TJValueCell.h */,
 				4B57DA1A1900EB34006F0355 /* TJValueCell.m */,
+				4B57DA231901007A006F0355 /* TJMyRecommendCell.h */,
+				4B57DA241901007A006F0355 /* TJMyRecommendCell.m */,
 			);
 			name = CellView;
 			sourceTree = "<group>";
@@ -2528,6 +2533,7 @@
 				4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */,
 				4BFB64CF18C07AEC00C304BB /* TJMineViewController.m in Sources */,
 				4B47A38E18D179B800087BE4 /* MKAnnotationView+WebCache.m in Sources */,
+				4B57DA251901007A006F0355 /* TJMyRecommendCell.m in Sources */,
 				4B9C40FD18D984AF00B9F8E5 /* XMPPResultSet.m in Sources */,
 				4B9C411A18D984AF00B9F8E5 /* XMPPPing.m in Sources */,
 				4BACDCB618E2C5B00074F0F1 /* TJItemMessage.m in Sources */,

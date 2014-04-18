@@ -11,6 +11,7 @@
 #import "TJMyInfoCell.h"
 #import "TJMyPhotoCell.h"
 #import "TJValueCell.h"
+#import "TJMyRecommendCell.h"
 #import "TJMyItemCell.h"
 #import "TJUserItemViewController.h"
 
@@ -109,7 +110,7 @@
     }else if(section == 2){
         rowNum = 1;
     }else{
-        rowNum = [myItemsArray count];
+        rowNum = 2;
     }
     return rowNum;
 }
@@ -123,8 +124,9 @@
     }else if(indexPath.section == 2){
         rowHeight = 40;
     }else{
-        float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-        rowHeight = textHeight + 325 + 40;
+//        float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
+//        rowHeight = textHeight + 325 + 40;
+        rowHeight = 50;
     }
     return rowHeight;
 }
@@ -156,45 +158,57 @@
             cell = [[TJValueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
         }
     }else{
+//        cell = [tableView dequeueReusableCellWithIdentifier:@"cellFour"];
+//        if (!cell) {
+//            cell = [[TJMyItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
+//        }
+//        TJItem *theItem = [myItemsArray objectAtIndex:indexPath.row];
+//        [(TJMyItemCell *)cell setItemId:theItem.itemId];
+//        [[(TJMyItemCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+//        float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
+//        [[(TJMyItemCell *)cell titleLabel] setText:theItem.title];
+//        [(TJMyItemCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellFour"];
         if (!cell) {
-            cell = [[TJMyItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
+            cell = [[TJMyRecommendCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
         }
-        TJItem *theItem = [myItemsArray objectAtIndex:indexPath.row];
-        [(TJMyItemCell *)cell setItemId:theItem.itemId];
-        [[(TJMyItemCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-        float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-        [[(TJMyItemCell *)cell titleLabel] setText:theItem.title];
-        [(TJMyItemCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        if (indexPath.row == 0) {
+            [cell.textLabel setTextColor:UIColorFromRGB(0x3399CC)];
+            cell.textLabel.text = @"我的推荐";
+        }else{
+            cell.textLabel.text = @"最近访客";
+        }
     }
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 3) {
-        TJItem *item = [myItemsArray objectAtIndex:indexPath.row];
-        float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-        
-        TJUserItemViewController *userItemViewController = [[TJUserItemViewController alloc]init];
-        userItemViewController.theItem = item;
-        userItemViewController.textHeight = textHeight;
-        
-        UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:userItemViewController];
-        [self presentViewController:navigationController animated:YES completion:nil];
-    }
+//    if (indexPath.section == 3) {
+//        TJItem *item = [myItemsArray objectAtIndex:indexPath.row];
+//        float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
+//        
+//        TJUserItemViewController *userItemViewController = [[TJUserItemViewController alloc]init];
+//        userItemViewController.theItem = item;
+//        userItemViewController.textHeight = textHeight;
+//        
+//        UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:userItemViewController];
+//        [self presentViewController:navigationController animated:YES completion:nil];
+//    }
 }
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"我的推荐";
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    float headerHeight = 0;
-    if (section == 3) {
-        headerHeight = 30;
-    }
-    return headerHeight;
-}
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    return @"我的推荐";
+//}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    float headerHeight = 0;
+//    if (section == 3) {
+//        headerHeight = 30;
+//    }
+//    return headerHeight;
+//}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
