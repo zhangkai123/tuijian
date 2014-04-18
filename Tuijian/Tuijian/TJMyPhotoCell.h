@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TJMyPhotoCellDelegate <NSObject>
+
+-(void)showPhotoActionSheet;
+
+@end
+
 @interface TJMyPhotoCell : UITableViewCell
 {
+    __unsafe_unretained id<TJMyPhotoCellDelegate> delegate;
     NSMutableArray *photoUrlArray;
 }
+@property(nonatomic,unsafe_unretained) id<TJMyPhotoCellDelegate> delegate;
 @property(nonatomic,strong) NSMutableArray *photoUrlArray;
 @end

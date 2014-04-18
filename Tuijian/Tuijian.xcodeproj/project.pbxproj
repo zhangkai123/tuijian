@@ -91,6 +91,8 @@
 		4B57DA251901007A006F0355 /* TJMyRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA241901007A006F0355 /* TJMyRecommendCell.m */; };
 		4B57DA2919011B76006F0355 /* addPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B57DA2819011B76006F0355 /* addPhoto.png */; };
 		4B57DA3019011FDF006F0355 /* TJTouchablePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA2F19011FDF006F0355 /* TJTouchablePhotoView.m */; };
+		4B57DA3319012741006F0355 /* TJMyRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA3219012741006F0355 /* TJMyRecommendViewController.m */; };
+		4B57DA3919012992006F0355 /* TJRecentViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA3819012992006F0355 /* TJRecentViewerViewController.m */; };
 		4B6A862A18F3E15F00E27AAE /* message.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A862918F3E15F00E27AAE /* message.sqlite */; };
 		4B6BD7B918FBA7DA0059C46E /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */; };
 		4B6BD7BA18FBA7DA0059C46E /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */; };
@@ -441,6 +443,10 @@
 		4B57DA2819011B76006F0355 /* addPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addPhoto.png; sourceTree = "<group>"; };
 		4B57DA2E19011FDF006F0355 /* TJTouchablePhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJTouchablePhotoView.h; sourceTree = "<group>"; };
 		4B57DA2F19011FDF006F0355 /* TJTouchablePhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJTouchablePhotoView.m; sourceTree = "<group>"; };
+		4B57DA3119012741006F0355 /* TJMyRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyRecommendViewController.h; sourceTree = "<group>"; };
+		4B57DA3219012741006F0355 /* TJMyRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyRecommendViewController.m; sourceTree = "<group>"; };
+		4B57DA3719012992006F0355 /* TJRecentViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJRecentViewerViewController.h; sourceTree = "<group>"; };
+		4B57DA3819012992006F0355 /* TJRecentViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJRecentViewerViewController.m; sourceTree = "<group>"; };
 		4B6A862918F3E15F00E27AAE /* message.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sqlite; sourceTree = "<group>"; };
 		4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
 		4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -860,24 +866,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4B03651B18E2A8DC00D106F1 /* Message */ = {
-			isa = PBXGroup;
-			children = (
-				4B03651C18E2A91400D106F1 /* TJItemMessageViewController.h */,
-				4B03651D18E2A91400D106F1 /* TJItemMessageViewController.m */,
-			);
-			name = Message;
-			sourceTree = "<group>";
-		};
 		4B1D467D18DA8B330056262B /* TabControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4BE5A37418EE52AB006A8A1E /* TJRootShowController.h */,
-				4BE5A37518EE52AB006A8A1E /* TJRootShowController.m */,
-				4BFB64CA18C07ACA00C304BB /* TJInfoViewController.h */,
-				4BFB64CB18C07ACA00C304BB /* TJInfoViewController.m */,
-				4BFB64CD18C07AEC00C304BB /* TJMineViewController.h */,
-				4BFB64CE18C07AEC00C304BB /* TJMineViewController.m */,
+				4B57DA3419012881006F0355 /* Recommend */,
+				4B57DA351901289A006F0355 /* Message */,
+				4B57DA36190128B6006F0355 /* Mine */,
 			);
 			name = TabControllers;
 			sourceTree = "<group>";
@@ -1178,6 +1172,43 @@
 				4B57DA211900F38A006F0355 /* Diamond.png */,
 			);
 			name = mine;
+			sourceTree = "<group>";
+		};
+		4B57DA3419012881006F0355 /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				4BE5A37418EE52AB006A8A1E /* TJRootShowController.h */,
+				4BE5A37518EE52AB006A8A1E /* TJRootShowController.m */,
+				4B7A420E18B0CF66009356F4 /* TJShowViewController.h */,
+				4B7A420F18B0CF66009356F4 /* TJShowViewController.m */,
+				4BE911B918DBD81600F4C3B1 /* TJPostViewController.h */,
+				4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */,
+			);
+			name = Recommend;
+			sourceTree = "<group>";
+		};
+		4B57DA351901289A006F0355 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				4BFB64CA18C07ACA00C304BB /* TJInfoViewController.h */,
+				4BFB64CB18C07ACA00C304BB /* TJInfoViewController.m */,
+				4B03651C18E2A91400D106F1 /* TJItemMessageViewController.h */,
+				4B03651D18E2A91400D106F1 /* TJItemMessageViewController.m */,
+			);
+			name = Message;
+			sourceTree = "<group>";
+		};
+		4B57DA36190128B6006F0355 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				4BFB64CD18C07AEC00C304BB /* TJMineViewController.h */,
+				4BFB64CE18C07AEC00C304BB /* TJMineViewController.m */,
+				4B57DA3119012741006F0355 /* TJMyRecommendViewController.h */,
+				4B57DA3219012741006F0355 /* TJMyRecommendViewController.m */,
+				4B57DA3719012992006F0355 /* TJRecentViewerViewController.h */,
+				4B57DA3819012992006F0355 /* TJRecentViewerViewController.m */,
+			);
+			name = Mine;
 			sourceTree = "<group>";
 		};
 		4B6BD7B518FBA7CD0059C46E /* UMAnalytics */ = {
@@ -2170,7 +2201,6 @@
 				4B1D467D18DA8B330056262B /* TabControllers */,
 				4B50AC1318D6DCB70028BAF9 /* Comment */,
 				4BEFE99818E3CA8200E2B6A3 /* UserItem */,
-				4B03651B18E2A8DC00D106F1 /* Message */,
 				4B1D467F18DA8BD70056262B /* CellView */,
 				4BEFE99F18E3E94D00E2B6A3 /* UserInformation */,
 				4BFA999D18AFA19200D673CB /* TJAppDelegate.h */,
@@ -2179,10 +2209,6 @@
 				4BFB64D118C187F800C304BB /* TJBaseViewController.m */,
 				4B14F38318FE20290063C89E /* TJAcceptViewController.h */,
 				4B14F38418FE20290063C89E /* TJAcceptViewController.m */,
-				4B7A420E18B0CF66009356F4 /* TJShowViewController.h */,
-				4B7A420F18B0CF66009356F4 /* TJShowViewController.m */,
-				4BE911B918DBD81600F4C3B1 /* TJPostViewController.h */,
-				4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */,
 				4BEFE99918E3DA0800E2B6A3 /* TJTouchableImageView.h */,
 				4BEFE99A18E3DA0800E2B6A3 /* TJTouchableImageView.m */,
 				4BB6C05818F244CB00DB13C9 /* TJRadioButtonView.h */,
@@ -2517,6 +2543,7 @@
 				4B47A39B18D179B800087BE4 /* UIImageView+WebCache.m in Sources */,
 				4B569CD518CEBAA7000DF219 /* TJDataController.m in Sources */,
 				4B9C410418D984AF00B9F8E5 /* XMPPDateTimeProfiles.m in Sources */,
+				4B57DA3319012741006F0355 /* TJMyRecommendViewController.m in Sources */,
 				4B9C411718D984AF00B9F8E5 /* XMPPMessageDeliveryReceipts.m in Sources */,
 				4B9C40C618D984AF00B9F8E5 /* XMPPJID.m in Sources */,
 				4BEE7F3618E53A8900232E6C /* MTStatusBarOverlay.m in Sources */,
@@ -2530,6 +2557,7 @@
 				4B31404A18ED061C007A00F2 /* TJCommentView.m in Sources */,
 				4B31404718ED01C6007A00F2 /* HPTextViewInternal.m in Sources */,
 				4B9C40F718D984AF00B9F8E5 /* XMPPvCardTempBase.m in Sources */,
+				4B57DA3919012992006F0355 /* TJRecentViewerViewController.m in Sources */,
 				4B9C40E718D984AF00B9F8E5 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				4B9C3F6718D9234C00B9F8E5 /* UIImage+additions.m in Sources */,
 				4B9C40F418D984AF00B9F8E5 /* XMPPvCardTemp.m in Sources */,

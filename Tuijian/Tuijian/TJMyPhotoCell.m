@@ -14,6 +14,7 @@
 @end
 
 @implementation TJMyPhotoCell
+@synthesize delegate;
 @synthesize photoUrlArray;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -58,7 +59,7 @@
 #pragma TJTouchableImageViewDelegate
 -(void)selectPhotoView
 {
-    
+    [self.delegate showPhotoActionSheet];
 }
 - (void)awakeFromNib
 {

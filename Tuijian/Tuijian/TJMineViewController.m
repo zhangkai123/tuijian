@@ -12,14 +12,12 @@
 #import "TJMyPhotoCell.h"
 #import "TJValueCell.h"
 #import "TJMyRecommendCell.h"
-#import "TJMyItemCell.h"
-#import "TJUserItemViewController.h"
+#import "TJMyRecommendViewController.h"
+#import "TJRecentViewerViewController.h"
 
-@interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate,TJMyPhotoCellDelegate,UIActionSheetDelegate>
 {
-    UITableView *myItemTableView;
-    NSMutableArray *myItemsArray;
-    NSMutableArray *textHeightArray;
+    UITableView *theTableView;
     
     NSMutableArray *photoUrlArray;
 }
@@ -51,55 +49,18 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    myItemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
-    [myItemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    myItemTableView.showsHorizontalScrollIndicator = NO;
-    myItemTableView.showsVerticalScrollIndicator = NO;
-    myItemTableView.dataSource = self;
-    myItemTableView.delegate = self;
-    [self.view addSubview:myItemTableView];
-    
-    myItemsArray = [[NSMutableArray alloc]init];
-    textHeightArray = [[NSMutableArray alloc]init];
+    theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
+    [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    theTableView.showsHorizontalScrollIndicator = NO;
+    theTableView.showsVerticalScrollIndicator = NO;
+    theTableView.dataSource = self;
+    theTableView.delegate = self;
+    [self.view addSubview:theTableView];
     
     photoUrlArray = [[NSMutableArray alloc]initWithCapacity:8];
     TJUser *user = [[TJDataController sharedDataController]getMyUserInfo];
     [photoUrlArray addObject:user.profile_image_url];
-//    [self startActivityIndicator];
-//    [self refreshTableViewData];
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
 }
-//-(void)refreshTableViewData
-//{
-//    __weak UITableView *weaktheTalbleView = myItemTableView;
-//    __block NSMutableArray *weakItemsArray = myItemsArray;
-//    __block NSMutableArray *weakTextHeightArray = textHeightArray;
-//    NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
-//    [[TJDataController sharedDataController]getUserItems:myUserId success:^(NSArray *iteArray){
-//        if ([iteArray count] == 0) {
-//            [activityIndicator stopAnimating];
-//            return;
-//        }
-//        [weakTextHeightArray removeAllObjects];
-//        [weakItemsArray removeAllObjects];
-//        for (int i = 0; i < [iteArray count]; i++) {
-//            TJItem *item = [iteArray objectAtIndex:i];
-//            NSString *recommendTex = item.recommendReason;
-//            CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(300, 0)
-//                                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-//                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
-//            [weakTextHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
-//        }
-//        [weakItemsArray addObjectsFromArray:iteArray];
-//        UITableView *strongTableView = weaktheTalbleView;
-//        if (strongTableView != nil) {
-//            [strongTableView reloadData];
-//        }
-//        [activityIndicator stopAnimating];
-//    }failure:^(NSError *error){
-//        [activityIndicator stopAnimating];
-//    }];
-//}
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -129,8 +90,6 @@
     }else if(indexPath.section == 2){
         rowHeight = 40;
     }else{
-//        float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-//        rowHeight = textHeight + 325 + 40;
         rowHeight = 50;
     }
     return rowHeight;
@@ -157,6 +116,7 @@
         if (!cellTwo) {
             cellTwo = [[TJMyPhotoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
         }
+        cellTwo.delegate = self;
         cellTwo.photoUrlArray = photoUrlArray;
         cell = cellTwo;
     }else if (indexPath.section == 2) {
@@ -165,16 +125,6 @@
             cell = [[TJValueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
         }
     }else{
-//        cell = [tableView dequeueReusableCellWithIdentifier:@"cellFour"];
-//        if (!cell) {
-//            cell = [[TJMyItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
-//        }
-//        TJItem *theItem = [myItemsArray objectAtIndex:indexPath.row];
-//        [(TJMyItemCell *)cell setItemId:theItem.itemId];
-//        [[(TJMyItemCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-//        float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-//        [[(TJMyItemCell *)cell titleLabel] setText:theItem.title];
-//        [(TJMyItemCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellFour"];
         if (!cell) {
             cell = [[TJMyRecommendCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
@@ -193,30 +143,40 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.section == 3) {
-//        TJItem *item = [myItemsArray objectAtIndex:indexPath.row];
-//        float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-//        
-//        TJUserItemViewController *userItemViewController = [[TJUserItemViewController alloc]init];
-//        userItemViewController.theItem = item;
-//        userItemViewController.textHeight = textHeight;
-//        
-//        UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:userItemViewController];
-//        [self presentViewController:navigationController animated:YES completion:nil];
-//    }
+    if (indexPath.section == 3) {
+        if (indexPath.row == 0) {
+            self.hidesBottomBarWhenPushed = YES;
+            TJMyRecommendViewController *myRecommendViewController = [[TJMyRecommendViewController alloc]init];
+            [self.navigationController pushViewController:myRecommendViewController animated:YES];
+            self.hidesBottomBarWhenPushed = NO;
+        }else if (indexPath.row == 1){
+            self.hidesBottomBarWhenPushed = YES;
+            TJRecentViewerViewController *recentViewerViewController = [[TJRecentViewerViewController alloc]init];
+            [self.navigationController pushViewController:recentViewerViewController animated:YES];
+            self.hidesBottomBarWhenPushed = NO;
+        }
+    }
 }
-//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    return @"我的推荐";
-//}
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    float headerHeight = 0;
-//    if (section == 3) {
-//        headerHeight = 30;
-//    }
-//    return headerHeight;
-//}
+#pragma TJMyPhotoCellDelegate
+-(void)showPhotoActionSheet
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:self
+                                  cancelButtonTitle:@"取消"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"拍照",@"从手机相册选择",nil];
+    [actionSheet showInView:self.view];
+}
+#pragma UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        
+    }else if(buttonIndex == 1){
+        
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
