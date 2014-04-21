@@ -75,6 +75,8 @@
     if (loginViewController == nil) {
         loginViewController = [[TJLoginViewController alloc]init];
     }
+    [[TJDataController sharedDataController]disConnectToXMPPServer];
+    [[TJDataController sharedDataController]setUserLoginMask:NO];
     self.window.rootViewController = loginViewController;
 }
 -(void)updateInfoTabbarBadge

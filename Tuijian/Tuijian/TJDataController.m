@@ -34,7 +34,10 @@
     }
     return self;
 }
-
+-(void)setUserLoginMask:(BOOL)hasLogin
+{
+    [[TJDiskCacheManager sharedDiskCacheManager]saveUserLoginMask:hasLogin];
+}
 -(BOOL)getUserLoginMask
 {
     return [[TJDiskCacheManager sharedDiskCacheManager]getUserLoginMask];

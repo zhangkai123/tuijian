@@ -31,6 +31,12 @@
     BOOL loginMask = [userDefaults boolForKey:TJ_USER_HAVE_LOGIN];
     return loginMask;
 }
+-(void)saveUserLoginMask:(BOOL)logined
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:logined forKey:TJ_USER_HAVE_LOGIN];
+    [userDefaults synchronize];
+}
 
 -(void)saveTencentLoginInfo:(TencentOAuth *)tencentOAuth
 {
@@ -81,12 +87,6 @@
     [userDefaults setObject:userInfo forKey:TJ_USER_INFO];
     [userDefaults synchronize];
 }
--(void)saveUserLoginMask:(BOOL)logined
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:logined forKey:TJ_USER_HAVE_LOGIN];
-    [userDefaults synchronize];
-}
 
 -(NSDictionary *)getUserInfoFromDisk
 {
@@ -94,17 +94,5 @@
     NSDictionary *userInfo = [userDefaults objectForKey:TJ_USER_INFO];
     return userInfo;
 }
-//-(void)saveCurrentEditCourse:(NSDictionary *)dic
-//{
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    [userDefaults setObject:dic forKey:AD_CURRENT_EDIT_COURSE];
-//    [userDefaults synchronize];
-//}
-//-(NSDictionary *)getCurrentEditCourse
-//{
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    NSDictionary *currentEditCourseDic = [userDefaults objectForKey:AD_CURRENT_EDIT_COURSE];
-//    return currentEditCourseDic;
-//}
 
 @end
