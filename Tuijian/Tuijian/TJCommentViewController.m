@@ -442,21 +442,21 @@
 #pragma TJItemCellDelegate
 -(void)likeItem:(NSString *)itemId liked:(void (^)(BOOL Liked))hasL
 {
-    theItem.hasLiked = !theItem.hasLiked;
-    hasL(theItem.hasLiked);
     TJUser *myUserInfo = [[TJDataController sharedDataController] getMyWholeUserInfo];
     if (theItem.hasLiked) {
         theItem.likeNum = [NSString stringWithFormat:@"%d",[theItem.likeNum intValue] - 1];
-        [myLikesArray insertObject:myUserInfo atIndex:0];
-        [myLikeCell setLikesArray:myLikesArray];
-    }else{
-        theItem.likeNum = [NSString stringWithFormat:@"%d",[theItem.likeNum intValue] + 1];
         TJUser *user = [self findUserInLikesArray:myUserInfo.myUserId];
         if (user != nil) {
             [myLikesArray removeObject:user];
             [myLikeCell setLikesArray:myLikesArray];
         }
+    }else{
+        theItem.likeNum = [NSString stringWithFormat:@"%d",[theItem.likeNum intValue] + 1];
+        [myLikesArray insertObject:myUserInfo atIndex:0];
+        [myLikeCell setLikesArray:myLikesArray];
     }
+    theItem.hasLiked = !theItem.hasLiked;
+    hasL(theItem.hasLiked);
     [detailTableView reloadData];
     
     __block TJItem *weakItem = theItem;
