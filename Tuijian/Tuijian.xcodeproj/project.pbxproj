@@ -2694,6 +2694,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = /Users/zhangkai/Desktop/tuijian/Tuijian;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2732,6 +2733,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = /Users/zhangkai/Desktop/tuijian/Tuijian;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -2760,6 +2762,7 @@
 					"$(inherited)",
 					/Users/zhangkai/Desktop/tuijian/Tuijian/Tuijian,
 					"$(PROJECT_DIR)",
+					/Users/zhangkai/Desktop/tuijian/Tuijian,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tuijian/Tuijian-Prefix.pch";
@@ -2795,6 +2798,7 @@
 					"$(inherited)",
 					/Users/zhangkai/Desktop/tuijian/Tuijian/Tuijian,
 					"$(PROJECT_DIR)",
+					/Users/zhangkai/Desktop/tuijian/Tuijian,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tuijian/Tuijian-Prefix.pch";
