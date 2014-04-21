@@ -30,17 +30,18 @@
         // Initialization code
 //        self.backgroundColor = UIColorFromRGB(0x242424);
         
-        likeTableView = [[UITableView alloc]initWithFrame:CGRectMake(30, 0, 320 - 30, 50)];
+        likeTableView = [[UITableView alloc]initWithFrame:CGRectZero];
         likeTableView.delegate = self;
         likeTableView.dataSource = self;
+        likeTableView.clipsToBounds = YES;
         likeTableView.transform = CGAffineTransformMakeRotation(-M_PI_2);
-        likeTableView.pagingEnabled = YES;
+//        likeTableView.pagingEnabled = YES;
         likeTableView.showsVerticalScrollIndicator = NO;
         likeTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         likeTableView.rowHeight = 50;
         [self addSubview:likeTableView];
         //after transform , should reframe the table
-        likeTableView.frame = CGRectMake(30, 0, 320 - 30, 50);
+        likeTableView.frame = CGRectMake(35, 0, 320 - 45, 50);
         likeTableView.backgroundColor = [UIColor clearColor];
 
         likesArray = [[NSMutableArray alloc]init];
@@ -60,6 +61,7 @@
         bottomLineView.hidden = YES;
         
         UIImageView *likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 20, 20)];
+        likeImageView.backgroundColor = [UIColor whiteColor];
         likeImageView.image = [UIImage imageNamed:@"like.png"];
         [self addSubview:likeImageView];
     }
