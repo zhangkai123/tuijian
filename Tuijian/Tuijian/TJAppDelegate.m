@@ -67,7 +67,15 @@
 }
 -(void)loginToShowTabViewController
 {
+    loginViewController = nil;
     self.window.rootViewController = self.tabBarController;
+}
+-(void)logoutToShowLoginPage
+{
+    if (loginViewController == nil) {
+        loginViewController = [[TJLoginViewController alloc]init];
+    }
+    self.window.rootViewController = loginViewController;
 }
 -(void)updateInfoTabbarBadge
 {

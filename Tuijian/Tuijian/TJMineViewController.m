@@ -14,6 +14,7 @@
 #import "TJMyRecommendCell.h"
 #import "TJMyRecommendViewController.h"
 #import "TJRecentViewerViewController.h"
+#import "TJAppDelegate.h"
 
 @interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate,TJMyPhotoCellDelegate,UIActionSheetDelegate>
 {
@@ -32,10 +33,22 @@
 {
     if (self = [super init]) {
         self.title = @"我的";
+        
+        UIButton *logoutButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 36)];
+        [[logoutButton titleLabel]setFont:[UIFont systemFontOfSize:16]];
+        [logoutButton setTitle:@"登出" forState:UIControlStateNormal];
+        [logoutButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *logoutButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logoutButton];
+        self.navigationItem.leftBarButtonItem = logoutButtonItem;
     }
     return self;
 }
-
+-(void)logout
+{
+    TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    [appDelegate logoutToShowLoginPage];
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

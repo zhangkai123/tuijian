@@ -19,4 +19,5 @@
 
 -(void)updateInfoTabbarBadge;
 -(void)loginToShowTabViewController;
+-(void)logoutToShowLoginPage;
 @end
