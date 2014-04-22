@@ -29,11 +29,17 @@
     }
     return self;
 }
+-(id)initWithTitle:(NSString *)navTitle
+{
+    if (self = [super init]) {
+        self.title = navTitle;
+    }
+    return self;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"我的推荐";
     self.view.backgroundColor = [UIColor whiteColor];
     userItemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
     [userItemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];

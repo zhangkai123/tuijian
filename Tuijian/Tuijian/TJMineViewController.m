@@ -159,7 +159,7 @@
     if (indexPath.section == 3) {
         if (indexPath.row == 0) {
             self.hidesBottomBarWhenPushed = YES;
-            TJUserRecommendViewController *myRecommendViewController = [[TJUserRecommendViewController alloc]init];
+            TJUserRecommendViewController *myRecommendViewController = [[TJUserRecommendViewController alloc]initWithTitle:@"我的推荐"];
             NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
             myRecommendViewController.theUserId = myUserId;
             [self.navigationController pushViewController:myRecommendViewController animated:YES];

@@ -18,8 +18,9 @@
 @interface TJUserInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *theTableView;
-    
     NSMutableArray *photoUrlArray;
+    
+    BOOL isMan;
 }
 @end
 
@@ -52,6 +53,12 @@
     theTableView.dataSource = self;
     theTableView.delegate = self;
     [self.view addSubview:theTableView];
+    
+    if (([self.userGender intValue] == 1) || [self.userGender isEqualToString:@"男"] || [self.userGender isEqualToString:@"m"]){
+        isMan = YES;
+    }else{
+        isMan = NO;
+    }
     
     photoUrlArray = [[NSMutableArray alloc]initWithCapacity:8];
     [photoUrlArray addObject:self.userImageUrl];
@@ -107,7 +114,7 @@
         }
         [[(TJMyInfoCell *)cell profileImageView] setImageWithURL:[NSURL URLWithString:self.userImageUrl] placeholderImage:nil];
         [[(TJMyInfoCell *)cell nameLabel] setText:self.userName];
-        if (([self.userGender intValue] == 1) || [self.userGender isEqualToString:@"男"] || [self.userGender isEqualToString:@"m"]) {
+        if (isMan) {
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"male.png"]];
         }else{
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"female.png"]];
@@ -135,7 +142,11 @@
         
         if (indexPath.row == 0) {
             [cell.textLabel setTextColor:UIColorFromRGB(0x3399CC)];
-            cell.textLabel.text = @"我的推荐";
+            if (isMan) {
+                 cell.textLabel.text = @"他的推荐";
+            }else{
+                 cell.textLabel.text = @"她的推荐";
+            }
         }
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -146,7 +157,13 @@
     if (indexPath.section == 3) {
         if (indexPath.row == 0) {
             self.hidesBottomBarWhenPushed = YES;
-            TJUserRecommendViewController *userRecommendViewController = [[TJUserRecommendViewController alloc]init];
+            NSString *theTitle = nil;
+            if (isMan) {
+                theTitle = @"他的推荐";
+            }else{
+                theTitle = @"她的推荐";
+            }
+            TJUserRecommendViewController *userRecommendViewController = [[TJUserRecommendViewController alloc]initWithTitle:theTitle];
             userRecommendViewController.theUserId = self.uid;
             [self.navigationController pushViewController:userRecommendViewController animated:YES];
             self.hidesBottomBarWhenPushed = NO;

@@ -13,4 +13,6 @@
     NSString *theUserId;
 }
 @property(nonatomic,strong) NSString *theUserId;
+
+-(id)initWithTitle:(NSString *)navTitle;
 @end
