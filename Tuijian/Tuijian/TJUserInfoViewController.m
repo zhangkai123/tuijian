@@ -14,6 +14,7 @@
 #import "TJMyRecommendCell.h"
 #import "TJUserRecommendViewController.h"
 #import "TJChatCell.h"
+#import "TJChatViewController.h"
 
 
 @interface TJUserInfoViewController ()<UITableViewDataSource,UITableViewDelegate,TJChatCellDelegate>
@@ -184,7 +185,9 @@
 #pragma TJChatCellDelegate
 -(void)sendMessageTo
 {
-    
+    self.hidesBottomBarWhenPushed = YES;
+    TJChatViewController *chatViewController = [[TJChatViewController alloc]init];
+    [self.navigationController pushViewController:chatViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

@@ -257,6 +257,7 @@
 		4BDACC191906018F00FD91C3 /* TJUserPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC181906018F00FD91C3 /* TJUserPhotoCell.m */; };
 		4BDACC1C190606EC00FD91C3 /* TJUserRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC1B190606EC00FD91C3 /* TJUserRecommendViewController.m */; };
 		4BDACC1F1906183700FD91C3 /* TJChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC1E1906183700FD91C3 /* TJChatCell.m */; };
+		4BDACC2319063D7700FD91C3 /* TJChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC2219063D7700FD91C3 /* TJChatViewController.m */; };
 		4BDEDB3C18CFF48A001C2874 /* male.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3B18CFF48A001C2874 /* male.png */; };
 		4BDEDB3E18CFF490001C2874 /* female.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3D18CFF490001C2874 /* female.png */; };
 		4BE1636018B869040009158D /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1635F18B869040009158D /* ImageScrollView.m */; };
@@ -768,6 +769,8 @@
 		4BDACC1B190606EC00FD91C3 /* TJUserRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJUserRecommendViewController.m; sourceTree = "<group>"; };
 		4BDACC1D1906183700FD91C3 /* TJChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJChatCell.h; sourceTree = "<group>"; };
 		4BDACC1E1906183700FD91C3 /* TJChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJChatCell.m; sourceTree = "<group>"; };
+		4BDACC2119063D7700FD91C3 /* TJChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJChatViewController.h; sourceTree = "<group>"; };
+		4BDACC2219063D7700FD91C3 /* TJChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJChatViewController.m; sourceTree = "<group>"; };
 		4BDEDB3B18CFF48A001C2874 /* male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = male.png; sourceTree = "<group>"; };
 		4BDEDB3D18CFF490001C2874 /* female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = female.png; sourceTree = "<group>"; };
 		4BE1635E18B869040009158D /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
@@ -2101,6 +2104,15 @@
 			name = DB;
 			sourceTree = "<group>";
 		};
+		4BDACC2019063BA900FD91C3 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				4BDACC2119063D7700FD91C3 /* TJChatViewController.h */,
+				4BDACC2219063D7700FD91C3 /* TJChatViewController.m */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
 		4BDEDB3A18CFF47F001C2874 /* gender */ = {
 			isa = PBXGroup;
 			children = (
@@ -2213,6 +2225,7 @@
 				4BEFE99818E3CA8200E2B6A3 /* UserItem */,
 				4B1D467F18DA8BD70056262B /* CellView */,
 				4BEFE99F18E3E94D00E2B6A3 /* UserInformation */,
+				4BDACC2019063BA900FD91C3 /* Chat */,
 				4BFA999D18AFA19200D673CB /* TJAppDelegate.h */,
 				4BFA999E18AFA19200D673CB /* TJAppDelegate.m */,
 				4BFB64D018C187F800C304BB /* TJBaseViewController.h */,
@@ -2458,6 +2471,7 @@
 				4B9C40E918D984AF00B9F8E5 /* XMPPRoomMemoryStorage.m in Sources */,
 				4B9C40C918D984AF00B9F8E5 /* XMPPParser.m in Sources */,
 				4B9C411418D984AF00B9F8E5 /* XMPPMessage+XEP_0172.m in Sources */,
+				4BDACC2319063D7700FD91C3 /* TJChatViewController.m in Sources */,
 				4B9C40E818D984AF00B9F8E5 /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
 				4B9C40D918D984AF00B9F8E5 /* XMPPRoster.m in Sources */,
 				4BEFE99B18E3DA0800E2B6A3 /* TJTouchableImageView.m in Sources */,

@@ -125,8 +125,12 @@
     userItemViewController.theItem = item;
     userItemViewController.textHeight = textHeight;
     
-    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:userItemViewController];
-    [self presentViewController:navigationController animated:YES completion:nil];
+    self.hidesBottomBarWhenPushed = YES;
+    [UIView beginAnimations:@"animation" context:nil];
+    [UIView setAnimationDuration:0.7];
+    [self.navigationController pushViewController: userItemViewController animated:NO];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
+    [UIView commitAnimations];
 }
 
 - (void)didReceiveMemoryWarning

@@ -23,7 +23,11 @@
 }
 -(void)goBack
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [UIView beginAnimations:@"animation" context:nil];
+    [UIView setAnimationDuration:0.7];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
+    [UIView commitAnimations];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
