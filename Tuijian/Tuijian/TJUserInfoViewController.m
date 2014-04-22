@@ -156,7 +156,8 @@
 {
     if (indexPath.section == 3) {
         if (indexPath.row == 0) {
-            self.hidesBottomBarWhenPushed = YES;
+            UIViewController *rootViewController = [self getTheNavigationRootViewController];
+            rootViewController.hidesBottomBarWhenPushed = YES;
             NSString *theTitle = nil;
             if (isMan) {
                 theTitle = @"他的推荐";
@@ -166,7 +167,6 @@
             TJUserRecommendViewController *userRecommendViewController = [[TJUserRecommendViewController alloc]initWithTitle:theTitle];
             userRecommendViewController.theUserId = self.uid;
             [self.navigationController pushViewController:userRecommendViewController animated:YES];
-            self.hidesBottomBarWhenPushed = NO;
         }
     }
 }
