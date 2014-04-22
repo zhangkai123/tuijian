@@ -10,4 +10,6 @@
 
 @interface TJChatViewController : UIViewController
 
+
+-(id)initWithTitle:(NSString *)navTitle;
 @end

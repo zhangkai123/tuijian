@@ -280,6 +280,7 @@
 		4BDACC521906639000FD91C3 /* icon02.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDACC3F1906639000FD91C3 /* icon02.png */; };
 		4BDACC531906639000FD91C3 /* messages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BDACC401906639000FD91C3 /* messages.plist */; };
 		4BDACC55190664A600FD91C3 /* icon01.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDACC54190664A600FD91C3 /* icon01.png */; };
+		4BDACC5819066E1E00FD91C3 /* TJChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC5719066E1E00FD91C3 /* TJChatView.m */; };
 		4BDEDB3C18CFF48A001C2874 /* male.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3B18CFF48A001C2874 /* male.png */; };
 		4BDEDB3E18CFF490001C2874 /* female.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3D18CFF490001C2874 /* female.png */; };
 		4BE1636018B869040009158D /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1635F18B869040009158D /* ImageScrollView.m */; };
@@ -818,6 +819,8 @@
 		4BDACC3F1906639000FD91C3 /* icon02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon02.png; sourceTree = "<group>"; };
 		4BDACC401906639000FD91C3 /* messages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = messages.plist; sourceTree = "<group>"; };
 		4BDACC54190664A600FD91C3 /* icon01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon01.png; sourceTree = "<group>"; };
+		4BDACC5619066E1E00FD91C3 /* TJChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJChatView.h; sourceTree = "<group>"; };
+		4BDACC5719066E1E00FD91C3 /* TJChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJChatView.m; sourceTree = "<group>"; };
 		4BDEDB3B18CFF48A001C2874 /* male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = male.png; sourceTree = "<group>"; };
 		4BDEDB3D18CFF490001C2874 /* female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = female.png; sourceTree = "<group>"; };
 		4BE1635E18B869040009158D /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
@@ -2156,6 +2159,8 @@
 			children = (
 				4BDACC2119063D7700FD91C3 /* TJChatViewController.h */,
 				4BDACC2219063D7700FD91C3 /* TJChatViewController.m */,
+				4BDACC5619066E1E00FD91C3 /* TJChatView.h */,
+				4BDACC5719066E1E00FD91C3 /* TJChatView.m */,
 				4BDACC24190661A500FD91C3 /* MessageCell.h */,
 				4BDACC25190661A500FD91C3 /* MessageCell.m */,
 				4BDACC26190661A500FD91C3 /* Message.h */,
@@ -2708,6 +2713,7 @@
 				4BFA999B18AFA19200D673CB /* main.m in Sources */,
 				4B9C414B18D98F0E00B9F8E5 /* TJXMPPServerMananger.m in Sources */,
 				4B9C40DC18D984AF00B9F8E5 /* XMPPIQ+JabberRPCResonse.m in Sources */,
+				4BDACC5819066E1E00FD91C3 /* TJChatView.m in Sources */,
 				4B9C40EE18D984AF00B9F8E5 /* XMPPRoom.m in Sources */,
 				4B9C40DA18D984AF00B9F8E5 /* XMPPSystemInputActivityMonitor.m in Sources */,
 				4B9C411118D984AF00B9F8E5 /* XMPPMessageArchivingCoreDataStorage.m in Sources */,

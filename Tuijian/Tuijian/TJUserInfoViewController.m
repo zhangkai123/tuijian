@@ -186,7 +186,7 @@
 -(void)sendMessageTo
 {
     self.hidesBottomBarWhenPushed = YES;
-    TJChatViewController *chatViewController = [[TJChatViewController alloc]init];
+    TJChatViewController *chatViewController = [[TJChatViewController alloc]initWithTitle:self.userName];
     [self.navigationController pushViewController:chatViewController animated:YES];
 }
 

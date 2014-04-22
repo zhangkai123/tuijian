@@ -1,14 +1,14 @@
 //
-//  TJCommentView.m
+//  TJChatView.m
 //  Tuijian
 //
-//  Created by zhang kai on 4/3/14.
+//  Created by zhang kai on 4/22/14.
 //  Copyright (c) 2014 zhang kai. All rights reserved.
 //
 
-#import "TJCommentView.h"
+#import "TJChatView.h"
 
-@implementation TJCommentView
+@implementation TJChatView
 @synthesize delegate;
 
 -(void)dealloc
@@ -31,16 +31,16 @@
 												   object:nil];
         
         self.backgroundColor = [UIColor clearColor];
-        UIButton *coverButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 320, self.frame.size.height - 40)];
-        [coverButton addTarget:self action:@selector(exitInputMode) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:coverButton];
+//        UIButton *coverButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 320, self.frame.size.height - 40)];
+//        [coverButton addTarget:self action:@selector(exitInputMode) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:coverButton];
         
-        containerView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 40, 320, 40)];
+        containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+        containerView.backgroundColor = UIColorFromRGB(0xDDDDDD);
         
         textView = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(6, 3, 240, 40)];
         textView.isScrollable = NO;
         textView.contentInset = UIEdgeInsetsMake(0, 5, 0, 5);
-        
         textView.minNumberOfLines = 1;
         textView.maxNumberOfLines = 6;
         // you can also set the maximum height in points with maxHeight
@@ -50,57 +50,25 @@
         textView.delegate = self;
         textView.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(5, 0, 5, 0);
         textView.backgroundColor = [UIColor whiteColor];
-        
+        textView.layer.cornerRadius = 3;
+        textView.layer.masksToBounds = YES;
+
         [self addSubview:containerView];
-        
-        UIImage *rawEntryBackground = [UIImage imageNamed:@"MessageEntryInputField.png"];
-        UIImage *entryBackground = [rawEntryBackground stretchableImageWithLeftCapWidth:13 topCapHeight:22];
-        UIImageView *entryImageView = [[UIImageView alloc] initWithImage:entryBackground];
-        entryImageView.frame = CGRectMake(5, 0, 248, 40);
-        entryImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        
-        UIImage *rawBackground = [UIImage imageNamed:@"MessageEntryBackground.png"];
-        UIImage *background = [rawBackground stretchableImageWithLeftCapWidth:13 topCapHeight:22];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:background];
-        imageView.frame = CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height);
-        imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        
         textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
-        // view hierachy
-        [containerView addSubview:imageView];
         [containerView addSubview:textView];
-        [containerView addSubview:entryImageView];
         
-        UIImage *sendBtnBackground = [[UIImage imageNamed:@"MessageEntrySendButton.png"] stretchableImageWithLeftCapWidth:13 topCapHeight:0];
-        UIImage *selectedSendBtnBackground = [[UIImage imageNamed:@"MessageEntrySendButton.png"] stretchableImageWithLeftCapWidth:13 topCapHeight:0];
-        
-        UIButton *doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-
-        doneBtn.frame = CGRectMake(containerView.frame.size.width - 69, 8, 63, 27);
-        doneBtn.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
-        [doneBtn setTitle:@"发送" forState:UIControlStateNormal];
-        
-        [doneBtn setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.4] forState:UIControlStateNormal];
-        doneBtn.titleLabel.shadowOffset = CGSizeMake (0.0, -1.0);
-        doneBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15.0f];
-        
-        [doneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [doneBtn addTarget:self action:@selector(sendComment) forControlEvents:UIControlEventTouchUpInside];
-        [doneBtn setBackgroundImage:sendBtnBackground forState:UIControlStateNormal];
-        [doneBtn setBackgroundImage:selectedSendBtnBackground forState:UIControlStateSelected];
-        [containerView addSubview:doneBtn];
+        UIButton *sendButton = [[UIButton alloc]initWithFrame:CGRectMake(containerView.frame.size.width - 69, 8, 63, 27)];
+        [sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
+        [sendButton setTitle:@"发送" forState:UIControlStateNormal];
+        sendButton.layer.cornerRadius = 5;
+        sendButton.layer.masksToBounds = YES;
+        sendButton.backgroundColor = UIColorFromRGB(0x3399CC);
+        sendButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
+        [containerView addSubview:sendButton];
         containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     }
     return self;
-}
--(void)showCommentPlaceHolder
-{
-    textView.placeholder = @"发表评论";
-}
--(void)showReplyCommentPlaceHolder:(NSString *)userName
-{
-    textView.placeholder = [NSString stringWithFormat:@"回复%@",userName];
 }
 -(void)exitInputMode
 {
@@ -114,14 +82,14 @@
         [textView resignFirstResponder];
     }
 }
--(void)sendComment
+-(void)sendMessage
 {
     NSString * textWithoutWhiteSpace = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if ([textWithoutWhiteSpace isEqualToString:@""]) {
         return;
     }
     NSString *resultStr = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	[self.delegate sendComment:resultStr];
+	[self.delegate sendMessage:resultStr];
     textView.text = nil;
 }
 

@@ -11,12 +11,15 @@
 #import "MessageFrame.h"
 #import "Message.h"
 #import "MessageCell.h"
+#import "TJChatView.h"
 
 
 @interface TJChatViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *theTableView;
     NSMutableArray  *_allMessagesFrame;
+    
+    TJChatView *chatView;
 }
 @end
 
@@ -30,15 +33,21 @@
     }
     return self;
 }
-
+-(id)initWithTitle:(NSString *)navTitle
+{
+    if (self = [super init]) {
+        self.title = navTitle;
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"消息" style:UIBarButtonItemStylePlain target:self action:@selector(goBackToInfoPage)];
+    }
+    return self;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = UIColorFromRGB(0xF0F0F0);
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"消息" style:UIBarButtonItemStylePlain target:self action:@selector(goBackToInfoPage)];
     
-    theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
+    theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height - 40) style:UITableViewStylePlain];
     [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     theTableView.allowsSelection = NO;
     theTableView.showsHorizontalScrollIndicator = NO;
@@ -47,6 +56,10 @@
     theTableView.delegate = self;
     theTableView.backgroundColor = UIColorFromRGB(0xF0F0F0);
     [self.view addSubview:theTableView];
+    
+    chatView = [[TJChatView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height - 40, 320, 40)];
+//    chatView.delegate = self;
+    [self.view addSubview:chatView];
 
     NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"messages" ofType:@"plist"]];
     
@@ -67,9 +80,9 @@
         [_allMessagesFrame addObject:messageFrame];
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
 }
 -(void)goBackToInfoPage
@@ -78,24 +91,24 @@
     TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     [appDelegate changeToInfoTab];
 }
-#pragma mark - 键盘处理
-#pragma mark 键盘即将显示
-- (void)keyBoardWillShow:(NSNotification *)note{
-    
-    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat ty = - rect.size.height;
-    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
-    }];
-    
-}
-#pragma mark 键盘即将退出
-- (void)keyBoardWillHide:(NSNotification *)note{
-    
-    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-        self.view.transform = CGAffineTransformIdentity;
-    }];
-}
+//#pragma mark - 键盘处理
+//#pragma mark 键盘即将显示
+//- (void)keyBoardWillShow:(NSNotification *)note{
+//    
+//    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//    CGFloat ty = - rect.size.height;
+//    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+//        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+//    }];
+//    
+//}
+//#pragma mark 键盘即将退出
+//- (void)keyBoardWillHide:(NSNotification *)note{
+//    
+//    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+//        self.view.transform = CGAffineTransformIdentity;
+//    }];
+//}
 
 #pragma mark - tableView数据源方法
 
