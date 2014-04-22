@@ -8,9 +8,16 @@
 
 #import "TJChatViewController.h"
 #import "TJAppDelegate.h"
+#import "MessageFrame.h"
+#import "Message.h"
+#import "MessageCell.h"
 
-@interface TJChatViewController ()
 
+@interface TJChatViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView *theTableView;
+    NSMutableArray  *_allMessagesFrame;
+}
 @end
 
 @implementation TJChatViewController
@@ -30,6 +37,40 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = UIColorFromRGB(0xF0F0F0);
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"消息" style:UIBarButtonItemStylePlain target:self action:@selector(goBackToInfoPage)];
+    
+    theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
+    [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    theTableView.allowsSelection = NO;
+    theTableView.showsHorizontalScrollIndicator = NO;
+    theTableView.showsVerticalScrollIndicator = NO;
+    theTableView.dataSource = self;
+    theTableView.delegate = self;
+    theTableView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+    [self.view addSubview:theTableView];
+
+    NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"messages" ofType:@"plist"]];
+    
+    _allMessagesFrame = [NSMutableArray array];
+    NSString *previousTime = nil;
+    for (NSDictionary *dict in array) {
+        
+        MessageFrame *messageFrame = [[MessageFrame alloc] init];
+        Message *message = [[Message alloc] init];
+        message.dict = dict;
+        
+        messageFrame.showTime = ![previousTime isEqualToString:message.time];
+        
+        messageFrame.message = message;
+        
+        previousTime = message.time;
+        
+        [_allMessagesFrame addObject:messageFrame];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+
 }
 -(void)goBackToInfoPage
 {
@@ -37,6 +78,52 @@
     TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     [appDelegate changeToInfoTab];
 }
+#pragma mark - 键盘处理
+#pragma mark 键盘即将显示
+- (void)keyBoardWillShow:(NSNotification *)note{
+    
+    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat ty = - rect.size.height;
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+    }];
+    
+}
+#pragma mark 键盘即将退出
+- (void)keyBoardWillHide:(NSNotification *)note{
+    
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+        self.view.transform = CGAffineTransformIdentity;
+    }];
+}
+
+#pragma mark - tableView数据源方法
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _allMessagesFrame.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    // 设置数据
+    cell.messageFrame = _allMessagesFrame[indexPath.row];
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return [_allMessagesFrame[indexPath.row] cellHeight];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
