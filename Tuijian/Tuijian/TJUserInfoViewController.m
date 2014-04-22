@@ -13,9 +13,10 @@
 #import "TJValueCell.h"
 #import "TJMyRecommendCell.h"
 #import "TJUserRecommendViewController.h"
+#import "TJChatCell.h"
 
 
-@interface TJUserInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface TJUserInfoViewController ()<UITableViewDataSource,UITableViewDelegate,TJChatCellDelegate>
 {
     UITableView *theTableView;
     NSMutableArray *photoUrlArray;
@@ -52,7 +53,7 @@
     theTableView.showsVerticalScrollIndicator = NO;
     theTableView.dataSource = self;
     theTableView.delegate = self;
-    theTableView.backgroundColor = [UIColor lightGrayColor];
+    theTableView.backgroundColor = UIColorFromRGB(0xF0F0F0);
     [self.view addSubview:theTableView];
     
     if (([self.userGender intValue] == 1) || [self.userGender isEqualToString:@"男"] || [self.userGender isEqualToString:@"m"]){
@@ -71,7 +72,7 @@
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 5;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -82,7 +83,9 @@
         rowNum = 1;
     }else if(section == 2){
         rowNum = 1;
-    }else{
+    }else if(section == 3){
+        rowNum = 1;
+    }else if(section == 4){
         rowNum = 1;
     }
     return rowNum;
@@ -100,8 +103,10 @@
         }
     }else if(indexPath.section == 2){
         rowHeight = 40;
-    }else{
+    }else if(indexPath.section == 3){
         rowHeight = 50;
+    }else if(indexPath.section == 4){
+        rowHeight = 100;
     }
     return rowHeight;
 }
@@ -134,7 +139,7 @@
         if (!cell) {
             cell = [[TJValueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
         }
-    }else{
+    }else if (indexPath.section == 3){
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellFour"];
         if (!cell) {
             cell = [[TJMyRecommendCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
@@ -149,6 +154,12 @@
                  cell.textLabel.text = @"她的推荐";
             }
         }
+    }else if (indexPath.section == 4){
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cellFive"];
+        if (!cell) {
+            cell = [[TJChatCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFive"];
+        }
+        [(TJChatCell *)cell setDelegate:self];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -169,6 +180,11 @@
             [self.navigationController pushViewController:userRecommendViewController animated:YES];
         }
     }
+}
+#pragma TJChatCellDelegate
+-(void)sendMessageTo
+{
+    
 }
 
 - (void)didReceiveMemoryWarning

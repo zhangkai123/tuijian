@@ -256,6 +256,7 @@
 		4BD48DF818E0144F00D83667 /* TJMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD48DF718E0144F00D83667 /* TJMessageCell.m */; };
 		4BDACC191906018F00FD91C3 /* TJUserPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC181906018F00FD91C3 /* TJUserPhotoCell.m */; };
 		4BDACC1C190606EC00FD91C3 /* TJUserRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC1B190606EC00FD91C3 /* TJUserRecommendViewController.m */; };
+		4BDACC1F1906183700FD91C3 /* TJChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC1E1906183700FD91C3 /* TJChatCell.m */; };
 		4BDEDB3C18CFF48A001C2874 /* male.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3B18CFF48A001C2874 /* male.png */; };
 		4BDEDB3E18CFF490001C2874 /* female.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3D18CFF490001C2874 /* female.png */; };
 		4BE1636018B869040009158D /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1635F18B869040009158D /* ImageScrollView.m */; };
@@ -765,6 +766,8 @@
 		4BDACC181906018F00FD91C3 /* TJUserPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJUserPhotoCell.m; sourceTree = "<group>"; };
 		4BDACC1A190606EC00FD91C3 /* TJUserRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJUserRecommendViewController.h; sourceTree = "<group>"; };
 		4BDACC1B190606EC00FD91C3 /* TJUserRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJUserRecommendViewController.m; sourceTree = "<group>"; };
+		4BDACC1D1906183700FD91C3 /* TJChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJChatCell.h; sourceTree = "<group>"; };
+		4BDACC1E1906183700FD91C3 /* TJChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJChatCell.m; sourceTree = "<group>"; };
 		4BDEDB3B18CFF48A001C2874 /* male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = male.png; sourceTree = "<group>"; };
 		4BDEDB3D18CFF490001C2874 /* female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = female.png; sourceTree = "<group>"; };
 		4BE1635E18B869040009158D /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
@@ -925,6 +928,8 @@
 				4B57DA1A1900EB34006F0355 /* TJValueCell.m */,
 				4B57DA231901007A006F0355 /* TJMyRecommendCell.h */,
 				4B57DA241901007A006F0355 /* TJMyRecommendCell.m */,
+				4BDACC1D1906183700FD91C3 /* TJChatCell.h */,
+				4BDACC1E1906183700FD91C3 /* TJChatCell.m */,
 			);
 			name = CellView;
 			sourceTree = "<group>";
@@ -2496,6 +2501,7 @@
 				4BEFE99718E3CA6B00E2B6A3 /* TJUserItemViewController.m in Sources */,
 				4B9C412418D984AF00B9F8E5 /* NSXMLElement+XEP_0335.m in Sources */,
 				4B9C40D818D984AF00B9F8E5 /* XMPPUserMemoryStorageObject.m in Sources */,
+				4BDACC1F1906183700FD91C3 /* TJChatCell.m in Sources */,
 				4B569CDE18CEBB5D000DF219 /* TJTencentAPIClient.m in Sources */,
 				4B9C412718D984AF00B9F8E5 /* GCDMulticastDelegate.m in Sources */,
 				4BEFE99E18E3E94600E2B6A3 /* TJUserInfoViewController.m in Sources */,

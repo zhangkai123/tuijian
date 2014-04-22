@@ -68,6 +68,7 @@
     theTableView.showsVerticalScrollIndicator = NO;
     theTableView.dataSource = self;
     theTableView.delegate = self;
+    theTableView.backgroundColor = UIColorFromRGB(0xF0F0F0);
     [self.view addSubview:theTableView];
     
     photoUrlArray = [[NSMutableArray alloc]initWithCapacity:8];
