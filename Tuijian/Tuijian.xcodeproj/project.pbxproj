@@ -90,7 +90,6 @@
 		4B57DA251901007A006F0355 /* TJMyRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA241901007A006F0355 /* TJMyRecommendCell.m */; };
 		4B57DA2919011B76006F0355 /* addPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B57DA2819011B76006F0355 /* addPhoto.png */; };
 		4B57DA3019011FDF006F0355 /* TJTouchablePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA2F19011FDF006F0355 /* TJTouchablePhotoView.m */; };
-		4B57DA3319012741006F0355 /* TJMyRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA3219012741006F0355 /* TJMyRecommendViewController.m */; };
 		4B57DA3919012992006F0355 /* TJRecentViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA3819012992006F0355 /* TJRecentViewerViewController.m */; };
 		4B6A862A18F3E15F00E27AAE /* message.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A862918F3E15F00E27AAE /* message.sqlite */; };
 		4B6BD7B918FBA7DA0059C46E /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */; };
@@ -255,6 +254,8 @@
 		4BD3A07118F532CB00C6B6AE /* TTTAttributedLabel+link.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD3A07018F532CB00C6B6AE /* TTTAttributedLabel+link.m */; };
 		4BD48DEE18DFDF8D00D83667 /* TJDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD48DED18DFDF8D00D83667 /* TJDBManager.m */; };
 		4BD48DF818E0144F00D83667 /* TJMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD48DF718E0144F00D83667 /* TJMessageCell.m */; };
+		4BDACC191906018F00FD91C3 /* TJUserPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC181906018F00FD91C3 /* TJUserPhotoCell.m */; };
+		4BDACC1C190606EC00FD91C3 /* TJUserRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC1B190606EC00FD91C3 /* TJUserRecommendViewController.m */; };
 		4BDEDB3C18CFF48A001C2874 /* male.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3B18CFF48A001C2874 /* male.png */; };
 		4BDEDB3E18CFF490001C2874 /* female.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDEDB3D18CFF490001C2874 /* female.png */; };
 		4BE1636018B869040009158D /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1635F18B869040009158D /* ImageScrollView.m */; };
@@ -442,8 +443,6 @@
 		4B57DA2819011B76006F0355 /* addPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addPhoto.png; sourceTree = "<group>"; };
 		4B57DA2E19011FDF006F0355 /* TJTouchablePhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJTouchablePhotoView.h; sourceTree = "<group>"; };
 		4B57DA2F19011FDF006F0355 /* TJTouchablePhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJTouchablePhotoView.m; sourceTree = "<group>"; };
-		4B57DA3119012741006F0355 /* TJMyRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyRecommendViewController.h; sourceTree = "<group>"; };
-		4B57DA3219012741006F0355 /* TJMyRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMyRecommendViewController.m; sourceTree = "<group>"; };
 		4B57DA3719012992006F0355 /* TJRecentViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJRecentViewerViewController.h; sourceTree = "<group>"; };
 		4B57DA3819012992006F0355 /* TJRecentViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJRecentViewerViewController.m; sourceTree = "<group>"; };
 		4B6A862918F3E15F00E27AAE /* message.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sqlite; sourceTree = "<group>"; };
@@ -762,6 +761,10 @@
 		4BD48DED18DFDF8D00D83667 /* TJDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJDBManager.m; sourceTree = "<group>"; };
 		4BD48DF618E0144F00D83667 /* TJMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMessageCell.h; sourceTree = "<group>"; };
 		4BD48DF718E0144F00D83667 /* TJMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMessageCell.m; sourceTree = "<group>"; };
+		4BDACC171906018F00FD91C3 /* TJUserPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJUserPhotoCell.h; sourceTree = "<group>"; };
+		4BDACC181906018F00FD91C3 /* TJUserPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJUserPhotoCell.m; sourceTree = "<group>"; };
+		4BDACC1A190606EC00FD91C3 /* TJUserRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJUserRecommendViewController.h; sourceTree = "<group>"; };
+		4BDACC1B190606EC00FD91C3 /* TJUserRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJUserRecommendViewController.m; sourceTree = "<group>"; };
 		4BDEDB3B18CFF48A001C2874 /* male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = male.png; sourceTree = "<group>"; };
 		4BDEDB3D18CFF490001C2874 /* female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = female.png; sourceTree = "<group>"; };
 		4BE1635E18B869040009158D /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
@@ -916,6 +919,8 @@
 				4BEFE99318E3C1F100E2B6A3 /* TJMyInfoCell.m */,
 				4B57DA161900D828006F0355 /* TJMyPhotoCell.h */,
 				4B57DA171900D828006F0355 /* TJMyPhotoCell.m */,
+				4BDACC171906018F00FD91C3 /* TJUserPhotoCell.h */,
+				4BDACC181906018F00FD91C3 /* TJUserPhotoCell.m */,
 				4B57DA191900EB34006F0355 /* TJValueCell.h */,
 				4B57DA1A1900EB34006F0355 /* TJValueCell.m */,
 				4B57DA231901007A006F0355 /* TJMyRecommendCell.h */,
@@ -1203,8 +1208,6 @@
 			children = (
 				4BFB64CD18C07AEC00C304BB /* TJMineViewController.h */,
 				4BFB64CE18C07AEC00C304BB /* TJMineViewController.m */,
-				4B57DA3119012741006F0355 /* TJMyRecommendViewController.h */,
-				4B57DA3219012741006F0355 /* TJMyRecommendViewController.m */,
 				4B57DA3719012992006F0355 /* TJRecentViewerViewController.h */,
 				4B57DA3819012992006F0355 /* TJRecentViewerViewController.m */,
 			);
@@ -2136,6 +2139,8 @@
 			children = (
 				4BEFE99C18E3E94600E2B6A3 /* TJUserInfoViewController.h */,
 				4BEFE99D18E3E94600E2B6A3 /* TJUserInfoViewController.m */,
+				4BDACC1A190606EC00FD91C3 /* TJUserRecommendViewController.h */,
+				4BDACC1B190606EC00FD91C3 /* TJUserRecommendViewController.m */,
 			);
 			name = UserInformation;
 			sourceTree = "<group>";
@@ -2441,6 +2446,7 @@
 				4BE911BB18DBD81600F4C3B1 /* TJPostViewController.m in Sources */,
 				4B9C40F818D984AF00B9F8E5 /* XMPPvCardTempEmail.m in Sources */,
 				4BE5A37618EE52AB006A8A1E /* TJRootShowController.m in Sources */,
+				4BDACC1C190606EC00FD91C3 /* TJUserRecommendViewController.m in Sources */,
 				4B9C40B918D984AF00B9F8E5 /* XMPPAnonymousAuthentication.m in Sources */,
 				4B1D468218DAF1240056262B /* TJMessage.m in Sources */,
 				4B9C413318D984AF00B9F8E5 /* DispatchQueueLogFormatter.m in Sources */,
@@ -2543,7 +2549,6 @@
 				4B47A39B18D179B800087BE4 /* UIImageView+WebCache.m in Sources */,
 				4B569CD518CEBAA7000DF219 /* TJDataController.m in Sources */,
 				4B9C410418D984AF00B9F8E5 /* XMPPDateTimeProfiles.m in Sources */,
-				4B57DA3319012741006F0355 /* TJMyRecommendViewController.m in Sources */,
 				4B9C411718D984AF00B9F8E5 /* XMPPMessageDeliveryReceipts.m in Sources */,
 				4B9C40C618D984AF00B9F8E5 /* XMPPJID.m in Sources */,
 				4BEE7F3618E53A8900232E6C /* MTStatusBarOverlay.m in Sources */,
@@ -2611,6 +2616,7 @@
 				4B9C40E518D984AF00B9F8E5 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				4BE911BF18DBE12400F4C3B1 /* TJMemoryCache.m in Sources */,
 				4B9C40DB18D984AF00B9F8E5 /* XMPPIQ+JabberRPC.m in Sources */,
+				4BDACC191906018F00FD91C3 /* TJUserPhotoCell.m in Sources */,
 				4B47A36B18D1477400087BE4 /* TJItem.m in Sources */,
 				4B47A38F18D179B800087BE4 /* NSData+ImageContentType.m in Sources */,
 				4B569CCC18CEBA0D000DF219 /* AFJSONRequestOperation.m in Sources */,

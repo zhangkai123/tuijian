@@ -1,24 +1,25 @@
 //
-//  TJMyRecommendViewController.m
+//  TJUserRecommendViewController.m
 //  Tuijian
 //
-//  Created by zhang kai on 4/18/14.
+//  Created by zhang kai on 4/22/14.
 //  Copyright (c) 2014 zhang kai. All rights reserved.
 //
 
-#import "TJMyRecommendViewController.h"
+#import "TJUserRecommendViewController.h"
 #import "TJMyItemCell.h"
 #import "TJUserItemViewController.h"
 
-@interface TJMyRecommendViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface TJUserRecommendViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
-    UITableView *myItemTableView;
-    NSMutableArray *myItemsArray;
+    UITableView *userItemTableView;
+    NSMutableArray *userItemsArray;
     NSMutableArray *textHeightArray;
 }
 @end
 
-@implementation TJMyRecommendViewController
+@implementation TJUserRecommendViewController
+@synthesize theUserId;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,22 +29,21 @@
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"我的推荐";
     self.view.backgroundColor = [UIColor whiteColor];
-    myItemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
-    [myItemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    myItemTableView.showsHorizontalScrollIndicator = NO;
-    myItemTableView.showsVerticalScrollIndicator = NO;
-    myItemTableView.dataSource = self;
-    myItemTableView.delegate = self;
-    [self.view addSubview:myItemTableView];
-
-    myItemsArray = [[NSMutableArray alloc]init];
+    userItemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
+    [userItemTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    userItemTableView.showsHorizontalScrollIndicator = NO;
+    userItemTableView.showsVerticalScrollIndicator = NO;
+    userItemTableView.dataSource = self;
+    userItemTableView.delegate = self;
+    [self.view addSubview:userItemTableView];
+    
+    userItemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
     
     [self startActivityIndicator];
@@ -51,11 +51,10 @@
 }
 -(void)refreshTableViewData
 {
-    __weak UITableView *weaktheTalbleView = myItemTableView;
-    __block NSMutableArray *weakItemsArray = myItemsArray;
+    __weak UITableView *weaktheTalbleView = userItemTableView;
+    __block NSMutableArray *weakItemsArray = userItemsArray;
     __block NSMutableArray *weakTextHeightArray = textHeightArray;
-    NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
-    [[TJDataController sharedDataController]getUserItems:myUserId success:^(NSArray *iteArray){
+    [[TJDataController sharedDataController]getUserItems:self.theUserId success:^(NSArray *iteArray){
         if ([iteArray count] == 0) {
             [activityIndicator stopAnimating];
             return;
@@ -88,7 +87,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [myItemsArray count];
+    return [userItemsArray count];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -102,18 +101,18 @@
     if (!cell) {
         cell = [[TJMyItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    TJItem *theItem = [myItemsArray objectAtIndex:indexPath.row];
+    TJItem *theItem = [userItemsArray objectAtIndex:indexPath.row];
     [(TJMyItemCell *)cell setItemId:theItem.itemId];
     [[(TJMyItemCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
     [[(TJMyItemCell *)cell titleLabel] setText:theItem.title];
     [(TJMyItemCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
-
+    
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TJItem *item = [myItemsArray objectAtIndex:indexPath.row];
+    TJItem *item = [userItemsArray objectAtIndex:indexPath.row];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
     
     TJUserItemViewController *userItemViewController = [[TJUserItemViewController alloc]init];
@@ -123,21 +122,11 @@
     UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:userItemViewController];
     [self presentViewController:navigationController animated:YES completion:nil];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

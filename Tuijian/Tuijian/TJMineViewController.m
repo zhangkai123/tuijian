@@ -12,7 +12,7 @@
 #import "TJMyPhotoCell.h"
 #import "TJValueCell.h"
 #import "TJMyRecommendCell.h"
-#import "TJMyRecommendViewController.h"
+#import "TJUserRecommendViewController.h"
 #import "TJRecentViewerViewController.h"
 #import "TJAppDelegate.h"
 
@@ -159,7 +159,9 @@
     if (indexPath.section == 3) {
         if (indexPath.row == 0) {
             self.hidesBottomBarWhenPushed = YES;
-            TJMyRecommendViewController *myRecommendViewController = [[TJMyRecommendViewController alloc]init];
+            TJUserRecommendViewController *myRecommendViewController = [[TJUserRecommendViewController alloc]init];
+            NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
+            myRecommendViewController.theUserId = myUserId;
             [self.navigationController pushViewController:myRecommendViewController animated:YES];
             self.hidesBottomBarWhenPushed = NO;
         }else if (indexPath.row == 1){
