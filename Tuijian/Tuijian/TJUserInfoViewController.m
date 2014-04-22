@@ -52,6 +52,7 @@
     theTableView.showsVerticalScrollIndicator = NO;
     theTableView.dataSource = self;
     theTableView.delegate = self;
+    theTableView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:theTableView];
     
     if (([self.userGender intValue] == 1) || [self.userGender isEqualToString:@"男"] || [self.userGender isEqualToString:@"m"]){
@@ -156,8 +157,7 @@
 {
     if (indexPath.section == 3) {
         if (indexPath.row == 0) {
-            UIViewController *rootViewController = [self getTheNavigationRootViewController];
-            rootViewController.hidesBottomBarWhenPushed = YES;
+            self.hidesBottomBarWhenPushed = YES;
             NSString *theTitle = nil;
             if (isMan) {
                 theTitle = @"他的推荐";
