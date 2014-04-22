@@ -65,6 +65,10 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
+-(void)changeToInfoTab
+{
+    self.tabBarController.selectedIndex = 1;
+}
 -(void)loginToShowTabViewController
 {
     loginViewController = nil;

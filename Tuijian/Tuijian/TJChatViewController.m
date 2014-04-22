@@ -7,6 +7,7 @@
 //
 
 #import "TJChatViewController.h"
+#import "TJAppDelegate.h"
 
 @interface TJChatViewController ()
 
@@ -28,20 +29,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = UIColorFromRGB(0xF0F0F0);
-    
-    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 36)];
-    [[backButton titleLabel]setFont:[UIFont systemFontOfSize:18]];
-    [backButton setTitle:@"消息" forState:UIControlStateNormal];
-    [backButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(goBackToInfoPage) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = backButtonItem;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"消息" style:UIBarButtonItemStylePlain target:self action:@selector(goBackToInfoPage)];
 }
 -(void)goBackToInfoPage
 {
-//    [self.navigationController popToRootViewControllerAnimated:NO];
-//    [self dismissViewControllerAnimated:NO completion:nil];
-//    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    [appDelegate changeToInfoTab];
 }
 - (void)didReceiveMemoryWarning
 {

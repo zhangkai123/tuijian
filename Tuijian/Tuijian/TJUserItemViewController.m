@@ -23,10 +23,11 @@
 }
 -(void)goBack
 {
-    [UIView beginAnimations:@"animation" context:nil];
-    [UIView setAnimationDuration:0.7];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
-    [UIView commitAnimations];
+    [UIView animateWithDuration:0.75
+                     animations:^{
+                         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+                         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
+                     }];
     [self.navigationController popViewControllerAnimated:NO];
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

@@ -21,4 +21,5 @@
 -(void)loginToShowTabViewController;
 -(void)logoutToShowLoginPage;
 
+-(void)changeToInfoTab;
 @end
