@@ -93,7 +93,7 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
     [xmppStream sendElement:presence];
 }
 
-#pragma mark send message
+#pragma mark send item message
 -(void)sendItemMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userProfileImage:(NSString *)pImage userGender:(NSString *)userG
 {
     NSXMLElement *message = [self constructBasicMessage:userId basicMessage:basicM];
@@ -106,7 +106,16 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 
     [xmppStream sendElement:message];
 }
-
+#pragma mark send chat message
+-(void)sendChatMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userGender:(NSString *)userG
+{
+    NSXMLElement *message = [self constructBasicMessage:userId basicMessage:basicM];
+    NSXMLElement *userGender = [NSXMLElement elementWithName:@"userGender"];
+    [userGender setStringValue:userG];
+    [message addChild:userGender];
+    
+    [xmppStream sendElement:message];
+}
 -(NSXMLElement *)constructBasicMessage:(NSString *)userId basicMessage:(TJMessage *)basicM
 {
     NSString *jabberID = [NSString stringWithFormat:@"%@@115.28.6.27",userId];

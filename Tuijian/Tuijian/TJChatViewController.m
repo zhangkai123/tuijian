@@ -138,6 +138,8 @@
     // 3、滚动至当前行
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_allMessagesFrame.count - 1 inSection:0];
     [theTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    
+    
 }
 
 -(void)goBackToInfoPage

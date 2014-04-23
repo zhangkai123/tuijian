@@ -20,5 +20,8 @@
 +(id)sharedXMPPServerMananger;
 -(void)userConnectToXMPPServer:(NSString *)userId password:(NSString *)pword success:(void (^)(BOOL hasOnline))success;
 - (void)disconnect;
+//item message
 -(void)sendItemMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userProfileImage:(NSString *)pImage userGender:(NSString *)userG;
+//chat message
+-(void)sendChatMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userGender:(NSString *)userG;
 @end

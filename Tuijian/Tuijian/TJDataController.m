@@ -273,6 +273,23 @@
 {
     [[TJXMPPServerMananger sharedXMPPServerMananger]disconnect];
 }
+-(void)sendChatMessageTo:(NSString *)toUserId chatMessage:(NSString *)chatMessage
+{
+    TJUser *myUserInfo = [self getMyUserInfo];
+    NSString *myUserId = [self getMyUserId];
+    if ([myUserId isEqualToString:toUserId]) {
+        return;
+    }
+    TJMessage *basicMessage = [[TJMessage alloc]init];
+    basicMessage.messageId = myUserId;
+    basicMessage.messageType = @"chatMessage";
+    basicMessage.imageUrl = myUserInfo.profile_image_url;
+    basicMessage.messageTitle = myUserInfo.name;
+//    basicMessage.messageName = myUserInfo.name;
+    basicMessage.message = chatMessage;
+    basicMessage.messageContentType = @"chat";
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendChatMessage:toUserId basicMessage:basicMessage userGender:myUserInfo.gender];
+}
 -(void)sendLike:(TJItem *)item
 {
     TJUser *myUserInfo = [self getMyUserInfo];

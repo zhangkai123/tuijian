@@ -50,6 +50,7 @@
 #pragma XMPP Server
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success;
 -(void)disConnectToXMPPServer;
+-(void)sendChatMessageTo:(NSString *)toUserId chatMessage:(NSString *)chatMessage;
 -(void)sendLike:(TJItem *)item;
 -(void)sendComment:(TJItem *)item comment:(NSString *)commentInfo;
 -(void)replyComment:(TJUser *)user theItem:(TJItem *)item comment:(NSString *)commentInfo;
