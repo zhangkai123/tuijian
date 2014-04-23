@@ -24,6 +24,7 @@
 @end
 
 @implementation TJChatViewController
+@synthesize chatToUserId;
 
 -(void)dealloc
 {
@@ -139,7 +140,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_allMessagesFrame.count - 1 inSection:0];
     [theTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     
-    
+    [[TJDataController sharedDataController]sendChatMessageTo:self.chatToUserId chatMessage:theMessage];
 }
 
 -(void)goBackToInfoPage

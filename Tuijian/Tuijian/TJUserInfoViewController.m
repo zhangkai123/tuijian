@@ -187,6 +187,7 @@
 {
     self.hidesBottomBarWhenPushed = YES;
     TJChatViewController *chatViewController = [[TJChatViewController alloc]initWithTitle:self.userName];
+    chatViewController.chatToUserId = self.uid;
     [self.navigationController pushViewController:chatViewController animated:YES];
 }
 

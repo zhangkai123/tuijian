@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface TJChatViewController : UIViewController
-
+{
+    NSString *chatToUserId;
+}
+@property(nonatomic,strong) NSString *chatToUserId;
 
 -(id)initWithTitle:(NSString *)navTitle;
 @end
