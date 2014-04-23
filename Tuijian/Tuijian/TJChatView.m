@@ -20,15 +20,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(keyboardWillShow:)
-													 name:UIKeyboardWillShowNotification
-												   object:nil];
-		
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(keyboardWillHide:)
-													 name:UIKeyboardWillHideNotification
-												   object:nil];
         
         self.backgroundColor = [UIColor clearColor];
 //        UIButton *coverButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 320, self.frame.size.height - 40)];
@@ -91,53 +82,6 @@
     NSString *resultStr = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	[self.delegate sendMessage:resultStr];
     textView.text = nil;
-}
-
-//Code from Brett Schumann
--(void) keyboardWillShow:(NSNotification *)note{
-    // get keyboard size and loctaion
-	CGRect keyboardBounds;
-    [[note.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
-    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-    
-    // Need to translate the bounds to account for rotation.
-    keyboardBounds = [self convertRect:keyboardBounds toView:nil];
-    
-    CGRect selfFrame = self.frame;
-    selfFrame.origin.y = self.superview.frame.size.height - (keyboardBounds.size.height + selfFrame.size.height);
-
-	// animations settings
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:[duration doubleValue]];
-    [UIView setAnimationCurve:[curve intValue]];
-	
-	// set views with new info
-    self.frame = selfFrame;
-	
-	// commit animations
-	[UIView commitAnimations];
-}
-
--(void) keyboardWillHide:(NSNotification *)note{
-    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-	
-    CGRect selfFrame = self.frame;
-    selfFrame.origin.y = self.superview.frame.size.height - selfFrame.size.height;
-	
-	// animations settings
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:[duration doubleValue]];
-    [UIView setAnimationCurve:[curve intValue]];
-    
-	// set views with new info
-    self.frame = selfFrame;
-	
-	// commit animations
-	[UIView commitAnimations];
 }
 
 - (void)growingTextView:(HPGrowingTextView *)growingTextView willChangeHeight:(float)height

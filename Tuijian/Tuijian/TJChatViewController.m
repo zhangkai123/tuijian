@@ -25,6 +25,10 @@
 
 @implementation TJChatViewController
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -80,15 +84,60 @@
         [_allMessagesFrame addObject:messageFrame];
     }
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
+//#pragma mark - 文本框代理方法
+//#pragma mark 点击textField键盘的回车按钮
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+//    
+//    // 1、增加数据源
+//    NSString *content = textField.text;
+//    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+//    NSDate *date = [NSDate date];
+//    fmt.dateFormat = @"MM-dd"; // @"yyyy-MM-dd HH:mm:ss"
+//    NSString *time = [fmt stringFromDate:date];
+//    [self addMessageWithContent:content time:time];
+//    // 2、刷新表格
+//    [theTableView reloadData];
+//    // 3、滚动至当前行
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_allMessagesFrame.count - 1 inSection:0];
+//    [theTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+//    // 4、清空文本框内容
+//    _messageField.text = nil;
+//    return YES;
+//}
+
+#pragma mark 给数据源增加内容
+- (void)addMessageWithContent:(NSString *)content time:(NSString *)time{
+    
+    MessageFrame *mf = [[MessageFrame alloc] init];
+    Message *msg = [[Message alloc] init];
+    msg.content = content;
+    msg.time = time;
+    msg.icon = @"icon01.png";
+    msg.type = MessageTypeMe;
+    mf.message = msg;
+    
+    [_allMessagesFrame addObject:mf];
+}
+
 #pragma TJChatViewDelegate
 -(void)sendMessage:(NSString *)theMessage
 {
-    
+    // 1、增加数据源
+    NSString *content = theMessage;
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    NSDate *date = [NSDate date];
+    fmt.dateFormat = @"MM-dd"; // @"yyyy-MM-dd HH:mm:ss"
+    NSString *time = [fmt stringFromDate:date];
+    [self addMessageWithContent:content time:time];
+    // 2、刷新表格
+    [theTableView reloadData];
+    // 3、滚动至当前行
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_allMessagesFrame.count - 1 inSection:0];
+    [theTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 -(void)goBackToInfoPage
@@ -97,24 +146,24 @@
     TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     [appDelegate changeToInfoTab];
 }
-//#pragma mark - 键盘处理
-//#pragma mark 键盘即将显示
-//- (void)keyBoardWillShow:(NSNotification *)note{
-//    
-//    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-//    CGFloat ty = - rect.size.height;
-//    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-//        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
-//    }];
-//    
-//}
-//#pragma mark 键盘即将退出
-//- (void)keyBoardWillHide:(NSNotification *)note{
-//    
-//    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-//        self.view.transform = CGAffineTransformIdentity;
-//    }];
-//}
+#pragma mark - 键盘处理
+#pragma mark 键盘即将显示
+- (void)keyBoardWillShow:(NSNotification *)note{
+    
+    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat ty = - rect.size.height;
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+    }];
+    
+}
+#pragma mark 键盘即将退出
+- (void)keyBoardWillHide:(NSNotification *)note{
+    
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+        self.view.transform = CGAffineTransformIdentity;
+    }];
+}
 
 #pragma mark - tableView数据源方法
 
@@ -148,16 +197,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
