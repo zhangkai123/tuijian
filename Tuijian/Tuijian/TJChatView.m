@@ -104,9 +104,9 @@
     // Need to translate the bounds to account for rotation.
     keyboardBounds = [self convertRect:keyboardBounds toView:nil];
     
-	// get a rect for the textView frame
-	CGRect containerFrame = containerView.frame;
-    containerFrame.origin.y = self.bounds.size.height - (keyboardBounds.size.height + containerFrame.size.height);
+    CGRect selfFrame = self.frame;
+    selfFrame.origin.y = self.superview.frame.size.height - (keyboardBounds.size.height + selfFrame.size.height);
+
 	// animations settings
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationBeginsFromCurrentState:YES];
@@ -114,8 +114,7 @@
     [UIView setAnimationCurve:[curve intValue]];
 	
 	// set views with new info
-	containerView.frame = containerFrame;
-    
+    self.frame = selfFrame;
 	
 	// commit animations
 	[UIView commitAnimations];
@@ -125,9 +124,8 @@
     NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
 	
-	// get a rect for the textView frame
-	CGRect containerFrame = containerView.frame;
-    containerFrame.origin.y = self.bounds.size.height - containerFrame.size.height;
+    CGRect selfFrame = self.frame;
+    selfFrame.origin.y = self.superview.frame.size.height - selfFrame.size.height;
 	
 	// animations settings
 	[UIView beginAnimations:nil context:NULL];
@@ -136,7 +134,7 @@
     [UIView setAnimationCurve:[curve intValue]];
     
 	// set views with new info
-	containerView.frame = containerFrame;
+    self.frame = selfFrame;
 	
 	// commit animations
 	[UIView commitAnimations];

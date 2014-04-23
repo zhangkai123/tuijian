@@ -14,7 +14,7 @@
 #import "TJChatView.h"
 
 
-@interface TJChatViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface TJChatViewController ()<UITableViewDataSource,UITableViewDelegate,TJChatViewDelegate>
 {
     UITableView *theTableView;
     NSMutableArray  *_allMessagesFrame;
@@ -58,7 +58,7 @@
     [self.view addSubview:theTableView];
     
     chatView = [[TJChatView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height - 40, 320, 40)];
-//    chatView.delegate = self;
+    chatView.delegate = self;
     [self.view addSubview:chatView];
 
     NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"messages" ofType:@"plist"]];
@@ -85,6 +85,12 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
 }
+#pragma TJChatViewDelegate
+-(void)sendMessage:(NSString *)theMessage
+{
+    
+}
+
 -(void)goBackToInfoPage
 {
     [self.navigationController popToRootViewControllerAnimated:NO];

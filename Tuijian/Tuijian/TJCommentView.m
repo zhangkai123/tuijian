@@ -147,7 +147,6 @@
 	
 	// set views with new info
 	containerView.frame = containerFrame;
-    
 	
 	// commit animations
 	[UIView commitAnimations];
