@@ -44,7 +44,7 @@
         messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 40, 230, 30)];
         [messageLabel setFont:[UIFont systemFontOfSize:15]];
         messageLabel.numberOfLines = 1;
-        [messageLabel setTextColor:[UIColor blackColor]];
+        [messageLabel setTextColor:[UIColor grayColor]];
         [self addSubview:messageLabel];
     }
     return self;

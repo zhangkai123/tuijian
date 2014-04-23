@@ -109,6 +109,8 @@
         }else if([message.messageContentType isEqualToString:@"replyComment"]){
             messageContent = [NSString stringWithFormat:@"%@回复你的评论:%@",message.messageName,message.message];
         }
+    }else if ([message.messageType isEqualToString:@"chatMessage"]){
+        messageContent = message.message;
     }
     [cell.messageLabel setText:messageContent];
     if (message.messageNum > 0) {
