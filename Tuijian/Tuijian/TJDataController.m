@@ -429,6 +429,36 @@
     }
     return chatMessageArray;
 }
+-(void)insertLocalChatMessage:(NSString *)mId myChatMessage:(TJChatMessage *)myChatMessage
+{
+//    [[TJDBManager sharedDBManager]insertMessageList:mId type:@"chatMessage" url:mes.imageUrl title:mes.messageTitle name:mes.messageName message:mes.message messageContentType:mes.messageContentType];
+    NSString *messageType = nil;
+    if (myChatMessage.type == MessageTypeMe) {
+        messageType = @"me";
+    }
+    TJUser *myUser = [self getMyUserInfo];
+    NSXMLElement *localMessage = [self constructLocalChatMessage:messageType localMessage:myChatMessage.content userImageUrl:myUser.profile_image_url];
+    [[TJDBManager sharedDBManager]insertMessage:(id)localMessage messageType:@"chatMessage" messageId:mId messageContentType:messageType];
+//    [[NSNotificationCenter defaultCenter]postNotificationName:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
+}
+-(NSXMLElement *)constructLocalChatMessage:(NSString *)mContentType localMessage:(NSString *)lMessage userImageUrl:(NSString *)uImageUrl
+{
+    NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
+    
+    NSXMLElement *messageContentType = [NSXMLElement elementWithName:@"messageContentType"];
+    [messageContentType setStringValue:mContentType];
+    [message addChild:messageContentType];
+    
+    NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+    [body setStringValue:lMessage];
+    [message addChild:body];
+
+    NSXMLElement *imageUrl = [NSXMLElement elementWithName:@"imageUrl"];
+    [imageUrl setStringValue:uImageUrl];
+    [message addChild:imageUrl];
+
+    return message;
+}
 -(int)getTotalInfoMessageNum
 {
     return [[TJDBManager sharedDBManager]getInfoMessageNum];

@@ -15,6 +15,7 @@
 #import "TJComment.h"
 #import "TJItem.h"
 #import "TJItemMessage.h"
+#import "TJChatMessage.h"
 
 #import <TencentOpenAPI/TencentOAuth.h>
 
@@ -60,6 +61,7 @@
 -(void)deleteFromMessageList:(NSString *)mId messageType:(NSString *)mType;
 -(NSArray *)featchItemMessage:(NSString *)mId;
 -(NSArray *)featchChatMessage:(NSString *)mId;
+-(void)insertLocalChatMessage:(NSString *)mId myChatMessage:(TJChatMessage *)myChatMessage;
 -(int)getTotalInfoMessageNum;
 -(void)clearInfoMessageNum:(int)messageId messageType:(NSString *)mType;
 @end

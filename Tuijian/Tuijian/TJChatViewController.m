@@ -16,6 +16,7 @@
 
 @interface TJChatViewController ()<UITableViewDataSource,UITableViewDelegate,TJChatViewDelegate>
 {
+    NSString *myOwnImageUrl;
     UITableView *theTableView;
     NSMutableArray  *_allMessagesFrame;
     
@@ -65,6 +66,9 @@
     chatView = [[TJChatView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height - 40, 320, 40)];
     chatView.delegate = self;
     [self.view addSubview:chatView];
+    
+    TJUser *myUser = [[TJDataController sharedDataController]getMyUserInfo];
+    myOwnImageUrl = myUser.profile_image_url;
 
 //    NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"messages" ofType:@"plist"]];
     NSArray *array = [[TJDataController sharedDataController]featchChatMessage:self.chatToUserId];
@@ -129,11 +133,11 @@
     TJChatMessage *msg = [[TJChatMessage alloc] init];
     msg.content = content;
     msg.time = time;
-    msg.icon = @"icon01.png";
+    msg.icon = myOwnImageUrl;
     msg.type = MessageTypeMe;
     mf.message = msg;
-    
     [_allMessagesFrame addObject:mf];
+    [[TJDataController sharedDataController]insertLocalChatMessage:self.chatToUserId myChatMessage:msg];
 }
 
 #pragma TJChatViewDelegate
@@ -169,6 +173,7 @@
     CGFloat ty = - rect.size.height;
     [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
         self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+        theTableView.frame = CGRectMake(0, -ty, 320, self.view.frame.size.height + ty - 40);
     }];
     
 }
@@ -177,6 +182,7 @@
     
     [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
         self.view.transform = CGAffineTransformIdentity;
+        theTableView.frame = CGRectMake(0, 0, 320, self.view.frame.size.height - 40);
     }];
 }
 
