@@ -9,7 +9,7 @@
 #import "TJChatViewController.h"
 #import "TJAppDelegate.h"
 #import "MessageFrame.h"
-#import "Message.h"
+#import "TJChatMessage.h"
 #import "MessageCell.h"
 #import "TJChatView.h"
 
@@ -66,27 +66,39 @@
     chatView.delegate = self;
     [self.view addSubview:chatView];
 
-    NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"messages" ofType:@"plist"]];
+//    NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"messages" ofType:@"plist"]];
+    NSArray *array = [[TJDataController sharedDataController]featchChatMessage:self.chatToUserId];
     
     _allMessagesFrame = [NSMutableArray array];
     NSString *previousTime = nil;
-    for (NSDictionary *dict in array) {
+//    for (NSDictionary *dict in array) {
+//        
+//        MessageFrame *messageFrame = [[MessageFrame alloc] init];
+//        TJChatMessage *message = [[TJChatMessage alloc] init];
+//        message.dict = dict;
+//        
+//        messageFrame.showTime = ![previousTime isEqualToString:message.time];
+//        
+//        messageFrame.message = message;
+//        
+//        previousTime = message.time;
+//        
+//        [_allMessagesFrame addObject:messageFrame];
+//    }
+    for (TJChatMessage *chatMessage in array) {
         
         MessageFrame *messageFrame = [[MessageFrame alloc] init];
-        Message *message = [[Message alloc] init];
-        message.dict = dict;
         
-        messageFrame.showTime = ![previousTime isEqualToString:message.time];
+//        messageFrame.showTime = ![previousTime isEqualToString:message.time];
         
-        messageFrame.message = message;
+        messageFrame.message = chatMessage;
         
-        previousTime = message.time;
+//        previousTime = message.time;
         
         [_allMessagesFrame addObject:messageFrame];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 //#pragma mark - 文本框代理方法
@@ -114,7 +126,7 @@
 - (void)addMessageWithContent:(NSString *)content time:(NSString *)time{
     
     MessageFrame *mf = [[MessageFrame alloc] init];
-    Message *msg = [[Message alloc] init];
+    TJChatMessage *msg = [[TJChatMessage alloc] init];
     msg.content = content;
     msg.time = time;
     msg.icon = @"icon01.png";

@@ -15,7 +15,7 @@ typedef enum {
     
 } MessageType;
 
-@interface Message : NSObject
+@interface TJChatMessage : NSObject
 
 @property (nonatomic, copy) NSString *icon;
 @property (nonatomic, copy) NSString *time;

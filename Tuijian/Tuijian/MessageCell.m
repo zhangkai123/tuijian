@@ -7,7 +7,7 @@
 //
 
 #import "MessageCell.h"
-#import "Message.h"
+#import "TJChatMessage.h"
 #import "MessageFrame.h"
 
 @interface MessageCell ()
@@ -54,7 +54,7 @@
 - (void)setMessageFrame:(MessageFrame *)messageFrame{
     
     _messageFrame = messageFrame;
-    Message *message = _messageFrame.message;
+    TJChatMessage *message = _messageFrame.message;
     
     // 1、设置时间
     [_timeBtn setTitle:message.time forState:UIControlStateNormal];
@@ -62,7 +62,8 @@
     _timeBtn.frame = _messageFrame.timeF;
     
     // 2、设置头像
-    _iconView.image = [UIImage imageNamed:message.icon];
+//    _iconView.image = [UIImage imageNamed:message.icon];
+    [_iconView setImageWithURL:[NSURL URLWithString:message.icon] placeholderImage:nil];
     _iconView.frame = _messageFrame.iconF;
     
     // 3、设置内容

@@ -9,11 +9,11 @@
 
 
 #import "MessageFrame.h"
-#import "Message.h"
+#import "TJChatMessage.h"
 
 @implementation MessageFrame
 
-- (void)setMessage:(Message *)message{
+- (void)setMessage:(TJChatMessage *)message{
     
     _message = message;
     

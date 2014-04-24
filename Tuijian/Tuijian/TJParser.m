@@ -187,7 +187,7 @@
     message(theMessage);
 }
 
-#pragma specific message type
+#pragma item message type
 +(void)parseItemMessage:(id)data parsedMessage:(void (^)(TJItemMessage *message))message
 {
     TJItemMessage *theMessage = [[TJItemMessage alloc]init];
@@ -209,6 +209,30 @@
     theMessage.userGender = userGender;
     theMessage.message = messageContent;
     theMessage.messageContentType = messageContentType;
+    message(theMessage);
+}
+#pragma chat message type
++(void)parseChatMessage:(id)data parsedMessage:(void (^)(TJChatMessage *message))message
+{
+    TJChatMessage *theMessage = [[TJChatMessage alloc]init];
+    NSString *uid = [[data attributeForName:@"from"] stringValue];
+    NSArray *strArray = [uid componentsSeparatedByString:@"@"];
+    if ([strArray count] > 0) {
+        uid = [strArray objectAtIndex:0];
+    }
+    
+    NSString *messageContent = [[data elementForName:@"body"] stringValue];
+    NSString *messageContentType = [[data elementForName:@"messageContentType"] stringValue];
+    NSString *userProfileImage = [[data elementForName:@"imageUrl"] stringValue];
+    
+    theMessage.content = messageContent;
+    if ([messageContentType isEqualToString:@"other"]) {
+        
+        theMessage.type = MessageTypeOther;
+        theMessage.icon = userProfileImage;
+    }else{
+        theMessage.type = MessageTypeMe;
+    }
     message(theMessage);
 }
 

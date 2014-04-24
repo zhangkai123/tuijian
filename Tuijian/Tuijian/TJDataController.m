@@ -288,7 +288,7 @@
     basicMessage.messageTitle = myUserInfo.name;
 //    basicMessage.messageName = myUserInfo.name;
     basicMessage.message = chatMessage;
-    basicMessage.messageContentType = @"chat";
+    basicMessage.messageContentType = @"other";
     [[TJXMPPServerMananger sharedXMPPServerMananger]sendChatMessage:toUserId basicMessage:basicMessage userGender:myUserInfo.gender];
 }
 -(void)sendLike:(TJItem *)item
@@ -401,7 +401,7 @@
 }
 -(NSArray *)featchItemMessage:(NSString *)mId
 {
-    NSArray *messageArray = [[TJDBManager sharedDBManager]getMessages:@"itemMessage" messageId:mId];
+    NSArray *messageArray = [[TJDBManager sharedDBManager]getMessagesByOrder:@"itemMessage" messageId:mId idOrder:@"DESC"];
     NSMutableArray *itemsMessageArray = [[NSMutableArray alloc]init];
     __block NSMutableArray *weakItemsMessageArray = itemsMessageArray;
     for (int i = 0; i < [messageArray count]; i++) {
@@ -413,6 +413,21 @@
         }];
     }
     return itemsMessageArray;
+}
+-(NSArray *)featchChatMessage:(NSString *)mId
+{
+    NSArray *messageArray = [[TJDBManager sharedDBManager]getMessagesByOrder:@"chatMessage" messageId:mId idOrder:@"ASC"];
+    NSMutableArray *chatMessageArray = [[NSMutableArray alloc]init];
+    __block NSMutableArray *weakChatMessageArray = chatMessageArray;
+    for (int i = 0; i < [messageArray count]; i++) {
+        NSString *chatMessage = [messageArray objectAtIndex:i];
+        NSError *error = nil;
+        NSXMLElement *itemMessageXML = [[NSXMLElement alloc] initWithXMLString:chatMessage error:&error];
+        [TJParser parseChatMessage:itemMessageXML parsedMessage:^(TJChatMessage *chatMessage){
+            [weakChatMessageArray addObject:chatMessage];
+        }];
+    }
+    return chatMessageArray;
 }
 -(int)getTotalInfoMessageNum
 {

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 Liu Feng. All rights reserved.
 //
 
-#import "Message.h"
+#import "TJChatMessage.h"
 
-@implementation Message
+@implementation TJChatMessage
 
 - (void)setDict:(NSDictionary *)dict{
     

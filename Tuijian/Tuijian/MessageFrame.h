@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Message;
+@class TJChatMessage;
 
 @interface MessageFrame : NSObject
 
@@ -33,7 +33,7 @@
 
 @property (nonatomic, assign, readonly) CGFloat cellHeight; //cell高度
 
-@property (nonatomic, strong) Message *message;
+@property (nonatomic, strong) TJChatMessage *message;
 
 @property (nonatomic, assign) BOOL showTime;
 

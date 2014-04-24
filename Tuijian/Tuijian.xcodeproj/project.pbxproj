@@ -259,7 +259,7 @@
 		4BDACC1F1906183700FD91C3 /* TJChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC1E1906183700FD91C3 /* TJChatCell.m */; };
 		4BDACC2319063D7700FD91C3 /* TJChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC2219063D7700FD91C3 /* TJChatViewController.m */; };
 		4BDACC2A190661A500FD91C3 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC25190661A500FD91C3 /* MessageCell.m */; };
-		4BDACC2B190661A500FD91C3 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC27190661A500FD91C3 /* Message.m */; };
+		4BDACC2B190661A500FD91C3 /* TJChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC27190661A500FD91C3 /* TJChatMessage.m */; };
 		4BDACC2C190661A500FD91C3 /* MessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDACC29190661A500FD91C3 /* MessageFrame.m */; };
 		4BDACC411906639000FD91C3 /* chat_bottom_keyboard_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDACC2E1906639000FD91C3 /* chat_bottom_keyboard_nor.png */; };
 		4BDACC421906639000FD91C3 /* chat_bottom_keyboard_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BDACC2F1906639000FD91C3 /* chat_bottom_keyboard_press.png */; };
@@ -796,8 +796,8 @@
 		4BDACC2219063D7700FD91C3 /* TJChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJChatViewController.m; sourceTree = "<group>"; };
 		4BDACC24190661A500FD91C3 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		4BDACC25190661A500FD91C3 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
-		4BDACC26190661A500FD91C3 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		4BDACC27190661A500FD91C3 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		4BDACC26190661A500FD91C3 /* TJChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJChatMessage.h; sourceTree = "<group>"; };
+		4BDACC27190661A500FD91C3 /* TJChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJChatMessage.m; sourceTree = "<group>"; };
 		4BDACC28190661A500FD91C3 /* MessageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageFrame.h; sourceTree = "<group>"; };
 		4BDACC29190661A500FD91C3 /* MessageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageFrame.m; sourceTree = "<group>"; };
 		4BDACC2E1906639000FD91C3 /* chat_bottom_keyboard_nor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_bottom_keyboard_nor.png; sourceTree = "<group>"; };
@@ -2163,8 +2163,8 @@
 				4BDACC5719066E1E00FD91C3 /* TJChatView.m */,
 				4BDACC24190661A500FD91C3 /* MessageCell.h */,
 				4BDACC25190661A500FD91C3 /* MessageCell.m */,
-				4BDACC26190661A500FD91C3 /* Message.h */,
-				4BDACC27190661A500FD91C3 /* Message.m */,
+				4BDACC26190661A500FD91C3 /* TJChatMessage.h */,
+				4BDACC27190661A500FD91C3 /* TJChatMessage.m */,
 				4BDACC28190661A500FD91C3 /* MessageFrame.h */,
 				4BDACC29190661A500FD91C3 /* MessageFrame.m */,
 			);
@@ -2745,7 +2745,7 @@
 				4B47A36B18D1477400087BE4 /* TJItem.m in Sources */,
 				4B47A38F18D179B800087BE4 /* NSData+ImageContentType.m in Sources */,
 				4B569CCC18CEBA0D000DF219 /* AFJSONRequestOperation.m in Sources */,
-				4BDACC2B190661A500FD91C3 /* Message.m in Sources */,
+				4BDACC2B190661A500FD91C3 /* TJChatMessage.m in Sources */,
 				4B9C40CB18D984AF00B9F8E5 /* XMPPStream.m in Sources */,
 				4B9C40CE18D984AF00B9F8E5 /* XMPPGoogleSharedStatus.m in Sources */,
 				4B47A36818D1462500087BE4 /* TJItemCell.m in Sources */,

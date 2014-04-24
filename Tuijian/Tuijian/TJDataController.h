@@ -59,6 +59,7 @@
 -(NSArray *)featchMessageList;
 -(void)deleteFromMessageList:(NSString *)mId messageType:(NSString *)mType;
 -(NSArray *)featchItemMessage:(NSString *)mId;
+-(NSArray *)featchChatMessage:(NSString *)mId;
 -(int)getTotalInfoMessageNum;
 -(void)clearInfoMessageNum:(int)messageId messageType:(NSString *)mType;
 @end

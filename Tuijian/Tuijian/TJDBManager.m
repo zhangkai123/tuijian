@@ -204,14 +204,14 @@
 	}
 	sqlite3_close(database);
 }
--(NSArray *)getMessages:(NSString *)messageType messageId:(NSString *)mId
+-(NSArray *)getMessagesByOrder:(NSString *)messageType messageId:(NSString *)mId idOrder:(NSString *)idOrder
 {
 	sqlite3 *database;
 	sqlite3_stmt *compiledStatement;
     
     NSMutableArray *messageArray = [[NSMutableArray alloc]init];
 	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-		NSString *getCommand = [NSString stringWithFormat:@"select * from mes where messageId='%@' and messageType='%@' order by id DESC",mId,messageType];
+		NSString *getCommand = [NSString stringWithFormat:@"select * from mes where messageId='%@' and messageType='%@' order by id %@",mId,messageType,idOrder];
 		const char *getSqlCommand = [getCommand UTF8String];
 		sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
 		
