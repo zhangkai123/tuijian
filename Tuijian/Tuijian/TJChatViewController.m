@@ -202,7 +202,6 @@
 - (void)keyBoardWillShow:(NSNotification *)note{
     
     coverButton.hidden = NO;
-    [self moveTableToBottomWithAnimation:YES];
     
     CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat ty = - rect.size.height;
@@ -212,7 +211,9 @@
     CGFloat duration = [keyboardAnimationDetail[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     [UIView animateWithDuration:duration delay:0.0 options:(animationCurve << 16) animations:^{
         self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+        theTableView.frame = CGRectMake(0, -ty, 320, self.view.frame.size.height + ty - 40);
     } completion:nil];
+    [self moveTableToBottomWithAnimation:YES];
 }
 
 #pragma mark 键盘即将退出
@@ -225,6 +226,7 @@
     CGFloat duration = [keyboardAnimationDetail[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     [UIView animateWithDuration:duration delay:0.0 options:(animationCurve << 16) animations:^{
         self.view.transform = CGAffineTransformIdentity;
+        theTableView.frame = CGRectMake(0, 0, 320, self.view.frame.size.height - 40);
     } completion:nil];
 }
 
