@@ -20,6 +20,7 @@
     UITableView *theTableView;
     NSMutableArray  *_allMessagesFrame;
     
+    UIButton *coverButton;
     TJChatView *chatView;
 }
 @end
@@ -64,6 +65,11 @@
     theTableView.delegate = self;
     theTableView.backgroundColor = UIColorFromRGB(0xF0F0F0);
     [self.view addSubview:theTableView];
+    
+    coverButton = [[UIButton alloc]initWithFrame:self.view.frame];
+    [coverButton addTarget:self action:@selector(hideKeyboard) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:coverButton];
+    coverButton.hidden = YES;
     
     chatView = [[TJChatView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height - 40, 320, 40)];
     chatView.delegate = self;
@@ -140,12 +146,12 @@
         [_allMessagesFrame addObject:messageFrame];
     }
     [theTableView reloadData];
-    [self moveTableToBottom];
+    [self moveTableToBottomWithAnimation:YES];
 }
--(void)moveTableToBottom
+-(void)moveTableToBottomWithAnimation:(BOOL)animate
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_allMessagesFrame.count - 1 inSection:0];
-    [theTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [theTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:animate];
 }
 #pragma mark 给数据源增加内容
 - (void)addMessageWithContent:(NSString *)content time:(NSString *)time{
@@ -174,36 +180,49 @@
     // 2、刷新表格
     [theTableView reloadData];
     // 3、滚动至当前行
-    [self moveTableToBottom];
+    [self moveTableToBottomWithAnimation:YES];
     
     [[TJDataController sharedDataController]sendChatMessageTo:self.chatToUserId chatMessage:theMessage];
 }
-
 -(void)goBackToInfoPage
 {
     [self.navigationController popToRootViewControllerAnimated:NO];
     TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     [appDelegate changeToInfoTab];
 }
+-(void)hideKeyboard
+{
+    [chatView showKeyboard:NO];
+}
 #pragma mark - 键盘处理
 #pragma mark 键盘即将显示
 - (void)keyBoardWillShow:(NSNotification *)note{
     
+    coverButton.hidden = NO;
+    [self moveTableToBottomWithAnimation:YES];
+    
     CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat ty = - rect.size.height;
-    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+    
+    NSDictionary *keyboardAnimationDetail = [note userInfo];
+    UIViewAnimationCurve animationCurve = [keyboardAnimationDetail[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    CGFloat duration = [keyboardAnimationDetail[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    [UIView animateWithDuration:duration delay:0.0 options:(animationCurve << 16) animations:^{
         self.view.transform = CGAffineTransformMakeTranslation(0, ty);
-        theTableView.frame = CGRectMake(0, -ty, 320, self.view.frame.size.height + ty - 40);
-    }];
-    [self moveTableToBottom];
+    } completion:nil];
 }
+
 #pragma mark 键盘即将退出
 - (void)keyBoardWillHide:(NSNotification *)note{
     
-//    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-//        self.view.transform = CGAffineTransformIdentity;
-//        theTableView.frame = CGRectMake(0, 0, 320, self.view.frame.size.height - 40);
-//    }];
+    coverButton.hidden = YES;
+    
+    NSDictionary *keyboardAnimationDetail = [note userInfo];
+    UIViewAnimationCurve animationCurve = [keyboardAnimationDetail[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    CGFloat duration = [keyboardAnimationDetail[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    [UIView animateWithDuration:duration delay:0.0 options:(animationCurve << 16) animations:^{
+        self.view.transform = CGAffineTransformIdentity;
+    } completion:nil];
 }
 
 #pragma mark - tableView数据源方法

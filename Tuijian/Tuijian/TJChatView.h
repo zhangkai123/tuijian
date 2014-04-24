@@ -11,7 +11,7 @@
 
 @protocol TJChatViewDelegate <NSObject>
 
--(void)exitInputMode;
+//-(void)exitInputMode;
 -(void)sendMessage:(NSString *)theMessage;
 
 @end

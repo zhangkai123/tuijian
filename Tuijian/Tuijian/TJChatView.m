@@ -61,10 +61,10 @@
     }
     return self;
 }
--(void)exitInputMode
-{
-    [self.delegate exitInputMode];
-}
+//-(void)exitInputMode
+//{
+//    [self.delegate exitInputMode];
+//}
 -(void)showKeyboard:(BOOL)showK
 {
     if (showK) {
