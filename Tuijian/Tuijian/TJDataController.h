@@ -60,5 +60,5 @@
 -(void)deleteFromMessageList:(NSString *)mId messageType:(NSString *)mType;
 -(NSArray *)featchItemMessage:(NSString *)mId;
 -(int)getTotalInfoMessageNum;
--(void)clearInfoMessageNum:(int)messageId;
+-(void)clearInfoMessageNum:(int)messageId messageType:(NSString *)mType;
 @end

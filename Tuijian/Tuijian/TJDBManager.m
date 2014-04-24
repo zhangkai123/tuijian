@@ -145,13 +145,13 @@
 	sqlite3_close(database);
 	return totalMessageNum;
 }
--(void)clearInfoMessageNum:(int)messageId
+-(void)clearInfoMessageNum:(int)messageId messageType:(NSString *)mType
 {
     sqlite3 *database;
 	sqlite3_stmt *compiledStatement;
     
 	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-		NSString *updateCommand = [NSString stringWithFormat:@"update mesList set messageNum = 0 where messageId = '%d'",messageId];
+		NSString *updateCommand = [NSString stringWithFormat:@"update mesList set messageNum = 0 where messageId = '%d' and messageType='%@'",messageId,mType];
 		const char *updateSqlCommand = [updateCommand UTF8String];
 		sqlite3_prepare_v2(database, updateSqlCommand, -1, &compiledStatement, NULL);
 		

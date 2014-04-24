@@ -10,6 +10,7 @@
 #import "TJMessage.h"
 #import "TJMessageCell.h"
 #import "TJItemMessageViewController.h"
+#import "TJChatViewController.h"
 #import "UIImage+additions.h"
 #import "TJAppDelegate.h"
 #import "TJCommentViewController.h"
@@ -88,7 +89,6 @@
     NSURL *imageUrl = [NSURL URLWithString:message.imageUrl];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageUrl];
     __block UIImageView *weakImageView = cell.theImageView;
-//    [cell setDelegate:self];
     cell.messageId = message.messageId;
     [cell.theImageView setImageWithURLRequest:urlRequest
                                 placeholderImage:[UIImage imageNamed:@"message_placeholder.png"]
@@ -124,16 +124,29 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TJMessage *message = [infoListArray objectAtIndex:indexPath.row];
-    [[TJDataController sharedDataController]clearInfoMessageNum:[message.messageId intValue]];
-    message.messageNum = 0;
+
+    if ([message.messageType isEqualToString:@"itemMessage"]) {
+        [[TJDataController sharedDataController]clearInfoMessageNum:[message.messageId intValue] messageType:@"itemMessage"];
+        message.messageNum = 0;
+        
+        self.hidesBottomBarWhenPushed = YES;
+        TJItemMessageViewController *itemMessageViewController = [[TJItemMessageViewController alloc]initWithTitle:message.messageTitle];
+        itemMessageViewController.theMessage = message;
+        [self.navigationController pushViewController:itemMessageViewController animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }else if ([message.messageType isEqualToString:@"chatMessage"]){
+        [[TJDataController sharedDataController]clearInfoMessageNum:[message.messageId intValue] messageType:@"chatMessage"];
+        message.messageNum = 0;
+
+        self.hidesBottomBarWhenPushed = YES;
+        TJChatViewController *chatViewController = [[TJChatViewController alloc]initWithTitle:message.messageTitle];
+        chatViewController.chatToUserId = message.messageId;
+        [self.navigationController pushViewController:chatViewController animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }
+    
     TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     [appDelegate updateInfoTabbarBadge];
-    
-    self.hidesBottomBarWhenPushed = YES;
-    TJItemMessageViewController *itemMessageViewController = [[TJItemMessageViewController alloc]initWithTitle:message.messageTitle];
-    itemMessageViewController.theMessage = message;
-    [self.navigationController pushViewController:itemMessageViewController animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return YES if you want the specified item to be editable.
@@ -147,16 +160,16 @@
         [self refreshMessageList];
     }
 }
-#pragma TJMessageCellDelegate
--(void)goToMessageParent:(NSString *)messageId
-{
-    UIViewController *rootViewController = [self getTheNavigationRootViewController];
-    rootViewController.hidesBottomBarWhenPushed = YES;
-    TJCommentViewController *commentViewController = [[TJCommentViewController alloc]init];
-    commentViewController.theItemId = messageId;
-    [self.navigationController pushViewController:commentViewController animated:YES];
-    rootViewController.hidesBottomBarWhenPushed = NO;
-}
+//#pragma TJMessageCellDelegate
+//-(void)goToMessageParent:(NSString *)messageId
+//{
+//    UIViewController *rootViewController = [self getTheNavigationRootViewController];
+//    rootViewController.hidesBottomBarWhenPushed = YES;
+//    TJCommentViewController *commentViewController = [[TJCommentViewController alloc]init];
+//    commentViewController.theItemId = messageId;
+//    [self.navigationController pushViewController:commentViewController animated:YES];
+//    rootViewController.hidesBottomBarWhenPushed = NO;
+//}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

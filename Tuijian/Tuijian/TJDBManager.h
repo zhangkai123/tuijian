@@ -22,5 +22,5 @@
 -(void)insertMessage:(NSString *)theMessage messageType:(NSString *)messageT messageId:(NSString *)mId messageContentType:(NSString *)messageContentType;
 -(NSArray *)getMessages:(NSString *)messageType messageId:(NSString *)mId;
 -(int)getInfoMessageNum;
--(void)clearInfoMessageNum:(int)messageId;
+-(void)clearInfoMessageNum:(int)messageId messageType:(NSString *)mType;
 @end

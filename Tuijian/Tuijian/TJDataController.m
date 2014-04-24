@@ -418,8 +418,8 @@
 {
     return [[TJDBManager sharedDBManager]getInfoMessageNum];
 }
--(void)clearInfoMessageNum:(int)messageId
+-(void)clearInfoMessageNum:(int)messageId messageType:(NSString *)mType
 {
-    [[TJDBManager sharedDBManager] clearInfoMessageNum:messageId];
+    [[TJDBManager sharedDBManager] clearInfoMessageNum:messageId messageType:mType];
 }
 @end
