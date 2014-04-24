@@ -14,7 +14,7 @@
 #import "TJAppDelegate.h"
 #import "TJCommentViewController.h"
 
-@interface TJInfoViewController ()<UITableViewDelegate,UITableViewDataSource,TJMessageCellDelegate>
+@interface TJInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *infoTableView;
     NSMutableArray *infoListArray;
@@ -88,7 +88,7 @@
     NSURL *imageUrl = [NSURL URLWithString:message.imageUrl];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageUrl];
     __block UIImageView *weakImageView = cell.theImageView;
-    [cell setDelegate:self];
+//    [cell setDelegate:self];
     cell.messageId = message.messageId;
     [cell.theImageView setImageWithURLRequest:urlRequest
                                 placeholderImage:[UIImage imageNamed:@"message_placeholder.png"]

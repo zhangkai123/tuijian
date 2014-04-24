@@ -7,16 +7,17 @@
 //
 
 #import "TJMessageCell.h"
-#import "TJSelectableLabel.h"
+//#import "TJSelectableLabel.h"
 
-@interface TJMessageCell()<TJSelectableLabelDelegate>
+@interface TJMessageCell()
 {
-    TJSelectableLabel *titleLabel;
+//    TJSelectableLabel *titleLabel;
+    UILabel *titleLabel;
 }
 @end
 
 @implementation TJMessageCell
-@synthesize messageId ,delegate;
+@synthesize messageId;
 @synthesize theImageView ,notificationView ,messageLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -24,8 +25,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        theImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 10, 60, 60)];
-        theImageView.delegate = self;
+        theImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 60, 60)];
+//        theImageView.delegate = self;
         [self addSubview:theImageView];
         
         notificationView = [[UIView alloc]initWithFrame:CGRectMake(48, 5, 12, 12)];
@@ -34,10 +35,11 @@
         notificationView.backgroundColor = [UIColor redColor];
         [theImageView addSubview:notificationView];
         
-        titleLabel = [[TJSelectableLabel alloc] initWithFrameAndTextColor:CGRectMake(80, 15, 230, 30) andTextColor:UIColorFromRGB(0x3399CC)];
+//        titleLabel = [[TJSelectableLabel alloc] initWithFrameAndTextColor:CGRectMake(80, 15, 230, 30) andTextColor:UIColorFromRGB(0x3399CC)];
+        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 15, 230, 30)];
         [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
         titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.delegate = self;
+//        titleLabel.delegate = self;
         titleLabel.numberOfLines = 0;
         [self addSubview:titleLabel];
         
@@ -57,16 +59,16 @@
                                                        attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16]} context:nil];
     titleLabel.frame = CGRectMake(80, 15, expectedLabelRect.size.width, 30);
 }
-#pragma TJSelectableLabelDelegate
--(void)selectLabel:(int)rowNum
-{
-    [self.delegate goToMessageParent:self.messageId];
-}
-#pragma TJTouchableImageViewDelegate
--(void)selectUserImageView:(int)sectionNum
-{
-    [self.delegate goToMessageParent:self.messageId];
-}
+//#pragma TJSelectableLabelDelegate
+//-(void)selectLabel:(int)rowNum
+//{
+////    [self.delegate goToMessageParent:self.messageId];
+//}
+//#pragma TJTouchableImageViewDelegate
+//-(void)selectUserImageView:(int)sectionNum
+//{
+////    [self.delegate goToMessageParent:self.messageId];
+//}
 - (void)awakeFromNib
 {
     // Initialization code
