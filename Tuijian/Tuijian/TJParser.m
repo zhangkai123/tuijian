@@ -225,11 +225,11 @@
     NSString *messageContentType = [[data elementForName:@"messageContentType"] stringValue];
     NSString *userProfileImage = [[data elementForName:@"imageUrl"] stringValue];
     
+    theMessage.icon = userProfileImage;
     theMessage.content = messageContent;
     if ([messageContentType isEqualToString:@"other"]) {
         
         theMessage.type = MessageTypeOther;
-        theMessage.icon = userProfileImage;
     }else{
         theMessage.type = MessageTypeMe;
     }

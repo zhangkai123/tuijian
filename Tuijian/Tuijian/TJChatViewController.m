@@ -39,11 +39,13 @@
     }
     return self;
 }
--(id)initWithTitle:(NSString *)navTitle
+-(id)initWithTitle:(NSString *)navTitle fromInfoPage:(BOOL)fInfoPage
 {
     if (self = [super init]) {
         self.title = navTitle;
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"消息" style:UIBarButtonItemStylePlain target:self action:@selector(goBackToInfoPage)];
+        if (!fInfoPage) {
+            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"消息" style:UIBarButtonItemStylePlain target:self action:@selector(goBackToInfoPage)];
+        }
     }
     return self;
 }
@@ -70,11 +72,10 @@
     TJUser *myUser = [[TJDataController sharedDataController]getMyUserInfo];
     myOwnImageUrl = myUser.profile_image_url;
 
-//    NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"messages" ofType:@"plist"]];
     NSArray *array = [[TJDataController sharedDataController]featchChatMessage:self.chatToUserId];
     
     _allMessagesFrame = [NSMutableArray array];
-    NSString *previousTime = nil;
+//    NSString *previousTime = nil;
 //    for (NSDictionary *dict in array) {
 //        
 //        MessageFrame *messageFrame = [[MessageFrame alloc] init];
@@ -89,6 +90,7 @@
 //        
 //        [_allMessagesFrame addObject:messageFrame];
 //    }
+    float contentOffset = 0.0;
     for (TJChatMessage *chatMessage in array) {
         
         MessageFrame *messageFrame = [[MessageFrame alloc] init];
@@ -98,10 +100,12 @@
         messageFrame.message = chatMessage;
         
 //        previousTime = message.time;
-        
+        contentOffset += [messageFrame cellHeight];
         [_allMessagesFrame addObject:messageFrame];
     }
+    [theTableView setContentOffset:CGPointMake(0, contentOffset)];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(receiveChatMessage) name:TJ_CHAT_VIEWCONTROLLER_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -125,7 +129,24 @@
 //    _messageField.text = nil;
 //    return YES;
 //}
-
+-(void)receiveChatMessage
+{
+    NSArray *array = [[TJDataController sharedDataController]featchChatMessage:self.chatToUserId];
+    [_allMessagesFrame removeAllObjects];
+    for (TJChatMessage *chatMessage in array) {
+        
+        MessageFrame *messageFrame = [[MessageFrame alloc] init];
+        messageFrame.message = chatMessage;
+        [_allMessagesFrame addObject:messageFrame];
+    }
+    [theTableView reloadData];
+    [self moveTableToBottom];
+}
+-(void)moveTableToBottom
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_allMessagesFrame.count - 1 inSection:0];
+    [theTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
 #pragma mark 给数据源增加内容
 - (void)addMessageWithContent:(NSString *)content time:(NSString *)time{
     
@@ -153,8 +174,7 @@
     // 2、刷新表格
     [theTableView reloadData];
     // 3、滚动至当前行
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_allMessagesFrame.count - 1 inSection:0];
-    [theTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [self moveTableToBottom];
     
     [[TJDataController sharedDataController]sendChatMessageTo:self.chatToUserId chatMessage:theMessage];
 }
@@ -175,15 +195,15 @@
         self.view.transform = CGAffineTransformMakeTranslation(0, ty);
         theTableView.frame = CGRectMake(0, -ty, 320, self.view.frame.size.height + ty - 40);
     }];
-    
+    [self moveTableToBottom];
 }
 #pragma mark 键盘即将退出
 - (void)keyBoardWillHide:(NSNotification *)note{
     
-    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-        self.view.transform = CGAffineTransformIdentity;
-        theTableView.frame = CGRectMake(0, 0, 320, self.view.frame.size.height - 40);
-    }];
+//    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+//        self.view.transform = CGAffineTransformIdentity;
+//        theTableView.frame = CGRectMake(0, 0, 320, self.view.frame.size.height - 40);
+//    }];
 }
 
 #pragma mark - tableView数据源方法

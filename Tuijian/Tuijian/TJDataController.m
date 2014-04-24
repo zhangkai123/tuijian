@@ -374,6 +374,9 @@
             [[TJDBManager sharedDBManager]insertMessageList:mes.messageId type:mes.messageType url:mes.imageUrl title:mes.messageTitle name:mes.messageName message:mes.message messageContentType:mes.messageContentType];
             [[TJDBManager sharedDBManager]insertMessage:weakMessage messageType:mes.messageType messageId:mes.messageId messageContentType:mes.messageContentType];
             [[NSNotificationCenter defaultCenter]postNotificationName:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
+            if ([mes.messageType isEqualToString:@"chatMessage"]) {
+                [[NSNotificationCenter defaultCenter]postNotificationName:TJ_CHAT_VIEWCONTROLLER_NOTIFICATION object:nil];
+            }
         }];
     }
 }

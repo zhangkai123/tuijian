@@ -139,7 +139,7 @@
         message.messageNum = 0;
 
         self.hidesBottomBarWhenPushed = YES;
-        TJChatViewController *chatViewController = [[TJChatViewController alloc]initWithTitle:message.messageTitle];
+        TJChatViewController *chatViewController = [[TJChatViewController alloc]initWithTitle:message.messageTitle fromInfoPage:YES];
         chatViewController.chatToUserId = message.messageId;
         [self.navigationController pushViewController:chatViewController animated:YES];
         self.hidesBottomBarWhenPushed = NO;

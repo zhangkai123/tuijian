@@ -14,5 +14,5 @@
 }
 @property(nonatomic,strong) NSString *chatToUserId;
 
--(id)initWithTitle:(NSString *)navTitle;
+-(id)initWithTitle:(NSString *)navTitle fromInfoPage:(BOOL)fInfoPage;
 @end
