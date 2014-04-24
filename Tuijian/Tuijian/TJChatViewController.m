@@ -150,6 +150,9 @@
 }
 -(void)moveTableToBottomWithAnimation:(BOOL)animate
 {
+    if (_allMessagesFrame.count == 0) {
+        return;
+    }
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_allMessagesFrame.count - 1 inSection:0];
     [theTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:animate];
 }
