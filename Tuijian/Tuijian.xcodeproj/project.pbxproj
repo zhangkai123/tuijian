@@ -1070,6 +1070,30 @@
 			name = items;
 			sourceTree = "<group>";
 		};
+		4B504E6A190A2FFC0082C0EA /* ItemMessage */ = {
+			isa = PBXGroup;
+			children = (
+				4B03651C18E2A91400D106F1 /* TJItemMessageViewController.h */,
+				4B03651D18E2A91400D106F1 /* TJItemMessageViewController.m */,
+			);
+			name = ItemMessage;
+			sourceTree = "<group>";
+		};
+		4B504E6B190A30150082C0EA /* ChatMessage */ = {
+			isa = PBXGroup;
+			children = (
+				4BDACC2119063D7700FD91C3 /* TJChatViewController.h */,
+				4BDACC2219063D7700FD91C3 /* TJChatViewController.m */,
+				4BDACC5619066E1E00FD91C3 /* TJChatView.h */,
+				4BDACC5719066E1E00FD91C3 /* TJChatView.m */,
+				4BDACC24190661A500FD91C3 /* MessageCell.h */,
+				4BDACC25190661A500FD91C3 /* MessageCell.m */,
+				4BDACC28190661A500FD91C3 /* MessageFrame.h */,
+				4BDACC29190661A500FD91C3 /* MessageFrame.m */,
+			);
+			name = ChatMessage;
+			sourceTree = "<group>";
+		};
 		4B50AC1318D6DCB70028BAF9 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
@@ -1222,6 +1246,8 @@
 				4B1D468118DAF1240056262B /* TJMessage.m */,
 				4BACDCB418E2C5B00074F0F1 /* TJItemMessage.h */,
 				4BACDCB518E2C5B00074F0F1 /* TJItemMessage.m */,
+				4BDACC26190661A500FD91C3 /* TJChatMessage.h */,
+				4BDACC27190661A500FD91C3 /* TJChatMessage.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -1255,8 +1281,8 @@
 			children = (
 				4BFB64CA18C07ACA00C304BB /* TJInfoViewController.h */,
 				4BFB64CB18C07ACA00C304BB /* TJInfoViewController.m */,
-				4B03651C18E2A91400D106F1 /* TJItemMessageViewController.h */,
-				4B03651D18E2A91400D106F1 /* TJItemMessageViewController.m */,
+				4B504E6A190A2FFC0082C0EA /* ItemMessage */,
+				4B504E6B190A30150082C0EA /* ChatMessage */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -2154,23 +2180,6 @@
 			name = DB;
 			sourceTree = "<group>";
 		};
-		4BDACC2019063BA900FD91C3 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				4BDACC2119063D7700FD91C3 /* TJChatViewController.h */,
-				4BDACC2219063D7700FD91C3 /* TJChatViewController.m */,
-				4BDACC5619066E1E00FD91C3 /* TJChatView.h */,
-				4BDACC5719066E1E00FD91C3 /* TJChatView.m */,
-				4BDACC24190661A500FD91C3 /* MessageCell.h */,
-				4BDACC25190661A500FD91C3 /* MessageCell.m */,
-				4BDACC26190661A500FD91C3 /* TJChatMessage.h */,
-				4BDACC27190661A500FD91C3 /* TJChatMessage.m */,
-				4BDACC28190661A500FD91C3 /* MessageFrame.h */,
-				4BDACC29190661A500FD91C3 /* MessageFrame.m */,
-			);
-			name = Chat;
-			sourceTree = "<group>";
-		};
 		4BDACC2D1906638200FD91C3 /* chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -2309,7 +2318,6 @@
 				4BEFE99818E3CA8200E2B6A3 /* UserItem */,
 				4B1D467F18DA8BD70056262B /* CellView */,
 				4BEFE99F18E3E94D00E2B6A3 /* UserInformation */,
-				4BDACC2019063BA900FD91C3 /* Chat */,
 				4BFA999D18AFA19200D673CB /* TJAppDelegate.h */,
 				4BFA999E18AFA19200D673CB /* TJAppDelegate.m */,
 				4BFB64D018C187F800C304BB /* TJBaseViewController.h */,

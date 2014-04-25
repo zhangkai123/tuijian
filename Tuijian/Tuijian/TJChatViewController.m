@@ -23,6 +23,8 @@
     
     UIButton *coverButton;
     TJChatView *chatView;
+    
+    BOOL goBackToInfoPage;
 }
 @end
 
@@ -31,7 +33,7 @@
 
 -(void)dealloc
 {
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,11 +48,25 @@
     if (self = [super init]) {
         self.title = navTitle;
         if (!fInfoPage) {
-            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"消息" style:UIBarButtonItemStylePlain target:self action:@selector(goBackToInfoPage)];
+            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"消息" style:UIBarButtonItemStyleBordered target:self action:@selector(goBackToInfoPage)];
+        }else{
+            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"消息" style:UIBarButtonItemStyleBordered target:self action:@selector(goBack)];
         }
     }
     return self;
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -113,9 +129,24 @@
     [theTableView setContentOffset:CGPointMake(0, contentOffset)];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(receiveChatMessage) name:TJ_CHAT_VIEWCONTROLLER_NOTIFICATION object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
+-(void)goBackToInfoPage
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    [appDelegate changeToInfoTab];
+}
+-(void)goBack
+{
+    goBackToInfoPage = YES;
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+-(void)hideKeyboard
+{
+    goBackToInfoPage = NO;
+    [chatView showKeyboard:NO];
+}
+
 //#pragma mark - 文本框代理方法
 //#pragma mark 点击textField键盘的回车按钮
 //- (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -197,16 +228,6 @@
     
     [[TJDataController sharedDataController]sendChatMessageTo:self.chatToUserId chatMessage:messageContent];
 }
--(void)goBackToInfoPage
-{
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-    [appDelegate changeToInfoTab];
-}
--(void)hideKeyboard
-{
-    [chatView showKeyboard:NO];
-}
 #pragma mark - 键盘处理
 #pragma mark 键盘即将显示
 - (void)keyBoardWillShow:(NSNotification *)note{
@@ -222,15 +243,18 @@
     [UIView animateWithDuration:duration delay:0.0 options:(animationCurve << 16) animations:^{
         self.view.transform = CGAffineTransformMakeTranslation(0, ty);
         theTableView.frame = CGRectMake(0, -ty, 320, self.view.frame.size.height + ty - 40);
-    } completion:nil];
+    } completion:^(BOOL finished){
+    }];
     [self moveTableToBottomWithAnimation:YES];
 }
 
 #pragma mark 键盘即将退出
 - (void)keyBoardWillHide:(NSNotification *)note{
     
+    if (goBackToInfoPage) {
+        return;
+    }
     coverButton.hidden = YES;
-    
     NSDictionary *keyboardAnimationDetail = [note userInfo];
     UIViewAnimationCurve animationCurve = [keyboardAnimationDetail[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     CGFloat duration = [keyboardAnimationDetail[UIKeyboardAnimationDurationUserInfoKey] floatValue];
@@ -239,7 +263,6 @@
         theTableView.frame = CGRectMake(0, 0, 320, self.view.frame.size.height - 40);
     } completion:nil];
 }
-
 #pragma mark - tableView数据源方法
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
