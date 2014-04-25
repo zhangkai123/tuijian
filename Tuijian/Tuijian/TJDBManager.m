@@ -1,3 +1,5 @@
+
+
 //
 //  TJDBManager.m
 //  Tuijian
@@ -206,6 +208,7 @@
 }
 -(NSArray *)getMessagesByOrder:(NSString *)messageType messageId:(NSString *)mId idOrder:(NSString *)idOrder
 {
+    [self clearInfoMessageNum:[mId intValue] messageType:messageType];//clear unread message number in message list table when featch message
 	sqlite3 *database;
 	sqlite3_stmt *compiledStatement;
     

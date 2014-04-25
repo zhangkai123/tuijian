@@ -66,7 +66,8 @@
     commentInputView.hidden = YES;
     [self.view addSubview:commentInputView];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveMessage) name:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
+    [self recieveMessage];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveMessage) name:TJ_ITEM_MESSAGE_VIEWCONTROLLER_NOTIFICATION object:nil];
 }
 -(void)recieveMessage
 {
@@ -81,19 +82,6 @@
         [textHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
     }
     [itemMessageTableView reloadData];
-}
--(void)viewWillAppear:(BOOL)animated
-{
-    NSArray *mArray = [[TJDataController sharedDataController]featchItemMessage:theMessage.messageId];
-    [itemMessageArray addObjectsFromArray:mArray];
-    for (int i = 0; i < [itemMessageArray count]; i++) {
-        TJItemMessage *itemMessage = [itemMessageArray objectAtIndex:i];
-        CGRect expectedLabelRect = [itemMessage.message boundingRectWithSize:CGSizeMake(TJ_ITEM_MESSAGE_WIDTH, 0)
-                                                              options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                           attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_ITEM_MESSAGE_SIZE]} context:nil];
-        [textHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
-    }
-    [super viewWillAppear:animated];
 }
 -(void)enterWriteStatus
 {

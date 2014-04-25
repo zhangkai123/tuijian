@@ -54,6 +54,7 @@
 #define TJ_RECIEVE_MESSAGE_NOTIFICATION @"recieve_message_notification"
 #define TJ_INFO_VIEWCONTROLLER_NOTIFICATION @"info_viewcontroller_notification"
 #define TJ_CHAT_VIEWCONTROLLER_NOTIFICATION @"chat_viewcontroller_notification"
+#define TJ_ITEM_MESSAGE_VIEWCONTROLLER_NOTIFICATION @"item_message_viewcontroller_notification"
 
 #define TJ_DATABASE_NAME @"message.sqlite"
 

@@ -63,6 +63,7 @@
         self.window.rootViewController = loginViewController;
     }
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 -(void)changeToInfoTab

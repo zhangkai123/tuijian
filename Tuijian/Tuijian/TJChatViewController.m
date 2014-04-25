@@ -171,10 +171,10 @@
 }
 
 #pragma TJChatViewDelegate
--(void)sendMessage:(NSString *)theMessage
+-(void)sendMessage:(NSString *)messageContent
 {
     // 1、增加数据源
-    NSString *content = theMessage;
+    NSString *content = messageContent;
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     NSDate *date = [NSDate date];
     fmt.dateFormat = @"MM-dd"; // @"yyyy-MM-dd HH:mm:ss"
@@ -185,7 +185,7 @@
     // 3、滚动至当前行
     [self moveTableToBottomWithAnimation:YES];
     
-    [[TJDataController sharedDataController]sendChatMessageTo:self.chatToUserId chatMessage:theMessage];
+    [[TJDataController sharedDataController]sendChatMessageTo:self.chatToUserId chatMessage:messageContent];
 }
 -(void)goBackToInfoPage
 {
