@@ -35,7 +35,7 @@
             [self addSubview:photoView];
         }
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 164, 320, 1)];
-        lineView.backgroundColor = [UIColor blackColor];
+        lineView.backgroundColor = UIColorFromRGB(0x121212);
         [self addSubview:lineView];
     }
     return self;

@@ -50,6 +50,7 @@
 		4B47A3A918D1B40500087BE4 /* favhighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A718D1B40400087BE4 /* favhighlight@2x.png */; };
 		4B47A3AA18D1B40500087BE4 /* favSelectedHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A818D1B40400087BE4 /* favSelectedHighlight@2x.png */; };
 		4B47A3AC18D1B42300087BE4 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3AB18D1B42300087BE4 /* share.png */; };
+		4B504E6E190A63C30082C0EA /* TJMoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B504E6D190A63C30082C0EA /* TJMoodCell.m */; };
 		4B50AC1A18D6EDF20028BAF9 /* writing.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B50AC1918D6EDF20028BAF9 /* writing.png */; };
 		4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */; };
 		4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */; };
@@ -405,6 +406,8 @@
 		4B47A3A718D1B40400087BE4 /* favhighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favhighlight@2x.png"; sourceTree = "<group>"; };
 		4B47A3A818D1B40400087BE4 /* favSelectedHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favSelectedHighlight@2x.png"; sourceTree = "<group>"; };
 		4B47A3AB18D1B42300087BE4 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		4B504E6C190A63C30082C0EA /* TJMoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMoodCell.h; sourceTree = "<group>"; };
+		4B504E6D190A63C30082C0EA /* TJMoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMoodCell.m; sourceTree = "<group>"; };
 		4B50AC1918D6EDF20028BAF9 /* writing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = writing.png; sourceTree = "<group>"; };
 		4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon-highlighted@2x.png"; sourceTree = "<group>"; };
 		4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon@2x.png"; sourceTree = "<group>"; };
@@ -973,6 +976,8 @@
 				4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */,
 				4BEFE99218E3C1F100E2B6A3 /* TJMyInfoCell.h */,
 				4BEFE99318E3C1F100E2B6A3 /* TJMyInfoCell.m */,
+				4B504E6C190A63C30082C0EA /* TJMoodCell.h */,
+				4B504E6D190A63C30082C0EA /* TJMoodCell.m */,
 				4B57DA161900D828006F0355 /* TJMyPhotoCell.h */,
 				4B57DA171900D828006F0355 /* TJMyPhotoCell.m */,
 				4BDACC171906018F00FD91C3 /* TJUserPhotoCell.h */,
@@ -2717,6 +2722,7 @@
 				4B9C40E318D984AF00B9F8E5 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				4B9C40BB18D984AF00B9F8E5 /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				4B82B08118F7F17E00920EC2 /* MBProgressHUD.m in Sources */,
+				4B504E6E190A63C30082C0EA /* TJMoodCell.m in Sources */,
 				4B9C40F118D984AF00B9F8E5 /* XMPPvCardCoreDataStorage.m in Sources */,
 				4BFA999B18AFA19200D673CB /* main.m in Sources */,
 				4B9C414B18D98F0E00B9F8E5 /* TJXMPPServerMananger.m in Sources */,

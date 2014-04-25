@@ -10,7 +10,6 @@
 
 @implementation TJMyInfoCell
 @synthesize profileImageView ,nameLabel ,genderImageView;
-@synthesize moodLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -31,15 +30,8 @@
         genderImageView = [[UIImageView alloc]initWithFrame:CGRectMake(100, 60, 20, 20)];
         [self addSubview:genderImageView];
         
-        moodLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 95, 300, 20)];
-        [moodLabel setTextColor:UIColorFromRGB(0xADD8E6)];
-        [moodLabel setFont:[UIFont systemFontOfSize:13]];
-        moodLabel.text = @"今天好开心呀！";
-//        moodLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:moodLabel];
-        
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 119, 320, 1)];
-        lineView.backgroundColor = [UIColor blackColor];
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 100, 320, 1)];
+        lineView.backgroundColor = UIColorFromRGB(0x121212);
         [self addSubview:lineView];
     }
     return self;

@@ -9,6 +9,7 @@
 #import "TJMineViewController.h"
 #import "TJUser.h"
 #import "TJMyInfoCell.h"
+#import "TJMoodCell.h"
 #import "TJMyPhotoCell.h"
 #import "TJValueCell.h"
 #import "TJMyRecommendCell.h"
@@ -78,7 +79,7 @@
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 5;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -89,6 +90,8 @@
         rowNum = 1;
     }else if(section == 2){
         rowNum = 1;
+    }else if(section == 3){
+        rowNum = 1;
     }else{
         rowNum = 2;
     }
@@ -98,10 +101,12 @@
 {
     float rowHeight = 0;
     if (indexPath.section == 0) {
-        rowHeight = 120;
+        rowHeight = 101;
     }else if(indexPath.section == 1){
-        rowHeight = 165;
+        rowHeight = 51;
     }else if(indexPath.section == 2){
+        rowHeight = 165;
+    }else if(indexPath.section == 3){
         rowHeight = 40;
     }else{
         rowHeight = 50;
@@ -126,22 +131,30 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else if (indexPath.section == 1) {
-        TJMyPhotoCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
+        TJMoodCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
         if (!cellTwo) {
-            cellTwo = [[TJMyPhotoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
+            cellTwo = [[TJMoodCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
         }
-        cellTwo.delegate = self;
-        cellTwo.photoUrlArray = photoUrlArray;
+        cellTwo.moodLabel.text = @"今天好开心呀！今天好开心呀！";
+        cellTwo.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell = cellTwo;
     }else if (indexPath.section == 2) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
-        if (!cell) {
-            cell = [[TJValueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
+        TJMyPhotoCell *photoCell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
+        if (!photoCell) {
+            photoCell = [[TJMyPhotoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
         }
-    }else{
+        photoCell.delegate = self;
+        photoCell.photoUrlArray = photoUrlArray;
+        cell = photoCell;
+    }else if (indexPath.section == 3) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellFour"];
         if (!cell) {
-            cell = [[TJMyRecommendCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
+            cell = [[TJValueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
+        }
+    }else{
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cellFive"];
+        if (!cell) {
+            cell = [[TJMyRecommendCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFive"];
         }
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
@@ -157,7 +170,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 3) {
+    if (indexPath.section == 4) {
         if (indexPath.row == 0) {
             self.hidesBottomBarWhenPushed = YES;
             TJUserRecommendViewController *myRecommendViewController = [[TJUserRecommendViewController alloc]initWithTitle:@"我的推荐"];
@@ -190,9 +203,29 @@
     if (buttonIndex == 0) {
         
     }else if(buttonIndex == 1){
-        
+        [self showAlbume];
     }
 }
+-(void)showAlbume
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = (id)self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    [picker dismissViewControllerAnimated:NO completion:NULL];
+//    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+//    TJCropViewController *cropViewController = [[TJCropViewController alloc]init];
+//    cropViewController.delegate = self;
+//    cropViewController.thePhoto = chosenImage;
+//    [self displayContentController:cropViewController];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
