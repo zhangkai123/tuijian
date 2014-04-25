@@ -10,6 +10,7 @@
 #import "TJAppDelegate.h"
 #import "MessageFrame.h"
 #import "TJChatMessage.h"
+#import "TJMessage.h"
 #import "MessageCell.h"
 #import "TJChatView.h"
 
@@ -26,7 +27,7 @@
 @end
 
 @implementation TJChatViewController
-@synthesize chatToUserId;
+@synthesize chatToUserId ,chatToUserImageUrl;
 
 -(void)dealloc
 {
@@ -167,7 +168,16 @@
     msg.type = MessageTypeMe;
     mf.message = msg;
     [_allMessagesFrame addObject:mf];
-    [[TJDataController sharedDataController]insertLocalChatMessage:self.chatToUserId myChatMessage:msg];
+    
+    TJMessage *messageList = [[TJMessage alloc]init];
+    messageList.messageId = self.chatToUserId;
+    messageList.messageType = @"chatMessage";
+    messageList.imageUrl = self.chatToUserImageUrl;
+    messageList.messageTitle = self.title;
+    messageList.messageName = nil;
+    messageList.message = content;
+    messageList.messageContentType = MessageTypeMe;
+    [[TJDataController sharedDataController]insertLocalChatMessage:self.chatToUserId myChatMessage:msg messageList:messageList];
 }
 
 #pragma TJChatViewDelegate

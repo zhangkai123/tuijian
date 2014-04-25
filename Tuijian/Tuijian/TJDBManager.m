@@ -42,7 +42,7 @@
 	
 }
 #pragma mesList table
--(void)insertMessageList:(NSString *)messageId type:(NSString *)mType url:(NSString *)iUrl title:(NSString *)mTitle name:(NSString *)mName message:(NSString *)mes messageContentType:(NSString *)messageContentType
+-(void)insertMessageList:(NSString *)messageId type:(NSString *)mType url:(NSString *)iUrl title:(NSString *)mTitle name:(NSString *)mName message:(NSString *)mes messageContentType:(NSString *)messageContentType updateMesNum:(BOOL)updateMesNum
 {
 	sqlite3 *database;
 	sqlite3_stmt *compiledStatement;
@@ -66,9 +66,12 @@
                     compiledStatement = nil;
                 }
             }
+            if (updateMesNum) {
+                messageNum = messageNum + 1;
+            }
             NSString *insertCommand = [NSString stringWithFormat:
                                        @"insert into mesList (messageId,messageType,imageUrl,messageTitle,messageName,message,messageContentType,messageNum) VALUES('%@','%@','%@','%@','%@','%@','%@','%d')"
-                                       , messageId,mType,iUrl,mTitle,mName,mes,messageContentType,messageNum + 1];
+                                       , messageId,mType,iUrl,mTitle,mName,mes,messageContentType,messageNum];
             const char *insertSqlCommand = [insertCommand UTF8String];
             if (sqlite3_prepare_v2(database, insertSqlCommand, -1, &compiledStatement, NULL) == SQLITE_OK) {
                 if (sqlite3_step(compiledStatement) == SQLITE_DONE) {
@@ -78,9 +81,14 @@
             sqlite3_close(database);
             return;
         }
+        if (updateMesNum) {
+            messageNum = 1;
+        }else{
+            messageNum = 0;
+        }
         NSString *insertCommand = [NSString stringWithFormat:
-                                   @"insert into mesList (messageId,messageType,imageUrl,messageTitle,messageName,message,messageContentType,messageNum) VALUES('%@','%@','%@','%@','%@','%@','%@',1)"
-                                   , messageId,mType,iUrl,mTitle,mName,mes,messageContentType];
+                                   @"insert into mesList (messageId,messageType,imageUrl,messageTitle,messageName,message,messageContentType,messageNum) VALUES('%@','%@','%@','%@','%@','%@','%@','%d')"
+                                   , messageId,mType,iUrl,mTitle,mName,mes,messageContentType,messageNum];
 		const char *insertSqlCommand = [insertCommand UTF8String];
 		if (sqlite3_prepare_v2(database, insertSqlCommand, -1, &compiledStatement, NULL) == SQLITE_OK) {
 			if (sqlite3_step(compiledStatement) == SQLITE_DONE) {

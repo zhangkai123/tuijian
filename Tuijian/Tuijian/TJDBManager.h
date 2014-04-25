@@ -16,7 +16,7 @@
 +(id)sharedDBManager;
 
 -(NSArray *)getMessageList;
--(void)insertMessageList:(NSString *)messageId type:(NSString *)mType url:(NSString *)iUrl title:(NSString *)mTitle name:(NSString *)mName message:(NSString *)mes messageContentType:(NSString *)messageContentType;
+-(void)insertMessageList:(NSString *)messageId type:(NSString *)mType url:(NSString *)iUrl title:(NSString *)mTitle name:(NSString *)mName message:(NSString *)mes messageContentType:(NSString *)messageContentType updateMesNum:(BOOL)updateMesNum;
 -(void)deleteFromMeslist:(NSString *)messageType messageId:(NSString *)messageId;
 
 -(void)insertMessage:(NSString *)theMessage messageType:(NSString *)messageT messageId:(NSString *)mId messageContentType:(NSString *)messageContentType;

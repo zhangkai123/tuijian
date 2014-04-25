@@ -12,8 +12,10 @@
 @interface TJChatViewController : UIViewController
 {
     NSString *chatToUserId;
+    NSString *chatToUserImageUrl;
 }
 @property(nonatomic,strong) NSString *chatToUserId;
+@property(nonatomic,strong) NSString *chatToUserImageUrl;
 
 -(id)initWithTitle:(NSString *)navTitle fromInfoPage:(BOOL)fInfoPage;
 @end

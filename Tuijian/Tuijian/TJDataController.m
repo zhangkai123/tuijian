@@ -371,7 +371,7 @@
                     return;
                 }
             }
-            [[TJDBManager sharedDBManager]insertMessageList:mes.messageId type:mes.messageType url:mes.imageUrl title:mes.messageTitle name:mes.messageName message:mes.message messageContentType:mes.messageContentType];
+            [[TJDBManager sharedDBManager]insertMessageList:mes.messageId type:mes.messageType url:mes.imageUrl title:mes.messageTitle name:mes.messageName message:mes.message messageContentType:mes.messageContentType updateMesNum:YES];
             [[TJDBManager sharedDBManager]insertMessage:weakMessage messageType:mes.messageType messageId:mes.messageId messageContentType:mes.messageContentType];
             if ([mes.messageType isEqualToString:@"chatMessage"]) {
                 [[NSNotificationCenter defaultCenter]postNotificationName:TJ_CHAT_VIEWCONTROLLER_NOTIFICATION object:nil];
@@ -434,17 +434,18 @@
     }
     return chatMessageArray;
 }
--(void)insertLocalChatMessage:(NSString *)mId myChatMessage:(TJChatMessage *)myChatMessage
+-(void)insertLocalChatMessage:(NSString *)mId myChatMessage:(TJChatMessage *)myChatMessage messageList:(TJMessage *)mes
 {
-//    [[TJDBManager sharedDBManager]insertMessageList:mId type:@"chatMessage" url:mes.imageUrl title:mes.messageTitle name:mes.messageName message:mes.message messageContentType:mes.messageContentType];
     NSString *messageType = nil;
     if (myChatMessage.type == MessageTypeMe) {
         messageType = @"me";
     }
+    [[TJDBManager sharedDBManager]insertMessageList:mId type:@"chatMessage" url:mes.imageUrl
+                                              title:mes.messageTitle name:mes.messageName message:mes.message messageContentType:messageType updateMesNum:NO];
     TJUser *myUser = [self getMyUserInfo];
     NSXMLElement *localMessage = [self constructLocalChatMessage:messageType localMessage:myChatMessage.content userImageUrl:myUser.profile_image_url];
     [[TJDBManager sharedDBManager]insertMessage:(id)localMessage messageType:@"chatMessage" messageId:mId messageContentType:messageType];
-//    [[NSNotificationCenter defaultCenter]postNotificationName:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
 }
 -(NSXMLElement *)constructLocalChatMessage:(NSString *)mContentType localMessage:(NSString *)lMessage userImageUrl:(NSString *)uImageUrl
 {

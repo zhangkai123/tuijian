@@ -61,7 +61,7 @@
 -(void)deleteFromMessageList:(NSString *)mId messageType:(NSString *)mType;
 -(NSArray *)featchItemMessage:(NSString *)mId;
 -(NSArray *)featchChatMessage:(NSString *)mId;
--(void)insertLocalChatMessage:(NSString *)mId myChatMessage:(TJChatMessage *)myChatMessage;
+-(void)insertLocalChatMessage:(NSString *)mId myChatMessage:(TJChatMessage *)myChatMessage messageList:(TJMessage *)mes;
 -(int)getTotalInfoMessageNum;
 -(void)clearInfoMessageNum:(int)messageId messageType:(NSString *)mType;
 @end
