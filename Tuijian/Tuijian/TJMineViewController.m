@@ -17,6 +17,8 @@
 #import "TJRecentViewerViewController.h"
 #import "TJAppDelegate.h"
 
+#import "TJInfoEditViewController.h"
+
 @interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate,TJMyPhotoCellDelegate,UIActionSheetDelegate>
 {
     UITableView *theTableView;
@@ -129,13 +131,14 @@
         }else{
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"female.png"]];
         }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else if (indexPath.section == 1) {
         TJMoodCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
         if (!cellTwo) {
             cellTwo = [[TJMoodCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
         }
-        cellTwo.moodLabel.text = @"今天好开心呀！今天好开心呀！";
+        cellTwo.moodLabel.text = @"[开心]今天好开心呀！今天好开心呀！";
         cellTwo.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell = cellTwo;
     }else if (indexPath.section == 2) {
@@ -170,7 +173,14 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 4) {
+    if (indexPath.section == 0) {
+        self.hidesBottomBarWhenPushed = YES;
+        TJInfoEditViewController *infoEditViewController = [[TJInfoEditViewController alloc]init];
+        [self.navigationController pushViewController:infoEditViewController animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }else if(indexPath.section == 1){
+        
+    }else if(indexPath.section == 4){
         if (indexPath.row == 0) {
             self.hidesBottomBarWhenPushed = YES;
             TJUserRecommendViewController *myRecommendViewController = [[TJUserRecommendViewController alloc]initWithTitle:@"我的推荐"];

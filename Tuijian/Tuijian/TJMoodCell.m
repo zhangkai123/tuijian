@@ -17,10 +17,22 @@
     if (self) {
         // Initialization code
         self.backgroundColor = UIColorFromRGB(0x242424);
-        moodLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 300, 30)];
+        
+        UIImageView *moodImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 13, 24, 24)];
+        moodImageView.image = [UIImage imageNamed:@"weather.png"];
+        [self addSubview:moodImageView];
+        
+        UILabel *desLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 10, 70, 30)];
+        desLabel.backgroundColor = [UIColor clearColor];
+        [desLabel setTextColor:[UIColor whiteColor]];
+        [desLabel setFont:[UIFont systemFontOfSize:16]];
+        desLabel.text = @"今天心情";
+        [self addSubview:desLabel];
+        
+        moodLabel = [[UILabel alloc]initWithFrame:CGRectMake(160, 10, 130, 30)];
         moodLabel.backgroundColor = [UIColor clearColor];
         [moodLabel setTextColor:UIColorFromRGB(0xADD8E6)];
-        [moodLabel setFont:[UIFont systemFontOfSize:14]];
+        [moodLabel setFont:[UIFont systemFontOfSize:15]];
         [self addSubview:moodLabel];
         
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 50, 320, 1)];
