@@ -23,7 +23,7 @@
 @interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate,TJMyPhotoCellDelegate,UIActionSheetDelegate>
 {
     UITableView *theTableView;
-    
+    TJUser *theUser;
     NSMutableArray *photoUrlArray;
 }
 @end
@@ -76,8 +76,8 @@
     [self.view addSubview:theTableView];
     
     photoUrlArray = [[NSMutableArray alloc]initWithCapacity:8];
-    TJUser *user = [[TJDataController sharedDataController]getMyUserInfo];
-    [photoUrlArray addObject:user.profile_image_url];
+    theUser = [[TJDataController sharedDataController]getMyUserInfo];
+    [photoUrlArray addObject:theUser.profile_image_url];
 }
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -124,10 +124,10 @@
         if (!cell) {
             cell = [[TJMyInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         }
-        TJUser *user = [[TJDataController sharedDataController]getMyUserInfo];
-        [[(TJMyInfoCell *)cell profileImageView] setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:nil];
-        [[(TJMyInfoCell *)cell nameLabel] setText:user.name];
-        if ([user.gender isEqualToString:@"男"] || [user.gender isEqualToString:@"m"]) {
+        theUser = [[TJDataController sharedDataController]getMyUserInfo];
+        [[(TJMyInfoCell *)cell profileImageView] setImageWithURL:[NSURL URLWithString:theUser.profile_image_url] placeholderImage:nil];
+        [[(TJMyInfoCell *)cell nameLabel] setText:theUser.name];
+        if ([theUser.gender isEqualToString:@"男"] || [theUser.gender isEqualToString:@"m"] || ([theUser.gender intValue] == 1)) {
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"male.png"]];
         }else{
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"female.png"]];
@@ -177,6 +177,7 @@
     if (indexPath.section == 0) {
         self.hidesBottomBarWhenPushed = YES;
         TJInfoEditViewController *infoEditViewController = [[TJInfoEditViewController alloc]init];
+        infoEditViewController.theUser = theUser;
         [self.navigationController pushViewController:infoEditViewController animated:YES];
         self.hidesBottomBarWhenPushed = NO;
     }else if(indexPath.section == 1){

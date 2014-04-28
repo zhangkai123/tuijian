@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TJUser.h"
 
 @interface TJInfoEditViewController : UIViewController
-
+{
+    TJUser *theUser;
+}
+@property(nonatomic,strong) TJUser *theUser;
 @end

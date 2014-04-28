@@ -20,7 +20,8 @@
         titleLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:titleLabel];
 
-        infoLabel = [[UILabel alloc]initWithFrame:CGRectMake(250, 10, 50, 30)];
+        infoLabel = [[UILabel alloc]initWithFrame:CGRectMake(150, 10, 140, 30)];
+        infoLabel.textAlignment = NSTextAlignmentRight;
         infoLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:infoLabel];
     }

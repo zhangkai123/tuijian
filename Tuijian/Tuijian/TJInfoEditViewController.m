@@ -17,6 +17,7 @@
 @end
 
 @implementation TJInfoEditViewController
+@synthesize theUser;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,7 +60,7 @@
         if (!cellOne) {
             cellOne = [[TJHeadProtraitCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         }
-        
+        [cellOne.headProtraitImageView setImageWithURL:[NSURL URLWithString:theUser.profile_image_url] placeholderImage:nil];
         cell = cellOne;
     }else{
         TJInfoTextCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
@@ -70,13 +71,17 @@
             case 1:
             {
                 cellTwo.titleLabel.text = @"昵称";
-                cellTwo.infoLabel.text = @"kkkk12345";
+                cellTwo.infoLabel.text = theUser.name;
             }
                 break;
             case 2:
             {
                 cellTwo.titleLabel.text = @"性别";
-                cellTwo.infoLabel.text = @"男";
+                if ([theUser.gender isEqualToString:@"男"] || [theUser.gender isEqualToString:@"m"] || ([theUser.gender intValue] == 1)) {
+                    cellTwo.infoLabel.text = @"男";
+                }else{
+                    cellTwo.infoLabel.text = @"女";
+                }
             }
                 break;
             case 3:
