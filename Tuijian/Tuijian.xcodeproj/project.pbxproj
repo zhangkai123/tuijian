@@ -298,10 +298,10 @@
 		4BF41A2318D299B6004E9A38 /* TJCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */; };
 		4BF41A2718D2E17A004E9A38 /* write.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF41A2618D2E17A004E9A38 /* write.png */; };
 		4BF4BBE6190DEAF9003C85BD /* TJInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4BBE5190DEAF9003C85BD /* TJInfoEditViewController.m */; };
-		4BF4BBE8190DF6AD003C85BD /* rainbow_.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF4BBE7190DF6AD003C85BD /* rainbow_.png */; };
-		4BF4BBEA190DF889003C85BD /* rainbow__.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF4BBE9190DF889003C85BD /* rainbow__.png */; };
-		4BF4BBEC190DF940003C85BD /* rainbow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF4BBEB190DF940003C85BD /* rainbow.png */; };
 		4BF4BBEE190DF9A4003C85BD /* weather.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF4BBED190DF9A4003C85BD /* weather.png */; };
+		4BF4BBF1190DFEE5003C85BD /* TJMoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4BBF0190DFEE5003C85BD /* TJMoodViewController.m */; };
+		4BF4BBF5190E19F1003C85BD /* TJHeadProtraitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4BBF4190E19F1003C85BD /* TJHeadProtraitCell.m */; };
+		4BF4BBF8190E1D44003C85BD /* TJInfoTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4BBF7190E1D44003C85BD /* TJInfoTextCell.m */; };
 		4BF64BAD18DD39A8005D34C1 /* UIImage+JTImageCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF64BAC18DD39A8005D34C1 /* UIImage+JTImageCrop.m */; };
 		4BFA998F18AFA19200D673CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA998E18AFA19200D673CB /* Foundation.framework */; };
 		4BFA999118AFA19200D673CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA999018AFA19200D673CB /* CoreGraphics.framework */; };
@@ -858,10 +858,13 @@
 		4BF41A2618D2E17A004E9A38 /* write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = write.png; sourceTree = "<group>"; };
 		4BF4BBE4190DEAF9003C85BD /* TJInfoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJInfoEditViewController.h; sourceTree = "<group>"; };
 		4BF4BBE5190DEAF9003C85BD /* TJInfoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJInfoEditViewController.m; sourceTree = "<group>"; };
-		4BF4BBE7190DF6AD003C85BD /* rainbow_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainbow_.png; sourceTree = "<group>"; };
-		4BF4BBE9190DF889003C85BD /* rainbow__.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainbow__.png; sourceTree = "<group>"; };
-		4BF4BBEB190DF940003C85BD /* rainbow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainbow.png; sourceTree = "<group>"; };
 		4BF4BBED190DF9A4003C85BD /* weather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather.png; sourceTree = "<group>"; };
+		4BF4BBEF190DFEE5003C85BD /* TJMoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMoodViewController.h; sourceTree = "<group>"; };
+		4BF4BBF0190DFEE5003C85BD /* TJMoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMoodViewController.m; sourceTree = "<group>"; };
+		4BF4BBF3190E19F1003C85BD /* TJHeadProtraitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJHeadProtraitCell.h; sourceTree = "<group>"; };
+		4BF4BBF4190E19F1003C85BD /* TJHeadProtraitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJHeadProtraitCell.m; sourceTree = "<group>"; };
+		4BF4BBF6190E1D44003C85BD /* TJInfoTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJInfoTextCell.h; sourceTree = "<group>"; };
+		4BF4BBF7190E1D44003C85BD /* TJInfoTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJInfoTextCell.m; sourceTree = "<group>"; };
 		4BF64BAB18DD39A8005D34C1 /* UIImage+JTImageCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JTImageCrop.h"; sourceTree = "<group>"; };
 		4BF64BAC18DD39A8005D34C1 /* UIImage+JTImageCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JTImageCrop.m"; sourceTree = "<group>"; };
 		4BFA998B18AFA19200D673CB /* Tuijian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuijian.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -969,6 +972,7 @@
 		4B1D467F18DA8BD70056262B /* CellView */ = {
 			isa = PBXGroup;
 			children = (
+				4BF4BBF2190E19AC003C85BD /* InformationEdit */,
 				4B47A36618D1462500087BE4 /* TJItemCell.h */,
 				4B47A36718D1462500087BE4 /* TJItemCell.m */,
 				4B31B77618D8123F00F87D71 /* TJItemDetailCell.h */,
@@ -1272,9 +1276,6 @@
 			isa = PBXGroup;
 			children = (
 				4BF4BBED190DF9A4003C85BD /* weather.png */,
-				4BF4BBEB190DF940003C85BD /* rainbow.png */,
-				4BF4BBE9190DF889003C85BD /* rainbow__.png */,
-				4BF4BBE7190DF6AD003C85BD /* rainbow_.png */,
 				4B57DA2819011B76006F0355 /* addPhoto.png */,
 				4B57DA1D1900EE1C006F0355 /* flower.png */,
 				4B57DA1F1900F0E3006F0355 /* likeNum.png */,
@@ -1316,6 +1317,8 @@
 				4B57DA3819012992006F0355 /* TJRecentViewerViewController.m */,
 				4BF4BBE4190DEAF9003C85BD /* TJInfoEditViewController.h */,
 				4BF4BBE5190DEAF9003C85BD /* TJInfoEditViewController.m */,
+				4BF4BBEF190DFEE5003C85BD /* TJMoodViewController.h */,
+				4BF4BBF0190DFEE5003C85BD /* TJMoodViewController.m */,
 			);
 			name = Mine;
 			sourceTree = "<group>";
@@ -2277,6 +2280,17 @@
 			name = UserInformation;
 			sourceTree = "<group>";
 		};
+		4BF4BBF2190E19AC003C85BD /* InformationEdit */ = {
+			isa = PBXGroup;
+			children = (
+				4BF4BBF3190E19F1003C85BD /* TJHeadProtraitCell.h */,
+				4BF4BBF4190E19F1003C85BD /* TJHeadProtraitCell.m */,
+				4BF4BBF6190E1D44003C85BD /* TJInfoTextCell.h */,
+				4BF4BBF7190E1D44003C85BD /* TJInfoTextCell.m */,
+			);
+			name = InformationEdit;
+			sourceTree = "<group>";
+		};
 		4BFA998218AFA19200D673CB = {
 			isa = PBXGroup;
 			children = (
@@ -2522,7 +2536,6 @@
 				4BDACC411906639000FD91C3 /* chat_bottom_keyboard_nor.png in Resources */,
 				4B569CB318CEAAE9000DF219 /* bt_blue_76X24.png in Resources */,
 				4BDACC4D1906639000FD91C3 /* chatfrom_bg_focused.png in Resources */,
-				4BF4BBE8190DF6AD003C85BD /* rainbow_.png in Resources */,
 				4BDACC421906639000FD91C3 /* chat_bottom_keyboard_press.png in Resources */,
 				4BFB834D18EBD8E4008651DA /* WeiboSDK.bundle in Resources */,
 				4BDACC521906639000FD91C3 /* icon02.png in Resources */,
@@ -2536,12 +2549,10 @@
 				4BB6C05F18F2464000DB13C9 /* RadioButton-Unselected.png in Resources */,
 				4B9C413918D984AF00B9F8E5 /* build-libidn.sh in Resources */,
 				4BDACC4A1906639000FD91C3 /* toolbar_bottom_bar.png in Resources */,
-				4BF4BBEC190DF940003C85BD /* rainbow.png in Resources */,
 				4BDACC441906639000FD91C3 /* chat_bottom_smile_press.png in Resources */,
 				4BFA999918AFA19200D673CB /* InfoPlist.strings in Resources */,
 				4B7A421418B0DCE2009356F4 /* camera_18_2x.png in Resources */,
 				4B31405618ED0B35007A00F2 /* MessageEntrySendButtonPressed.png in Resources */,
-				4BF4BBEA190DF889003C85BD /* rainbow__.png in Resources */,
 				4B54577018CDBEF700492F81 /* ChoosePhotoIcon@2x.png in Resources */,
 				4B8B93A218E8F80300459AC2 /* star-outline.png in Resources */,
 				4B57DA2919011B76006F0355 /* addPhoto.png in Resources */,
@@ -2676,9 +2687,11 @@
 				4B9C40C718D984AF00B9F8E5 /* XMPPMessage.m in Sources */,
 				4B9C40CA18D984AF00B9F8E5 /* XMPPPresence.m in Sources */,
 				4B9C40FA18D984AF00B9F8E5 /* XMPPvCardTempModule.m in Sources */,
+				4BF4BBF8190E1D44003C85BD /* TJInfoTextCell.m in Sources */,
 				4B8EADB318F628CD00BDDD91 /* TJSelectableLabel.m in Sources */,
 				4B9C410118D984AF00B9F8E5 /* XMPPIQ+XEP_0066.m in Sources */,
 				4B9C411B18D984AF00B9F8E5 /* XMPPAutoTime.m in Sources */,
+				4BF4BBF5190E19F1003C85BD /* TJHeadProtraitCell.m in Sources */,
 				4B9C40EB18D984AF00B9F8E5 /* XMPPRoomOccupantMemoryStorageObject.m in Sources */,
 				4B47A39118D179B800087BE4 /* SDWebImageCompat.m in Sources */,
 				4B9C40E218D984AF00B9F8E5 /* XMPPRoomCoreDataStorage.m in Sources */,
@@ -2765,6 +2778,7 @@
 				4B9C40DF18D984AF00B9F8E5 /* XMPPLastActivity.m in Sources */,
 				4BD3A06E18F528FB00C6B6AE /* TTTAttributedLabel.m in Sources */,
 				4BB6C05A18F244CB00DB13C9 /* TJRadioButtonView.m in Sources */,
+				4BF4BBF1190DFEE5003C85BD /* TJMoodViewController.m in Sources */,
 				4B9C40D018D984AF00B9F8E5 /* XMPPReconnect.m in Sources */,
 				4B31B77518D7F75400F87D71 /* TJComment.m in Sources */,
 				4B03651E18E2A91400D106F1 /* TJItemMessageViewController.m in Sources */,

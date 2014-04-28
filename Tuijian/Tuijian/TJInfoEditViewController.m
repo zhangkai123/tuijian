@@ -7,9 +7,13 @@
 //
 
 #import "TJInfoEditViewController.h"
+#import "TJHeadProtraitCell.h"
+#import "TJInfoTextCell.h"
 
-@interface TJInfoEditViewController ()
-
+@interface TJInfoEditViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView *theTableView;
+}
 @end
 
 @implementation TJInfoEditViewController
@@ -29,8 +33,99 @@
     // Do any additional setup after loading the view.
     self.title = @"基本资料";
     self.view.backgroundColor = [UIColor whiteColor];
-}
+    
+    theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
+    theTableView.showsHorizontalScrollIndicator = NO;
+    theTableView.showsVerticalScrollIndicator = NO;
+    theTableView.dataSource = self;
+    theTableView.delegate = self;
+    [self.view addSubview:theTableView];
 
+}
+#pragma uitableview delegate and datasource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 4;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{   
+    UITableViewCell *cell = nil;
+    if (indexPath.row == 0) {
+        TJHeadProtraitCell *cellOne = [tableView dequeueReusableCellWithIdentifier:@"cellOne"];
+        if (!cellOne) {
+            cellOne = [[TJHeadProtraitCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
+        }
+        
+        cell = cellOne;
+    }else{
+        TJInfoTextCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
+        if (!cellTwo) {
+            cellTwo = [[TJInfoTextCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
+        }
+        switch (indexPath.row) {
+            case 1:
+            {
+                cellTwo.titleLabel.text = @"昵称";
+                cellTwo.infoLabel.text = @"kkkk12345";
+            }
+                break;
+            case 2:
+            {
+                cellTwo.titleLabel.text = @"性别";
+                cellTwo.infoLabel.text = @"男";
+            }
+                break;
+            case 3:
+            {
+                cellTwo.titleLabel.text = @"年龄";
+                cellTwo.infoLabel.text = @"25";
+            }
+                break;
+            default:
+                break;
+        }
+        cell = cellTwo;
+    }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float rowHeight = 0.0;
+    switch (indexPath.row) {
+        case 0:
+        {
+            rowHeight = 100;
+        }
+            break;
+        case 1:
+        {
+            rowHeight = 50;
+        }
+            break;
+        case 2:
+        {
+            rowHeight = 50;
+        }
+            break;
+        case 3:
+        {
+            rowHeight = 50;
+        }
+            break;
+        default:
+            break;
+    }
+    return rowHeight;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

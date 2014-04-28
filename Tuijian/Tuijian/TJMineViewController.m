@@ -18,6 +18,7 @@
 #import "TJAppDelegate.h"
 
 #import "TJInfoEditViewController.h"
+#import "TJMoodViewController.h"
 
 @interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate,TJMyPhotoCellDelegate,UIActionSheetDelegate>
 {
@@ -179,7 +180,10 @@
         [self.navigationController pushViewController:infoEditViewController animated:YES];
         self.hidesBottomBarWhenPushed = NO;
     }else if(indexPath.section == 1){
-        
+        self.hidesBottomBarWhenPushed = YES;
+        TJMoodViewController *moodViewController = [[TJMoodViewController alloc]init];
+        [self.navigationController pushViewController:moodViewController animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
     }else if(indexPath.section == 4){
         if (indexPath.row == 0) {
             self.hidesBottomBarWhenPushed = YES;
