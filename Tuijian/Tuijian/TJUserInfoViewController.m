@@ -137,7 +137,7 @@
         if (!userSignCell) {
             userSignCell = [[TJUserSignCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userSignCell"];
         }
-        userSignCell.signLabel.text = @"个性签名在这里";
+        userSignCell.signLabel.text = @"这家伙还没写个性签名哦~";
         cell = userSignCell;
     }else if (indexPath.section == 2) {
         TJUserPhotoCell *userPhotoCell = [tableView dequeueReusableCellWithIdentifier:@"userPhotoCell"];

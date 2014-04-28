@@ -234,14 +234,37 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     [picker dismissViewControllerAnimated:NO completion:NULL];
-//    
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-//    TJCropViewController *cropViewController = [[TJCropViewController alloc]init];
-//    cropViewController.delegate = self;
-//    cropViewController.thePhoto = chosenImage;
-//    [self displayContentController:cropViewController];
+    
+    UIImageView *holdImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
+    holdImageView.image = chosenImage;
+    holdImageView.center = self.view.center;
+    [theTableView addSubview:holdImageView];
+    
+    float scaleValue = 70.0/320.0;
+    [UIView animateWithDuration:0.7
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:(void (^)(void)) ^{
+                         holdImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
+                         holdImageView.center = [self getTheUploadImageViewPosition];
+                     }
+                     completion:^(BOOL finished){
+                         //holdImageView.transform=CGAffineTransformIdentity;
+                         holdImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
+                         holdImageView.center = [self getTheUploadImageViewPosition];
+                     }];
 }
-
+-(CGPoint)getTheUploadImageViewPosition
+{
+    NSIndexPath *photoCellIndex = [NSIndexPath indexPathForRow:0 inSection:2];
+    CGRect photoCellRect = [theTableView rectForRowAtIndexPath:photoCellIndex];
+    int imageCount = [photoUrlArray count];
+    int colume = imageCount/4;
+    int row = imageCount%4;
+    CGPoint uploadImageViewPosition = CGPointMake(8 + row*(70 + 8) + 35, 8 + colume*(70 + 8) + photoCellRect.origin.y + 35);
+    return uploadImageViewPosition;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
