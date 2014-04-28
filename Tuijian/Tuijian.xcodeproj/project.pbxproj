@@ -302,6 +302,7 @@
 		4BF4BBF1190DFEE5003C85BD /* TJMoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4BBF0190DFEE5003C85BD /* TJMoodViewController.m */; };
 		4BF4BBF5190E19F1003C85BD /* TJHeadProtraitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4BBF4190E19F1003C85BD /* TJHeadProtraitCell.m */; };
 		4BF4BBF8190E1D44003C85BD /* TJInfoTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4BBF7190E1D44003C85BD /* TJInfoTextCell.m */; };
+		4BF4BBFB190E334D003C85BD /* TJWirteMoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4BBFA190E334D003C85BD /* TJWirteMoodViewController.m */; };
 		4BF64BAD18DD39A8005D34C1 /* UIImage+JTImageCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF64BAC18DD39A8005D34C1 /* UIImage+JTImageCrop.m */; };
 		4BFA998F18AFA19200D673CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA998E18AFA19200D673CB /* Foundation.framework */; };
 		4BFA999118AFA19200D673CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA999018AFA19200D673CB /* CoreGraphics.framework */; };
@@ -865,6 +866,8 @@
 		4BF4BBF4190E19F1003C85BD /* TJHeadProtraitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJHeadProtraitCell.m; sourceTree = "<group>"; };
 		4BF4BBF6190E1D44003C85BD /* TJInfoTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJInfoTextCell.h; sourceTree = "<group>"; };
 		4BF4BBF7190E1D44003C85BD /* TJInfoTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJInfoTextCell.m; sourceTree = "<group>"; };
+		4BF4BBF9190E334D003C85BD /* TJWirteMoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJWirteMoodViewController.h; sourceTree = "<group>"; };
+		4BF4BBFA190E334D003C85BD /* TJWirteMoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJWirteMoodViewController.m; sourceTree = "<group>"; };
 		4BF64BAB18DD39A8005D34C1 /* UIImage+JTImageCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JTImageCrop.h"; sourceTree = "<group>"; };
 		4BF64BAC18DD39A8005D34C1 /* UIImage+JTImageCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JTImageCrop.m"; sourceTree = "<group>"; };
 		4BFA998B18AFA19200D673CB /* Tuijian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuijian.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1319,6 +1322,8 @@
 				4BF4BBE5190DEAF9003C85BD /* TJInfoEditViewController.m */,
 				4BF4BBEF190DFEE5003C85BD /* TJMoodViewController.h */,
 				4BF4BBF0190DFEE5003C85BD /* TJMoodViewController.m */,
+				4BF4BBF9190E334D003C85BD /* TJWirteMoodViewController.h */,
+				4BF4BBFA190E334D003C85BD /* TJWirteMoodViewController.m */,
 			);
 			name = Mine;
 			sourceTree = "<group>";
@@ -2637,6 +2642,7 @@
 				4B9C40BF18D984AF00B9F8E5 /* XMPPXOAuth2Google.m in Sources */,
 				4B9C40CC18D984AF00B9F8E5 /* XMPPBandwidthMonitor.m in Sources */,
 				4BF41A2318D299B6004E9A38 /* TJCommentViewController.m in Sources */,
+				4BF4BBFB190E334D003C85BD /* TJWirteMoodViewController.m in Sources */,
 				4B57DA3019011FDF006F0355 /* TJTouchablePhotoView.m in Sources */,
 				4B9C412218D984AF00B9F8E5 /* XMPPMessage+XEP_0308.m in Sources */,
 				4B9C40D218D984AF00B9F8E5 /* XMPPResourceCoreDataStorageObject.m in Sources */,
