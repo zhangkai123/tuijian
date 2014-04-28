@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 zhang kai. All rights reserved.
 //
 
-#import "TJMoodCell.h"
+#import "TJMySignCell.h"
 
-@implementation TJMoodCell
-@synthesize moodLabel;
+@implementation TJMySignCell
+@synthesize signLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -18,9 +18,9 @@
         // Initialization code
         self.backgroundColor = UIColorFromRGB(0x242424);
         
-        UIImageView *moodImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 13, 24, 24)];
-        moodImageView.image = [UIImage imageNamed:@"Pencil.png"];
-        [self addSubview:moodImageView];
+        UIImageView *signImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 13, 24, 24)];
+        signImageView.image = [UIImage imageNamed:@"Pencil.png"];
+        [self addSubview:signImageView];
         
         UILabel *desLabel = [[UILabel alloc]initWithFrame:CGRectMake(35, 10, 70, 30)];
         desLabel.backgroundColor = [UIColor clearColor];
@@ -29,13 +29,13 @@
         desLabel.text = @"个性签名";
         [self addSubview:desLabel];
         
-        moodLabel = [[UILabel alloc]initWithFrame:CGRectMake(160, 10, 130, 30)];
-        moodLabel.backgroundColor = [UIColor clearColor];
-        [moodLabel setTextColor:UIColorFromRGB(0xADD8E6)];
-        [moodLabel setFont:[UIFont systemFontOfSize:15]];
-        moodLabel.textAlignment = NSTextAlignmentRight;
-        moodLabel.alpha = 0.5;
-        [self addSubview:moodLabel];
+        signLabel = [[UILabel alloc]initWithFrame:CGRectMake(160, 10, 130, 30)];
+        signLabel.backgroundColor = [UIColor clearColor];
+        [signLabel setTextColor:UIColorFromRGB(0xADD8E6)];
+        [signLabel setFont:[UIFont systemFontOfSize:15]];
+        signLabel.textAlignment = NSTextAlignmentRight;
+        signLabel.alpha = 0.5;
+        [self addSubview:signLabel];
         
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 50, 320, 1)];
         lineView.backgroundColor = UIColorFromRGB(0x121212);

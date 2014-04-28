@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TJMoodCell : UITableViewCell
+@interface TJMySignCell : UITableViewCell
 {
-    UILabel *moodLabel;
+    UILabel *signLabel;
 }
-@property(nonatomic,strong) UILabel *moodLabel;
+@property(nonatomic,strong) UILabel *signLabel;
 @end

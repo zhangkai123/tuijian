@@ -50,7 +50,7 @@
 		4B47A3A918D1B40500087BE4 /* favhighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A718D1B40400087BE4 /* favhighlight@2x.png */; };
 		4B47A3AA18D1B40500087BE4 /* favSelectedHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3A818D1B40400087BE4 /* favSelectedHighlight@2x.png */; };
 		4B47A3AC18D1B42300087BE4 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B47A3AB18D1B42300087BE4 /* share.png */; };
-		4B504E6E190A63C30082C0EA /* TJMoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B504E6D190A63C30082C0EA /* TJMoodCell.m */; };
+		4B504E6E190A63C30082C0EA /* TJMySignCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B504E6D190A63C30082C0EA /* TJMySignCell.m */; };
 		4B50AC1A18D6EDF20028BAF9 /* writing.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B50AC1918D6EDF20028BAF9 /* writing.png */; };
 		4B543FCC18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */; };
 		4B543FCD18B4F3340052DFDD /* CaptureIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */; };
@@ -303,6 +303,7 @@
 		4BF4BBF8190E1D44003C85BD /* TJInfoTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4BBF7190E1D44003C85BD /* TJInfoTextCell.m */; };
 		4BF4BBFB190E334D003C85BD /* TJWirteMoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4BBFA190E334D003C85BD /* TJWirteMoodViewController.m */; };
 		4BF4BBFD190E4328003C85BD /* Pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF4BBFC190E4328003C85BD /* Pencil.png */; };
+		4BF4BC00190E49B8003C85BD /* TJUserSignCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4BBFF190E49B8003C85BD /* TJUserSignCell.m */; };
 		4BF64BAD18DD39A8005D34C1 /* UIImage+JTImageCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF64BAC18DD39A8005D34C1 /* UIImage+JTImageCrop.m */; };
 		4BFA998F18AFA19200D673CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA998E18AFA19200D673CB /* Foundation.framework */; };
 		4BFA999118AFA19200D673CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFA999018AFA19200D673CB /* CoreGraphics.framework */; };
@@ -412,8 +413,8 @@
 		4B47A3A718D1B40400087BE4 /* favhighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favhighlight@2x.png"; sourceTree = "<group>"; };
 		4B47A3A818D1B40400087BE4 /* favSelectedHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favSelectedHighlight@2x.png"; sourceTree = "<group>"; };
 		4B47A3AB18D1B42300087BE4 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
-		4B504E6C190A63C30082C0EA /* TJMoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMoodCell.h; sourceTree = "<group>"; };
-		4B504E6D190A63C30082C0EA /* TJMoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMoodCell.m; sourceTree = "<group>"; };
+		4B504E6C190A63C30082C0EA /* TJMySignCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMySignCell.h; sourceTree = "<group>"; };
+		4B504E6D190A63C30082C0EA /* TJMySignCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMySignCell.m; sourceTree = "<group>"; };
 		4B50AC1918D6EDF20028BAF9 /* writing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = writing.png; sourceTree = "<group>"; };
 		4B543FCA18B4F3340052DFDD /* CaptureIcon-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon-highlighted@2x.png"; sourceTree = "<group>"; };
 		4B543FCB18B4F3340052DFDD /* CaptureIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CaptureIcon@2x.png"; sourceTree = "<group>"; };
@@ -867,6 +868,8 @@
 		4BF4BBF9190E334D003C85BD /* TJWirteMoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJWirteMoodViewController.h; sourceTree = "<group>"; };
 		4BF4BBFA190E334D003C85BD /* TJWirteMoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJWirteMoodViewController.m; sourceTree = "<group>"; };
 		4BF4BBFC190E4328003C85BD /* Pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pencil.png; sourceTree = "<group>"; };
+		4BF4BBFE190E49B8003C85BD /* TJUserSignCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJUserSignCell.h; sourceTree = "<group>"; };
+		4BF4BBFF190E49B8003C85BD /* TJUserSignCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJUserSignCell.m; sourceTree = "<group>"; };
 		4BF64BAB18DD39A8005D34C1 /* UIImage+JTImageCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JTImageCrop.h"; sourceTree = "<group>"; };
 		4BF64BAC18DD39A8005D34C1 /* UIImage+JTImageCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JTImageCrop.m"; sourceTree = "<group>"; };
 		4BFA998B18AFA19200D673CB /* Tuijian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuijian.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -993,8 +996,10 @@
 				4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */,
 				4BEFE99218E3C1F100E2B6A3 /* TJMyInfoCell.h */,
 				4BEFE99318E3C1F100E2B6A3 /* TJMyInfoCell.m */,
-				4B504E6C190A63C30082C0EA /* TJMoodCell.h */,
-				4B504E6D190A63C30082C0EA /* TJMoodCell.m */,
+				4B504E6C190A63C30082C0EA /* TJMySignCell.h */,
+				4B504E6D190A63C30082C0EA /* TJMySignCell.m */,
+				4BF4BBFE190E49B8003C85BD /* TJUserSignCell.h */,
+				4BF4BBFF190E49B8003C85BD /* TJUserSignCell.m */,
 				4B57DA161900D828006F0355 /* TJMyPhotoCell.h */,
 				4B57DA171900D828006F0355 /* TJMyPhotoCell.m */,
 				4BDACC171906018F00FD91C3 /* TJUserPhotoCell.h */,
@@ -2762,7 +2767,7 @@
 				4B9C40E318D984AF00B9F8E5 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				4B9C40BB18D984AF00B9F8E5 /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				4B82B08118F7F17E00920EC2 /* MBProgressHUD.m in Sources */,
-				4B504E6E190A63C30082C0EA /* TJMoodCell.m in Sources */,
+				4B504E6E190A63C30082C0EA /* TJMySignCell.m in Sources */,
 				4B9C40F118D984AF00B9F8E5 /* XMPPvCardCoreDataStorage.m in Sources */,
 				4BFA999B18AFA19200D673CB /* main.m in Sources */,
 				4B9C414B18D98F0E00B9F8E5 /* TJXMPPServerMananger.m in Sources */,
@@ -2811,6 +2816,7 @@
 				4B47A39718D179B800087BE4 /* UIButton+WebCache.m in Sources */,
 				4B9C40FE18D984AF00B9F8E5 /* XMPPIQ+XEP_0060.m in Sources */,
 				4B9C413118D984AF00B9F8E5 /* DDTTYLogger.m in Sources */,
+				4BF4BC00190E49B8003C85BD /* TJUserSignCell.m in Sources */,
 				4B9C412D18D984AF00B9F8E5 /* DDAbstractDatabaseLogger.m in Sources */,
 				4B9C411318D984AF00B9F8E5 /* XMPPvCardAvatarModule.m in Sources */,
 				4B9C40E618D984AF00B9F8E5 /* XMPPRoomHybridStorage.m in Sources */,

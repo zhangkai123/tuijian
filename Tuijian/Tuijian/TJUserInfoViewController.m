@@ -9,6 +9,7 @@
 #import "TJUserInfoViewController.h"
 #import "TJUser.h"
 #import "TJMyInfoCell.h"
+#import "TJUserSignCell.h"
 #import "TJUserPhotoCell.h"
 #import "TJValueCell.h"
 #import "TJMyRecommendCell.h"
@@ -73,7 +74,7 @@
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return 6;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -88,6 +89,8 @@
         rowNum = 1;
     }else if(section == 4){
         rowNum = 1;
+    }else if(section == 5){
+        rowNum = 1;
     }
     return rowNum;
 }
@@ -95,18 +98,20 @@
 {
     float rowHeight = 0;
     if (indexPath.section == 0) {
-        rowHeight = 120;
+        rowHeight = 101;
     }else if(indexPath.section == 1){
+        rowHeight = 51;
+    }else if(indexPath.section == 2){
         if ([photoUrlArray count] <= 4) {
             rowHeight = 87;
         }else{
            rowHeight = 165;
         }
-    }else if(indexPath.section == 2){
-        rowHeight = 40;
     }else if(indexPath.section == 3){
-        rowHeight = 50;
+        rowHeight = 40;
     }else if(indexPath.section == 4){
+        rowHeight = 50;
+    }else if(indexPath.section == 5){
         rowHeight = 100;
     }
     return rowHeight;
@@ -127,20 +132,27 @@
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"female.png"]];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }else if (indexPath.section == 1) {
-        TJUserPhotoCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
-        if (!cellTwo) {
-            cellTwo = [[TJUserPhotoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
+    } else if (indexPath.section == 1) {
+        TJUserSignCell *userSignCell = [tableView dequeueReusableCellWithIdentifier:@"userSignCell"];
+        if (!userSignCell) {
+            userSignCell = [[TJUserSignCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userSignCell"];
         }
-//        cellTwo.delegate = self;
-        cellTwo.photoUrlArray = photoUrlArray;
-        cell = cellTwo;
+        userSignCell.signLabel.text = @"个性签名在这里";
+        cell = userSignCell;
     }else if (indexPath.section == 2) {
+        TJUserPhotoCell *userPhotoCell = [tableView dequeueReusableCellWithIdentifier:@"userPhotoCell"];
+        if (!userPhotoCell) {
+            userPhotoCell = [[TJUserPhotoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userPhotoCell"];
+        }
+//        userPhotoCell.delegate = self;
+        userPhotoCell.photoUrlArray = photoUrlArray;
+        cell = userPhotoCell;
+    }else if (indexPath.section == 3) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
         if (!cell) {
             cell = [[TJValueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
         }
-    }else if (indexPath.section == 3){
+    }else if (indexPath.section == 4){
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellFour"];
         if (!cell) {
             cell = [[TJMyRecommendCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
@@ -155,7 +167,7 @@
                  cell.textLabel.text = @"她的推荐";
             }
         }
-    }else if (indexPath.section == 4){
+    }else if (indexPath.section == 5){
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellFive"];
         if (!cell) {
             cell = [[TJChatCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFive"];
@@ -167,7 +179,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 3) {
+    if (indexPath.section == 4) {
         if (indexPath.row == 0) {
             self.hidesBottomBarWhenPushed = YES;
             NSString *theTitle = nil;

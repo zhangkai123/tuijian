@@ -9,7 +9,7 @@
 #import "TJMineViewController.h"
 #import "TJUser.h"
 #import "TJMyInfoCell.h"
-#import "TJMoodCell.h"
+#import "TJMySignCell.h"
 #import "TJMyPhotoCell.h"
 #import "TJValueCell.h"
 #import "TJMyRecommendCell.h"
@@ -135,11 +135,11 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else if (indexPath.section == 1) {
-        TJMoodCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
+        TJMySignCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
         if (!cellTwo) {
-            cellTwo = [[TJMoodCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
+            cellTwo = [[TJMySignCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
         }
-        cellTwo.moodLabel.text = @"说点什么吧";
+        cellTwo.signLabel.text = @"说点什么吧";
         cellTwo.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell = cellTwo;
     }else if (indexPath.section == 2) {
