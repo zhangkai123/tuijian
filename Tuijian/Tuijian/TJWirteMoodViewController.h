@@ -10,5 +10,4 @@
 
 @interface TJWirteMoodViewController : UIViewController
 
--(id)initWithTitle:(NSString *)theTitle;
 @end

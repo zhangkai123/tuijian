@@ -22,18 +22,12 @@
     }
     return self;
 }
--(id)initWithTitle:(NSString *)theTitle
-{
-    if (self = [super init]) {
-        self.title = theTitle;
-    }
-    return self;
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"个性签名";
 }
 
 - (void)didReceiveMemoryWarning

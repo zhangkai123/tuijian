@@ -18,7 +18,7 @@
 #import "TJAppDelegate.h"
 
 #import "TJInfoEditViewController.h"
-#import "TJMoodViewController.h"
+#import "TJWirteMoodViewController.h"
 
 @interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate,TJMyPhotoCellDelegate,UIActionSheetDelegate>
 {
@@ -139,7 +139,7 @@
         if (!cellTwo) {
             cellTwo = [[TJMoodCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
         }
-        cellTwo.moodLabel.text = @"[开心]今天好开心呀！今天好开心呀！";
+        cellTwo.moodLabel.text = @"说点什么吧";
         cellTwo.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell = cellTwo;
     }else if (indexPath.section == 2) {
@@ -178,12 +178,13 @@
         self.hidesBottomBarWhenPushed = YES;
         TJInfoEditViewController *infoEditViewController = [[TJInfoEditViewController alloc]init];
         infoEditViewController.theUser = theUser;
+        
         [self.navigationController pushViewController:infoEditViewController animated:YES];
         self.hidesBottomBarWhenPushed = NO;
     }else if(indexPath.section == 1){
         self.hidesBottomBarWhenPushed = YES;
-        TJMoodViewController *moodViewController = [[TJMoodViewController alloc]init];
-        [self.navigationController pushViewController:moodViewController animated:YES];
+        TJWirteMoodViewController *wirteMoodViewController = [[TJWirteMoodViewController alloc]init];
+        [self.navigationController pushViewController:wirteMoodViewController animated:YES];
         self.hidesBottomBarWhenPushed = NO;
     }else if(indexPath.section == 4){
         if (indexPath.row == 0) {
