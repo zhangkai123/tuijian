@@ -44,10 +44,16 @@
 {
     photoUrlArray = pUrlArray;
     for (int i = 0; i < [photoUrlArray count]; i++) {
-        UIImageView *photoView = (UIImageView *)[self viewWithTag:1000 + i];
+        TJTouchablePhotoView *photoView = (TJTouchablePhotoView *)[self viewWithTag:1000 + i];
+        photoView.delegate = nil;
         photoView.alpha = 1.0;
         NSString *photoUrl = [photoUrlArray objectAtIndex:i];
-        [photoView setImageWithURL:[NSURL URLWithString:photoUrl] placeholderImage:nil];
+        if ([photoUrl isEqualToString:@"uploading"]) {
+            continue;
+        }
+        NSString *urlWithoutExtention = [photoUrl stringByDeletingPathExtension];
+        NSString *thumbImageUrl = [NSString stringWithFormat:@"%@_thumb.png",urlWithoutExtention];
+        [photoView setImageWithURL:[NSURL URLWithString:thumbImageUrl] placeholderImage:nil];
     }
     if ([photoUrlArray count] < 8) {
         TJTouchablePhotoView *addPhotoView = (TJTouchablePhotoView *)[self viewWithTag:1000 + [photoUrlArray count]];
@@ -55,6 +61,11 @@
         [addPhotoView setAlpha:0.2];
         addPhotoView.delegate = self;
     }
+}
+-(void)setImageAtIndex:(int)whichImageView placeHolderImage:(UIImage *)placeHolderImage
+{
+    TJTouchablePhotoView *photoView = (TJTouchablePhotoView *)[self viewWithTag:1000 + whichImageView];
+    photoView.image = placeHolderImage;
 }
 #pragma TJTouchableImageViewDelegate
 -(void)selectPhotoView

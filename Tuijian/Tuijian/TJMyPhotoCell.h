@@ -21,4 +21,6 @@
 }
 @property(nonatomic,unsafe_unretained) id<TJMyPhotoCellDelegate> delegate;
 @property(nonatomic,strong) NSMutableArray *photoUrlArray;
+
+-(void)setImageAtIndex:(int)whichImageView placeHolderImage:(UIImage *)placeHolderImage;
 @end

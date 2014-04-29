@@ -260,13 +260,18 @@
         failure(error);
     }];
 }
--(void)uploadUserPhoto:(UIImage *)uPhoto progress:(void (^)(float uploadProgess))uploadPro success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)uploadUserPhoto:(UIImage *)uPhoto progress:(void (^)(float uploadProgess))uploadPro success:(void (^)(NSString *uploadImageUrl))success failure:(void (^)(NSError *error))failure
 {
     NSString *uid = [self getMyUserId];
     [[TJNetworkManager sharedNetworkManager]uploadUserPhoto:uPhoto userId:uid progress:^(float uploadProgress){
         uploadPro(uploadProgress);
     }success:^(id Json){
-        success(Json);
+        if ([[Json objectForKey:@"status"] isEqualToString:@"success"]) {
+            NSString *uploadImageUrl = [Json objectForKey:@"uploadImageUrl"];
+            success(uploadImageUrl);
+        }else{
+            failure(nil);
+        }
     }failure:^(NSError *error){
         failure(error);
     }];

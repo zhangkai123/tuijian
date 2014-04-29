@@ -25,6 +25,8 @@
     UITableView *theTableView;
     TJUser *theUser;
     NSMutableArray *photoUrlArray;
+    
+    MBProgressHUD *uploadHud;
 }
 @end
 
@@ -227,6 +229,7 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = (id)self;
     picker.allowsEditing = YES;
+    picker.videoQuality = UIImagePickerControllerQualityTypeMedium;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     [self presentViewController:picker animated:YES completion:NULL];
@@ -250,39 +253,62 @@
     holdImageView.image = chosenImage;
     [coverView addSubview:holdImageView];
     [[[UIApplication sharedApplication] keyWindow] addSubview:coverView];
-    [[TJDataController sharedDataController]uploadUserPhoto:chosenImage progress:^(float uploadProgress){
-        
-    }success:^(id json){
-        
-    }failure:^(NSError *error){
-        
-    }];
     [self showHUDWhenUploading];
-    
-//    float scaleValue = 70.0/320.0;
-//    [UIView animateWithDuration:0.7
-//                          delay:0
-//                        options:UIViewAnimationOptionBeginFromCurrentState
-//                     animations:(void (^)(void)) ^{
-//                         holdImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
-//                         holdImageView.center = [self getTheUploadImageViewPosition];
-//                         holdImageView.layer.cornerRadius = 5/scaleValue;
-//                         holdImageView.layer.masksToBounds = YES;
-//                     }
-//                     completion:^(BOOL finished){
-//
-//                     }];
+    [[TJDataController sharedDataController]uploadUserPhoto:chosenImage progress:^(float uploadProgress){
+        uploadHud.progress = uploadProgress;
+        if (uploadProgress >= 1.0) {
+            uploadHud.progress = 1.0;
+            [uploadHud hide:YES];
+            holdImageView.frame = CGRectMake(0, position - 64, 320, 320);
+            [theTableView addSubview:holdImageView];
+            [coverView removeFromSuperview];
+            
+            float scaleValue = 70.0/320.0;
+            [UIView animateWithDuration:0.7
+                                  delay:0
+                                options:UIViewAnimationOptionBeginFromCurrentState
+                             animations:(void (^)(void)) ^{
+                                 holdImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
+                                 holdImageView.center = [self getTheUploadImageViewPosition];
+                                 holdImageView.layer.cornerRadius = 5/scaleValue;
+                                 holdImageView.layer.masksToBounds = YES;
+                             }
+                             completion:^(BOOL finished){
+                                 [photoUrlArray addObject:@"uploading"];
+                                 NSIndexPath *photoCellIndexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+                                 TJMyPhotoCell *myPhotoCell = (TJMyPhotoCell *)[theTableView cellForRowAtIndexPath:photoCellIndexPath];
+                                 myPhotoCell.photoUrlArray = photoUrlArray;
+                                 [myPhotoCell setImageAtIndex:([photoUrlArray count] - 1) placeHolderImage:chosenImage];
+                                 [holdImageView removeFromSuperview];
+                             }];
+        }
+    }success:^(NSString *uploadImageUrl){
+        [self updatePhotoCellData:uploadImageUrl];
+    }failure:^(NSError *error){
+        [uploadHud hide:YES];
+    }];
+}
+-(void)updatePhotoCellData:(NSString *)iUrl
+{
+    for (int i = 0; i < [photoUrlArray count]; i++) {
+        NSString *photoUrl = [photoUrlArray objectAtIndex:i];
+        if ([photoUrl isEqualToString:@"uploading"]) {
+            [photoUrlArray replaceObjectAtIndex:i withObject:iUrl];
+            break;
+        }
+    }
+    NSIndexPath *photoCellIndex = [NSIndexPath indexPathForRow:0 inSection:2];
+    TJMyPhotoCell *myPhotoCell = (TJMyPhotoCell *)[theTableView cellForRowAtIndexPath:photoCellIndex];
+    myPhotoCell.photoUrlArray = photoUrlArray;
 }
 - (void)showHUDWhenUploading {
 	
-	MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication] keyWindow] animated:YES];
+	uploadHud = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication] keyWindow] animated:YES];
 	
 	// Configure for text only and offset down
-	hud.mode = MBProgressHUDModeDeterminate;
-	hud.margin = 10.f;
-	hud.removeFromSuperViewOnHide = YES;
-	
-	[hud hide:YES afterDelay:1];
+	uploadHud.mode = MBProgressHUDModeDeterminate;
+	uploadHud.margin = 10.f;
+	uploadHud.removeFromSuperViewOnHide = YES;
 }
 -(CGPoint)getTheUploadImageViewPosition
 {

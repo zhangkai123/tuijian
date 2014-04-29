@@ -47,7 +47,7 @@
 -(TJItemMessage *)getMyOwnMessageItem:(NSString *)replyMessage;
 -(TJUser *)getMyWholeUserInfo;
 -(void)getUserItems:(NSString *)userId success:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure;
--(void)uploadUserPhoto:(UIImage *)uPhoto progress:(void (^)(float uploadProgess))uploadPro success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
+-(void)uploadUserPhoto:(UIImage *)uPhoto progress:(void (^)(float uploadProgess))uploadPro success:(void (^)(NSString *uploadImageUrl))success failure:(void (^)(NSError *error))failure;
 
 #pragma XMPP Server
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success;
