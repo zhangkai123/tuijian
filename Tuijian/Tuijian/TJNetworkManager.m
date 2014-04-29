@@ -106,6 +106,30 @@
     }];
     [operation start];
 }
+-(void)uploadUserPhoto:(UIImage *)userPhoto userId:(NSString *)uid progress:(void (^)(float uploadProgess))uploadPro success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+{
+    TJMyServerClient *client = [TJMyServerClient sharedClient];
+    NSString *path = @"AddPic";
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:uid,@"uid", nil];
+    NSData *imgData = UIImagePNGRepresentation(userPhoto);
+    NSMutableURLRequest *myRequest = [client multipartFormRequestWithMethod:@"POST" path:path
+                                                                 parameters:paraDic constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
+                                                                     [formData appendPartWithFileData:imgData name:@"uploadedfile" fileName:@"myDynamicFile.png" mimeType:@"images/png"];
+                                                                 }];
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:myRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        
+        success(JSON);
+    }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        failure(error);
+    }];
+    [operation setUploadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead){
+        float uploadProgress = (float)totalBytesRead / totalBytesExpectedToRead;
+        uploadPro(uploadProgress);
+    }];
+    [operation start];
+}
 -(void)sendFeatchItemsRequest:(NSString *)accessT uid:(NSString *)uid category:(NSString *)category success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     TJMyServerClient *client = [TJMyServerClient sharedClient];

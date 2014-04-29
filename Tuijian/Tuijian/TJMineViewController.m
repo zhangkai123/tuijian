@@ -236,24 +236,53 @@
     [picker dismissViewControllerAnimated:NO completion:NULL];
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     
-    UIImageView *holdImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    int position = 0;
+    if (screenHeight == 568){
+        position = 124;
+    }else{
+        position = 80;
+    }
+    UIView *coverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, screenHeight)];
+    coverView.backgroundColor = [UIColor blackColor];
+    UIImageView *holdImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, position, 320, 320)];
     holdImageView.image = chosenImage;
-    holdImageView.center = self.view.center;
-    [theTableView addSubview:holdImageView];
+    [coverView addSubview:holdImageView];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:coverView];
+    [[TJDataController sharedDataController]uploadUserPhoto:chosenImage progress:^(float uploadProgress){
+        
+    }success:^(id json){
+        
+    }failure:^(NSError *error){
+        
+    }];
+    [self showHUDWhenUploading];
     
-    float scaleValue = 70.0/320.0;
-    [UIView animateWithDuration:0.7
-                          delay:0
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:(void (^)(void)) ^{
-                         holdImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
-                         holdImageView.center = [self getTheUploadImageViewPosition];
-                     }
-                     completion:^(BOOL finished){
-                         //holdImageView.transform=CGAffineTransformIdentity;
-                         holdImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
-                         holdImageView.center = [self getTheUploadImageViewPosition];
-                     }];
+//    float scaleValue = 70.0/320.0;
+//    [UIView animateWithDuration:0.7
+//                          delay:0
+//                        options:UIViewAnimationOptionBeginFromCurrentState
+//                     animations:(void (^)(void)) ^{
+//                         holdImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
+//                         holdImageView.center = [self getTheUploadImageViewPosition];
+//                         holdImageView.layer.cornerRadius = 5/scaleValue;
+//                         holdImageView.layer.masksToBounds = YES;
+//                     }
+//                     completion:^(BOOL finished){
+//
+//                     }];
+}
+- (void)showHUDWhenUploading {
+	
+	MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication] keyWindow] animated:YES];
+	
+	// Configure for text only and offset down
+	hud.mode = MBProgressHUDModeDeterminate;
+	hud.margin = 10.f;
+	hud.removeFromSuperViewOnHide = YES;
+	
+	[hud hide:YES afterDelay:1];
 }
 -(CGPoint)getTheUploadImageViewPosition
 {
