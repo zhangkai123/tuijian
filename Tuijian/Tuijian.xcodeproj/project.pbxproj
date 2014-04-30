@@ -287,6 +287,9 @@
 		4BE1636018B869040009158D /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1635F18B869040009158D /* ImageScrollView.m */; };
 		4BE1636318B9D7890009158D /* TJEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1636218B9D7880009158D /* TJEditViewController.m */; };
 		4BE5A37618EE52AB006A8A1E /* TJRootShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE5A37518EE52AB006A8A1E /* TJRootShowController.m */; };
+		4BE61E0A1910939100FB75D5 /* TJNameEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE61E091910939100FB75D5 /* TJNameEditViewController.m */; };
+		4BE61E0E191093D000FB75D5 /* TJGenderEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE61E0D191093D000FB75D5 /* TJGenderEditViewController.m */; };
+		4BE61E11191093E200FB75D5 /* TJAgeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE61E10191093E200FB75D5 /* TJAgeEditViewController.m */; };
 		4BE911BB18DBD81600F4C3B1 /* TJPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */; };
 		4BE911BF18DBE12400F4C3B1 /* TJMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE911BE18DBE12400F4C3B1 /* TJMemoryCache.m */; };
 		4BEE7F3618E53A8900232E6C /* MTStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEE7F3518E53A8900232E6C /* MTStatusBarOverlay.m */; };
@@ -839,6 +842,12 @@
 		4BE1636218B9D7880009158D /* TJEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJEditViewController.m; sourceTree = "<group>"; };
 		4BE5A37418EE52AB006A8A1E /* TJRootShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJRootShowController.h; sourceTree = "<group>"; };
 		4BE5A37518EE52AB006A8A1E /* TJRootShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJRootShowController.m; sourceTree = "<group>"; };
+		4BE61E081910939100FB75D5 /* TJNameEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJNameEditViewController.h; sourceTree = "<group>"; };
+		4BE61E091910939100FB75D5 /* TJNameEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJNameEditViewController.m; sourceTree = "<group>"; };
+		4BE61E0C191093D000FB75D5 /* TJGenderEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJGenderEditViewController.h; sourceTree = "<group>"; };
+		4BE61E0D191093D000FB75D5 /* TJGenderEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJGenderEditViewController.m; sourceTree = "<group>"; };
+		4BE61E0F191093E200FB75D5 /* TJAgeEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJAgeEditViewController.h; sourceTree = "<group>"; };
+		4BE61E10191093E200FB75D5 /* TJAgeEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJAgeEditViewController.m; sourceTree = "<group>"; };
 		4BE911B918DBD81600F4C3B1 /* TJPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJPostViewController.h; sourceTree = "<group>"; };
 		4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJPostViewController.m; sourceTree = "<group>"; };
 		4BE911BD18DBE12400F4C3B1 /* TJMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMemoryCache.h; sourceTree = "<group>"; };
@@ -1319,12 +1328,11 @@
 		4B57DA36190128B6006F0355 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				4BE61E0B191093A300FB75D5 /* BasicInfoEdit */,
 				4BFB64CD18C07AEC00C304BB /* TJMineViewController.h */,
 				4BFB64CE18C07AEC00C304BB /* TJMineViewController.m */,
 				4B57DA3719012992006F0355 /* TJRecentViewerViewController.h */,
 				4B57DA3819012992006F0355 /* TJRecentViewerViewController.m */,
-				4BF4BBE4190DEAF9003C85BD /* TJInfoEditViewController.h */,
-				4BF4BBE5190DEAF9003C85BD /* TJInfoEditViewController.m */,
 				4BF4BBF9190E334D003C85BD /* TJWirteMoodViewController.h */,
 				4BF4BBFA190E334D003C85BD /* TJWirteMoodViewController.m */,
 			);
@@ -2250,6 +2258,21 @@
 			name = gender;
 			sourceTree = "<group>";
 		};
+		4BE61E0B191093A300FB75D5 /* BasicInfoEdit */ = {
+			isa = PBXGroup;
+			children = (
+				4BF4BBE4190DEAF9003C85BD /* TJInfoEditViewController.h */,
+				4BF4BBE5190DEAF9003C85BD /* TJInfoEditViewController.m */,
+				4BE61E081910939100FB75D5 /* TJNameEditViewController.h */,
+				4BE61E091910939100FB75D5 /* TJNameEditViewController.m */,
+				4BE61E0C191093D000FB75D5 /* TJGenderEditViewController.h */,
+				4BE61E0D191093D000FB75D5 /* TJGenderEditViewController.m */,
+				4BE61E0F191093E200FB75D5 /* TJAgeEditViewController.h */,
+				4BE61E10191093E200FB75D5 /* TJAgeEditViewController.m */,
+			);
+			name = BasicInfoEdit;
+			sourceTree = "<group>";
+		};
 		4BE911BC18DBDB3700F4C3B1 /* MemoryCacheManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -2618,6 +2641,7 @@
 				4B9C411918D984AF00B9F8E5 /* XMPPAutoPing.m in Sources */,
 				4B569CDF18CEBB5D000DF219 /* TJMyServerClient.m in Sources */,
 				4BE1636018B869040009158D /* ImageScrollView.m in Sources */,
+				4BE61E0A1910939100FB75D5 /* TJNameEditViewController.m in Sources */,
 				4B9C410918D984AF00B9F8E5 /* XMPPCapabilities.xcdatamodel in Sources */,
 				4BE911BB18DBD81600F4C3B1 /* TJPostViewController.m in Sources */,
 				4B9C40F818D984AF00B9F8E5 /* XMPPvCardTempEmail.m in Sources */,
@@ -2781,12 +2805,14 @@
 				4B9C412C18D984AF00B9F8E5 /* GCDAsyncSocket.m in Sources */,
 				4B9C40F918D984AF00B9F8E5 /* XMPPvCardTempLabel.m in Sources */,
 				4B569CDD18CEBB5D000DF219 /* TJNetworkManager.m in Sources */,
+				4BE61E0E191093D000FB75D5 /* TJGenderEditViewController.m in Sources */,
 				4B9C413518D984AF00B9F8E5 /* NSString+DDXML.m in Sources */,
 				4B9C40BE18D984AF00B9F8E5 /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				4B47A39318D179B800087BE4 /* SDWebImageDownloader.m in Sources */,
 				4B9C413718D984AF00B9F8E5 /* DDXMLElement.m in Sources */,
 				4B9C40DF18D984AF00B9F8E5 /* XMPPLastActivity.m in Sources */,
 				4BD3A06E18F528FB00C6B6AE /* TTTAttributedLabel.m in Sources */,
+				4BE61E11191093E200FB75D5 /* TJAgeEditViewController.m in Sources */,
 				4BB6C05A18F244CB00DB13C9 /* TJRadioButtonView.m in Sources */,
 				4B9C40D018D984AF00B9F8E5 /* XMPPReconnect.m in Sources */,
 				4B31B77518D7F75400F87D71 /* TJComment.m in Sources */,

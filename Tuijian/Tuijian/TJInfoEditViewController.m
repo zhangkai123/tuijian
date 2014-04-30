@@ -9,8 +9,11 @@
 #import "TJInfoEditViewController.h"
 #import "TJHeadProtraitCell.h"
 #import "TJInfoTextCell.h"
+#import "TJNameEditViewController.h"
+#import "TJGenderEditViewController.h"
+#import "TJAgeEditViewController.h"
 
-@interface TJInfoEditViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface TJInfoEditViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 {
     UITableView *theTableView;
 }
@@ -96,6 +99,7 @@
         cell = cellTwo;
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -129,7 +133,95 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    switch (indexPath.row) {
+        case 0:
+        {
+            [self showPhotoActionSheet];
+        }
+            break;
+        case 1:
+        {
+            [self goToNameEditPage];
+        }
+            break;
+        case 2:
+        {
+            [self goToGenderEditPage];
+        }
+            break;
+        case 3:
+        {
+            [self goToAgeEditPage];
+        }
+            break;
+        default:
+            break;
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+-(void)showPhotoActionSheet
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:self
+                                  cancelButtonTitle:@"取消"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"拍照",@"从手机相册选择",nil];
+    [actionSheet showInView:self.view];
+}
+-(void)goToNameEditPage
+{
+    TJNameEditViewController *nameEditViewController = [[TJNameEditViewController alloc]init];
+    nameEditViewController.originName = theUser.name;
+    UINavigationController *nameNavigationController = [[UINavigationController alloc]initWithRootViewController:nameEditViewController];
+    [self presentViewController:nameNavigationController animated:YES completion:nil];
+}
+-(void)goToGenderEditPage
+{
+    self.hidesBottomBarWhenPushed = YES;
+    TJGenderEditViewController *genderEditViewController = [[TJGenderEditViewController alloc]init];
+    [self.navigationController pushViewController:genderEditViewController animated:YES];
+}
+-(void)goToAgeEditPage
+{
+    self.hidesBottomBarWhenPushed = YES;
+    TJAgeEditViewController *ageEditViewController = [[TJAgeEditViewController alloc]init];
+    [self.navigationController pushViewController:ageEditViewController
+                                         animated:YES];
+}
+
+#pragma UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self showCamera];
+    }else if(buttonIndex == 1){
+        [self showAlbume];
+    }
+}
+-(void)showCamera
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = (id)self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+-(void)showAlbume
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = (id)self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    [picker dismissViewControllerAnimated:NO completion:NULL];
+//    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+
 }
 - (void)didReceiveMemoryWarning
 {
