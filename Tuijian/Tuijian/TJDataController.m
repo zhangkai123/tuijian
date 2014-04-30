@@ -276,6 +276,15 @@
         failure(error);
     }];
 }
+-(void)getUserInformationFromServer:(NSString *)theUserId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+{
+    NSString *myOwnUserId = [self getMyUserId];
+    [[TJNetworkManager sharedNetworkManager]getWholeUserInfo:myOwnUserId theUserId:theUserId success:^(id json){
+        
+    }failure:^(NSError *error){
+        
+    }];
+}
 #pragma XMPP Server
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success
 {

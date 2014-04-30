@@ -80,6 +80,12 @@
     photoUrlArray = [[NSMutableArray alloc]initWithCapacity:8];
     theUser = [[TJDataController sharedDataController]getMyUserInfo];
     [photoUrlArray addObject:theUser.profile_image_url];
+    
+    [[TJDataController sharedDataController]getUserInformationFromServer:theUser.myUserId success:^(id json){
+        
+    }failure:^(NSError *error){
+        
+    }];
 }
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
