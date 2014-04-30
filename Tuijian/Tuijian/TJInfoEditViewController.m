@@ -38,7 +38,7 @@
     self.title = @"基本资料";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
+    theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStyleGrouped];
     theTableView.showsHorizontalScrollIndicator = NO;
     theTableView.showsVerticalScrollIndicator = NO;
     theTableView.dataSource = self;
@@ -146,7 +146,8 @@
             break;
         case 2:
         {
-            [self goToGenderEditPage];
+            TJInfoTextCell *infoTextCell = (TJInfoTextCell *)[tableView cellForRowAtIndexPath:indexPath];
+            [self goToGenderEditPage:infoTextCell.infoLabel.text];
         }
             break;
         case 3:
@@ -176,10 +177,11 @@
     UINavigationController *nameNavigationController = [[UINavigationController alloc]initWithRootViewController:nameEditViewController];
     [self presentViewController:nameNavigationController animated:YES completion:nil];
 }
--(void)goToGenderEditPage
+-(void)goToGenderEditPage:(NSString *)userGender
 {
     self.hidesBottomBarWhenPushed = YES;
     TJGenderEditViewController *genderEditViewController = [[TJGenderEditViewController alloc]init];
+    genderEditViewController.userGender = userGender;
     [self.navigationController pushViewController:genderEditViewController animated:YES];
 }
 -(void)goToAgeEditPage

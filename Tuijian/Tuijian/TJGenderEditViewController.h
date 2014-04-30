@@ -10,4 +10,5 @@
 
 @interface TJGenderEditViewController : UIViewController
 
+@property(nonatomic,strong) NSString *userGender;
 @end
