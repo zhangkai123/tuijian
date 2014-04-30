@@ -23,8 +23,6 @@
     
     UIButton *coverButton;
     TJChatView *chatView;
-    
-    BOOL goBackToInfoPage;
 }
 @end
 
@@ -43,15 +41,10 @@
     }
     return self;
 }
--(id)initWithTitle:(NSString *)navTitle fromInfoPage:(BOOL)fInfoPage
+-(id)initWithTitle:(NSString *)navTitle
 {
     if (self = [super init]) {
         self.title = navTitle;
-        if (!fInfoPage) {
-            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"消息" style:UIBarButtonItemStyleBordered target:self action:@selector(goBackToInfoPage)];
-        }else{
-            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"消息" style:UIBarButtonItemStyleBordered target:self action:@selector(goBack)];
-        }
     }
     return self;
 }
@@ -130,20 +123,8 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(receiveChatMessage) name:TJ_CHAT_VIEWCONTROLLER_NOTIFICATION object:nil];
 }
--(void)goBackToInfoPage
-{
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-    [appDelegate changeToInfoTab];
-}
--(void)goBack
-{
-    goBackToInfoPage = YES;
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
 -(void)hideKeyboard
 {
-    goBackToInfoPage = NO;
     [chatView showKeyboard:NO];
 }
 
@@ -251,9 +232,6 @@
 #pragma mark 键盘即将退出
 - (void)keyBoardWillHide:(NSNotification *)note{
     
-    if (goBackToInfoPage) {
-        return;
-    }
     coverButton.hidden = YES;
     NSDictionary *keyboardAnimationDetail = [note userInfo];
     UIViewAnimationCurve animationCurve = [keyboardAnimationDetail[UIKeyboardAnimationCurveUserInfoKey] integerValue];

@@ -17,6 +17,7 @@
 #import "TJChatCell.h"
 #import "TJChatViewController.h"
 
+#import "TJAppDelegate.h"
 
 @interface TJUserInfoViewController ()<UITableViewDataSource,UITableViewDelegate,TJChatCellDelegate>
 {
@@ -197,11 +198,19 @@
 #pragma TJChatCellDelegate
 -(void)sendMessageTo
 {
-    self.hidesBottomBarWhenPushed = YES;
-    TJChatViewController *chatViewController = [[TJChatViewController alloc]initWithTitle:self.userName fromInfoPage:NO];
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    [appDelegate changeToInfoTab];
+    UINavigationController *infoNavController = [appDelegate.tabBarController.viewControllers objectAtIndex:1];
+    NSArray *viewControllers = infoNavController.viewControllers;
+    UIViewController *rootViewController = [viewControllers objectAtIndex:0];
+    
+    rootViewController.hidesBottomBarWhenPushed = YES;
+    TJChatViewController *chatViewController = [[TJChatViewController alloc]initWithTitle:self.userName];
     chatViewController.chatToUserId = self.uid;
     chatViewController.chatToUserImageUrl = self.userImageUrl;
-    [self.navigationController pushViewController:chatViewController animated:YES];
+    [infoNavController pushViewController:chatViewController animated:YES];
+    rootViewController.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)didReceiveMemoryWarning
