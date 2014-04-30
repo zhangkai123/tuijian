@@ -40,6 +40,8 @@
     theTableView.delegate = self;
     theTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:theTableView];
+    
+    theTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, theTableView.bounds.size.width, 0.01f)];
 }
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -9,7 +9,7 @@
 #import "TJMySignCell.h"
 
 @implementation TJMySignCell
-@synthesize signLabel;
+@synthesize delegate ,signLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -29,7 +29,7 @@
         desLabel.text = @"个性签名";
         [self addSubview:desLabel];
         
-        signLabel = [[UILabel alloc]initWithFrame:CGRectMake(160, 10, 130, 30)];
+        signLabel = [[UILabel alloc]initWithFrame:CGRectMake(170, 10, 130, 30)];
         signLabel.backgroundColor = [UIColor clearColor];
         [signLabel setTextColor:UIColorFromRGB(0xADD8E6)];
         [signLabel setFont:[UIFont systemFontOfSize:15]];
@@ -40,10 +40,17 @@
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 50, 320, 1)];
         lineView.backgroundColor = UIColorFromRGB(0x121212);
         [self addSubview:lineView];
+        
+        UIButton *clickButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+        [clickButton addTarget:self action:@selector(clickSignCell) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:clickButton];
     }
     return self;
 }
-
+-(void)clickSignCell
+{
+    [self.delegate haveClickedSignCell];
+}
 - (void)awakeFromNib
 {
     // Initialization code

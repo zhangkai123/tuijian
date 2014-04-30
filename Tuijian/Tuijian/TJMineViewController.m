@@ -18,9 +18,9 @@
 #import "TJAppDelegate.h"
 
 #import "TJInfoEditViewController.h"
-#import "TJWirteMoodViewController.h"
+#import "TJPersonalSignViewController.h"
 
-@interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate,TJMyPhotoCellDelegate,UIActionSheetDelegate>
+@interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate,TJMySignCellDelegate,TJMyPhotoCellDelegate,UIActionSheetDelegate>
 {
     UITableView *theTableView;
     TJUser *theUser;
@@ -147,8 +147,9 @@
         if (!cellTwo) {
             cellTwo = [[TJMySignCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
         }
+        cellTwo.delegate = self;
         cellTwo.signLabel.text = @"说点什么吧";
-        cellTwo.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cellTwo.accessoryType = UITableViewCellAccessoryNone;
         cell = cellTwo;
     }else if (indexPath.section == 2) {
         TJMyPhotoCell *photoCell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
@@ -177,7 +178,7 @@
             cell.textLabel.text = @"最近访客";
         }
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -188,11 +189,6 @@
         infoEditViewController.theUser = theUser;
         
         [self.navigationController pushViewController:infoEditViewController animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
-    }else if(indexPath.section == 1){
-        self.hidesBottomBarWhenPushed = YES;
-        TJWirteMoodViewController *wirteMoodViewController = [[TJWirteMoodViewController alloc]init];
-        [self.navigationController pushViewController:wirteMoodViewController animated:YES];
         self.hidesBottomBarWhenPushed = NO;
     }else if(indexPath.section == 4){
         if (indexPath.row == 0) {
@@ -209,6 +205,13 @@
             self.hidesBottomBarWhenPushed = NO;
         }
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+#pragma TJMySignCellDelegate
+-(void)haveClickedSignCell
+{
+    TJPersonalSignViewController *personalSignViewController = [[TJPersonalSignViewController alloc]init];
+    [self presentViewController:personalSignViewController animated:YES completion:nil];
 }
 #pragma TJMyPhotoCellDelegate
 -(void)showPhotoActionSheet

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TJWirteMoodViewController : UIViewController
+@interface TJPersonalSignViewController : UIViewController
 
 @end
