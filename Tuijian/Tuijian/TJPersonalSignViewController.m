@@ -33,7 +33,7 @@
     UINavigationBar *theNavigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, 320, 64)];
     UINavigationItem *navItem = [UINavigationItem alloc];
     navItem.title = @"个性签名";
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(goBack)];
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"我的" style:UIBarButtonItemStyleBordered target:self action:@selector(goBack)];
     [navItem setLeftBarButtonItem:leftBarButtonItem];
     [theNavigationBar pushNavigationItem:navItem animated:false];
     [self.view addSubview:theNavigationBar];

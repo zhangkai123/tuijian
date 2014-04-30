@@ -29,7 +29,7 @@
         desLabel.text = @"个性签名";
         [self addSubview:desLabel];
         
-        signLabel = [[UILabel alloc]initWithFrame:CGRectMake(170, 10, 130, 30)];
+        signLabel = [[UILabel alloc]initWithFrame:CGRectMake(160, 10, 130, 30)];
         signLabel.backgroundColor = [UIColor clearColor];
         [signLabel setTextColor:UIColorFromRGB(0xADD8E6)];
         [signLabel setFont:[UIFont systemFontOfSize:15]];

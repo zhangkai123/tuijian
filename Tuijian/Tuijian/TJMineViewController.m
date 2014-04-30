@@ -149,7 +149,7 @@
         }
         cellTwo.delegate = self;
         cellTwo.signLabel.text = @"说点什么吧";
-        cellTwo.accessoryType = UITableViewCellAccessoryNone;
+        cellTwo.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell = cellTwo;
     }else if (indexPath.section == 2) {
         TJMyPhotoCell *photoCell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
@@ -164,6 +164,7 @@
         if (!cell) {
             cell = [[TJValueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellFive"];
         if (!cell) {
