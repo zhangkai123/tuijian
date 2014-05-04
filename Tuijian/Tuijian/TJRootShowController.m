@@ -52,18 +52,19 @@
         UIBarButtonItem *placeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:placeButton];
         self.navigationItem.leftBarButtonItem = placeButtonItem;
 
-        UIButton *cameraButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 36)];
-        [cameraButton setImage:[UIImage imageNamed:@"camera_18_2x.png"] forState:UIControlStateNormal];
-        [cameraButton addTarget:self action:@selector(takePhoto:) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *cameraButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cameraButton];
-        self.navigationItem.rightBarButtonItem = cameraButtonItem;
+//        UIButton *cameraButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 36)];
+//        [cameraButton setImage:[UIImage imageNamed:@"camera_18_2x.png"] forState:UIControlStateNormal];
+//        [cameraButton addTarget:self action:@selector(takePhoto:) forControlEvents:UIControlEventTouchUpInside];
+//        UIBarButtonItem *cameraButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cameraButton];
+//        self.navigationItem.rightBarButtonItem = cameraButtonItem;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(takePhoto:)];
         
         titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 160, 44)];
         titleView.backgroundColor = [UIColor clearColor];
         self.navigationItem.titleView = titleView;
         
         lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 160, 24)];
-        lblTitle.text = @"美食";
+        lblTitle.text = @"动态";
         lblTitle.backgroundColor = [UIColor clearColor];
         lblTitle.textColor = [UIColor colorWithRed:77.0/255.0 green:77.0/255.0 blue:77.0/255.0 alpha:1.0];
         lblTitle.shadowColor = [UIColor whiteColor];
@@ -76,7 +77,7 @@
         pageControl.frame = CGRectMake(0,30,160,10);
         pageControl.pageIndicatorTintColor = UIColorFromRGB(0xA0BFFB);
         pageControl.currentPageIndicatorTintColor = UIColorFromRGB(0xF29A0B);
-        pageControl.numberOfPages = 4;
+        pageControl.numberOfPages = 2;
         pageControl.currentPage = 0;
         [titleView addSubview:pageControl];
     }
@@ -107,18 +108,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"美食";
     // Do any additional setup after loading the view.
-    self.title = @"推荐";
     // kick things off by making the first page
     TJShowViewController *pageZero = [TJShowViewController showViewControllerForPageIndex:0];
     TJShowViewController *pageOne = [TJShowViewController showViewControllerForPageIndex:1];
-    TJShowViewController *pageTwo = [TJShowViewController showViewControllerForPageIndex:2];
-    TJShowViewController *pageThree = [TJShowViewController showViewControllerForPageIndex:3];
     controllersArray = [[NSMutableArray alloc]init];
     [controllersArray addObject:pageZero];
     [controllersArray addObject:pageOne];
-    [controllersArray addObject:pageTwo];
-    [controllersArray addObject:pageThree];
     if (pageZero != nil)
     {
         // assign the first page to the pageViewController (our rootViewController)
@@ -153,7 +150,6 @@
     }
     TJShowViewController *showViewController = [controllersArray objectAtIndex:index - 1];
     return showViewController;
-//    return [TJShowViewController showViewControllerForPageIndex:(index - 1)];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pvc viewControllerAfterViewController:(TJShowViewController *)vc
@@ -164,7 +160,6 @@
     }
     TJShowViewController *showViewController = [controllersArray objectAtIndex:index + 1];
     return showViewController;
-//    return [TJShowViewController showViewControllerForPageIndex:(index + 1)];
 }
 - (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
 {
@@ -187,13 +182,9 @@
 -(void)setNavigationBar:(int)index
 {
     currentIndex = index;
-    if (currentIndex == 0) {
-        lblTitle.text = @"美食";
-    }else if(currentIndex == 1){
-        lblTitle.text = @"玩乐";
-    }else if(currentIndex == 2){
+    if(currentIndex == 0){
         lblTitle.text = @"动态";
-    }else if(currentIndex == 3){
+    }else if(currentIndex == 1){
         lblTitle.text = @"关注";
     }
     pageControl.currentPage = currentIndex;

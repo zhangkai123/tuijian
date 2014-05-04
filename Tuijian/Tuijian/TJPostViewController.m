@@ -7,16 +7,16 @@
 //
 
 #import "TJPostViewController.h"
-#import "TJRadioButtonView.h"
+//#import "TJRadioButtonView.h"
 
-@interface TJPostViewController ()<UITextFieldDelegate,UITextViewDelegate,TJRadioButtonViewDelegate>
+@interface TJPostViewController ()<UITextFieldDelegate,UITextViewDelegate>
 {
     UITextField *titleTextField;
     UITextView *tuijianTextView;
     UILabel *placeHolderLabel;
     
     UIView *tagView;
-    TJRadioButtonView *radioButtonView;
+//    TJRadioButtonView *radioButtonView;
 }
 @end
 
@@ -108,7 +108,7 @@
     }
     
     placeHolderLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0,tuijianTextView.frame.size.width - 10.0, 34.0)];
-    [placeHolderLabel setText:@"推荐理由"];
+    [placeHolderLabel setText:@"说两句吧"];
     placeHolderLabel.textAlignment = NSTextAlignmentLeft;
     [placeHolderLabel setBackgroundColor:[UIColor clearColor]];
     [placeHolderLabel setTextColor:[UIColor lightGrayColor]];
@@ -116,20 +116,20 @@
     [placeHolderLabel setAlpha:0.6];
     [tuijianTextView addSubview:placeHolderLabel];
     
-    tagView = [[UIView alloc]initWithFrame:CGRectMake(0, 294, 320, 40)];
-    tagView.backgroundColor = UIColorFromRGB(0xE0E0E0);
-    [self.view addSubview:tagView];
-    UILabel *tagLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0, 5.0, 50, 30)];
-    [tagLabel setText:@"标签:"];
-    [tagLabel setBackgroundColor:[UIColor clearColor]];
-    [tagLabel setTextColor:[UIColor darkGrayColor]];
-    [tagLabel setFont:[UIFont boldSystemFontOfSize:TJ_RECOMMEND_SIZE]];
-    [tagView addSubview:tagLabel];
+//    tagView = [[UIView alloc]initWithFrame:CGRectMake(0, 294, 320, 40)];
+//    tagView.backgroundColor = UIColorFromRGB(0xE0E0E0);
+//    [self.view addSubview:tagView];
+//    UILabel *tagLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0, 5.0, 50, 30)];
+//    [tagLabel setText:@"标签:"];
+//    [tagLabel setBackgroundColor:[UIColor clearColor]];
+//    [tagLabel setTextColor:[UIColor darkGrayColor]];
+//    [tagLabel setFont:[UIFont boldSystemFontOfSize:TJ_RECOMMEND_SIZE]];
+//    [tagView addSubview:tagLabel];
     
-    radioButtonView = [[TJRadioButtonView alloc]initWithTitleArray:[NSArray arrayWithObjects:@"美食",@"玩乐", nil] theFrame:CGRectMake(50, 5, 200, 30)];
-    radioButtonView.delegate = self;
-    radioButtonView.backgroundColor = [UIColor clearColor];
-    [tagView addSubview:radioButtonView];
+//    radioButtonView = [[TJRadioButtonView alloc]initWithTitleArray:[NSArray arrayWithObjects:@"美食",@"玩乐", nil] theFrame:CGRectMake(50, 5, 200, 30)];
+//    radioButtonView.delegate = self;
+//    radioButtonView.backgroundColor = [UIColor clearColor];
+//    [tagView addSubview:radioButtonView];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldHaveBeenChanged) name:UITextFieldTextDidChangeNotification object:nil];
 }
@@ -144,7 +144,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSString *title = [titleTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *tuijianText = [tuijianTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    [[TJDataController sharedDataController]saveItem:title category:radioButtonView.selectedTag recommendMes:tuijianText uploadImage:self.cropedImage success:^(id Json){
+    [[TJDataController sharedDataController]saveItem:title category:@"美食" recommendMes:tuijianText uploadImage:self.cropedImage success:^(id Json){
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPLOADING_ITEM_SUCCESS object:nil];
     }failure:^(NSError *error){
@@ -181,17 +181,17 @@
         placeHolderLabel.hidden = NO;
     }
 }
-#pragma TJRadioButtonViewDelegate
--(void)haveSelectedTag
-{
-    [self adjustRightButtonItem];
-}
+//#pragma TJRadioButtonViewDelegate
+//-(void)haveSelectedTag
+//{
+//    [self adjustRightButtonItem];
+//}
 
 -(void)adjustRightButtonItem
 {
     NSString * titleWithoutWhiteSpace = [titleTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString * tuijianWithoutWhiteSpace = [tuijianTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if ((![titleWithoutWhiteSpace isEqualToString:@""]) && (![tuijianWithoutWhiteSpace isEqualToString:@""]) && (radioButtonView.selectedTag != nil)) {
+    if ((![titleWithoutWhiteSpace isEqualToString:@""]) && (![tuijianWithoutWhiteSpace isEqualToString:@""])) {
         self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0x4876FF);
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }else{

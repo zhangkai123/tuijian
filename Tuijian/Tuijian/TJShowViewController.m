@@ -67,13 +67,11 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self resetScrollView];
     [itemTableView reloadData];
     [super viewWillAppear:animated];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [self showNavigationBar];
     [super viewWillDisappear:animated];
 }
 - (void)viewDidLoad
@@ -88,6 +86,7 @@
     [self.view addSubview:itemTableView];
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 50, 0);
     itemTableView.contentInset = insets;
+    itemTableView.backgroundColor = UIColorFromRGB(0xDDDDDD);
     
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshTableViewData) forControlEvents:UIControlEventValueChanged];
@@ -163,7 +162,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
-    return textHeight + 325 + 40 + 30;
+    return textHeight + 325 + 40 + 30 + 15;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -252,61 +251,6 @@
     
     [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.95]];
     return backView;
-}
-
-#pragma uiscrollview 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    CGRect frame = self.navigationController.navigationBar.frame;
-    CGRect tableViewFrame = itemTableView.frame;
-    CGFloat size = frame.size.height - 21;
-    CGFloat framePercentageHidden = ((20 - frame.origin.y) / (frame.size.height - 1));
-    CGFloat scrollOffset = scrollView.contentOffset.y;
-    CGFloat scrollDiff = scrollOffset - previousScrollViewYOffset;
-    CGFloat scrollHeight = scrollView.frame.size.height;
-    CGFloat scrollContentSizeHeight = scrollView.contentSize.height + scrollView.contentInset.bottom;
-    
-    if (scrollOffset <= -scrollView.contentInset.top) {
-        frame.origin.y = 20;
-        tableViewFrame.origin.y = 44;
-    } else if ((scrollOffset + scrollHeight) >= scrollContentSizeHeight) {
-        frame.origin.y = -size;
-        tableViewFrame.origin.y = 0;
-    } else {
-        frame.origin.y = MIN(20, MAX(-size, frame.origin.y - scrollDiff));
-        tableViewFrame.origin.y = MIN(44, MAX(0, tableViewFrame.origin.y - scrollDiff));
-    }
-    
-    [self.navigationController.navigationBar setFrame:frame];
-    [itemTableView setFrame:tableViewFrame];
-    [self updateBarButtonItems:(1 - framePercentageHidden)];
-    previousScrollViewYOffset = scrollOffset;
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
- //   [self stoppedScrolling];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
-                  willDecelerate:(BOOL)decelerate
-{
-//    if (!decelerate) {
-//        [self stoppedScrolling];
-//    }
-}
--(void)showNavigationBar
-{
-    CGRect frame = self.navigationController.navigationBar.frame;
-    frame.origin.y = 20;
-    [self.navigationController.navigationBar setFrame:frame];
-    [self updateBarButtonItems:1];
-}
--(void)resetScrollView
-{
-    CGRect tableViewFrame = itemTableView.frame;
-    tableViewFrame.origin.y = 44;
-    [itemTableView setFrame:tableViewFrame];
 }
 #pragma TJTouchableImageViewDelegate
 -(void)selectUserImageView:(int)sectionNum

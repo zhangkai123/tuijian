@@ -10,8 +10,9 @@
 #import "TJCropViewController.h"
 #import "ImageScrollView.h"
 #import "UIImage+JTImageCrop.h"
+#import "TJWaterMarkViewController.h"
 
-@interface TJCropViewController ()
+@interface TJCropViewController ()<TJWaterMarkViewControllerDelegate>
 {
     ImageScrollView *imageScrollView;
 }
@@ -48,7 +49,7 @@
     [self.view addSubview:cancelButton];
     
     UIButton *useButton = [[UIButton alloc]initWithFrame:CGRectMake(320 - 60 - 5 , 25, 60, 30)];
-    [useButton setTitle:@"使用" forState:UIControlStateNormal];
+    [useButton setTitle:@"下一步" forState:UIControlStateNormal];
     [useButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     useButton.backgroundColor = [UIColor clearColor];
     [useButton addTarget:self action:@selector(useCrop) forControlEvents:UIControlEventTouchUpInside];
@@ -70,17 +71,15 @@
 }
 -(void)useCrop
 {
-    __block id<TJCropViewControllerDelegate> weakDelegate = self.delegate;
-//    UIImage *cropedImage = [self getImageFromScrollView:imageScrollView];
-    
     CGRect cropRect = [self getCropRect:self.thePhoto];
     UIImage *cropedImage = [UIImage imageWithImage:self.thePhoto cropInRect:cropRect];
     if (cropedImage.size.width > 360) {
         cropedImage = [UIImage resizeImageToSize:cropedImage toSize:CGSizeMake(360, 360)];
     }
-    [self dismissViewControllerAnimated:NO completion:^(void){
-        [weakDelegate getTheCropedImage:cropedImage];
-    }];
+    TJWaterMarkViewController *waterMarkViewController = [[TJWaterMarkViewController alloc]init];
+    waterMarkViewController.delegate = self;
+    waterMarkViewController.theCropedPhoto = cropedImage;
+    [self displayContentController:waterMarkViewController];
 }
 -(UIImage *)getImageFromScrollView:(UIScrollView *)theScrollView
 {
@@ -111,6 +110,11 @@
         cropRect = CGRectMake(actualXOffset, actualYOffset, imageHeight, imageHeight);
     }
     return cropRect;
+}
+#pragma TJWaterMarkViewControllerDelegate
+-(void)getTheWatermarkImage:(UIImage *)watermarkImage
+{
+    [self.delegate getTheCropedImage:watermarkImage];
 }
 - (void)didReceiveMemoryWarning
 {

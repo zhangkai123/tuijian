@@ -64,7 +64,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     titleLabel.numberOfLines = 1;
     [titleLabel setTextColor:UIColorFromRGB(0x3399CC)];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = @"我来推荐";
+    titleLabel.text = @"分享美食";
     [self.view addSubview:titleLabel];
     titleLabel.center = CGPointMake(160, 40);
     

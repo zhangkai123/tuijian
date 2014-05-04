@@ -20,6 +20,12 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.backgroundColor = UIColorFromRGB(0xDDDDDD);
+        
+        coverView = [[UIView alloc]initWithFrame:CGRectZero];
+        coverView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:coverView];
+        
         itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
         itemImageView.backgroundColor = UIColorFromRGB(0xF5F5F5);
         [self addSubview:itemImageView];
@@ -74,9 +80,9 @@
         commentNumLabel.textColor = [UIColor redColor];
         [commentImageView addSubview:commentNumLabel];
         
-        bottomLineView = [[UIView alloc]initWithFrame:CGRectZero];
-        bottomLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
-        [self addSubview:bottomLineView];
+//        bottomLineView = [[UIView alloc]initWithFrame:CGRectZero];
+//        bottomLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+//        [self addSubview:bottomLineView];
     }
     return self;
 }
@@ -89,7 +95,8 @@
     likeImageView.frame = CGRectMake(240, 330 + 30 + textH, 32, 32);
     commentImageView.frame = CGRectMake(240 + 32 + 5, 330 + 30 + textH + 2, 28, 28);
     
-    bottomLineView.frame = CGRectMake(0, textH + 325 + 40 + 29, 320, 1);
+//    bottomLineView.frame = CGRectMake(0, textH + 325 + 40 + 29, 320, 1);
+    coverView.frame = CGRectMake(0, 0, 320, textH + 325 + 40 + 30);
 }
 -(void)like
 {

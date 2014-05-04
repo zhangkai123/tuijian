@@ -12,6 +12,9 @@
 		4B14F38518FE20290063C89E /* TJAcceptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B14F38418FE20290063C89E /* TJAcceptViewController.m */; };
 		4B14F38B18FE27DD0063C89E /* agreement.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4B14F38A18FE27DD0063C89E /* agreement.txt */; };
 		4B1D468218DAF1240056262B /* TJMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1D468118DAF1240056262B /* TJMessage.m */; };
+		4B20FD271915E8760049E13F /* TJWaterMarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B20FD261915E8760049E13F /* TJWaterMarkViewController.m */; };
+		4B20FD2D19162DFA0049E13F /* TJWatermarkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B20FD2C19162DFA0049E13F /* TJWatermarkLabel.m */; };
+		4B20FD3019163A940049E13F /* TJFoodNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B20FD2F19163A940049E13F /* TJFoodNameViewController.m */; };
 		4B31404618ED01C6007A00F2 /* HPGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31404318ED01C6007A00F2 /* HPGrowingTextView.m */; };
 		4B31404718ED01C6007A00F2 /* HPTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31404518ED01C6007A00F2 /* HPTextViewInternal.m */; };
 		4B31404A18ED061C007A00F2 /* TJCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31404918ED061C007A00F2 /* TJCommentView.m */; };
@@ -352,6 +355,12 @@
 		4B14F38A18FE27DD0063C89E /* agreement.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = agreement.txt; sourceTree = "<group>"; };
 		4B1D468018DAF1240056262B /* TJMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMessage.h; sourceTree = "<group>"; };
 		4B1D468118DAF1240056262B /* TJMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMessage.m; sourceTree = "<group>"; };
+		4B20FD251915E8760049E13F /* TJWaterMarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJWaterMarkViewController.h; sourceTree = "<group>"; };
+		4B20FD261915E8760049E13F /* TJWaterMarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJWaterMarkViewController.m; sourceTree = "<group>"; };
+		4B20FD2B19162DFA0049E13F /* TJWatermarkLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJWatermarkLabel.h; sourceTree = "<group>"; };
+		4B20FD2C19162DFA0049E13F /* TJWatermarkLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJWatermarkLabel.m; sourceTree = "<group>"; };
+		4B20FD2E19163A940049E13F /* TJFoodNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJFoodNameViewController.h; sourceTree = "<group>"; };
+		4B20FD2F19163A940049E13F /* TJFoodNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJFoodNameViewController.m; sourceTree = "<group>"; };
 		4B31404218ED01C6007A00F2 /* HPGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPGrowingTextView.h; sourceTree = "<group>"; };
 		4B31404318ED01C6007A00F2 /* HPGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPGrowingTextView.m; sourceTree = "<group>"; };
 		4B31404418ED01C6007A00F2 /* HPTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTextViewInternal.h; sourceTree = "<group>"; };
@@ -979,6 +988,10 @@
 				4BE1635F18B869040009158D /* ImageScrollView.m */,
 				4BE1636118B9D7880009158D /* TJEditViewController.h */,
 				4BE1636218B9D7880009158D /* TJEditViewController.m */,
+				4B20FD251915E8760049E13F /* TJWaterMarkViewController.h */,
+				4B20FD261915E8760049E13F /* TJWaterMarkViewController.m */,
+				4B20FD2E19163A940049E13F /* TJFoodNameViewController.h */,
+				4B20FD2F19163A940049E13F /* TJFoodNameViewController.m */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -2399,6 +2412,8 @@
 				4B8EADB218F628CD00BDDD91 /* TJSelectableLabel.m */,
 				4B57DA2E19011FDF006F0355 /* TJTouchablePhotoView.h */,
 				4B57DA2F19011FDF006F0355 /* TJTouchablePhotoView.m */,
+				4B20FD2B19162DFA0049E13F /* TJWatermarkLabel.h */,
+				4B20FD2C19162DFA0049E13F /* TJWatermarkLabel.m */,
 				4BFA99A018AFA19200D673CB /* Images.xcassets */,
 				4BFA999518AFA19200D673CB /* Supporting Files */,
 			);
@@ -2688,6 +2703,7 @@
 				4B9C40EF18D984AF00B9F8E5 /* XMPPvCard.xcdatamodeld in Sources */,
 				4B47A39A18D179B800087BE4 /* UIImage+WebP.m in Sources */,
 				4B31404618ED01C6007A00F2 /* HPGrowingTextView.m in Sources */,
+				4B20FD2D19162DFA0049E13F /* TJWatermarkLabel.m in Sources */,
 				4BFB835018EBF0A1008651DA /* TJSinaAPIClient.m in Sources */,
 				4B47A39218D179B800087BE4 /* SDWebImageDecoder.m in Sources */,
 				4B8B93B218E90C8F00459AC2 /* TJItemMessageCell.m in Sources */,
@@ -2741,6 +2757,7 @@
 				4B9C411218D984AF00B9F8E5 /* XMPPMessageArchiving.m in Sources */,
 				4B9C411518D984AF00B9F8E5 /* XMPPPresence+XEP_0172.m in Sources */,
 				4B9C411F18D984AF00B9F8E5 /* XMPPAttentionModule.m in Sources */,
+				4B20FD271915E8760049E13F /* TJWaterMarkViewController.m in Sources */,
 				4B47A39518D179B800087BE4 /* SDWebImageManager.m in Sources */,
 				4B9C412A18D984AF00B9F8E5 /* XMPPSRVResolver.m in Sources */,
 				4B14F38518FE20290063C89E /* TJAcceptViewController.m in Sources */,
@@ -2831,6 +2848,7 @@
 				4B47A38F18D179B800087BE4 /* NSData+ImageContentType.m in Sources */,
 				4B569CCC18CEBA0D000DF219 /* AFJSONRequestOperation.m in Sources */,
 				4BDACC2B190661A500FD91C3 /* TJChatMessage.m in Sources */,
+				4B20FD3019163A940049E13F /* TJFoodNameViewController.m in Sources */,
 				4B9C40CB18D984AF00B9F8E5 /* XMPPStream.m in Sources */,
 				4B9C40CE18D984AF00B9F8E5 /* XMPPGoogleSharedStatus.m in Sources */,
 				4B47A36818D1462500087BE4 /* TJItemCell.m in Sources */,

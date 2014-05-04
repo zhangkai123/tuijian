@@ -18,6 +18,8 @@
 {
     NSString *itemId;
     
+    UIView *coverView;
+    
     UIImageView *itemImageView;
     UILabel *titleLabel;
     UILabel *recommendInfoLabel;
@@ -31,7 +33,7 @@
     UIImageView *likeImageView;
     UILabel *likeNumLabel;
     
-    UIView *bottomLineView;
+//    UIView *bottomLineView;
     
     __unsafe_unretained id<TJItemCellDelegate> delegate;
 }
