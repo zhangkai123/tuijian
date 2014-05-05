@@ -95,11 +95,11 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         stillButton.frame = CGRectMake(130, self.previewView.frame.origin.y + self.previewView.frame.size.height + 15, 60, 60);
     }
     
-    UIButton *cameraButton = [[UIButton alloc]initWithFrame:CGRectMake(320 - 29 - 10, 10, 29, 25)];
-    [cameraButton setImage:[UIImage imageNamed:@"CameraFlipIcon"] forState:UIControlStateNormal];
-    cameraButton.backgroundColor = [UIColor clearColor];
-    [cameraButton addTarget:self action:@selector(changeCamera) forControlEvents:UIControlEventTouchUpInside];
-    [self.previewView addSubview:cameraButton];
+//    UIButton *cameraButton = [[UIButton alloc]initWithFrame:CGRectMake(320 - 29 - 10, 10, 29, 25)];
+//    [cameraButton setImage:[UIImage imageNamed:@"CameraFlipIcon"] forState:UIControlStateNormal];
+//    cameraButton.backgroundColor = [UIColor clearColor];
+//    [cameraButton addTarget:self action:@selector(changeCamera) forControlEvents:UIControlEventTouchUpInside];
+//    [self.previewView addSubview:cameraButton];
     
     UIButton *albumeButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 320 - 29 - 10, 27, 29)];
     [albumeButton setImage:[UIImage imageNamed:@"ChoosePhotoIcon"] forState:UIControlStateNormal];
