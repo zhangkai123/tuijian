@@ -24,4 +24,5 @@
 +(void)parseChatMessage:(id)data parsedMessage:(void (^)(TJChatMessage *message))message;
 
 +(NSString *)getMessageFromUserId:(id)data;
++(NSString *)getMessageItemId:(id)data;
 @end

@@ -19,6 +19,7 @@
     NSString *itemId;
     
     UIView *coverView;
+    UIView *seperateLine;
     
     UIImageView *itemImageView;
     UILabel *recommendInfoLabel;

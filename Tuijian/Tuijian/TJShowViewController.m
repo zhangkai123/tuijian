@@ -205,10 +205,11 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIToolbar* backView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
-    backView.barStyle = UIBarStyleDefault;
+//    UIToolbar* backView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+//    backView.barStyle = UIBarStyleDefault;
 
-//    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+    backView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
     TJItem *theItem = [itemsArray objectAtIndex:section];
     TJTouchableImageView *userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
     userImageView.sectionNum = section;

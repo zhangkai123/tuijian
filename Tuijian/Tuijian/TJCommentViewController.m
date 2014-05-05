@@ -99,6 +99,7 @@
             [weakMyLikesArray addObjectsFromArray:likesArray];
         }comments:^(NSArray *commentsArray){
             for (int i = 0; i < [commentsArray count]; i++) {
+                [weakmyCommentHeightArray removeAllObjects];
                 TJComment *comment = [commentsArray objectAtIndex:i];
                 CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(TJ_COMMENT_LABEL_WIDTH, 0)
                                                                       options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
@@ -137,6 +138,7 @@
             [weakMyLikesArray addObjectsFromArray:likesArray];
         }comments:^(NSArray *commentsArray){
             for (int i = 0; i < [commentsArray count]; i++) {
+                [weakmyCommentHeightArray removeAllObjects];
                 TJComment *comment = [commentsArray objectAtIndex:i];
                 CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(TJ_COMMENT_LABEL_WIDTH, 0)
                                                                       options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)

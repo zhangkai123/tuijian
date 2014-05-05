@@ -9,17 +9,20 @@
 #import "MessageCell.h"
 #import "TJChatMessage.h"
 #import "MessageFrame.h"
+#import "UIImage+additions.h"
+#import "TJTouchableImageView.h"
 
-@interface MessageCell ()
+@interface MessageCell ()<TJTouchableImageViewDelegate>
 {
     UIButton     *_timeBtn;
-    UIImageView *_iconView;
+    TJTouchableImageView *_iconView;
     UIButton    *_contentBtn;
 }
 
 @end
 
 @implementation MessageCell
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -36,7 +39,8 @@
         [self.contentView addSubview:_timeBtn];
         
         // 2、创建头像
-        _iconView = [[UIImageView alloc] init];
+        _iconView = [[TJTouchableImageView alloc] init];
+        _iconView.delegate = self;
         [self.contentView addSubview:_iconView];
         
         // 3、创建内容
@@ -50,6 +54,12 @@
     }
     return self;
 }
+#pragma TJTouchableImageViewDelegate
+-(void)selectUserImageView:(int)sectionNum
+{
+    TJChatMessage *message = _messageFrame.message;
+    [self.delegate goToUserInfoPage:message.type];
+}
 
 - (void)setMessageFrame:(MessageFrame *)messageFrame{
     
@@ -62,9 +72,20 @@
     _timeBtn.frame = _messageFrame.timeF;
     
     // 2、设置头像
-//    _iconView.image = [UIImage imageNamed:message.icon];
-    [_iconView setImageWithURL:[NSURL URLWithString:message.icon] placeholderImage:nil];
-    _iconView.frame = _messageFrame.iconF;
+    __block UIImageView *weakImageView = _iconView;
+    __block MessageFrame *weakMessageFrame = _messageFrame;
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:message.icon]];
+    [_iconView setImageWithURLRequest:urlRequest
+                         placeholderImage:nil
+                                  success:^(NSURLRequest *request ,NSHTTPURLResponse *response ,UIImage *image){
+                                      
+                                      float radius = MAX(image.size.width, image.size.height);
+                                      weakImageView.image = [image makeRoundCornersWithRadius:radius/2];
+                                      weakImageView.frame = weakMessageFrame.iconF;
+                                  }failure:^(NSURLRequest *request ,NSHTTPURLResponse *response ,NSError *error){
+                                      
+                                  }];
+
     
     // 3、设置内容
     [_contentBtn setTitle:message.content forState:UIControlStateNormal];
@@ -91,7 +112,8 @@
         
     }
     [_contentBtn setBackgroundImage:normal forState:UIControlStateNormal];
-    [_contentBtn setBackgroundImage:focused forState:UIControlStateHighlighted];
+    [_contentBtn setBackgroundImage:normal forState:UIControlStateHighlighted];
+//    [_contentBtn setBackgroundImage:focused forState:UIControlStateHighlighted];
     
 }
 

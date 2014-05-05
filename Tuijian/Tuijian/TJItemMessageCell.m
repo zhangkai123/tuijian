@@ -9,7 +9,7 @@
 #import "TJItemMessageCell.h"
 
 @implementation TJItemMessageCell
-@synthesize userImageView ,commentLable;
+@synthesize userImageView ,commentLable ,itemImageView;
 @synthesize commentHeight;
 @synthesize delegate ,rowNum;
 
@@ -33,6 +33,9 @@
         commentLable.lineBreakMode = NSLineBreakByCharWrapping;
         commentLable.numberOfLines = 0;
         [self addSubview:commentLable];
+        
+        self.itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(310 - 40, 5, 40, 40)];
+        [self addSubview:self.itemImageView];
     }
     return self;
 }

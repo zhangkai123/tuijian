@@ -323,14 +323,14 @@
         return;
     }
     TJMessage *basicMessage = [[TJMessage alloc]init];
-    basicMessage.messageId = item.itemId;
+    basicMessage.messageId = TJ_ITEM_MESSAGE_ID;
     basicMessage.messageType = @"itemMessage";
     basicMessage.imageUrl = item.imageUrl;
-    basicMessage.messageTitle = item.title;
+    basicMessage.messageTitle = @"我的美食";
     basicMessage.messageName = myUserInfo.name;
     basicMessage.message = @"赞";
     basicMessage.messageContentType = @"like";
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:item.uid basicMessage:basicMessage userProfileImage:myUserInfo.profile_image_url userGender:myUserInfo.gender];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:item.uid basicMessage:basicMessage userProfileImage:myUserInfo.profile_image_url userGender:myUserInfo.gender theItemId:item.itemId];
 }
 -(void)sendComment:(TJItem *)item comment:(NSString *)commentInfo
 {
@@ -340,14 +340,14 @@
         return;
     }
     TJMessage *basicMessage = [[TJMessage alloc]init];
-    basicMessage.messageId = item.itemId;
+    basicMessage.messageId = TJ_ITEM_MESSAGE_ID;
     basicMessage.messageType = @"itemMessage";
     basicMessage.imageUrl = item.imageUrl;
-    basicMessage.messageTitle = item.title;
+    basicMessage.messageTitle = @"我的美食";
     basicMessage.messageName = myUserInfo.name;
     basicMessage.message = commentInfo;
     basicMessage.messageContentType = @"comment";
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:item.uid basicMessage:basicMessage userProfileImage:myUserInfo.profile_image_url userGender:myUserInfo.gender];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:item.uid basicMessage:basicMessage userProfileImage:myUserInfo.profile_image_url userGender:myUserInfo.gender theItemId:item.itemId];
 }
 -(void)replyComment:(TJUser *)user theItem:(TJItem *)item comment:(NSString *)commentInfo
 {
@@ -357,14 +357,14 @@
         return;
     }
     TJMessage *basicMessage = [[TJMessage alloc]init];
-    basicMessage.messageId = item.itemId;
+    basicMessage.messageId = TJ_ITEM_MESSAGE_ID;
     basicMessage.messageType = @"itemMessage";
     basicMessage.imageUrl = item.imageUrl;
-    basicMessage.messageTitle = item.title;
+    basicMessage.messageTitle = @"我的美食";
     basicMessage.messageName = myUserInfo.name;
     basicMessage.message = commentInfo;
     basicMessage.messageContentType = @"replyComment";
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:user.myUserId basicMessage:basicMessage userProfileImage:myUserInfo.profile_image_url userGender:myUserInfo.gender];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:user.myUserId basicMessage:basicMessage userProfileImage:myUserInfo.profile_image_url userGender:myUserInfo.gender theItemId:item.itemId];
 }
 -(void)replyMessage:(TJItemMessage *)itemMessage theMessage:(TJMessage *)theMessage comment:(NSString *)commentInfo
 {
@@ -374,14 +374,14 @@
         return;
     }
     TJMessage *basicMessage = [[TJMessage alloc]init];
-    basicMessage.messageId = theMessage.messageId;
+    basicMessage.messageId = TJ_ITEM_MESSAGE_ID;
     basicMessage.messageType = @"itemMessage";
     basicMessage.imageUrl = theMessage.imageUrl;
     basicMessage.messageTitle = theMessage.messageTitle;
     basicMessage.messageName = userInfo.name;
     basicMessage.message = commentInfo;
     basicMessage.messageContentType = @"replyComment";
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:itemMessage.uid basicMessage:basicMessage userProfileImage:userInfo.profile_image_url userGender:userInfo.gender];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendItemMessage:itemMessage.uid basicMessage:basicMessage userProfileImage:userInfo.profile_image_url userGender:userInfo.gender theItemId:itemMessage.itemId];
 }
 - (void) recieveMessage:(NSNotification *) notification
 {
@@ -391,7 +391,8 @@
         [TJParser parseMessage:message parsedMessage:^(TJMessage *mes){
             if ([mes.messageContentType isEqualToString:@"like"]) {
                 NSString *fromUserId = [TJParser getMessageFromUserId:weakMessage];
-                if ([self checkIfUserLikedInItemMessages:fromUserId messageId:mes.messageId]) {
+                NSString *itemId = [TJParser getMessageItemId:weakMessage];
+                if ([self checkIfUserLikedInItemMessages:fromUserId theItemId:itemId]) {
                     return;
                 }
             }
@@ -407,12 +408,12 @@
     }
 }
 
--(BOOL)checkIfUserLikedInItemMessages:(NSString *)userId messageId:(NSString *)mId
+-(BOOL)checkIfUserLikedInItemMessages:(NSString *)userId theItemId:(NSString *)theItemId
 {
-    NSArray *itemMessagesArray = [self featchItemMessage:mId];
+    NSArray *itemMessagesArray = [self featchItemMessage:TJ_ITEM_MESSAGE_ID];
     for (int i = 0; i < [itemMessagesArray count]; i++) {
         TJItemMessage *itemMessage = [itemMessagesArray objectAtIndex:i];
-        if ([itemMessage.uid isEqualToString:userId] && [itemMessage.messageContentType isEqualToString:@"like"]) {
+        if ([itemMessage.uid isEqualToString:userId] && [itemMessage.messageContentType isEqualToString:@"like"] && [itemMessage.itemId isEqualToString:theItemId]) {
             return YES;
         }
     }

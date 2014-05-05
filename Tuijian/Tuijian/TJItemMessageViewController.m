@@ -74,6 +74,7 @@
     NSArray *mArray = [[TJDataController sharedDataController]featchItemMessage:self.theMessage.messageId];
     [itemMessageArray removeAllObjects];
     [itemMessageArray addObjectsFromArray:mArray];
+    [textHeightArray removeAllObjects];
     for (int i = 0; i < [itemMessageArray count]; i++) {
         TJItemMessage *itemMessage = [itemMessageArray objectAtIndex:i];
         CGRect expectedLabelRect = [itemMessage.message boundingRectWithSize:CGSizeMake(TJ_ITEM_MESSAGE_WIDTH, 0)
@@ -173,6 +174,7 @@
         commentMessage = [NSString stringWithFormat:@"回复你的评论:%@",itemMessage.message];
     }
     [[cell commentLable]setText:commentMessage];
+    [[cell itemImageView]setImageWithURL:[NSURL URLWithString:itemMessage.itemUrl] placeholderImage:nil];
     cell.delegate = (id)self;
     cell.rowNum = indexPath.row;
     

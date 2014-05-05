@@ -94,7 +94,7 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
 }
 
 #pragma mark send item message
--(void)sendItemMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userProfileImage:(NSString *)pImage userGender:(NSString *)userG
+-(void)sendItemMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userProfileImage:(NSString *)pImage userGender:(NSString *)userG theItemId:(NSString *)theItemId
 {
     NSXMLElement *message = [self constructBasicMessage:userId basicMessage:basicM];
     NSXMLElement *userProfileImage = [NSXMLElement elementWithName:@"userProfileImage"];
@@ -103,6 +103,9 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
     NSXMLElement *userGender = [NSXMLElement elementWithName:@"userGender"];
     [userGender setStringValue:userG];
     [message addChild:userGender];
+    NSXMLElement *itemId = [NSXMLElement elementWithName:@"itemId"];
+    [itemId setStringValue:theItemId];
+    [message addChild:itemId];
 
     [xmppStream sendElement:message];
 }

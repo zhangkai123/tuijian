@@ -21,7 +21,7 @@
 -(void)userConnectToXMPPServer:(NSString *)userId password:(NSString *)pword success:(void (^)(BOOL hasOnline))success;
 - (void)disconnect;
 //item message
--(void)sendItemMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userProfileImage:(NSString *)pImage userGender:(NSString *)userG;
+-(void)sendItemMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userProfileImage:(NSString *)pImage userGender:(NSString *)userG theItemId:(NSString *)theItemId;
 //chat message
 -(void)sendChatMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userGender:(NSString *)userG;
 @end

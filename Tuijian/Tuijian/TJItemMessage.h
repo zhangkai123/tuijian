@@ -12,6 +12,8 @@
 
 
 @property(nonatomic,strong) NSString *uid;
+@property(nonatomic,strong) NSString *itemId;
+@property(nonatomic,strong) NSString *itemUrl;
 @property(nonatomic,strong) NSString *profileImageUrl;
 @property(nonatomic,strong) NSString *userName;
 @property(nonatomic,strong) NSString *userGender;

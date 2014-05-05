@@ -20,11 +20,13 @@
     TJTouchableImageView *userImageView;
     TJSelectableLabel *nameLable;
     UILabel *commentLable;
+    UIImageView *itemImageView;
     __unsafe_unretained id<TJItemMessageCellDelegate> delegate;
     int rowNum;
 }
 @property(nonatomic,strong) TJTouchableImageView *userImageView;
 @property(nonatomic,strong) UILabel *commentLable;
+@property(nonatomic,strong) UIImageView *itemImageView;
 @property(nonatomic,assign) float commentHeight;
 
 @property(nonatomic,unsafe_unretained) id<TJItemMessageCellDelegate> delegate;

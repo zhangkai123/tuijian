@@ -202,8 +202,12 @@
     NSString *userGender = [[data elementForName:@"userGender"] stringValue];
     NSString *messageContent = [[data elementForName:@"body"] stringValue];
     NSString *messageContentType = [[data elementForName:@"messageContentType"] stringValue];
+    NSString *itemId = [[data elementForName:@"itemId"] stringValue];
+    NSString *itemUrl = [[data elementForName:@"imageUrl"] stringValue];
     
     theMessage.uid = uid;
+    theMessage.itemId = itemId;
+    theMessage.itemUrl = itemUrl;
     theMessage.profileImageUrl = userProfileImage;
     theMessage.userName = userName;
     theMessage.userGender = userGender;
@@ -245,4 +249,9 @@
     }
     return uid;
 }
++(NSString *)getMessageItemId:(id)data
+{
+    return [[data elementForName:@"itemId"] stringValue];;
+}
+
 @end

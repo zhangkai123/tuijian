@@ -13,9 +13,9 @@
 #import "TJMessage.h"
 #import "MessageCell.h"
 #import "TJChatView.h"
+#import "TJUserInfoViewController.h"
 
-
-@interface TJChatViewController ()<UITableViewDataSource,UITableViewDelegate,TJChatViewDelegate>
+@interface TJChatViewController ()<UITableViewDataSource,UITableViewDelegate,TJChatViewDelegate,MessageCellDelegate>
 {
     NSString *myOwnImageUrl;
     UITableView *theTableView;
@@ -209,6 +209,18 @@
     
     [[TJDataController sharedDataController]sendChatMessageTo:self.chatToUserId chatMessage:messageContent];
 }
+#pragma MessageCellDelegate
+-(void)goToUserInfoPage:(MessageType)messageType
+{
+//    UIViewController *rootViewController = [self getTheNavigationRootViewController];
+//    rootViewController.hidesBottomBarWhenPushed = YES;
+//    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
+//    userInfoViewController.userImageUrl = theItem.userImg;
+//    userInfoViewController.userName = self.title;
+//    userInfoViewController.userGender = theItem.userGender;
+//    userInfoViewController.uid = theItem.uid;
+//    [self.navigationController pushViewController:userInfoViewController animated:YES];
+}
 #pragma mark - 键盘处理
 #pragma mark 键盘即将显示
 - (void)keyBoardWillShow:(NSNotification *)note{
@@ -259,6 +271,7 @@
     
     // 设置数据
     cell.messageFrame = _allMessagesFrame[indexPath.row];
+    cell.delegate = self;
     
     return cell;
 }

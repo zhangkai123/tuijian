@@ -9,6 +9,6 @@
 #import "TJItemMessage.h"
 
 @implementation TJItemMessage
-@synthesize uid ,profileImageUrl ,userName ,userGender ,message ,messageContentType;
+@synthesize uid ,itemId , itemUrl ,profileImageUrl ,userName ,userGender ,message ,messageContentType;
 
 @end

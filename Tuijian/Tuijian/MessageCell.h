@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 @class MessageFrame;
 
+@protocol MessageCellDelegate <NSObject>
+
+-(void)goToUserInfoPage:(MessageType)messageType;
+
+@end
 @interface MessageCell : UITableViewCell
 
+@property(nonatomic,unsafe_unretained) id<MessageCellDelegate> delegate;
 @property (nonatomic, strong) MessageFrame *messageFrame;
 
 @end
