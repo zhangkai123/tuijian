@@ -325,10 +325,16 @@
             [(TJCommentCell *)cell setBottomLineViewHidden:YES];
         }
         TJComment *comment = [myCommentsArray objectAtIndex:indexPath.row];
+        UIImage *genderPlaceHolder = nil;
+        if ([comment.user.gender isEqualToString:@"男"] || [comment.user.gender isEqualToString:@"m"] || ([comment.user.gender intValue] == 1)) {
+            genderPlaceHolder = [UIImage imageNamed:@"man_placeholder.png"];
+        }else{
+            genderPlaceHolder = [UIImage imageNamed:@"womanPlaceholder.png"];
+        }
         __block UIImageView *weakImageView = [(TJCommentCell *)cell userImageView];
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:comment.user.profile_image_url]];
         [[(TJCommentCell *)cell userImageView] setImageWithURLRequest:urlRequest
-                                               placeholderImage:[UIImage imageNamed:@"placeholder.png"]
+                                               placeholderImage:genderPlaceHolder
                                                success:^(NSURLRequest *request ,NSHTTPURLResponse *response ,UIImage *image){
             
                                                     float radius = MAX(image.size.width, image.size.height);

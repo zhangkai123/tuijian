@@ -165,7 +165,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
-    return textHeight + 325 + 40 + 15;
+    return textHeight + 325 + 40 + 22;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -205,14 +205,15 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+    UIToolbar* backView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+    backView.barStyle = UIBarStyleDefault;
+
+//    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
     TJItem *theItem = [itemsArray objectAtIndex:section];
     TJTouchableImageView *userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
     userImageView.sectionNum = section;
     userImageView.delegate = self;
-//    userImageView.clipsToBounds = YES;
     [backView addSubview:userImageView];
-//    userImageView.layer.cornerRadius = 40 / 2.0;
     
     CGRect expectedLabelRect = [theItem.userName boundingRectWithSize:CGSizeMake(0, 20)
                                                           options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
@@ -251,7 +252,6 @@
                                   }];
     [nameLabel setText:theItem.userName];
     
-    [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.95]];
     return backView;
 }
 #pragma TJTouchableImageViewDelegate
