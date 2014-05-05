@@ -11,7 +11,6 @@
 
 @implementation TJItemCell
 @synthesize itemId;
-//@synthesize titleLabel;
 @synthesize itemImageView ,commentNumLabel ,likeNumLabel;
 @synthesize delegate;
 

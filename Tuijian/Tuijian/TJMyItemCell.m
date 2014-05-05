@@ -10,23 +10,23 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation TJMyItemCell
-@synthesize itemId ,titleLabel ,itemImageView;
+@synthesize itemId ,itemImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.backgroundColor = UIColorFromRGB(0xF0F0F0);
+        
+        coverView = [[UIView alloc]initWithFrame:CGRectZero];
+        coverView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:coverView];
+
         itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
         itemImageView.backgroundColor = UIColorFromRGB(0xF5F5F5);
         [self addSubview:itemImageView];
-        
-        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 325, 300, 30)];
-        [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
-        titleLabel.numberOfLines = 1;
-        [titleLabel setTextColor:UIColorFromRGB(0x3399CC)];
-        [self addSubview:titleLabel];
-        
+                
         recommendInfoLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 0)];
         [recommendInfoLabel setFont:[UIFont systemFontOfSize:15]];
         recommendInfoLabel.lineBreakMode = NSLineBreakByCharWrapping;
@@ -39,7 +39,13 @@
 -(void)setRecommendInfoAndHeight:(NSString *)recommendInfo textHeight:(float)textH
 {
     recommendInfoLabel.text = recommendInfo;
-    recommendInfoLabel.frame = CGRectMake(10, 325 + 25, 300, textH);
+    recommendInfoLabel.frame = CGRectMake(10, 325, 300, textH);
+    
+    if (textH == 0) {
+        coverView.frame = CGRectMake(0, 0, 320, 320);
+    }else{
+        coverView.frame = CGRectMake(0, 0, 320, textH + 325);
+    }
 }
 
 - (void)awakeFromNib

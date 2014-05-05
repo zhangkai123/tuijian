@@ -48,6 +48,7 @@
     userItemTableView.dataSource = self;
     userItemTableView.delegate = self;
     [self.view addSubview:userItemTableView];
+    userItemTableView.backgroundColor = UIColorFromRGB(0xF0F0F0);
     
     userItemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
@@ -73,6 +74,9 @@
             CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(300, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                                                attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+            if ([recommendTex isEqualToString:@""]) {
+                expectedLabelRect.size.height = 0;
+            }
             [weakTextHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
         }
         [weakItemsArray addObjectsFromArray:iteArray];
@@ -98,7 +102,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-    float rowHeight = textHeight + 325 + 40;
+    float rowHeight = textHeight + 325 + 20;
     return rowHeight;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -111,7 +115,6 @@
     [(TJMyItemCell *)cell setItemId:theItem.itemId];
     [[(TJMyItemCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-    [[(TJMyItemCell *)cell titleLabel] setText:theItem.title];
     [(TJMyItemCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
     
     return cell;

@@ -12,13 +12,12 @@
 {
     NSString *itemId;
     
+    UIView *coverView;
     UIImageView *itemImageView;
-    UILabel *titleLabel;
     UILabel *recommendInfoLabel;
 }
 @property(nonatomic,strong) NSString *itemId;
 
-@property(nonatomic,strong) UILabel *titleLabel;
 @property(nonatomic,strong) UIImageView *itemImageView;
 
 -(void)setRecommendInfoAndHeight:(NSString *)recommendInfo textHeight:(float)textH;

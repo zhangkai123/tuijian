@@ -174,7 +174,7 @@
         
         if (indexPath.row == 0) {
             [cell.textLabel setTextColor:UIColorFromRGB(0x3399CC)];
-            cell.textLabel.text = @"我的推荐";
+            cell.textLabel.text = @"我的美食";
         }else{
             cell.textLabel.text = @"最近访客";
         }
@@ -194,7 +194,7 @@
     }else if(indexPath.section == 4){
         if (indexPath.row == 0) {
             self.hidesBottomBarWhenPushed = YES;
-            TJUserRecommendViewController *myRecommendViewController = [[TJUserRecommendViewController alloc]initWithTitle:@"我的推荐"];
+            TJUserRecommendViewController *myRecommendViewController = [[TJUserRecommendViewController alloc]initWithTitle:@"我的美食"];
             NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
             myRecommendViewController.theUserId = myUserId;
             [self.navigationController pushViewController:myRecommendViewController animated:YES];
