@@ -68,6 +68,7 @@
     detailTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
     detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:detailTableView];
+//    detailTableView.backgroundColor = UIColorFromRGB(0xF0F0F0);
 
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 200, 0);
     detailTableView.contentInset = insets;
@@ -268,7 +269,7 @@
 {
     float rowHeight = 0;
     if (indexPath.section == 0) {
-        rowHeight = textHeight + 325 + 40 + 30;
+        rowHeight = textHeight + 325 + 40;
     }else if (indexPath.section == 1){
         if ([myLikesArray count] != 0) {
             rowHeight = 50;
@@ -287,7 +288,6 @@
             cell = [[TJItemDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         }
         [(TJItemDetailCell *)cell setItemId:theItem.itemId];
-        [[(TJItemDetailCell *)cell titleLabel] setText:theItem.title];
         [[(TJItemDetailCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
         [(TJItemDetailCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
         [(TJItemDetailCell *)cell setLikeButtonColor:theItem.hasLiked];

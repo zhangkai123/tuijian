@@ -21,7 +21,6 @@
     UIView *coverView;
     
     UIImageView *itemImageView;
-    UILabel *titleLabel;
     UILabel *recommendInfoLabel;
     
     UIButton *shareButton;
@@ -33,13 +32,9 @@
     UIImageView *likeImageView;
     UILabel *likeNumLabel;
     
-//    UIView *bottomLineView;
-    
     __unsafe_unretained id<TJItemCellDelegate> delegate;
 }
 @property(nonatomic,strong) NSString *itemId;
-
-@property(nonatomic,strong) UILabel *titleLabel;
 
 @property(nonatomic,strong) UIImageView *itemImageView;
 @property(nonatomic,strong) UILabel *commentNumLabel;

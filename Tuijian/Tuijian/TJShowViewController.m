@@ -86,7 +86,7 @@
     [self.view addSubview:itemTableView];
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 50, 0);
     itemTableView.contentInset = insets;
-    itemTableView.backgroundColor = UIColorFromRGB(0xDDDDDD);
+    itemTableView.backgroundColor = UIColorFromRGB(0xF0F0F0);
     
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshTableViewData) forControlEvents:UIControlEventValueChanged];
@@ -98,7 +98,7 @@
         [self startActivityIndicator];
         [self refreshTableViewData];
     }
-    if (_pageIndex == 2) {
+    if (_pageIndex == 0) {
         //only “动态” get the latest post item
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
     }
@@ -135,6 +135,9 @@
             CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(TJ_RECOMMEND_WIDTH, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                                                attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]} context:nil];
+            if ([recommendTex isEqualToString:@""]) {
+                expectedLabelRect.size.height = 0;
+            }
             [weakTextHeightArray addObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height]];
         }
         [weakItemsArray addObjectsFromArray:iteArray];
@@ -162,7 +165,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
-    return textHeight + 325 + 40 + 30 + 15;
+    return textHeight + 325 + 40 + 15;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -175,7 +178,6 @@
     cell.itemId = theItem.itemId;
     [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
-    cell.titleLabel.text = theItem.title;
     [cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
     cell.likeNumLabel.text = theItem.likeNum;
     cell.commentNumLabel.text = theItem.commentNum;

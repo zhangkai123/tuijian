@@ -46,15 +46,15 @@
 
         likesArray = [[NSMutableArray alloc]init];
         
-        UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 300, 1)];
-        topLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
-        [self addSubview:topLineView];
-        UIView *leftLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 1, 50)];
-        leftLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
-        [self addSubview:leftLineView];
-        UIView *rightLineView = [[UIView alloc]initWithFrame:CGRectMake(309, 0, 1, 50)];
-        rightLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
-        [self addSubview:rightLineView];
+//        UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 300, 1)];
+//        topLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+//        [self addSubview:topLineView];
+//        UIView *leftLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 1, 50)];
+//        leftLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+//        [self addSubview:leftLineView];
+//        UIView *rightLineView = [[UIView alloc]initWithFrame:CGRectMake(309, 0, 1, 50)];
+//        rightLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+//        [self addSubview:rightLineView];
         bottomLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 49, 300, 1)];
         bottomLineView.backgroundColor = UIColorFromRGB(0xF0F0F0);
         [self addSubview:bottomLineView];
