@@ -212,7 +212,7 @@
     CGRect expectedLabelRect = [comment.info boundingRectWithSize:CGSizeMake(TJ_COMMENT_LABEL_WIDTH, 0)
                                                           options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                                        attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TJ_COMMENT_SIZE]} context:nil];
-    [myCommentHeightArray insertObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height] atIndex:0];
+    [myCommentHeightArray insertObject:[NSString stringWithFormat:@"%f",expectedLabelRect.size.height] atIndex:[myCommentHeightArray count]];
     [detailTableView reloadData];
     theItem.commentNum = [NSString stringWithFormat:@"%d",[theItem.commentNum intValue] + 1];
 

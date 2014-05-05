@@ -376,8 +376,8 @@
     TJMessage *basicMessage = [[TJMessage alloc]init];
     basicMessage.messageId = TJ_ITEM_MESSAGE_ID;
     basicMessage.messageType = @"itemMessage";
-    basicMessage.imageUrl = theMessage.imageUrl;
-    basicMessage.messageTitle = theMessage.messageTitle;
+    basicMessage.imageUrl = itemMessage.itemUrl;
+    basicMessage.messageTitle = @"我的美食";
     basicMessage.messageName = userInfo.name;
     basicMessage.message = commentInfo;
     basicMessage.messageContentType = @"replyComment";

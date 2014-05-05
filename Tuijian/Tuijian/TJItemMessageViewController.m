@@ -112,7 +112,7 @@
     NSString *nameComment = [NSString stringWithFormat:@"回复%@:%@",repliedItemMessage.userName,theComment];
     __block TJMessage *weakMessage = self.theMessage;
     //message id is the same as the item id
-    [[TJDataController sharedDataController]saveComment:self.theMessage.messageId commentInfo:nameComment success:^(BOOL hasCommented){
+    [[TJDataController sharedDataController]saveComment:repliedItemMessage.itemId commentInfo:nameComment success:^(BOOL hasCommented){
         if (hasCommented) {
             [[TJDataController sharedDataController]replyMessage:repliedItemMessage theMessage:weakMessage comment:commentInfo];
         }
