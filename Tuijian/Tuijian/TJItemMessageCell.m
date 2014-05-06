@@ -34,7 +34,8 @@
         commentLable.numberOfLines = 0;
         [self addSubview:commentLable];
         
-        self.itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(310 - 40, 5, 40, 40)];
+        self.itemImageView = [[TJTouchablePhotoView alloc]initWithFrame:CGRectMake(270, 5, 40, 40)];
+        itemImageView.delegate = self;
         [self addSubview:self.itemImageView];
     }
     return self;
@@ -61,6 +62,11 @@
 -(void)selectLabel:(int)rowNum
 {
     [self.delegate selectCommentUserImage:self.rowNum];
+}
+#pragma TJTouchablePhotoViewDelegate
+-(void)selectPhotoView
+{
+    [self.delegate selectItemImage:self.rowNum];
 }
 
 - (void)awakeFromNib

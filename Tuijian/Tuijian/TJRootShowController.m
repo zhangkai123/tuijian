@@ -210,7 +210,7 @@
     overlay.animation = MTStatusBarOverlayAnimationFallDown;
     overlay.detailViewMode = MTDetailViewModeDetailText;
     overlay.delegate = self;
-    [overlay postMessage:@"正在发布您的推荐…"];
+    [overlay postMessage:@"正在发布您的美食…"];
 }
 #pragma TJCamViewControllerDelegate
 -(void)getTheCropedImage:(UIImage *)cropedImage

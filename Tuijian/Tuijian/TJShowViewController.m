@@ -14,6 +14,7 @@
 #import "TJSelectableLabel.h"
 #import "TJUserInfoViewController.h"
 #import "UIImage+additions.h"
+#import "FXBlurView.h"
 
 @interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJItemCellDelegate,TJTouchableImageViewDelegate>
 {
@@ -76,7 +77,7 @@
 }
 - (void)viewDidLoad
 {
-    self.title = @"推荐";
+    self.title = @"美食";
     [super viewDidLoad];
     itemTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, 320, self.view.frame.size.height - 20 - 49) style:UITableViewStylePlain];
     itemTableView.dataSource = self;
@@ -208,8 +209,9 @@
 //    UIToolbar* backView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
 //    backView.barStyle = UIBarStyleDefault;
 
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
-    backView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
+    FXBlurView *backView = [[FXBlurView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+    backView.tintColor = [UIColor whiteColor];
+//    backView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.9];
     TJItem *theItem = [itemsArray objectAtIndex:section];
     TJTouchableImageView *userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
     userImageView.sectionNum = section;

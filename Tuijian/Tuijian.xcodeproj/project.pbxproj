@@ -292,6 +292,7 @@
 		4BE61E11191093E200FB75D5 /* TJAgeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE61E10191093E200FB75D5 /* TJAgeEditViewController.m */; };
 		4BE911BB18DBD81600F4C3B1 /* TJPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */; };
 		4BE911BF18DBE12400F4C3B1 /* TJMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE911BE18DBE12400F4C3B1 /* TJMemoryCache.m */; };
+		4BEE418C19186C0600EC8EDB /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEE418B19186C0600EC8EDB /* FXBlurView.m */; };
 		4BEE7F3618E53A8900232E6C /* MTStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEE7F3518E53A8900232E6C /* MTStatusBarOverlay.m */; };
 		4BEFE99118E3B3BE00E2B6A3 /* TJMyItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99018E3B3BE00E2B6A3 /* TJMyItemCell.m */; };
 		4BEFE99418E3C1F100E2B6A3 /* TJMyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99318E3C1F100E2B6A3 /* TJMyInfoCell.m */; };
@@ -852,6 +853,8 @@
 		4BE911BA18DBD81600F4C3B1 /* TJPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJPostViewController.m; sourceTree = "<group>"; };
 		4BE911BD18DBE12400F4C3B1 /* TJMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMemoryCache.h; sourceTree = "<group>"; };
 		4BE911BE18DBE12400F4C3B1 /* TJMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMemoryCache.m; sourceTree = "<group>"; };
+		4BEE418A19186C0600EC8EDB /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		4BEE418B19186C0600EC8EDB /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		4BEE7F3418E53A8900232E6C /* MTStatusBarOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTStatusBarOverlay.h; sourceTree = "<group>"; };
 		4BEE7F3518E53A8900232E6C /* MTStatusBarOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTStatusBarOverlay.m; sourceTree = "<group>"; };
 		4BEFE98F18E3B3BE00E2B6A3 /* TJMyItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMyItemCell.h; sourceTree = "<group>"; };
@@ -1183,6 +1186,7 @@
 		4B569CB418CEB9D5000DF219 /* ThirdPartyLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				4BEE418919186BF300EC8EDB /* FXBlurView */,
 				4B6BD7B518FBA7CD0059C46E /* UMAnalytics */,
 				4B82B07E18F7F17100920EC2 /* MBProgressHUD */,
 				4BD3A06B18F528E800C6B6AE /* TTTAttributedLabel */,
@@ -2280,6 +2284,15 @@
 			name = MemoryCacheManager;
 			sourceTree = "<group>";
 		};
+		4BEE418919186BF300EC8EDB /* FXBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				4BEE418A19186C0600EC8EDB /* FXBlurView.h */,
+				4BEE418B19186C0600EC8EDB /* FXBlurView.m */,
+			);
+			name = FXBlurView;
+			sourceTree = "<group>";
+		};
 		4BEE7F3318E53A7B00232E6C /* MTStatusBarOverlay */ = {
 			isa = PBXGroup;
 			children = (
@@ -2657,6 +2670,7 @@
 				4B9C40E818D984AF00B9F8E5 /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
 				4B9C40D918D984AF00B9F8E5 /* XMPPRoster.m in Sources */,
 				4BEFE99B18E3DA0800E2B6A3 /* TJTouchableImageView.m in Sources */,
+				4BEE418C19186C0600EC8EDB /* FXBlurView.m in Sources */,
 				4B9C410E18D984AF00B9F8E5 /* XMPPMessageArchiving.xcdatamodeld in Sources */,
 				4B9C40DE18D984AF00B9F8E5 /* XMPPIQ+LastActivity.m in Sources */,
 				4B9C40F018D984AF00B9F8E5 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,

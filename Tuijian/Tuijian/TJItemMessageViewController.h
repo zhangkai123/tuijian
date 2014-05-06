@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 zhang kai. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TJBaseViewController.h"
 #import "TJMessage.h"
 
-@interface TJItemMessageViewController : UIViewController
+@interface TJItemMessageViewController : TJBaseViewController
 
 @property(nonatomic,strong) TJMessage *theMessage;
 

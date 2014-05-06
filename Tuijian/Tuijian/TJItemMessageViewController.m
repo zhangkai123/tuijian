@@ -12,6 +12,7 @@
 #import "TJItemMessage.h"
 #import "TJUserInfoViewController.h"
 #import "TJCommentView.h"
+#import "TJCommentViewController.h"
 
 @interface TJItemMessageViewController ()<UITableViewDataSource,UITableViewDelegate,TJItemMessageCellDelegate,TJCommentViewDelegate>
 {
@@ -194,6 +195,15 @@
     TJItemMessage *itemMessage = [itemMessageArray objectAtIndex:rowNum];
     [self goToUserInformationPage:itemMessage.profileImageUrl userName:itemMessage.userName userGender:itemMessage.userGender userId:itemMessage.uid];
 }
+-(void)selectItemImage:(int)rowNum
+{
+    TJItemMessage *itemMessage = [itemMessageArray objectAtIndex:rowNum];
+    self.hidesBottomBarWhenPushed = YES;
+    TJCommentViewController *commentViewController = [[TJCommentViewController alloc]init];
+    commentViewController.theItemId = itemMessage.itemId;
+    [self.navigationController pushViewController:commentViewController animated:YES];
+}
+
 -(void)goToUserInformationPage:(NSString *)userImage userName:(NSString *)userN userGender:(NSString *)userG userId:(NSString *)uid
 {
     self.hidesBottomBarWhenPushed = YES;

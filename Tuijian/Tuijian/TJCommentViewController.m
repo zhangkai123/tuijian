@@ -43,7 +43,7 @@
 -(id)init
 {
     if (self = [super init]) {
-        self.title = @"推荐详情";
+        self.title = @"美食详情";
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"write.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeComment)];
     }
     return self;

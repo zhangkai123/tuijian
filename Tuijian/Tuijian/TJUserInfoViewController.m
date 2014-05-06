@@ -163,9 +163,9 @@
         if (indexPath.row == 0) {
             [cell.textLabel setTextColor:UIColorFromRGB(0x3399CC)];
             if (isMan) {
-                 cell.textLabel.text = @"他的推荐";
+                 cell.textLabel.text = @"他的美食";
             }else{
-                 cell.textLabel.text = @"她的推荐";
+                 cell.textLabel.text = @"她的美食";
             }
         }
     }else if (indexPath.section == 5){
@@ -185,9 +185,9 @@
             self.hidesBottomBarWhenPushed = YES;
             NSString *theTitle = nil;
             if (isMan) {
-                theTitle = @"他的推荐";
+                theTitle = @"他的美食";
             }else{
-                theTitle = @"她的推荐";
+                theTitle = @"她的美食";
             }
             TJUserRecommendViewController *userRecommendViewController = [[TJUserRecommendViewController alloc]initWithTitle:theTitle];
             userRecommendViewController.theUserId = self.uid;
