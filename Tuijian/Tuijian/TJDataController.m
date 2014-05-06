@@ -431,7 +431,7 @@
 }
 -(NSArray *)featchItemMessage:(NSString *)mId
 {
-    NSArray *messageArray = [[TJDBManager sharedDBManager]getMessagesByOrder:@"itemMessage" messageId:mId idOrder:@"DESC"];
+    NSArray *messageArray = [[TJDBManager sharedDBManager]getMessagesByOrder:@"itemMessage" messageId:mId idOrder:@"DESC" withPage:0];
     NSMutableArray *itemsMessageArray = [[NSMutableArray alloc]init];
     __block NSMutableArray *weakItemsMessageArray = itemsMessageArray;
     for (int i = 0; i < [messageArray count]; i++) {
@@ -444,9 +444,9 @@
     }
     return itemsMessageArray;
 }
--(NSArray *)featchChatMessage:(NSString *)mId
+-(NSArray *)featchChatMessage:(NSString *)mId byPage:(int)pageNum
 {
-    NSArray *messageArray = [[TJDBManager sharedDBManager]getMessagesByOrder:@"chatMessage" messageId:mId idOrder:@"ASC"];
+    NSArray *messageArray = [[TJDBManager sharedDBManager]getMessagesByOrder:@"chatMessage" messageId:mId idOrder:@"DESC" withPage:pageNum];
     NSMutableArray *chatMessageArray = [[NSMutableArray alloc]init];
     __block NSMutableArray *weakChatMessageArray = chatMessageArray;
     for (int i = 0; i < [messageArray count]; i++) {
@@ -457,7 +457,8 @@
             [weakChatMessageArray addObject:chatMessage];
         }];
     }
-    return chatMessageArray;
+    NSArray *reversedArray = [NSMutableArray arrayWithArray:[[chatMessageArray reverseObjectEnumerator]allObjects]];
+    return reversedArray;
 }
 -(void)insertLocalChatMessage:(NSString *)mId myChatMessage:(TJChatMessage *)myChatMessage messageList:(TJMessage *)mes
 {

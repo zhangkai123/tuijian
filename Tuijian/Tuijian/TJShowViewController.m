@@ -103,8 +103,6 @@
         //only “动态” get the latest post item
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
     }
-    //refresh all tables when app just get actived
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_APP_ACTIVE_UPDATE_ALL_DATA object:nil];
 }
 
 -(void)refreshTableViewData

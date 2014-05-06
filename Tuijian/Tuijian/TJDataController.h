@@ -62,7 +62,7 @@
 -(NSArray *)featchMessageList;
 -(void)deleteFromMessageList:(NSString *)mId messageType:(NSString *)mType;
 -(NSArray *)featchItemMessage:(NSString *)mId;
--(NSArray *)featchChatMessage:(NSString *)mId;
+-(NSArray *)featchChatMessage:(NSString *)mId byPage:(int)pageNum;
 -(void)insertLocalChatMessage:(NSString *)mId myChatMessage:(TJChatMessage *)myChatMessage messageList:(TJMessage *)mes;
 -(int)getTotalInfoMessageNum;
 -(void)clearInfoMessageNum:(int)messageId messageType:(NSString *)mType;

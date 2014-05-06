@@ -214,7 +214,7 @@
 	}
 	sqlite3_close(database);
 }
--(NSArray *)getMessagesByOrder:(NSString *)messageType messageId:(NSString *)mId idOrder:(NSString *)idOrder
+-(NSArray *)getMessagesByOrder:(NSString *)messageType messageId:(NSString *)mId idOrder:(NSString *)idOrder withPage:(int)pageNum
 {
     [self clearInfoMessageNum:[mId intValue] messageType:messageType];//clear unread message number in message list table when featch message
 	sqlite3 *database;
@@ -222,7 +222,8 @@
     
     NSMutableArray *messageArray = [[NSMutableArray alloc]init];
 	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-		NSString *getCommand = [NSString stringWithFormat:@"select * from mes where messageId='%@' and messageType='%@' order by id %@",mId,messageType,idOrder];
+        int messageNum = (pageNum +1) * 10;
+		NSString *getCommand = [NSString stringWithFormat:@"select * from mes where messageId='%@' and messageType='%@' order by id %@ LIMIT %d",mId,messageType,idOrder,messageNum];
 		const char *getSqlCommand = [getCommand UTF8String];
 		sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
 		

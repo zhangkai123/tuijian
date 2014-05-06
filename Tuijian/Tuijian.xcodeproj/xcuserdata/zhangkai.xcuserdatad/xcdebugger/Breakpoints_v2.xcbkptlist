@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJShowViewController.m"
-            timestampString = "421032254.021041"
+            timestampString = "421035177.49426"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367">
+            startingLineNumber = "365"
+            endingLineNumber = "365">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -326,11 +326,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJChatViewController.m"
-            timestampString = "420966927.980117"
+            timestampString = "421039665.776878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "-goToUserInfoPage:"
             landmarkType = "5">
          </BreakpointContent>

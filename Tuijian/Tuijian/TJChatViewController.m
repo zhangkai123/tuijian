@@ -23,6 +23,9 @@
     
     UIButton *coverButton;
     TJChatView *chatView;
+    
+    UIRefreshControl *refreshControl;
+    int currentPageNum;
 }
 @end
 
@@ -76,6 +79,10 @@
     theTableView.backgroundColor = UIColorFromRGB(0xF0F0F0);
     [self.view addSubview:theTableView];
     
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(getMoreChatMessage) forControlEvents:UIControlEventValueChanged];
+    [theTableView addSubview:refreshControl];
+    
     coverButton = [[UIButton alloc]initWithFrame:self.view.frame];
     [coverButton addTarget:self action:@selector(hideKeyboard) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:coverButton];
@@ -88,7 +95,8 @@
     TJUser *myUser = [[TJDataController sharedDataController]getMyUserInfo];
     myOwnImageUrl = myUser.profile_image_url;
 
-    NSArray *array = [[TJDataController sharedDataController]featchChatMessage:self.chatToUserId];
+    currentPageNum = 0;
+    NSArray *array = [[TJDataController sharedDataController]featchChatMessage:self.chatToUserId byPage:currentPageNum];
     
     _allMessagesFrame = [NSMutableArray array];
 //    NSString *previousTime = nil;
@@ -123,6 +131,23 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(receiveChatMessage) name:TJ_CHAT_VIEWCONTROLLER_NOTIFICATION object:nil];
 }
+-(void)getMoreChatMessage
+{
+    [refreshControl endRefreshing];
+    NSArray *array = [[TJDataController sharedDataController]featchChatMessage:self.chatToUserId byPage:currentPageNum + 1];
+    if ([array count] == 0) {
+        return;
+    }
+    currentPageNum ++;
+    [_allMessagesFrame removeAllObjects];
+    for (TJChatMessage *chatMessage in array) {
+        
+        MessageFrame *messageFrame = [[MessageFrame alloc] init];
+        messageFrame.message = chatMessage;
+        [_allMessagesFrame addObject:messageFrame];
+    }
+    [theTableView reloadData];
+}
 -(void)hideKeyboard
 {
     [chatView showKeyboard:NO];
@@ -150,7 +175,8 @@
 //}
 -(void)receiveChatMessage
 {
-    NSArray *array = [[TJDataController sharedDataController]featchChatMessage:self.chatToUserId];
+    currentPageNum = 0;
+    NSArray *array = [[TJDataController sharedDataController]featchChatMessage:self.chatToUserId byPage:currentPageNum];
     [_allMessagesFrame removeAllObjects];
     for (TJChatMessage *chatMessage in array) {
         
