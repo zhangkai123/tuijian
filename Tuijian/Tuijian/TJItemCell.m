@@ -24,9 +24,6 @@
         coverView = [[UIView alloc]initWithFrame:CGRectZero];
         coverView.backgroundColor = [UIColor whiteColor];
         [self addSubview:coverView];
-        seperateLine = [[UIView alloc]initWithFrame:CGRectZero];
-        seperateLine.backgroundColor = UIColorFromRGB(0xF5F5F5);;
-        [self addSubview:seperateLine];
         
         itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
         itemImageView.backgroundColor = UIColorFromRGB(0xF5F5F5);
@@ -85,7 +82,6 @@
     commentImageView.frame = CGRectMake(240 + 32 + 5, 330 + textH + 2, 28, 28);
     
     coverView.frame = CGRectMake(0, 0, 320, textH + 330 + 40);
-    seperateLine.frame = CGRectMake(0, textH + 330 + 40, 320, 1);
 }
 -(void)like
 {

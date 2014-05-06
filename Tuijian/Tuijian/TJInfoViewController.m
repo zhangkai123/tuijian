@@ -105,7 +105,7 @@
         if ([message.messageContentType isEqualToString:@"like"]) {
             messageContent = [NSString stringWithFormat:@"%@给了你一个赞",message.messageName];
         }else if([message.messageContentType isEqualToString:@"comment"]){
-            messageContent = [NSString stringWithFormat:@"%@评论%@",message.messageName,message.message];
+            messageContent = [NSString stringWithFormat:@"%@评论:%@",message.messageName,message.message];
         }else if([message.messageContentType isEqualToString:@"replyComment"]){
             messageContent = [NSString stringWithFormat:@"%@回复你的评论:%@",message.messageName,message.message];
         }

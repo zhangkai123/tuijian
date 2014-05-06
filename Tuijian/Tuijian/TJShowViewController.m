@@ -204,12 +204,8 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-//    UIToolbar* backView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
-//    backView.barStyle = UIBarStyleDefault;
-
-    FXBlurView *backView = [[FXBlurView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
-    backView.tintColor = [UIColor whiteColor];
-//    backView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.9];
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+    backView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.95];
     TJItem *theItem = [itemsArray objectAtIndex:section];
     TJTouchableImageView *userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
     userImageView.sectionNum = section;
