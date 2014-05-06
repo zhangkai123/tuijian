@@ -59,14 +59,17 @@
     [imageScrollView displayImage:self.thePhoto];
     [self.view addSubview:imageScrollView];
     if (IS_IPHONE_5) {
-        imageScrollView.center = CGPointMake(self.view.center.x, 255);
+        imageScrollView.center = CGPointMake(self.view.center.x, 280);
     }else{
-        imageScrollView.center = CGPointMake(self.view.center.x, 235);
+        imageScrollView.center = CGPointMake(self.view.center.x, 236);
     }
 }
 -(void)cancelCrop
-{
-    [self dismissMyViewController:self];
+{    
+    __block id<TJCropViewControllerDelegate> weakDelegate = self.delegate;
+    [self dismissViewControllerAnimated:NO completion:^(void){
+        [weakDelegate cancelCropToActivateCamera];
+    }];
 }
 -(void)useCrop
 {
@@ -79,7 +82,6 @@
     [self dismissViewControllerAnimated:NO completion:^(void){
         [weakDelegate getTheCropedImage:cropedImage];
     }];
-
 }
 -(UIImage *)getImageFromScrollView:(UIScrollView *)theScrollView
 {

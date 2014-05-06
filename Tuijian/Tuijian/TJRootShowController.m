@@ -8,11 +8,16 @@
 
 #import "TJRootShowController.h"
 #import "TJShowViewController.h"
-#import "TJCamViewController.h"
+//#import "TJCamViewController.h"
 #import "MTStatusBarOverlay.h"
 #import "TJPostViewController.h"
 
-@interface TJRootShowController ()<UIPageViewControllerDataSource,UIPageViewControllerDelegate,TJCamViewControllerDelegate,MTStatusBarOverlayDelegate>
+#import "DBCameraViewController.h"
+#import "DBCameraContainerViewController.h"
+#import "CustomCamera.h"
+#import "TJCropViewController.h"
+
+@interface TJRootShowController ()<UIPageViewControllerDataSource,UIPageViewControllerDelegate,DBCameraViewControllerDelegate,MTStatusBarOverlayDelegate,TJCropViewControllerDelegate>
 {
     UIView *titleView;
     UIPageControl *pageControl;
@@ -57,7 +62,7 @@
 //        [cameraButton addTarget:self action:@selector(takePhoto:) forControlEvents:UIControlEventTouchUpInside];
 //        UIBarButtonItem *cameraButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cameraButton];
 //        self.navigationItem.rightBarButtonItem = cameraButtonItem;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(takePhoto:)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(takePhoto)];
         
         titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 160, 44)];
         titleView.backgroundColor = [UIColor clearColor];
@@ -212,7 +217,46 @@
     overlay.delegate = self;
     [overlay postMessage:@"正在发布您的美食…"];
 }
-#pragma TJCamViewControllerDelegate
+
+-(void)takePhoto
+{
+    DBCameraContainerViewController *container = [[DBCameraContainerViewController alloc] initWithDelegate:self];
+    DBCameraViewController *cameraController = [DBCameraViewController initWithDelegate:self];
+    [cameraController setUseCameraSegue:NO];
+    [container setCameraViewController:cameraController];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:container];
+    [nav setNavigationBarHidden:YES];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+#pragma mark - DBCameraViewControllerDelegate
+
+- (void) dismissCamera
+{
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) captureImageDidFinish:(UIImage *)image withMetadata:(NSDictionary *)metadata
+{
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+#endif
+    [self.presentedViewController dismissViewControllerAnimated:NO completion:nil];
+    TJCropViewController *cropViewController = [[TJCropViewController alloc]init];
+    cropViewController.delegate = self;
+    cropViewController.thePhoto = image;
+    [self presentViewController:cropViewController animated:NO completion:nil];    
+}
+#pragma TJCropViewControllerDelegate
+-(void)cancelCropToActivateCamera
+{
+    DBCameraContainerViewController *container = [[DBCameraContainerViewController alloc] initWithDelegate:self];
+    DBCameraViewController *cameraController = [DBCameraViewController initWithDelegate:self];
+    [cameraController setUseCameraSegue:NO];
+    [container setCameraViewController:cameraController];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:container];
+    [nav setNavigationBarHidden:YES];
+    [self presentViewController:nav animated:NO completion:nil];
+}
 -(void)getTheCropedImage:(UIImage *)cropedImage
 {
     TJPostViewController *postViewController =[[TJPostViewController alloc]init];
@@ -221,13 +265,6 @@
     [self presentViewController:navcont animated:YES completion:nil];
 }
 
--(void)takePhoto:(id)sender
-{
-    TJCamViewController *camViewController = [[TJCamViewController alloc]init];
-    camViewController.delegate = self;
-    [self presentViewController:camViewController animated:YES completion:^(void){
-    }];
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

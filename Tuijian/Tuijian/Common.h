@@ -58,6 +58,14 @@
 
 #define TJ_DATABASE_NAME @"message.sqlite"
 
+//camera
+#define previewFrameRetina (CGRect){ 0, 65, 320, 342 }
+#define previewFrameRetina_4 (CGRect){ 0, 65, 320, 430 }
+#define topTransparentHeightRetina 11
+#define topTransparentHeightRetina_4 55
+#define bottomTransparentHeightRetina 11
+#define bottomTransparentHeightRetina_4 55
+
 //text size
 #define TJ_RECOMMEND_SIZE 15
 #define TJ_RECOMMEND_WIDTH 300
