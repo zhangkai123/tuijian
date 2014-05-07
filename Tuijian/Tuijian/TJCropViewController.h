@@ -10,7 +10,7 @@
 
 @protocol TJCropViewControllerDelegate <NSObject>
 
--(void)cancelCropToActivateCamera;
+//-(void)cancelCropToActivateCamera;
 -(void)getTheCropedImage:(UIImage *)cropedImage;
 
 @end

@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJRootShowController.m"
-            timestampString = "421062263.524945"
+            timestampString = "421115777.269999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315">
+            startingLineNumber = "320"
+            endingLineNumber = "320">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

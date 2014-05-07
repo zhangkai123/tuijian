@@ -66,10 +66,7 @@
 }
 -(void)cancelCrop
 {    
-    __block id<TJCropViewControllerDelegate> weakDelegate = self.delegate;
-    [self dismissViewControllerAnimated:NO completion:^(void){
-        [weakDelegate cancelCropToActivateCamera];
-    }];
+    [self dismissMyViewController:self];
 }
 -(void)useCrop
 {
@@ -79,7 +76,7 @@
         cropedImage = [UIImage resizeImageToSize:cropedImage toSize:CGSizeMake(360, 360)];
     }
     __block id<TJCropViewControllerDelegate> weakDelegate = self.delegate;
-    [self dismissViewControllerAnimated:NO completion:^(void){
+    [self.parentViewController dismissViewControllerAnimated:NO completion:^(void){
         [weakDelegate getTheCropedImage:cropedImage];
     }];
 }

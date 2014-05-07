@@ -240,23 +240,16 @@
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 #endif
-    [self.presentedViewController dismissViewControllerAnimated:NO completion:nil];
     TJCropViewController *cropViewController = [[TJCropViewController alloc]init];
     cropViewController.delegate = self;
     cropViewController.thePhoto = image;
-    [self presentViewController:cropViewController animated:NO completion:nil];    
+    
+    [self.presentedViewController addChildViewController:cropViewController];
+    cropViewController.view.frame = self.presentedViewController.view.frame;
+    [self.presentedViewController.view addSubview:cropViewController.view];
+    [cropViewController didMoveToParentViewController:self.presentedViewController];
 }
 #pragma TJCropViewControllerDelegate
--(void)cancelCropToActivateCamera
-{
-    DBCameraContainerViewController *container = [[DBCameraContainerViewController alloc] initWithDelegate:self];
-    DBCameraViewController *cameraController = [DBCameraViewController initWithDelegate:self];
-    [cameraController setUseCameraSegue:NO];
-    [container setCameraViewController:cameraController];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:container];
-    [nav setNavigationBarHidden:YES];
-    [self presentViewController:nav animated:NO completion:nil];
-}
 -(void)getTheCropedImage:(UIImage *)cropedImage
 {
     TJPostViewController *postViewController =[[TJPostViewController alloc]init];
