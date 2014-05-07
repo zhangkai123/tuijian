@@ -84,8 +84,8 @@
     [self.view addSubview:tuijianTextView];
     [tuijianTextView becomeFirstResponder];
     
-    placeHolderLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0, 0.0,tuijianTextView.frame.size.width - 10.0, 34.0)];
-    [placeHolderLabel setText:@"说两句吧"];
+    placeHolderLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.0, 0.0,tuijianTextView.frame.size.width - 10.0, 34.0)];
+    [placeHolderLabel setText:@"介绍美食(可选)"];
     placeHolderLabel.textAlignment = NSTextAlignmentLeft;
     [placeHolderLabel setBackgroundColor:[UIColor clearColor]];
     [placeHolderLabel setTextColor:[UIColor lightGrayColor]];
@@ -117,10 +117,18 @@
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    placeHolderLabel.hidden = YES;
+//    placeHolderLabel.hidden = YES;
 }
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView{
     return YES;
+}
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (textView.text.length == 0) {
+        placeHolderLabel.hidden = NO;
+    }else{
+        placeHolderLabel.hidden = YES;
+    }
 }
 - (void)textViewDidEndEditing:(UITextView *)textView{
     if (textView.text.length == 0) {
