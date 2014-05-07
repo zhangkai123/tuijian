@@ -37,16 +37,16 @@
         [self addSubview:recommendInfoLabel];
                 
         likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [likeButton setFrame:CGRectMake(0, 0, 70, 28)];
+        [likeButton setFrame:CGRectMake(0, 0, 60, 28)];
         likeButton.layer.cornerRadius = 3;
         [likeButton setClipsToBounds:YES];
-        likeButton.backgroundColor = UIColorFromRGB(0xD4D4D4);
+        likeButton.backgroundColor = UIColorFromRGB(0xEEEEEE);
         [likeButton setImage:[UIImage imageNamed:@"favhighlight@2x.png"] forState:UIControlStateNormal];
         [likeButton setTitle:@"赞" forState:UIControlStateNormal];
-        [likeButton.titleLabel setFont:[UIFont systemFontOfSize:15.f]];
-        [likeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        likeButton.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 0, 0);
-        [likeButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -60, 0, 0)];
+        [likeButton.titleLabel setFont:[UIFont systemFontOfSize:14.f]];
+        [likeButton setTitleColor:UIColorFromRGB(0xA1A1A1) forState:UIControlStateNormal];
+        likeButton.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+        [likeButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
         [likeButton addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:likeButton];
         
@@ -77,7 +77,7 @@
     recommendInfoLabel.text = recommendInfo;
     recommendInfoLabel.frame = CGRectMake(10, 325, TJ_RECOMMEND_WIDTH, textH);
     
-    likeButton.frame = CGRectMake(10, 330 + textH + 1, 70, 28);
+    likeButton.frame = CGRectMake(10, 330 + textH + 1, 60, 28);
     likeImageView.frame = CGRectMake(240, 330 + textH, 32, 32);
     commentImageView.frame = CGRectMake(240 + 32 + 5, 330 + textH + 2, 28, 28);
     
@@ -92,10 +92,12 @@
 -(void)setLikeButtonColor:(BOOL)hasLiked
 {
     if (hasLiked) {
-        [likeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        likeButton.backgroundColor = UIColorFromRGB(0x9C9C9C);
+        [likeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [likeButton setImage:[UIImage imageNamed:@"favSelectedHighlight@2x.png"] forState:UIControlStateNormal];
     }else{
-        [likeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        likeButton.backgroundColor = UIColorFromRGB(0xEEEEEE);
+        [likeButton setTitleColor:UIColorFromRGB(0xA1A1A1) forState:UIControlStateNormal];
         [likeButton setImage:[UIImage imageNamed:@"favhighlight@2x.png"] forState:UIControlStateNormal];
     }
 }
