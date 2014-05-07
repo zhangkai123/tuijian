@@ -167,7 +167,7 @@ NSLocalizedStringFromTable(key, @"DBCamera", nil)
 - (void) setNavigationTitleAtIndex:(NSUInteger)index
 {
     [_titleLabel setText:[_items[index][@"groupTitle"] uppercaseString]];
-    [_pageLabel setText:[NSString stringWithFormat:DBCameraLocalizedStrings(@"pagecontrol.text"), index + 1, _items.count ]];
+//    [_pageLabel setText:[NSString stringWithFormat:DBCameraLocalizedStrings(@"pagecontrol.text"), index + 1, _items.count ]];
 }
 
 - (NSInteger) indexForSelectedItem
