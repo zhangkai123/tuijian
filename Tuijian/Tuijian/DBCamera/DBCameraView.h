@@ -14,7 +14,7 @@
 @interface DBCameraView : UIView
 @property (nonatomic, weak) id <DBCameraViewDelegate> delegate;
 @property (nonatomic, strong) UIButton *photoLibraryButton, *triggerButton, *closeButton;
-@property (nonatomic, strong) UIButton *gridButton, *cameraButton, *flashButton;
+@property (nonatomic, strong) UIButton *cameraButton, *flashButton;
 @property (nonatomic, strong, readonly) AVCaptureVideoPreviewLayer *previewLayer;
 @property (nonatomic, strong, readonly) UITapGestureRecognizer *singleTap, *doubleTap;
 @property (nonatomic, strong, readonly) UIPanGestureRecognizer *panGestureRecognizer;
@@ -24,8 +24,8 @@
 + (DBCameraView *) initWithCaptureSession:(AVCaptureSession *)captureSession;
 
 - (void) defaultInterface;
-- (void) drawFocusBoxAtPointOfInterest:(CGPoint)point andRemove:(BOOL)remove;
-- (void) drawExposeBoxAtPointOfInterest:(CGPoint)point andRemove:(BOOL)remove;
+//- (void) drawFocusBoxAtPointOfInterest:(CGPoint)point andRemove:(BOOL)remove;
+//- (void) drawExposeBoxAtPointOfInterest:(CGPoint)point andRemove:(BOOL)remove;
 - (void) draw:(CALayer *)layer atPointOfInterest:(CGPoint)point andRemove:(BOOL)remove;
 - (void) pinchCameraViewWithScalNum:(CGFloat)scale;
 @end

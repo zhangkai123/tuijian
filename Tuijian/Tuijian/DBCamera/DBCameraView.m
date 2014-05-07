@@ -17,7 +17,7 @@
 #define MIN_PINCH_SCALE_NUM   1.f
 
 @interface DBCameraView () <UIGestureRecognizerDelegate>
-@property (nonatomic, strong) CALayer *focusBox, *exposeBox;
+//@property (nonatomic, strong) CALayer *focusBox, *exposeBox;
 @property (nonatomic, strong) UIView *topContainerBar;
 @property (nonatomic, strong) UIView *bottomContainerBar;
 @property (nonatomic, strong) UIView *topTransparentView;
@@ -69,8 +69,8 @@
 
 - (void) defaultInterface
 {
-    [_previewLayer addSublayer:self.focusBox];
-    [_previewLayer addSublayer:self.exposeBox];
+//    [_previewLayer addSublayer:self.focusBox];
+//    [_previewLayer addSublayer:self.exposeBox];
     
     [self addSubview:self.topContainerBar];
     [self addSubview:self.bottomContainerBar];
@@ -80,7 +80,6 @@
     
     [self.topContainerBar addSubview:self.cameraButton];
     [self.topContainerBar addSubview:self.flashButton];
-    [self.topContainerBar addSubview:self.gridButton];
     
     [self.bottomContainerBar addSubview:self.triggerButton];
     [self.bottomContainerBar addSubview:self.closeButton];
@@ -210,49 +209,49 @@
     return _flashButton;
 }
 
-- (UIButton *) gridButton
-{
-    if ( !_gridButton ) {
-        _gridButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_gridButton setBackgroundColor:[UIColor clearColor]];
-        [_gridButton setImage:[UIImage imageNamed:@"cameraGridNormal"] forState:UIControlStateNormal];
-        [_gridButton setImage:[UIImage imageNamed:@"cameraGridSelected"] forState:UIControlStateSelected];
-        [_gridButton setFrame:(CGRect){ 0, 0, 30, 30 }];
-        [_gridButton setCenter:(CGPoint){ CGRectGetMidX(self.topContainerBar.bounds), CGRectGetMidY(self.topContainerBar.bounds) }];
-        [_gridButton addTarget:self action:@selector(addGridToCameraAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _gridButton;
-}
+//- (UIButton *) gridButton
+//{
+//    if ( !_gridButton ) {
+//        _gridButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_gridButton setBackgroundColor:[UIColor clearColor]];
+//        [_gridButton setImage:[UIImage imageNamed:@"cameraGridNormal"] forState:UIControlStateNormal];
+//        [_gridButton setImage:[UIImage imageNamed:@"cameraGridSelected"] forState:UIControlStateSelected];
+//        [_gridButton setFrame:(CGRect){ 0, 0, 30, 30 }];
+//        [_gridButton setCenter:(CGPoint){ CGRectGetMidX(self.topContainerBar.bounds), CGRectGetMidY(self.topContainerBar.bounds) }];
+//        [_gridButton addTarget:self action:@selector(addGridToCameraAction:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _gridButton;
+//}
 
-#pragma mark - Focus / Expose Box
-
-- (CALayer *) focusBox
-{
-    if ( !_focusBox ) {
-        _focusBox = [[CALayer alloc] init];
-        [_focusBox setCornerRadius:45.0f];
-        [_focusBox setBounds:CGRectMake(0.0f, 0.0f, 90, 90)];
-        [_focusBox setBorderWidth:5.f];
-        [_focusBox setBorderColor:[RGBColor(0xffffff, 1) CGColor]];
-        [_focusBox setOpacity:0];
-    }
-    
-    return _focusBox;
-}
-
-- (CALayer *) exposeBox
-{
-    if ( !_exposeBox ) {
-        _exposeBox = [[CALayer alloc] init];
-        [_exposeBox setCornerRadius:55.0f];
-        [_exposeBox setBounds:CGRectMake(0.0f, 0.0f, 110, 110)];
-        [_exposeBox setBorderWidth:5.f];
-        [_exposeBox setBorderColor:[RGBColor(0x00ffff, 1) CGColor]];
-        [_exposeBox setOpacity:0];
-    }
-    
-    return _exposeBox;
-}
+//#pragma mark - Focus / Expose Box
+//
+//- (CALayer *) focusBox
+//{
+//    if ( !_focusBox ) {
+//        _focusBox = [[CALayer alloc] init];
+//        [_focusBox setCornerRadius:45.0f];
+//        [_focusBox setBounds:CGRectMake(0.0f, 0.0f, 90, 90)];
+//        [_focusBox setBorderWidth:5.f];
+//        [_focusBox setBorderColor:[RGBColor(0xffffff, 1) CGColor]];
+//        [_focusBox setOpacity:0];
+//    }
+//    
+//    return _focusBox;
+//}
+//
+//- (CALayer *) exposeBox
+//{
+//    if ( !_exposeBox ) {
+//        _exposeBox = [[CALayer alloc] init];
+//        [_exposeBox setCornerRadius:55.0f];
+//        [_exposeBox setBounds:CGRectMake(0.0f, 0.0f, 110, 110)];
+//        [_exposeBox setBorderWidth:5.f];
+//        [_exposeBox setBorderColor:[RGBColor(0x00ffff, 1) CGColor]];
+//        [_exposeBox setOpacity:0];
+//    }
+//    
+//    return _exposeBox;
+//}
 
 - (void) draw:(CALayer *)layer atPointOfInterest:(CGPoint)point andRemove:(BOOL)remove
 {
@@ -282,15 +281,15 @@
     }
 }
 
-- (void) drawFocusBoxAtPointOfInterest:(CGPoint)point andRemove:(BOOL)remove
-{
-    [self draw:_focusBox atPointOfInterest:point andRemove:remove];
-}
-
-- (void) drawExposeBoxAtPointOfInterest:(CGPoint)point andRemove:(BOOL)remove
-{
-    [self draw:_exposeBox atPointOfInterest:point andRemove:remove];
-}
+//- (void) drawFocusBoxAtPointOfInterest:(CGPoint)point andRemove:(BOOL)remove
+//{
+//    [self draw:_focusBox atPointOfInterest:point andRemove:remove];
+//}
+//
+//- (void) drawExposeBoxAtPointOfInterest:(CGPoint)point andRemove:(BOOL)remove
+//{
+//    [self draw:_exposeBox atPointOfInterest:point andRemove:remove];
+//}
 
 #pragma mark - Gestures
 
@@ -392,8 +391,8 @@
         return;
     
     UIGestureRecognizerState state = panGestureRecognizer.state;
-    CGPoint touchPoint = [panGestureRecognizer locationInView:self];
-    [self draw:_focusBox atPointOfInterest:(CGPoint){ touchPoint.x, touchPoint.y - CGRectGetMinY(_previewLayer.frame) } andRemove:YES];
+//    CGPoint touchPoint = [panGestureRecognizer locationInView:self];
+//    [self draw:_focusBox atPointOfInterest:(CGPoint){ touchPoint.x, touchPoint.y - CGRectGetMinY(_previewLayer.frame) } andRemove:YES];
     
     switch (state) {
         case UIGestureRecognizerStateBegan:
