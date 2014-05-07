@@ -295,7 +295,6 @@
     }
     theItem.hasLiked = !theItem.hasLiked;
     hasL(theItem.hasLiked);
-    [itemTableView reloadData];
     [[TJDataController sharedDataController]saveLike:itemId success:^(BOOL hasLiked){
         if (hasLiked) {
             [[TJDataController sharedDataController]sendLike:theItem];

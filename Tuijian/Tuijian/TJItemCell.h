@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @protocol TJItemCellDelegate <NSObject>
 
@@ -26,6 +27,8 @@
     UIButton *shareButton;
     UIButton *likeButton;
     
+    CALayer *heartLayer;
+    
     UIImageView *commentImageView;
     UILabel *commentNumLabel;
     
@@ -44,4 +47,5 @@
 
 -(void)setRecommendInfoAndHeight:(NSString *)recommendInfo textHeight:(float)textH;
 -(void)setLikeButtonColor:(BOOL)hasLiked;
+-(void)animateHeart;
 @end

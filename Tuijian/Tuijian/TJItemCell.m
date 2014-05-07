@@ -7,7 +7,6 @@
 //
 
 #import "TJItemCell.h"
-#import <QuartzCore/QuartzCore.h>
 
 @implementation TJItemCell
 @synthesize itemId;
@@ -87,6 +86,15 @@
 {
     [self.delegate likeItem:self.itemId liked:^(BOOL hasLiked){
         [self setLikeButtonColor:hasLiked];
+        if (hasLiked) {
+            likeButton.userInteractionEnabled = NO;
+            [self animateHeart];
+        }else{
+            if ([likeNumLabel.text intValue] - 1 < 0) {
+                return;
+            }
+            likeNumLabel.text = [NSString stringWithFormat:@"%d",[likeNumLabel.text intValue] - 1];
+        }
     }];
 }
 -(void)setLikeButtonColor:(BOOL)hasLiked
@@ -101,6 +109,52 @@
         [likeButton setImage:[UIImage imageNamed:@"favhighlight@2x.png"] forState:UIControlStateNormal];
     }
 }
+-(void)animateHeart
+{
+    CGPoint likeButtonPoint = CGPointMake(likeButton.frame.origin.x, likeButton.frame.origin.y);
+    CGPoint likeViewPoint = likeImageView.center;
+    heartLayer = [CALayer layer];
+    heartLayer.backgroundColor = [[UIColor clearColor] CGColor];
+    heartLayer.anchorPoint = CGPointMake(0., 1.);
+    heartLayer.bounds = CGRectMake(0., 0., 40., 30.);
+    heartLayer.position = CGPointMake(-100, 0);
+    heartLayer.contents = (id)[[UIImage imageNamed:@"favSelectedHighlight@2x.png"] CGImage];
+    heartLayer.contentsGravity = kCAGravityResizeAspect;
+    [self.layer addSublayer:heartLayer];
+    
+    [heartLayer removeAnimationForKey:@"marioJump"];
+    
+    CGMutablePathRef jumpPath = CGPathCreateMutable();
+    CGPathMoveToPoint(jumpPath, NULL, likeButtonPoint.x, likeButtonPoint.y + 10);
+    CGPathAddCurveToPoint(jumpPath, NULL, likeButtonPoint.x + 50, likeButtonPoint.y - 20, likeButtonPoint.x + 200, likeButtonPoint.y - 60, likeViewPoint.x - 18, likeViewPoint.y + 8);
+    
+    CAKeyframeAnimation *jumpAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    jumpAnimation.path = jumpPath;
+    jumpAnimation.duration = 0.7;
+    jumpAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    jumpAnimation.delegate = self;
+    
+    CGPathRelease(jumpPath);
+    
+    [heartLayer addAnimation:jumpAnimation forKey:@"marioJump"];
+
+}
+#pragma mark Animation delegate methods
+
+- (void)animationDidStart:(CAAnimation *)theAnimation {
+    [CATransaction begin];
+    {
+        [CATransaction setDisableActions:YES];
+    }
+    [CATransaction commit];
+}
+
+- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)finished {
+    likeNumLabel.text = [NSString stringWithFormat:@"%d",[likeNumLabel.text intValue] + 1];
+    [heartLayer removeFromSuperlayer];
+    likeButton.userInteractionEnabled = YES;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
