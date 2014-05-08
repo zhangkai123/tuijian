@@ -14,15 +14,15 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        likeImageView.hidden = YES;
-        likeNumLabel.hidden = YES;
-        commentImageView.hidden = YES;
-        commentNumLabel.hidden =YES;
+//        likeImageView.hidden = YES;
+//        likeNumLabel.hidden = YES;
+//        commentImageView.hidden = YES;
+//        commentNumLabel.hidden =YES;
     }
     return self;
 }
--(void)animateHeart
-{
-    likeButton.userInteractionEnabled = YES;
-}
+//-(void)animateHeart
+//{
+//    likeButton.userInteractionEnabled = YES;
+//}
 @end

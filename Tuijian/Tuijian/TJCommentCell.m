@@ -30,6 +30,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.backgroundColor = UIColorFromRGB(0xF2F2F2);
+        
         self.commentImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 20, 20)];
         [self addSubview:commentImageView];
         

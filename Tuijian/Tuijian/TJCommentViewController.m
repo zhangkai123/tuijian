@@ -8,7 +8,6 @@
 
 #import "TJCommentViewController.h"
 #import "TJItemDetailCell.h"
-#import "TJLikeCell.h"
 #import "TJCommentView.h"
 #import "TJCommentCell.h"
 #import "TJComment.h"
@@ -25,11 +24,8 @@
     BOOL replyStatus;
     TJUser *replyedUser;
     
-    NSMutableArray *myLikesArray;
     NSMutableArray *myCommentsArray;
     NSMutableArray *myCommentHeightArray;
-    
-    TJLikeCell *myLikeCell;
 }
 @end
 
@@ -66,7 +62,7 @@
     detailTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
     detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:detailTableView];
-//    detailTableView.backgroundColor = UIColorFromRGB(0xF0F0F0);
+    detailTableView.backgroundColor = UIColorFromRGB(0xF2F2F2);
 
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 200, 0);
     detailTableView.contentInset = insets;
@@ -76,7 +72,6 @@
     commentInputView.hidden = YES;
     [self.view addSubview:commentInputView];
     
-    myLikesArray = [[NSMutableArray alloc]init];
     myCommentsArray = [[NSMutableArray alloc]init];
     myCommentHeightArray = [[NSMutableArray alloc]init];
     numberOfSections = 0;
@@ -85,17 +80,15 @@
 {
     [self startActivityIndicator];
     __weak UITableView *weakDetailTableView = detailTableView;
-    __block NSMutableArray *weakMyLikesArray = myLikesArray;
     __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
     __block NSMutableArray *weakmyCommentHeightArray = myCommentHeightArray;
     if (self.theItem != nil) {
         //get item info from pre vie controller
         [[TJDataController sharedDataController]getLikesComments:self.theItem.itemId likes:^(NSArray *likesArray){
-            [activityIndicator stopAnimating];
-            numberOfSections = 3;
-            [weakMyLikesArray removeAllObjects];
-            [weakMyLikesArray addObjectsFromArray:likesArray];
+
         }comments:^(NSArray *commentsArray){
+            [activityIndicator stopAnimating];
+            numberOfSections = 2;
             [weakmyCommentHeightArray removeAllObjects];
             for (int i = 0; i < [commentsArray count]; i++) {
                 TJComment *comment = [commentsArray objectAtIndex:i];
@@ -117,14 +110,11 @@
     }else{
         //get item info from server
         __weak UITableView *weakDetailTableView = detailTableView;
-//        __block TJItem *weakItem = self.theItem;
-//        __block float weakRecommendHeight = self.textHeight;
-        __block NSMutableArray *weakMyLikesArray = myLikesArray;
         __block NSMutableArray *weakMyCommentsArray = myCommentsArray;
         __block NSMutableArray *weakmyCommentHeightArray = myCommentHeightArray;
         [[TJDataController sharedDataController]getItemWholeInfo:self.theItemId theItem:^(TJItem *item){
             [activityIndicator stopAnimating];
-            numberOfSections = 3;
+            numberOfSections = 2;
             NSString *recommendTex = item.recommendReason;
             CGRect expectedLabelRect = [recommendTex boundingRectWithSize:CGSizeMake(TJ_RECOMMEND_WIDTH, 0)
                                                                   options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
@@ -132,8 +122,7 @@
              self.textHeight = expectedLabelRect.size.height;
             self.theItem = item;
         }likesArray:^(NSArray *likesArray){
-            [weakMyLikesArray removeAllObjects];
-            [weakMyLikesArray addObjectsFromArray:likesArray];
+
         }comments:^(NSArray *commentsArray){
             [weakmyCommentHeightArray removeAllObjects];
             for (int i = 0; i < [commentsArray count]; i++) {
@@ -256,10 +245,6 @@
     int rowNum = 0;
     if (section == 0) {
         rowNum = 1;
-    }else if(section == 1){
-        if ([myLikesArray count] != 0) {
-            rowNum = 1;
-        }
     }else{
         rowNum = (NSInteger)[myCommentsArray count];
     }
@@ -270,10 +255,6 @@
     float rowHeight = 0;
     if (indexPath.section == 0) {
         rowHeight = textHeight + 165 + 40 + 22 + 50;
-    }else if (indexPath.section == 1){
-        if ([myLikesArray count] != 0) {
-            rowHeight = 50;
-        }
     }else{
         rowHeight = [[myCommentHeightArray objectAtIndex:indexPath.row] floatValue] + 35 + 5;
     }
@@ -323,19 +304,6 @@
         [cellOne setDelegate:(id)self];
         
         cell = cellOne;
-    }else if (indexPath.section == 1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
-        if (!cell) {
-            cell = [[TJLikeCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
-        }
-        if ([myCommentsArray count] == 0) {
-            [(TJLikeCell *)cell setBottomLineViewHidden:NO];
-        }else{
-            [(TJLikeCell *)cell setBottomLineViewHidden:YES];
-        }
-        [(TJLikeCell *)cell setLikesArray:myLikesArray];
-        [(TJLikeCell *)cell setDelegate:(id)self];
-        myLikeCell = (TJLikeCell *)cell;
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
         if (!cell) {
@@ -391,12 +359,6 @@
         [self replyCommentTo:comment.user];
     }
 }
-#pragma TJLikeCellDelegate
--(void)selectUserCell:(int)rowNum
-{
-    TJUser *user = [myLikesArray objectAtIndex:rowNum];
-    [self goToUserInformationPage:user.profile_image_url userName:user.name userGender:user.gender userId:user.myUserId];
-}
 #pragma TJCommentCellDelegate
 -(void)selectCommentUserImage:(int)rowNum
 {
@@ -417,18 +379,10 @@
 #pragma TJItemCellDelegate
 -(void)likeItem:(NSString *)itemId liked:(void (^)(BOOL Liked))hasL
 {
-    TJUser *myUserInfo = [[TJDataController sharedDataController] getMyWholeUserInfo];
     if (theItem.hasLiked) {
         theItem.likeNum = [NSString stringWithFormat:@"%d",[theItem.likeNum intValue] - 1];
-        TJUser *user = [self findUserInLikesArray:myUserInfo.myUserId];
-        if (user != nil) {
-            [myLikesArray removeObject:user];
-            [myLikeCell setLikesArray:myLikesArray];
-        }
     }else{
         theItem.likeNum = [NSString stringWithFormat:@"%d",[theItem.likeNum intValue] + 1];
-        [myLikesArray insertObject:myUserInfo atIndex:0];
-        [myLikeCell setLikesArray:myLikesArray];
     }
     theItem.hasLiked = !theItem.hasLiked;
     hasL(theItem.hasLiked);
@@ -448,16 +402,6 @@
     [self goToUserInformationPage:theItem.userImg userName:theItem.userName userGender:theItem.userGender userId:theItem.uid];
 }
 
--(TJUser *)findUserInLikesArray:(NSString *)userId
-{
-    for (int i = 0; i < [myLikesArray count]; i++) {
-        TJUser *user = [myLikesArray objectAtIndex:i];
-        if ([user.myUserId isEqualToString:userId]) {
-            return user;
-        }
-    }
-    return nil;
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

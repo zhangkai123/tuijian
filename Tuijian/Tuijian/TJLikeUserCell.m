@@ -17,7 +17,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-//        self.backgroundColor = UIColorFromRGB(0x242424);
+        self.backgroundColor = UIColorFromRGB(0xF2F2F2);
         
         self.userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
         userImageView.delegate = self;

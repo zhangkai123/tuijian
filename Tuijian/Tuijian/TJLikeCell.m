@@ -28,7 +28,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-//        self.backgroundColor = UIColorFromRGB(0x242424);
+        self.backgroundColor = UIColorFromRGB(0xF2F2F2);
         
         likeTableView = [[UITableView alloc]initWithFrame:CGRectZero];
         likeTableView.delegate = self;
@@ -61,7 +61,7 @@
         bottomLineView.hidden = YES;
         
         UIImageView *likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 20, 20)];
-        likeImageView.backgroundColor = [UIColor whiteColor];
+        likeImageView.backgroundColor = UIColorFromRGB(0xF2F2F2);
         likeImageView.image = [UIImage imageNamed:@"like.png"];
         [self addSubview:likeImageView];
     }
