@@ -298,6 +298,8 @@
         }
         [cellOne.nameLabel setText:theItem.userName];
         
+        cellOne.likeNumLabel.text = theItem.likeNum;
+        cellOne.commentNumLabel.text = theItem.commentNum;
         [cellOne.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
         [cellOne setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
         [cellOne setLikeButtonColor:theItem.hasLiked];
@@ -352,7 +354,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1) {
         TJCommentCell *cell = (TJCommentCell *)[tableView cellForRowAtIndexPath:indexPath];
         [cell showSelectedAnimation];
         TJComment *comment = [myCommentsArray objectAtIndex:indexPath.row];
