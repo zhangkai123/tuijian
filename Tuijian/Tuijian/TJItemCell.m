@@ -19,10 +19,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        self.backgroundColor = UIColorFromRGB(0xF0F0F0);
+        self.backgroundColor = UIColorFromRGB(0xEDEDED);
         
         coverView = [[UIView alloc]initWithFrame:CGRectZero];
-        coverView.backgroundColor = [UIColor whiteColor];
+        coverView.backgroundColor = UIColorFromRGB(0xF2F2F2);
         [self addSubview:coverView];
         
         userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
@@ -53,7 +53,7 @@
         [likeButton setFrame:CGRectMake(0, 0, 60, 28)];
         likeButton.layer.cornerRadius = 3;
         [likeButton setClipsToBounds:YES];
-        likeButton.backgroundColor = UIColorFromRGB(0xEEEEEE);
+        likeButton.backgroundColor = UIColorFromRGB(0xE0E0E0);
         [likeButton setImage:[UIImage imageNamed:@"favhighlight@2x.png"] forState:UIControlStateNormal];
         [likeButton setTitle:@"赞" forState:UIControlStateNormal];
         [likeButton.titleLabel setFont:[UIFont systemFontOfSize:14.f]];
@@ -131,7 +131,7 @@
         [likeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [likeButton setImage:[UIImage imageNamed:@"favSelectedHighlight@2x.png"] forState:UIControlStateNormal];
     }else{
-        likeButton.backgroundColor = UIColorFromRGB(0xEEEEEE);
+        likeButton.backgroundColor = UIColorFromRGB(0xE0E0E0);
         [likeButton setTitleColor:UIColorFromRGB(0xA1A1A1) forState:UIControlStateNormal];
         [likeButton setImage:[UIImage imageNamed:@"favhighlight@2x.png"] forState:UIControlStateNormal];
     }
