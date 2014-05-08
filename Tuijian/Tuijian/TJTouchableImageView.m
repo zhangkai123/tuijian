@@ -33,11 +33,13 @@
 }
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self performSelector:@selector(removeCoverView) withObject:nil afterDelay:0.5];
+//    [self performSelector:@selector(removeCoverView) withObject:nil afterDelay:0.5];
+    [self removeCoverView];
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self performSelector:@selector(removeCoverView) withObject:nil afterDelay:0.5];
+ //   [self performSelector:@selector(removeCoverView) withObject:nil afterDelay:0.5];
+    [self removeCoverView];
     [self.delegate selectUserImageView:self.sectionNum];
 }
 -(void)addCoverView

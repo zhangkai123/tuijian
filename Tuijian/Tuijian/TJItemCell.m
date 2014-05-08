@@ -9,7 +9,8 @@
 #import "TJItemCell.h"
 
 @implementation TJItemCell
-@synthesize itemId;
+@synthesize itemId ,theRowNum;
+@synthesize userImageView ,nameLabel ,genderImageView;
 @synthesize itemImageView ,commentNumLabel ,likeNumLabel;
 @synthesize delegate;
 
@@ -24,9 +25,18 @@
         coverView.backgroundColor = [UIColor whiteColor];
         [self addSubview:coverView];
         
-        itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
-        itemImageView.backgroundColor = UIColorFromRGB(0xF5F5F5);
-        [self addSubview:itemImageView];
+        userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
+        userImageView.delegate = self;
+        [self addSubview:userImageView];
+        nameLabel = [[TJSelectableLabel alloc]initWithFrameAndTextColor:CGRectMake(60, 10, 150, 20) andTextColor:UIColorFromRGB(0x336699)];
+        nameLabel.delegate = (id)self;
+        [nameLabel setFont:[UIFont systemFontOfSize:12]];
+        [self addSubview:nameLabel];
+        genderImageView = [[UIImageView alloc]initWithFrame:CGRectMake(60, 30, 13, 13)];
+        [self addSubview:genderImageView];
+        userImageView.backgroundColor = [UIColor clearColor];
+        nameLabel.backgroundColor = [UIColor clearColor];
+        genderImageView.backgroundColor = [UIColor clearColor];
         
         recommendInfoLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, TJ_RECOMMEND_WIDTH, 0)];
         [recommendInfoLabel setFont:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]];
@@ -34,7 +44,11 @@
         recommendInfoLabel.numberOfLines = 0;
         [recommendInfoLabel setTextColor:[UIColor blackColor]];
         [self addSubview:recommendInfoLabel];
-                
+        
+        itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
+        itemImageView.backgroundColor = UIColorFromRGB(0xF5F5F5);
+        [self addSubview:itemImageView];
+        
         likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [likeButton setFrame:CGRectMake(0, 0, 60, 28)];
         likeButton.layer.cornerRadius = 3;
@@ -74,14 +88,27 @@
 -(void)setRecommendInfoAndHeight:(NSString *)recommendInfo textHeight:(float)textH
 {
     recommendInfoLabel.text = recommendInfo;
-    recommendInfoLabel.frame = CGRectMake(10, 325, TJ_RECOMMEND_WIDTH, textH);
+    recommendInfoLabel.frame = CGRectMake(60, 50, TJ_RECOMMEND_WIDTH, textH);
     
-    likeButton.frame = CGRectMake(10, 330 + textH + 1, 60, 28);
-    likeImageView.frame = CGRectMake(240, 330 + textH, 32, 32);
-    commentImageView.frame = CGRectMake(240 + 32 + 5, 330 + textH + 2, 28, 28);
+    itemImageView.frame = CGRectMake(60, 50 + textH + 10, 150, 150);
     
-    coverView.frame = CGRectMake(0, 0, 320, textH + 330 + 40);
+    likeButton.frame = CGRectMake(10, 170 + textH + 1 + 50, 60, 28);
+    likeImageView.frame = CGRectMake(240, 170 + textH + 50, 32, 32);
+    commentImageView.frame = CGRectMake(240 + 32 + 5, 170 + textH + 2 + 50, 28, 28);
+    
+    coverView.frame = CGRectMake(0, 0, 320, textH + 260);
 }
+#pragma TJTouchableImageViewDelegate
+-(void)selectUserImageView:(int)sectionNum
+{
+    [self.delegate goToUserInformationPgae:self.theRowNum];
+}
+#pragma TJSelectableLabelDelegate
+-(void)selectLabel:(int)rowNum
+{
+    [self.delegate goToUserInformationPgae:self.theRowNum];
+}
+
 -(void)like
 {
     [self.delegate likeItem:self.itemId liked:^(BOOL hasLiked){

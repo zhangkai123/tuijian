@@ -10,18 +10,13 @@
 #import "TJItemCell.h"
 #import "TJItem.h"
 #import "TJCommentViewController.h"
-#import "TJTouchableImageView.h"
-#import "TJSelectableLabel.h"
 #import "TJUserInfoViewController.h"
 #import "UIImage+additions.h"
-#import "FXBlurView.h"
 
-@interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource,TJItemCellDelegate,TJTouchableImageViewDelegate>
+@interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSUInteger _pageIndex;
     UIRefreshControl *refreshControl;
-    
-//    UIActivityIndicatorView *activityIndicator;
     
     NSMutableArray *itemsArray;
     NSMutableArray *textHeightArray;
@@ -155,16 +150,16 @@
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [itemsArray count];
+    return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [itemsArray count];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
-    return textHeight + 325 + 40 + 22;
+    float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
+    return textHeight + 165 + 40 + 22 + 50;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -173,72 +168,21 @@
         cell = [[TJItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    TJItem *theItem = [itemsArray objectAtIndex:indexPath.section];
+    TJItem *theItem = [itemsArray objectAtIndex:indexPath.row];
     cell.itemId = theItem.itemId;
-    [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-    float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
-    [cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
-    cell.likeNumLabel.text = theItem.likeNum;
-    cell.commentNumLabel.text = theItem.commentNum;
-    [cell setLikeButtonColor:theItem.hasLiked];
-    cell.delegate = self;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    TJItem *item = [itemsArray objectAtIndex:indexPath.section];
-    float textHeight = [[textHeightArray objectAtIndex:indexPath.section] floatValue];
+    cell.theRowNum = indexPath.row;
     
-    UIViewController *rootViewController = [self getTheNavigationRootViewController];
-    rootViewController.hidesBottomBarWhenPushed = YES;
-    TJCommentViewController *commentViewController = [[TJCommentViewController alloc]init];
-    commentViewController.theItem = item;
-    commentViewController.textHeight = textHeight;
-    [self.navigationController pushViewController:commentViewController animated:YES];
-    rootViewController.hidesBottomBarWhenPushed = NO;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 50;
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
-    backView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.95];
-    TJItem *theItem = [itemsArray objectAtIndex:section];
-    TJTouchableImageView *userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
-    userImageView.sectionNum = section;
-    userImageView.delegate = self;
-    [backView addSubview:userImageView];
-    
-    CGRect expectedLabelRect = [theItem.userName boundingRectWithSize:CGSizeMake(0, 20)
-                                                          options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                       attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
-    float nameLabelWidth = expectedLabelRect.size.width;
-    if (nameLabelWidth > 150) {
-        nameLabelWidth = 150;
-    }
-    TJSelectableLabel *nameLabel = [[TJSelectableLabel alloc]initWithFrameAndTextColor:CGRectMake(60, 10, nameLabelWidth, 20) andTextColor:UIColorFromRGB(0x336699)];
-    nameLabel.delegate = (id)self;
-    nameLabel.theRowNum = section;
-    [nameLabel setFont:[UIFont systemFontOfSize:12]];
-    [backView addSubview:nameLabel];
-    
-    UIImageView *genderImageView = [[UIImageView alloc]initWithFrame:CGRectMake(60, 30, 13, 13)];
-    [backView addSubview:genderImageView];
-
     UIImage *genderPlaceHolder = nil;
     if ([theItem.userGender intValue] == 1) {
-        [genderImageView setImage:[UIImage imageNamed:@"male.png"]];
+        [cell.genderImageView setImage:[UIImage imageNamed:@"male.png"]];
         genderPlaceHolder = [UIImage imageNamed:@"man_placeholder.png"];
     }else{
-        [genderImageView setImage:[UIImage imageNamed:@"female.png"]];
+        [cell.genderImageView setImage:[UIImage imageNamed:@"female.png"]];
         genderPlaceHolder = [UIImage imageNamed:@"womanPlaceholder.png"];
     }
-    __block UIImageView *weakImageView = userImageView;
-     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:theItem.userImg]];
-    [userImageView setImageWithURLRequest:urlRequest
+    __block UIImageView *weakImageView = cell.userImageView;
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:theItem.userImg]];
+    [cell.userImageView setImageWithURLRequest:urlRequest
                          placeholderImage:genderPlaceHolder
                                   success:^(NSURLRequest *request ,NSHTTPURLResponse *response ,UIImage *image){
                                       
@@ -247,38 +191,36 @@
                                   }failure:^(NSURLRequest *request ,NSHTTPURLResponse *response ,NSError *error){
                                       
                                   }];
-    [nameLabel setText:theItem.userName];
+    CGRect expectedLabelRect = [theItem.userName boundingRectWithSize:CGSizeMake(0, 20)
+                                                              options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                           attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+    float nameLabelWidth = expectedLabelRect.size.width;
+    if (nameLabelWidth > 150) {
+        nameLabelWidth = 150;
+    }
+    [cell.nameLabel setText:theItem.userName];
     
-    return backView;
+    [cell.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
+    [cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
+    cell.likeNumLabel.text = theItem.likeNum;
+    cell.commentNumLabel.text = theItem.commentNum;
+    [cell setLikeButtonColor:theItem.hasLiked];
+    cell.delegate = (id)self;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
 }
-#pragma TJTouchableImageViewDelegate
--(void)selectUserImageView:(int)sectionNum
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TJItem *theItem = [itemsArray objectAtIndex:sectionNum];
+    TJItem *item = [itemsArray objectAtIndex:indexPath.row];
+    float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
     
     UIViewController *rootViewController = [self getTheNavigationRootViewController];
     rootViewController.hidesBottomBarWhenPushed = YES;
-    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
-    userInfoViewController.userImageUrl = theItem.userImg;
-    userInfoViewController.userName = theItem.userName;
-    userInfoViewController.userGender = theItem.userGender;
-    userInfoViewController.uid = theItem.uid;
-    [self.navigationController pushViewController:userInfoViewController animated:YES];
-    rootViewController.hidesBottomBarWhenPushed = NO;
-}
-#pragma TJSelectableLabelDelegate
--(void)selectLabel:(int)rowNum
-{
-    TJItem *theItem = [itemsArray objectAtIndex:rowNum];
-    
-    UIViewController *rootViewController = [self getTheNavigationRootViewController];
-    rootViewController.hidesBottomBarWhenPushed = YES;
-    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
-    userInfoViewController.userImageUrl = theItem.userImg;
-    userInfoViewController.userName = theItem.userName;
-    userInfoViewController.userGender = theItem.userGender;
-    userInfoViewController.uid = theItem.uid;
-    [self.navigationController pushViewController:userInfoViewController animated:YES];
+    TJCommentViewController *commentViewController = [[TJCommentViewController alloc]init];
+    commentViewController.theItem = item;
+    commentViewController.textHeight = textHeight;
+    [self.navigationController pushViewController:commentViewController animated:YES];
     rootViewController.hidesBottomBarWhenPushed = NO;
 }
 #pragma TJItemCellDelegate
@@ -303,6 +245,21 @@
         
     }];
 }
+-(void)goToUserInformationPgae:(int)rowNum
+{
+    TJItem *theItem = [itemsArray objectAtIndex:rowNum];
+    
+    UIViewController *rootViewController = [self getTheNavigationRootViewController];
+    rootViewController.hidesBottomBarWhenPushed = YES;
+    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
+    userInfoViewController.userImageUrl = theItem.userImg;
+    userInfoViewController.userName = theItem.userName;
+    userInfoViewController.userGender = theItem.userGender;
+    userInfoViewController.uid = theItem.uid;
+    [self.navigationController pushViewController:userInfoViewController animated:YES];
+    rootViewController.hidesBottomBarWhenPushed = NO;
+}
+
 -(TJItem *)getItemFromId:(NSString *)itemId
 {
     TJItem *theItem = nil;
