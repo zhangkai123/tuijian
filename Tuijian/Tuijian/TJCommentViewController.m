@@ -13,11 +13,9 @@
 #import "TJCommentCell.h"
 #import "TJComment.h"
 #import "UIImage+additions.h"
-#import "TJTouchableImageView.h"
-#import "TJSelectableLabel.h"
 #import "TJUserInfoViewController.h"
 
-@interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,TJTouchableImageViewDelegate,TJCommentViewDelegate>
+@interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,TJCommentViewDelegate>
 {
     UITableView *detailTableView;
     int numberOfSections;
@@ -271,7 +269,7 @@
 {
     float rowHeight = 0;
     if (indexPath.section == 0) {
-        rowHeight = textHeight + 325 + 40;
+        rowHeight = textHeight + 165 + 40 + 22 + 50;
     }else if (indexPath.section == 1){
         if ([myLikesArray count] != 0) {
             rowHeight = 50;
@@ -285,16 +283,46 @@
 {
     UITableViewCell *cell = nil;
     if (indexPath.section == 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cellOne"];
-        if (!cell) {
-            cell = [[TJItemDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
+        TJItemDetailCell *cellOne = [tableView dequeueReusableCellWithIdentifier:@"cellOne"];
+        if (!cellOne) {
+            cellOne = [[TJItemDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         }
-        [(TJItemDetailCell *)cell setItemId:theItem.itemId];
-        [[(TJItemDetailCell *)cell itemImageView] setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-        [(TJItemDetailCell *)cell setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
-        [(TJItemDetailCell *)cell setLikeButtonColor:theItem.hasLiked];
-        [(TJItemDetailCell *)cell setDelegate:(id)self];
-
+        [cellOne setItemId:theItem.itemId];
+        
+        UIImage *genderPlaceHolder = nil;
+        if ([theItem.userGender intValue] == 1) {
+            [cellOne.genderImageView setImage:[UIImage imageNamed:@"male.png"]];
+            genderPlaceHolder = [UIImage imageNamed:@"man_placeholder.png"];
+        }else{
+            [cellOne.genderImageView setImage:[UIImage imageNamed:@"female.png"]];
+            genderPlaceHolder = [UIImage imageNamed:@"womanPlaceholder.png"];
+        }
+        __block UIImageView *weakImageView = cellOne.userImageView;
+        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:theItem.userImg]];
+        [cellOne.userImageView setImageWithURLRequest:urlRequest
+                                  placeholderImage:genderPlaceHolder
+                                           success:^(NSURLRequest *request ,NSHTTPURLResponse *response ,UIImage *image){
+                                               
+                                               float radius = MAX(image.size.width, image.size.height);
+                                               weakImageView.image = [image makeRoundCornersWithRadius:radius/2];
+                                           }failure:^(NSURLRequest *request ,NSHTTPURLResponse *response ,NSError *error){
+                                               
+                                           }];
+        CGRect expectedLabelRect = [theItem.userName boundingRectWithSize:CGSizeMake(0, 20)
+                                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+        float nameLabelWidth = expectedLabelRect.size.width;
+        if (nameLabelWidth > 150) {
+            nameLabelWidth = 150;
+        }
+        [cellOne.nameLabel setText:theItem.userName];
+        
+        [cellOne.itemImageView setImageWithURL:[NSURL URLWithString:theItem.imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+        [cellOne setRecommendInfoAndHeight:theItem.recommendReason textHeight:textHeight];
+        [cellOne setLikeButtonColor:theItem.hasLiked];
+        [cellOne setDelegate:(id)self];
+        
+        cell = cellOne;
     }else if (indexPath.section == 1) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
         if (!cell) {
@@ -363,67 +391,6 @@
         [self replyCommentTo:comment.user];
     }
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    float headerHeight = 0;
-    if (section == 0) {
-        headerHeight = 50;
-    }
-    return headerHeight;
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *backView = nil;
-    if (section == 0) {
-        backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
-        TJTouchableImageView *userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
-        userImageView.sectionNum = section;
-        userImageView.delegate = self;
-        userImageView.clipsToBounds = YES;
-        [backView addSubview:userImageView];
-        userImageView.layer.cornerRadius = 40 / 2.0;
-        
-        CGRect expectedLabelRect = [theItem.userName boundingRectWithSize:CGSizeMake(0, 20)
-                                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
-        float nameLabelWidth = expectedLabelRect.size.width;
-        if (nameLabelWidth > 150) {
-            nameLabelWidth = 150;
-        }
-        TJSelectableLabel *nameLabel = [[TJSelectableLabel alloc]initWithFrameAndTextColor:CGRectMake(60, 10, nameLabelWidth, 20) andTextColor:UIColorFromRGB(0x336699)];
-        nameLabel.delegate = (id)self;
-        nameLabel.theRowNum = section;
-        [nameLabel setFont:[UIFont systemFontOfSize:12]];
-        [backView addSubview:nameLabel];
-        
-        UIImageView *genderImageView = [[UIImageView alloc]initWithFrame:CGRectMake(60, 30, 13, 13)];
-        [backView addSubview:genderImageView];
-        
-        UIImage *genderPlaceHolder = nil;
-        if ([theItem.userGender intValue] == 1) {
-            [genderImageView setImage:[UIImage imageNamed:@"male.png"]];
-            genderPlaceHolder = [UIImage imageNamed:@"man_placeholder.png"];
-        }else{
-            [genderImageView setImage:[UIImage imageNamed:@"female.png"]];
-            genderPlaceHolder = [UIImage imageNamed:@"womanPlaceholder.png"];
-        }
-        [userImageView setImageWithURL:[NSURL URLWithString:theItem.userImg] placeholderImage:genderPlaceHolder];
-        [nameLabel setText:theItem.userName];
-        
-        [backView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.95]];
-    }
-    return backView;
-}
-#pragma TJTouchableImageViewDelegate
--(void)selectUserImageView:(int)sectionNum
-{
-    [self goToUserInformationPage:theItem.userImg userName:theItem.userName userGender:theItem.userGender userId:theItem.uid];
-}
-#pragma TJSelectableLabelDelegate
--(void)selectLabel:(int)rowNum
-{
-    [self goToUserInformationPage:theItem.userImg userName:theItem.userName userGender:theItem.userGender userId:theItem.uid];
-}
 #pragma TJLikeCellDelegate
 -(void)selectUserCell:(int)rowNum
 {
@@ -476,6 +443,11 @@
         
     }];
 }
+-(void)goToUserInformationPgae:(int)rowNum
+{
+    [self goToUserInformationPage:theItem.userImg userName:theItem.userName userGender:theItem.userGender userId:theItem.uid];
+}
+
 -(TJUser *)findUserInLikesArray:(NSString *)userId
 {
     for (int i = 0; i < [myLikesArray count]; i++) {
