@@ -19,15 +19,12 @@
 
 @interface TJCommentCell : UITableViewCell<TJTouchableImageViewDelegate,TJSelectableLabelDelegate>
 {
-    UIImageView *commentImageView;
-    
     TJTouchableImageView *userImageView;
     TJSelectableLabel *nameLable;
     UILabel *commentLable;
     __unsafe_unretained id<TJCommentCellDelegate> delegate;
     int rowNum;
 }
-@property(nonatomic,strong) UIImageView *commentImageView;
 
 @property(nonatomic,strong) TJTouchableImageView *userImageView;
 @property(nonatomic,strong) UILabel *commentLable;
@@ -37,7 +34,4 @@
 @property(nonatomic,assign) int rowNum;
 
 -(void)setUserName:(NSString *)theName;
--(void)setLineWidthAndHeight:(float)topLineWidth sideLineHeight:(float)sideLineHeight;
--(void)setBottomLineViewHidden:(BOOL)hidden;
--(void)showSelectedAnimation;
 @end

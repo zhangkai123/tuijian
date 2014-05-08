@@ -60,7 +60,7 @@
     detailTableView.dataSource = self;
     detailTableView.delegate = self;
     detailTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
-    detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    detailTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:detailTableView];
     detailTableView.backgroundColor = UIColorFromRGB(0xF2F2F2);
 
@@ -306,24 +306,13 @@
         [cellOne setDelegate:(id)self];
         
         cell = cellOne;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
         if (!cell) {
             cell = [[TJCommentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
         }
         float  commentHeight = [[myCommentHeightArray objectAtIndex:indexPath.row]floatValue];
-        if (indexPath.row != 0) {
-            [[(TJCommentCell *)cell commentImageView]setImage:nil];
-            [(TJCommentCell *)cell setLineWidthAndHeight:265 sideLineHeight:commentHeight + 40];
-        }else{
-            [[(TJCommentCell *)cell commentImageView]setImage:[UIImage imageNamed:@"comment.png"]];
-            [(TJCommentCell *)cell setLineWidthAndHeight:300 sideLineHeight:commentHeight + 40];
-        }
-        if (indexPath.row == ([myCommentsArray count] - 1)) {
-            [(TJCommentCell *)cell setBottomLineViewHidden:NO];
-        }else{
-            [(TJCommentCell *)cell setBottomLineViewHidden:YES];
-        }
         TJComment *comment = [myCommentsArray objectAtIndex:indexPath.row];
         UIImage *genderPlaceHolder = nil;
         if ([comment.user.gender isEqualToString:@"男"] || [comment.user.gender isEqualToString:@"m"] || ([comment.user.gender intValue] == 1)) {
@@ -348,15 +337,13 @@
         [(TJCommentCell *)cell setRowNum:indexPath.row];
         
         [(TJCommentCell *)cell setCommentHeight:commentHeight];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        TJCommentCell *cell = (TJCommentCell *)[tableView cellForRowAtIndexPath:indexPath];
-        [cell showSelectedAnimation];
         TJComment *comment = [myCommentsArray objectAtIndex:indexPath.row];
         [self replyCommentTo:comment.user];
     }
@@ -388,7 +375,6 @@
     }
     theItem.hasLiked = !theItem.hasLiked;
     hasL(theItem.hasLiked);
-    [detailTableView reloadData];
     
     __block TJItem *weakItem = theItem;
     [[TJDataController sharedDataController]saveLike:itemId success:^(BOOL hasLiked){
