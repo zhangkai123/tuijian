@@ -271,7 +271,7 @@
         [cellOne setItemId:theItem.itemId];
         
         UIImage *genderPlaceHolder = nil;
-        if ([theItem.userGender intValue] == 1) {
+        if ([theItem.userGender isEqualToString:@"男"] || [theItem.userGender isEqualToString:@"m"] || ([theItem.userGender intValue] == 1)) {
             [cellOne.genderImageView setImage:[UIImage imageNamed:@"male.png"]];
             genderPlaceHolder = [UIImage imageNamed:@"man_placeholder.png"];
         }else{

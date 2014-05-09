@@ -140,7 +140,7 @@
         }else{
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"female.png"]];
         }
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else if (indexPath.section == 1) {
         TJMySignCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
@@ -185,12 +185,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        self.hidesBottomBarWhenPushed = YES;
-        TJInfoEditViewController *infoEditViewController = [[TJInfoEditViewController alloc]init];
-        infoEditViewController.theUser = theUser;
-        
-        [self.navigationController pushViewController:infoEditViewController animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
+//        self.hidesBottomBarWhenPushed = YES;
+//        TJInfoEditViewController *infoEditViewController = [[TJInfoEditViewController alloc]init];
+//        infoEditViewController.theUser = theUser;
+//        
+//        [self.navigationController pushViewController:infoEditViewController animated:YES];
+//        self.hidesBottomBarWhenPushed = NO;
     }else if(indexPath.section == 4){
         if (indexPath.row == 0) {
             self.hidesBottomBarWhenPushed = YES;
