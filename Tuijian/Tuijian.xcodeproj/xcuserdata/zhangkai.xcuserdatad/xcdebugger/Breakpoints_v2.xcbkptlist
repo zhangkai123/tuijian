@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tuijian/TJShowViewController.m"
-            timestampString = "421299410.941655"
+            timestampString = "421316887.877401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317">
+            startingLineNumber = "321"
+            endingLineNumber = "321">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

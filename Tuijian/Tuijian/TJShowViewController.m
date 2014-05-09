@@ -99,7 +99,11 @@
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewData) name:TJ_UPDATE_RECOMMEND_LIST_NOTIFICATION object:nil];
     }
 }
-
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [refreshControl.superview sendSubviewToBack:refreshControl];
+}
 -(void)refreshTableViewData
 {
     __weak UITableView *weaktheTalbleView = itemTableView;
