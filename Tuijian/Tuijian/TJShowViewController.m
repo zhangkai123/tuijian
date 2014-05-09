@@ -163,7 +163,13 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float textHeight = [[textHeightArray objectAtIndex:indexPath.row] floatValue];
-    return textHeight + 165 + 40 + 22 + 50;
+    float cellHeight = 0;
+    if (textHeight == 0) {
+        cellHeight = 155 + 40 + 22 + 50;
+    }else{
+        cellHeight = textHeight + 165 + 40 + 22 + 50;
+    }
+    return cellHeight;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
