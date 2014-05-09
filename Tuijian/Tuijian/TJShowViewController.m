@@ -63,6 +63,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    [itemTableView reloadData];
     [super viewWillAppear:animated];
 }
 -(void)viewWillDisappear:(BOOL)animated

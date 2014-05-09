@@ -60,5 +60,4 @@
 
 -(void)setRecommendInfoAndHeight:(NSString *)recommendInfo textHeight:(float)textH;
 -(void)setLikeButtonColor:(BOOL)hasLiked;
--(void)animateHeart;
 @end

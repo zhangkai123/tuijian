@@ -326,7 +326,7 @@
     basicMessage.messageId = TJ_ITEM_MESSAGE_ID;
     basicMessage.messageType = @"itemMessage";
     basicMessage.imageUrl = item.imageUrl;
-    basicMessage.messageTitle = @"美食";
+    basicMessage.messageTitle = @"赞和评论";
     basicMessage.messageName = myUserInfo.name;
     basicMessage.message = @"赞";
     basicMessage.messageContentType = @"like";
@@ -343,7 +343,7 @@
     basicMessage.messageId = TJ_ITEM_MESSAGE_ID;
     basicMessage.messageType = @"itemMessage";
     basicMessage.imageUrl = item.imageUrl;
-    basicMessage.messageTitle = @"美食";
+    basicMessage.messageTitle = @"赞和评论";
     basicMessage.messageName = myUserInfo.name;
     basicMessage.message = commentInfo;
     basicMessage.messageContentType = @"comment";
@@ -360,7 +360,7 @@
     basicMessage.messageId = TJ_ITEM_MESSAGE_ID;
     basicMessage.messageType = @"itemMessage";
     basicMessage.imageUrl = item.imageUrl;
-    basicMessage.messageTitle = @"美食";
+    basicMessage.messageTitle = @"赞和评论";
     basicMessage.messageName = myUserInfo.name;
     basicMessage.message = commentInfo;
     basicMessage.messageContentType = @"replyComment";
@@ -377,7 +377,7 @@
     basicMessage.messageId = TJ_ITEM_MESSAGE_ID;
     basicMessage.messageType = @"itemMessage";
     basicMessage.imageUrl = itemMessage.itemUrl;
-    basicMessage.messageTitle = @"美食";
+    basicMessage.messageTitle = @"赞和评论";
     basicMessage.messageName = userInfo.name;
     basicMessage.message = commentInfo;
     basicMessage.messageContentType = @"replyComment";
