@@ -22,6 +22,8 @@
     NSMutableArray *textHeightArray;
     
     float previousScrollViewYOffset;
+    
+    UIView *coverView;
 }
 @end
 
@@ -269,7 +271,41 @@
     [self.navigationController pushViewController:userInfoViewController animated:YES];
     rootViewController.hidesBottomBarWhenPushed = NO;
 }
+-(void)clickThePhoto:(int)rowNum
+{
+    NSIndexPath *theIndexPath = [NSIndexPath indexPathForRow:rowNum inSection:0];
+    TJItemCell *itemCell = (TJItemCell *)[itemTableView cellForRowAtIndexPath:theIndexPath];
+    UIImageView *theImageView = itemCell.itemImageView;
+    
+    CGRect itemCellRect = [itemTableView rectForRowAtIndexPath:theIndexPath];
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    coverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, screenRect.size.height)];
+    coverView.backgroundColor = [UIColor blackColor];
+    UIImageView *bigImageView = [[UIImageView alloc]initWithFrame:CGRectMake(theImageView.frame.origin.x, 64 + itemCellRect.origin.y + theImageView.frame.origin.y - itemTableView.contentOffset.y, 150, 150)];
+    bigImageView.image = theImageView.image;
+    [coverView addSubview:bigImageView];
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    [keyWindow addSubview:coverView];
 
+    float scaleValue = 320.0/150.0;
+    [UIView animateWithDuration:0.7
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:(void (^)(void)) ^{
+                         bigImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
+                         bigImageView.center = keyWindow.center;
+                     }
+                     completion:^(BOOL finished){
+                         UIButton *coverButton = [[UIButton alloc]initWithFrame:screenRect];
+                         [coverButton addTarget:self action:@selector(removeBigPhoto) forControlEvents:UIControlEventTouchUpInside];
+                         [coverView addSubview:coverButton];
+                     }];
+}
+-(void)removeBigPhoto
+{
+    [coverView removeFromSuperview];
+}
 -(TJItem *)getItemFromId:(NSString *)itemId
 {
     TJItem *theItem = nil;

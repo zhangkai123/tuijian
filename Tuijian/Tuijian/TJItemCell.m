@@ -45,8 +45,9 @@
         [recommendInfoLabel setTextColor:[UIColor darkGrayColor]];
         [self addSubview:recommendInfoLabel];
         
-        itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
+        itemImageView = [[TJTouchablePhotoView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
         itemImageView.backgroundColor = UIColorFromRGB(0xF5F5F5);
+        itemImageView.delegate = self;
         [self addSubview:itemImageView];
         
         likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -117,6 +118,11 @@
 -(void)selectLabel:(int)rowNum
 {
     [self.delegate goToUserInformationPgae:self.theRowNum];
+}
+#pragma TJTouchablePhotoViewDelegate
+-(void)selectPhotoView
+{
+    [self.delegate clickThePhoto:self.theRowNum];
 }
 
 -(void)like

@@ -10,15 +10,17 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TJTouchableImageView.h"
 #import "TJSelectableLabel.h"
+#import "TJTouchablePhotoView.h"
 
 @protocol TJItemCellDelegate <NSObject>
 
 -(void)likeItem:(NSString *)itemId liked:(void (^)(BOOL Liked))hasL;
 -(void)goToUserInformationPgae:(int)rowNum;
+-(void)clickThePhoto:(int)rowNum;
 
 @end
 
-@interface TJItemCell : UITableViewCell<TJTouchableImageViewDelegate,TJSelectableLabelDelegate>
+@interface TJItemCell : UITableViewCell<TJTouchableImageViewDelegate,TJSelectableLabelDelegate,TJTouchablePhotoViewDelegate>
 {
     NSString *itemId;
     int theRowNum;
@@ -29,7 +31,7 @@
     TJSelectableLabel *nameLabel;
     UIImageView *genderImageView;
     
-    UIImageView *itemImageView;
+    TJTouchablePhotoView *itemImageView;
     UILabel *recommendInfoLabel;
     
     UIButton *shareButton;
@@ -52,7 +54,7 @@
 @property(nonatomic,strong) TJSelectableLabel *nameLabel;
 @property(nonatomic,strong) UIImageView *genderImageView;
 
-@property(nonatomic,strong) UIImageView *itemImageView;
+@property(nonatomic,strong) TJTouchablePhotoView *itemImageView;
 @property(nonatomic,strong) UILabel *commentNumLabel;
 @property(nonatomic,strong) UILabel *likeNumLabel;
 
