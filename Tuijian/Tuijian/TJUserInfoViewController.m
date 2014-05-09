@@ -198,21 +198,17 @@
 #pragma TJChatCellDelegate
 -(void)sendMessageTo
 {
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-    [appDelegate changeToInfoTab];
-    UINavigationController *infoNavController = [appDelegate.tabBarController.viewControllers objectAtIndex:1];
-    NSArray *viewControllers = infoNavController.viewControllers;
-    UIViewController *rootViewController = [viewControllers objectAtIndex:0];
-    
-    rootViewController.hidesBottomBarWhenPushed = YES;
-    TJChatViewController *chatViewController = [[TJChatViewController alloc]initWithTitle:self.userName];
-    chatViewController.chatToUserId = self.uid;
-    chatViewController.chatToUserImageUrl = self.userImageUrl;
-    [infoNavController pushViewController:chatViewController animated:YES];
-    rootViewController.hidesBottomBarWhenPushed = NO;
+    [[[UIAlertView alloc] initWithTitle:nil
+                                message:@"你好"
+                               delegate:self
+                      cancelButtonTitle:@"取消"
+                      otherButtonTitles:@"发送",nil] show];
 }
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 1) {
+		[[TJDataController sharedDataController]sendChatMessageTo:self.uid chatMessage:@"你好"];
+	}
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

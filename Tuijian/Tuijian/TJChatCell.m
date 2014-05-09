@@ -19,7 +19,7 @@
         self.backgroundColor = [UIColor clearColor];
         UIButton *messageButton = [[UIButton alloc]initWithFrame:CGRectMake(20, 30, 280, 45)];
         [messageButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
-        [messageButton setTitle:@"发消息" forState:UIControlStateNormal];
+        [messageButton setTitle:@"打招呼" forState:UIControlStateNormal];
         messageButton.layer.cornerRadius = 5;
         messageButton.layer.masksToBounds = YES;
         messageButton.backgroundColor = UIColorFromRGB(0x3399CC);
