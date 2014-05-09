@@ -60,7 +60,7 @@
     detailTableView.dataSource = self;
     detailTableView.delegate = self;
     detailTableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 50);
-    detailTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:detailTableView];
     detailTableView.backgroundColor = UIColorFromRGB(0xF2F2F2);
 
@@ -256,7 +256,7 @@
     if (indexPath.section == 0) {
         rowHeight = textHeight + 165 + 40 + 22 + 50;
     }else{
-        rowHeight = [[myCommentHeightArray objectAtIndex:indexPath.row] floatValue] + 35 + 5;
+        rowHeight = [[myCommentHeightArray objectAtIndex:indexPath.row] floatValue] + 31;
     }
     return rowHeight;
 }
@@ -344,6 +344,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         TJComment *comment = [myCommentsArray objectAtIndex:indexPath.row];
         [self replyCommentTo:comment.user];
     }

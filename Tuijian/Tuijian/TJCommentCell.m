@@ -9,6 +9,9 @@
 #import "TJCommentCell.h"
 
 @interface TJCommentCell()
+{
+    UIView *bottomLine;
+}
 @end
 
 @implementation TJCommentCell
@@ -23,37 +26,43 @@
         // Initialization code
         self.backgroundColor = UIColorFromRGB(0xF2F2F2);
                 
-        self.userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
+        self.userImageView = [[TJTouchableImageView alloc]initWithFrame:CGRectMake(10, 5, 17, 17)];
         self.userImageView.delegate = self;
         [self addSubview:self.userImageView];
         
-        nameLable = [[TJSelectableLabel alloc]initWithFrameAndTextColor:CGRectMake(60, 10, 100, 20) andTextColor:UIColorFromRGB(0x336699)];
+        nameLable = [[TJSelectableLabel alloc]initWithFrameAndTextColor:CGRectMake(35, 5, 100, 17) andTextColor:UIColorFromRGB(0x336699)];
         nameLable.delegate = self;
-        [nameLable setFont:[UIFont systemFontOfSize:15]];
+        [nameLable setFont:[UIFont systemFontOfSize:12]];
         [self addSubview:nameLable];
 
-        commentLable = [[UILabel alloc]initWithFrame:CGRectMake(60, 35, TJ_COMMENT_LABEL_WIDTH, 0)];
-        commentLable.textColor = [UIColor blackColor];
+        commentLable = [[UILabel alloc]initWithFrame:CGRectMake(35, 25, TJ_COMMENT_LABEL_WIDTH, 0)];
+        commentLable.textColor = [UIColor darkGrayColor];
         [commentLable setFont:[UIFont systemFontOfSize:TJ_COMMENT_SIZE]];
         commentLable.lineBreakMode = NSLineBreakByCharWrapping;
         commentLable.numberOfLines = 0;
         [self addSubview:commentLable];
+        
+        bottomLine = [[UIView alloc]initWithFrame:CGRectZero];
+        bottomLine.backgroundColor = UIColorFromRGB(0xE0E0E0);
+        [self addSubview:bottomLine];
     }
     return self;
 }
 -(void)setUserName:(NSString *)theName
 {
     nameLable.text = theName;
-    CGRect expectedLabelRect = [theName boundingRectWithSize:CGSizeMake(0, 20)
+    CGRect expectedLabelRect = [theName boundingRectWithSize:CGSizeMake(0, 17)
                                                           options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                       attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
-    nameLable.frame = CGRectMake(60, 10, expectedLabelRect.size.width, 20);
+                                                       attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+    nameLable.frame = CGRectMake(35, 5, expectedLabelRect.size.width, 17);
 
 }
 -(void)setCommentHeight:(float)commentH
 {
     commentHeight =commentH;
-    commentLable.frame = CGRectMake(60, 35, TJ_COMMENT_LABEL_WIDTH, commentH);
+    commentLable.frame = CGRectMake(35, 25, TJ_COMMENT_LABEL_WIDTH, commentH);
+    
+    bottomLine.frame = CGRectMake(0, 25 + commentH + 5, 320, 1);
 }
 #pragma TJTouchableImageViewDelegate
 -(void)selectUserImageView:(int)sectionNum

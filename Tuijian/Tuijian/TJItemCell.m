@@ -42,7 +42,7 @@
         [recommendInfoLabel setFont:[UIFont systemFontOfSize:TJ_RECOMMEND_SIZE]];
         recommendInfoLabel.lineBreakMode = NSLineBreakByCharWrapping;
         recommendInfoLabel.numberOfLines = 0;
-        [recommendInfoLabel setTextColor:[UIColor blackColor]];
+        [recommendInfoLabel setTextColor:[UIColor darkGrayColor]];
         [self addSubview:recommendInfoLabel];
         
         itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];

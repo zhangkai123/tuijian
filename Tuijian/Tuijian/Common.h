@@ -67,10 +67,10 @@
 #define bottomTransparentHeightRetina_4 55
 
 //text size
-#define TJ_RECOMMEND_SIZE 15
+#define TJ_RECOMMEND_SIZE 17
 #define TJ_RECOMMEND_WIDTH 250
-#define TJ_COMMENT_SIZE 15
-#define TJ_COMMENT_LABEL_WIDTH 220
+#define TJ_COMMENT_SIZE 16
+#define TJ_COMMENT_LABEL_WIDTH 275
 #define TJ_ITEM_MESSAGE_SIZE 15
 #define TJ_ITEM_MESSAGE_WIDTH 200
 
