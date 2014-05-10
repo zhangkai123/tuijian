@@ -24,6 +24,7 @@
     float previousScrollViewYOffset;
     
     UIView *coverView;
+    CGRect smallImageFrame;
 }
 @end
 
@@ -282,14 +283,16 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     coverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, screenRect.size.height)];
     coverView.backgroundColor = [UIColor blackColor];
-    UIImageView *bigImageView = [[UIImageView alloc]initWithFrame:CGRectMake(theImageView.frame.origin.x, 64 + itemCellRect.origin.y + theImageView.frame.origin.y - itemTableView.contentOffset.y, 150, 150)];
+    smallImageFrame = CGRectMake(theImageView.frame.origin.x, 64 + itemCellRect.origin.y + theImageView.frame.origin.y - itemTableView.contentOffset.y, 150, 150);
+    UIImageView *bigImageView = [[UIImageView alloc]initWithFrame:smallImageFrame];
     bigImageView.image = theImageView.image;
+    bigImageView.tag = 1000;
     [coverView addSubview:bigImageView];
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
     [keyWindow addSubview:coverView];
 
     float scaleValue = 320.0/150.0;
-    [UIView animateWithDuration:0.7
+    [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:(void (^)(void)) ^{
@@ -304,7 +307,19 @@
 }
 -(void)removeBigPhoto
 {
-    [coverView removeFromSuperview];
+    coverView.backgroundColor = [UIColor clearColor];
+    UIImageView *bigImageView = (UIImageView *)[coverView viewWithTag:1000];
+    float scaleValue = 150.0/320.0;
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:(void (^)(void)) ^{
+                         bigImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
+                         bigImageView.frame = smallImageFrame;
+                     }
+                     completion:^(BOOL finished){
+                         [coverView removeFromSuperview];
+                     }];
 }
 -(TJItem *)getItemFromId:(NSString *)itemId
 {

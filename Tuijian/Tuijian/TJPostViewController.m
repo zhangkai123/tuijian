@@ -103,6 +103,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSString *tuijianText = [tuijianTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if ([tuijianText isEqualToString:@""]) {
+        tuijianText = @"分享美食";
+    }
     [[TJDataController sharedDataController]saveItem:@"" category:@"美食" recommendMes:tuijianText uploadImage:self.cropedImage success:^(id Json){
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [[NSNotificationCenter defaultCenter]postNotificationName:TJ_UPLOADING_ITEM_SUCCESS object:nil];

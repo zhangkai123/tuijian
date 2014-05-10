@@ -89,10 +89,10 @@
 -(void)setRecommendInfoAndHeight:(NSString *)recommendInfo textHeight:(float)textH
 {
     recommendInfoLabel.text = recommendInfo;
-    recommendInfoLabel.frame = CGRectMake(60, 50, TJ_RECOMMEND_WIDTH, textH);
+    recommendInfoLabel.frame = CGRectMake(10, 50, TJ_RECOMMEND_WIDTH, textH);
     
     if ([recommendInfo isEqualToString:@""]) {
-        itemImageView.frame = CGRectMake(60, 50, 150, 150);
+        itemImageView.frame = CGRectMake(10, 50, 150, 150);
         
         likeButton.frame = CGRectMake(10, 160 + 1 + 50, 60, 28);
         likeImageView.frame = CGRectMake(240, 160 + 50, 32, 32);
@@ -100,7 +100,7 @@
         
         coverView.frame = CGRectMake(0, 0, 320, 250);
     }else{
-        itemImageView.frame = CGRectMake(60, 50 + textH + 10, 150, 150);
+        itemImageView.frame = CGRectMake(10, 50 + textH + 10, 150, 150);
         
         likeButton.frame = CGRectMake(10, 170 + textH + 1 + 50, 60, 28);
         likeImageView.frame = CGRectMake(240, 170 + textH + 50, 32, 32);
