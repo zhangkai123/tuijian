@@ -309,12 +309,10 @@
 {
     coverView.backgroundColor = [UIColor clearColor];
     UIImageView *bigImageView = (UIImageView *)[coverView viewWithTag:1000];
-    float scaleValue = 150.0/320.0;
     [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:(void (^)(void)) ^{
-                         bigImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
                          bigImageView.frame = smallImageFrame;
                      }
                      completion:^(BOOL finished){
