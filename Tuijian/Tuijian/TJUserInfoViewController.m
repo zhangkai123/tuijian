@@ -204,6 +204,7 @@
 -(void)acceptChat
 {
     [[TJDataController sharedDataController]haveReadHiMessage:self.hiMessageLocalId];
+    [[TJDataController sharedDataController]sendChatMessageTo:self.uid chatMessage:@"接受了你的聊天请求"];
     
     [self.navigationController popToRootViewControllerAnimated:NO];
     TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];

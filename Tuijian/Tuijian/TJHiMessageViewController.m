@@ -95,6 +95,7 @@
     TJHiMessage *hiMessage = [hiMessageArray objectAtIndex:rowN];
     hiMessage.messageContentType = @"0";
     [[TJDataController sharedDataController]haveReadHiMessage:hiMessage.theId];
+    [[TJDataController sharedDataController]sendChatMessageTo:hiMessage.uid chatMessage:@"接受了你的聊天请求"];
     
     [self.navigationController popToRootViewControllerAnimated:NO];
     TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
