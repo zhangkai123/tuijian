@@ -198,19 +198,20 @@
 #pragma TJChatCellDelegate
 -(void)sendMessageTo
 {
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-    [appDelegate changeToInfoTab];
-    UINavigationController *infoNavController = [appDelegate.tabBarController.viewControllers objectAtIndex:1];
-    NSArray *viewControllers = infoNavController.viewControllers;
-    UIViewController *rootViewController = [viewControllers objectAtIndex:0];
-    
-    rootViewController.hidesBottomBarWhenPushed = YES;
-    TJChatViewController *chatViewController = [[TJChatViewController alloc]initWithTitle:self.userName];
-    chatViewController.chatToUserId = self.uid;
-    chatViewController.chatToUserImageUrl = self.userImageUrl;
-    [infoNavController pushViewController:chatViewController animated:YES];
-    rootViewController.hidesBottomBarWhenPushed = NO;
+//    [self.navigationController popToRootViewControllerAnimated:NO];
+//    TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+//    [appDelegate changeToInfoTab];
+//    UINavigationController *infoNavController = [appDelegate.tabBarController.viewControllers objectAtIndex:1];
+//    NSArray *viewControllers = infoNavController.viewControllers;
+//    UIViewController *rootViewController = [viewControllers objectAtIndex:0];
+//    
+//    rootViewController.hidesBottomBarWhenPushed = YES;
+//    TJChatViewController *chatViewController = [[TJChatViewController alloc]initWithTitle:self.userName];
+//    chatViewController.chatToUserId = self.uid;
+//    chatViewController.chatToUserImageUrl = self.userImageUrl;
+//    [infoNavController pushViewController:chatViewController animated:YES];
+//    rootViewController.hidesBottomBarWhenPushed = NO;
+    [[TJDataController sharedDataController]sendHiMessageTo:self.uid];
 }
 - (void)didReceiveMemoryWarning
 {

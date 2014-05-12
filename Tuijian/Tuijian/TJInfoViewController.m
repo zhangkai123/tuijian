@@ -11,6 +11,7 @@
 #import "TJMessageCell.h"
 #import "TJItemMessageViewController.h"
 #import "TJChatViewController.h"
+#import "TJHiMessageViewController.h"
 #import "UIImage+additions.h"
 #import "TJAppDelegate.h"
 #import "TJCommentViewController.h"
@@ -111,6 +112,8 @@
         }
     }else if ([message.messageType isEqualToString:@"chatMessage"]){
         messageContent = message.message;
+    }else if([message.messageType isEqualToString:@"hiMessage"]){
+       messageContent = [NSString stringWithFormat:@"%@给你打招呼",message.messageName];
     }
     [cell.messageLabel setText:messageContent];
     if (message.messageNum > 0) {
@@ -144,6 +147,12 @@
         chatViewController.chatToUserImageUrl = message.imageUrl;
         [self.navigationController pushViewController:chatViewController animated:YES];
         self.hidesBottomBarWhenPushed = NO;
+    }else if ([message.messageType isEqualToString:@"hiMessage"]){
+        
+        self.hidesBottomBarWhenPushed = YES;
+        TJHiMessageViewController *hiMessageViewController = [[TJHiMessageViewController alloc]init];
+        [self.navigationController pushViewController:hiMessageViewController animated:YES];
+         self.hidesBottomBarWhenPushed = NO;
     }
     
     TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];

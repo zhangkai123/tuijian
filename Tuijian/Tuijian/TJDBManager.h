@@ -21,6 +21,8 @@
 
 -(void)insertMessage:(NSString *)theMessage messageType:(NSString *)messageT messageId:(NSString *)mId messageContentType:(NSString *)messageContentType;
 -(NSArray *)getMessagesByOrder:(NSString *)messageType messageId:(NSString *)mId idOrder:(NSString *)idOrder withPage:(int)pageNum;
+-(NSArray *)getHiMessagesByOrder:(NSString *)messageType messageId:(NSString *)mId idOrder:(NSString *)idOrder withPage:(int)pageNum;
+-(void)updateHiMessageById:(NSString *)hiMessageLocalId;
 -(int)getInfoMessageNum;
 -(void)clearInfoMessageNum:(int)messageId messageType:(NSString *)mType;
 @end

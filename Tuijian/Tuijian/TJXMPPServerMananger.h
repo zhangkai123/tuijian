@@ -24,4 +24,6 @@
 -(void)sendItemMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userProfileImage:(NSString *)pImage userGender:(NSString *)userG theItemId:(NSString *)theItemId;
 //chat message
 -(void)sendChatMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userGender:(NSString *)userG;
+//hi message
+-(void)sendHiMessage:(NSString *)userId basicMessage:(TJMessage *)basicM;
 @end

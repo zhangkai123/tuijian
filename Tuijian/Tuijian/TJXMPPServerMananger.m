@@ -119,6 +119,13 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
     
     [xmppStream sendElement:message];
 }
+#pragma mark send hi message
+-(void)sendHiMessage:(NSString *)userId basicMessage:(TJMessage *)basicM
+{
+    NSXMLElement *message = [self constructBasicMessage:userId basicMessage:basicM];
+    [xmppStream sendElement:message];
+}
+
 -(NSXMLElement *)constructBasicMessage:(NSString *)userId basicMessage:(TJMessage *)basicM
 {
     NSString *jabberID = [NSString stringWithFormat:@"%@@115.28.6.27",userId];

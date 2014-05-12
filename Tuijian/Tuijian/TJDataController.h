@@ -53,6 +53,7 @@
 #pragma XMPP Server
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success;
 -(void)disConnectToXMPPServer;
+-(void)sendHiMessageTo:(NSString *)toUserId;
 -(void)sendChatMessageTo:(NSString *)toUserId chatMessage:(NSString *)chatMessage;
 -(void)sendLike:(TJItem *)item;
 -(void)sendComment:(TJItem *)item comment:(NSString *)commentInfo;
@@ -62,6 +63,8 @@
 -(NSArray *)featchMessageList;
 -(void)deleteFromMessageList:(NSString *)mId messageType:(NSString *)mType;
 -(NSArray *)featchItemMessage:(NSString *)mId;
+-(NSArray *)featchHiMessage:(int)pageNum;
+-(void)haveReadHiMessage:(NSString *)hiMessageLocalId;
 -(NSArray *)featchChatMessage:(NSString *)mId byPage:(int)pageNum;
 -(void)insertLocalChatMessage:(NSString *)mId myChatMessage:(TJChatMessage *)myChatMessage messageList:(TJMessage *)mes;
 -(int)getTotalInfoMessageNum;

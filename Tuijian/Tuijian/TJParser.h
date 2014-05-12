@@ -10,6 +10,7 @@
 #import "TJMessage.h"
 #import "TJItemMessage.h"
 #import "TJChatMessage.h"
+#import "TJHiMessage.h"
 
 @interface TJParser : NSObject
 
@@ -21,6 +22,7 @@
 
 +(void)parseMessage:(id)data parsedMessage:(void (^)(TJMessage *message))message;
 +(void)parseItemMessage:(id)data parsedMessage:(void (^)(TJItemMessage *message))message;
++(void)parseHiMessage:(id)data hiMessageLocalId:(NSString *)lId contentType:(NSString *)haveRead parsedMessage:(void (^)(TJHiMessage *message))message;
 +(void)parseChatMessage:(id)data parsedMessage:(void (^)(TJChatMessage *message))message;
 
 +(NSString *)getMessageFromUserId:(id)data;

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4B03651E18E2A91400D106F1 /* TJItemMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B03651D18E2A91400D106F1 /* TJItemMessageViewController.m */; };
+		4B0DE0DF19208E73005F5C7C /* TJHiMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0DE0DE19208E73005F5C7C /* TJHiMessageViewController.m */; };
+		4B0DE0E21920903A005F5C7C /* TJHiMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0DE0E11920903A005F5C7C /* TJHiMessageCell.m */; };
+		4B0DE0E5192094D3005F5C7C /* TJHiMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0DE0E4192094D3005F5C7C /* TJHiMessage.m */; };
 		4B14F38218FE1B4D0063C89E /* accept.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B14F38118FE1B4D0063C89E /* accept.png */; };
 		4B14F38518FE20290063C89E /* TJAcceptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B14F38418FE20290063C89E /* TJAcceptViewController.m */; };
 		4B14F38B18FE27DD0063C89E /* agreement.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4B14F38A18FE27DD0063C89E /* agreement.txt */; };
@@ -364,6 +367,12 @@
 /* Begin PBXFileReference section */
 		4B03651C18E2A91400D106F1 /* TJItemMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJItemMessageViewController.h; sourceTree = "<group>"; };
 		4B03651D18E2A91400D106F1 /* TJItemMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJItemMessageViewController.m; sourceTree = "<group>"; };
+		4B0DE0DD19208E73005F5C7C /* TJHiMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJHiMessageViewController.h; sourceTree = "<group>"; };
+		4B0DE0DE19208E73005F5C7C /* TJHiMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJHiMessageViewController.m; sourceTree = "<group>"; };
+		4B0DE0E01920903A005F5C7C /* TJHiMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJHiMessageCell.h; sourceTree = "<group>"; };
+		4B0DE0E11920903A005F5C7C /* TJHiMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJHiMessageCell.m; sourceTree = "<group>"; };
+		4B0DE0E3192094D3005F5C7C /* TJHiMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJHiMessage.h; sourceTree = "<group>"; };
+		4B0DE0E4192094D3005F5C7C /* TJHiMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJHiMessage.m; sourceTree = "<group>"; };
 		4B14F38118FE1B4D0063C89E /* accept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accept.png; sourceTree = "<group>"; };
 		4B14F38318FE20290063C89E /* TJAcceptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJAcceptViewController.h; sourceTree = "<group>"; };
 		4B14F38418FE20290063C89E /* TJAcceptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJAcceptViewController.m; sourceTree = "<group>"; };
@@ -1013,6 +1022,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B0DE0DC19208E54005F5C7C /* hiMessage */ = {
+			isa = PBXGroup;
+			children = (
+				4B0DE0DD19208E73005F5C7C /* TJHiMessageViewController.h */,
+				4B0DE0DE19208E73005F5C7C /* TJHiMessageViewController.m */,
+			);
+			name = hiMessage;
+			sourceTree = "<group>";
+		};
 		4B1D467D18DA8B330056262B /* TabControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1075,6 +1093,8 @@
 				4B57DA241901007A006F0355 /* TJMyRecommendCell.m */,
 				4BDACC1D1906183700FD91C3 /* TJChatCell.h */,
 				4BDACC1E1906183700FD91C3 /* TJChatCell.m */,
+				4B0DE0E01920903A005F5C7C /* TJHiMessageCell.h */,
+				4B0DE0E11920903A005F5C7C /* TJHiMessageCell.m */,
 			);
 			name = CellView;
 			sourceTree = "<group>";
@@ -1341,6 +1361,8 @@
 				4BACDCB518E2C5B00074F0F1 /* TJItemMessage.m */,
 				4BDACC26190661A500FD91C3 /* TJChatMessage.h */,
 				4BDACC27190661A500FD91C3 /* TJChatMessage.m */,
+				4B0DE0E3192094D3005F5C7C /* TJHiMessage.h */,
+				4B0DE0E4192094D3005F5C7C /* TJHiMessage.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -1380,6 +1402,7 @@
 				4BFB64CB18C07ACA00C304BB /* TJInfoViewController.m */,
 				4B504E6A190A2FFC0082C0EA /* ItemMessage */,
 				4B504E6B190A30150082C0EA /* ChatMessage */,
+				4B0DE0DC19208E54005F5C7C /* hiMessage */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -2840,6 +2863,7 @@
 				4BDACC1F1906183700FD91C3 /* TJChatCell.m in Sources */,
 				4B569CDE18CEBB5D000DF219 /* TJTencentAPIClient.m in Sources */,
 				4B9C412718D984AF00B9F8E5 /* GCDMulticastDelegate.m in Sources */,
+				4B0DE0E5192094D3005F5C7C /* TJHiMessage.m in Sources */,
 				4BEFE99E18E3E94600E2B6A3 /* TJUserInfoViewController.m in Sources */,
 				4B9C410318D984AF00B9F8E5 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
 				4BEFE99118E3B3BE00E2B6A3 /* TJMyItemCell.m in Sources */,
@@ -2895,6 +2919,7 @@
 				4B9C412B18D984AF00B9F8E5 /* XMPPStringPrep.m in Sources */,
 				4B47A39B18D179B800087BE4 /* UIImageView+WebCache.m in Sources */,
 				4B569CD518CEBAA7000DF219 /* TJDataController.m in Sources */,
+				4B0DE0DF19208E73005F5C7C /* TJHiMessageViewController.m in Sources */,
 				4B9C410418D984AF00B9F8E5 /* XMPPDateTimeProfiles.m in Sources */,
 				4B9C411718D984AF00B9F8E5 /* XMPPMessageDeliveryReceipts.m in Sources */,
 				4B9C40C618D984AF00B9F8E5 /* XMPPJID.m in Sources */,
@@ -2919,6 +2944,7 @@
 				4B569CEA18CF0BE9000DF219 /* TJUser.m in Sources */,
 				4BFB64D218C187F800C304BB /* TJBaseViewController.m in Sources */,
 				4B9C410818D984AF00B9F8E5 /* NSString+XEP_0106.m in Sources */,
+				4B0DE0E21920903A005F5C7C /* TJHiMessageCell.m in Sources */,
 				4B9C410F18D984AF00B9F8E5 /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
 				4B31B77B18D813F400F87D71 /* TJLikeCell.m in Sources */,
 				4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */,

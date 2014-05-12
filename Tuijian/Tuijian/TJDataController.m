@@ -298,6 +298,23 @@
 {
     [[TJXMPPServerMananger sharedXMPPServerMananger]disconnect];
 }
+-(void)sendHiMessageTo:(NSString *)toUserId
+{
+    TJUser *myUserInfo = [self getMyUserInfo];
+    NSString *myUserId = [self getMyUserId];
+    if ([toUserId isEqualToString:myUserId]) {
+        return;
+    }
+    TJMessage *basicMessage = [[TJMessage alloc]init];
+    basicMessage.messageId = TJ_HI_MESSAGE_ID;
+    basicMessage.messageType = @"hiMessage";
+    basicMessage.imageUrl = myUserInfo.profile_image_url;
+    basicMessage.messageTitle = @"招呼";
+    basicMessage.messageName = myUserInfo.name;
+    basicMessage.message = @"招呼";
+    basicMessage.messageContentType = @"1";
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendHiMessage:toUserId basicMessage:basicMessage];
+}
 -(void)sendChatMessageTo:(NSString *)toUserId chatMessage:(NSString *)chatMessage
 {
     TJUser *myUserInfo = [self getMyUserInfo];
@@ -443,6 +460,25 @@
         }];
     }
     return itemsMessageArray;
+}
+-(NSArray *)featchHiMessage:(int)pageNum
+{
+    NSArray *messageArray = [[TJDBManager sharedDBManager]getHiMessagesByOrder:@"hiMessage" messageId:TJ_HI_MESSAGE_ID idOrder:@"DESC" withPage:pageNum];
+    NSMutableArray *hiMessageArray = [[NSMutableArray alloc]init];
+    __block NSMutableArray *weakHiMessageArray = hiMessageArray;
+    for (int i = 0; i < [messageArray count]; i++) {
+        NSDictionary *hiMessage = [messageArray objectAtIndex:i];
+        NSError *error = nil;
+        NSXMLElement *hiMessageXML = [[NSXMLElement alloc] initWithXMLString:[hiMessage objectForKey:@"hiMessageXml"] error:&error];
+        [TJParser parseHiMessage:hiMessageXML hiMessageLocalId:[hiMessage objectForKey:@"hiMessageLocalId"] contentType:[hiMessage objectForKey:@"hiMessageContentType"] parsedMessage:^(TJHiMessage *hiMessage){
+            [weakHiMessageArray addObject:hiMessage];
+        }];
+    }
+    return hiMessageArray;
+}
+-(void)haveReadHiMessage:(NSString *)hiMessageLocalId
+{
+    [[TJDBManager sharedDBManager]updateHiMessageById:hiMessageLocalId];
 }
 -(NSArray *)featchChatMessage:(NSString *)mId byPage:(int)pageNum
 {

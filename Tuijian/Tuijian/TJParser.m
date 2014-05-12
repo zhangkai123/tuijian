@@ -215,6 +215,27 @@
     theMessage.messageContentType = messageContentType;
     message(theMessage);
 }
+#pragma hi message type
++(void)parseHiMessage:(id)data hiMessageLocalId:(NSString *)lId contentType:(NSString *)haveRead parsedMessage:(void (^)(TJHiMessage *message))message
+{
+    TJHiMessage *theMessage = [[TJHiMessage alloc]init];
+    NSString *uid = [[data attributeForName:@"from"] stringValue];
+    NSArray *strArray = [uid componentsSeparatedByString:@"@"];
+    if ([strArray count] > 0) {
+        uid = [strArray objectAtIndex:0];
+    }
+    
+    NSString *userProfileImage = [[data elementForName:@"imageUrl"] stringValue];
+    NSString *userName = [[data elementForName:@"messageName"] stringValue];
+    
+    theMessage.theId = lId;
+    theMessage.uid = uid;
+    theMessage.profileImageUrl = userProfileImage;
+    theMessage.userName = userName;
+    theMessage.messageContentType = haveRead;
+    message(theMessage);
+}
+
 #pragma chat message type
 +(void)parseChatMessage:(id)data parsedMessage:(void (^)(TJChatMessage *message))message
 {

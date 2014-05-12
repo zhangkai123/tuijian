@@ -214,6 +214,7 @@
 	}
 	sqlite3_close(database);
 }
+
 -(NSArray *)getMessagesByOrder:(NSString *)messageType messageId:(NSString *)mId idOrder:(NSString *)idOrder withPage:(int)pageNum
 {
     [self clearInfoMessageNum:[mId intValue] messageType:messageType];//clear unread message number in message list table when featch message
@@ -234,5 +235,48 @@
 	}
 	sqlite3_close(database);
 	return messageArray;
+}
+-(NSArray *)getHiMessagesByOrder:(NSString *)messageType messageId:(NSString *)mId idOrder:(NSString *)idOrder withPage:(int)pageNum
+{
+    [self clearInfoMessageNum:[mId intValue] messageType:messageType];//clear unread message number in message list table when featch message
+	sqlite3 *database;
+	sqlite3_stmt *compiledStatement;
+    
+    NSMutableArray *messageArray = [[NSMutableArray alloc]init];
+	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
+        int messageNum = (pageNum +1) * 10;
+		NSString *getCommand = [NSString stringWithFormat:@"select * from mes where messageId='%@' and messageType='%@' order by id %@ LIMIT %d",mId,messageType,idOrder,messageNum];
+		const char *getSqlCommand = [getCommand UTF8String];
+		sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
+		
+		while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]init];
+            NSString *theId = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)];
+			NSString *xmlStr = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 3)];
+            NSString *messageContentType = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 4)];
+            [dictionary setValue:theId forKey:@"hiMessageLocalId"];
+            [dictionary setValue:xmlStr forKey:@"hiMessageXml"];
+            [dictionary setValue:messageContentType forKey:@"hiMessageContentType"];
+            [messageArray addObject:dictionary];
+		}
+	}
+	sqlite3_close(database);
+	return messageArray;
+}
+-(void)updateHiMessageById:(NSString *)hiMessageLocalId
+{
+    sqlite3 *database;
+	sqlite3_stmt *compiledStatement;
+    
+	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
+		NSString *updateCommand = [NSString stringWithFormat:@"update mes set messageContentType = 0 where id = '%d' and messageType = 'hiMessage'",[hiMessageLocalId intValue]];
+		const char *updateSqlCommand = [updateCommand UTF8String];
+		sqlite3_prepare_v2(database, updateSqlCommand, -1, &compiledStatement, NULL);
+		
+		while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+            compiledStatement = nil;
+		}
+	}
+	sqlite3_close(database);
 }
 @end
