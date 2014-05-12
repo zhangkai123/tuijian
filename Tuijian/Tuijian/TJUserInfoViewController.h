@@ -7,6 +7,7 @@
 //
 
 #import "TJBaseViewController.h"
+#import "TJChatCell.h"
 
 @interface TJUserInfoViewController : TJBaseViewController
 {
@@ -15,6 +16,8 @@
     NSString *userGender;
     NSString *uid;
 }
+@property(nonatomic,assign) TJChatCellStatus chatCellStatus;
+@property(nonatomic,strong) NSString *hiMessageLocalId;
 @property(nonatomic,strong) NSString *userImageUrl;
 @property(nonatomic,strong) NSString *userName;
 @property(nonatomic,strong) NSString *userGender;

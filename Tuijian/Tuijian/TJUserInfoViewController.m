@@ -14,7 +14,6 @@
 #import "TJValueCell.h"
 #import "TJMyRecommendCell.h"
 #import "TJUserRecommendViewController.h"
-#import "TJChatCell.h"
 #import "TJChatViewController.h"
 
 #import "TJAppDelegate.h"
@@ -30,6 +29,7 @@
 
 @implementation TJUserInfoViewController
 @synthesize userImageUrl ,userName ,userGender ,uid;
+@synthesize chatCellStatus ,hiMessageLocalId;
 -(id)init
 {
     if (self = [super init]) {
@@ -174,6 +174,7 @@
             cell = [[TJChatCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFive"];
         }
         [(TJChatCell *)cell setDelegate:self];
+        [(TJChatCell *)cell setChatCellStatus:self.chatCellStatus];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -196,23 +197,29 @@
     }
 }
 #pragma TJChatCellDelegate
--(void)sendMessageTo
+-(void)sendHiTo
 {
-//    [self.navigationController popToRootViewControllerAnimated:NO];
-//    TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-//    [appDelegate changeToInfoTab];
-//    UINavigationController *infoNavController = [appDelegate.tabBarController.viewControllers objectAtIndex:1];
-//    NSArray *viewControllers = infoNavController.viewControllers;
-//    UIViewController *rootViewController = [viewControllers objectAtIndex:0];
-//    
-//    rootViewController.hidesBottomBarWhenPushed = YES;
-//    TJChatViewController *chatViewController = [[TJChatViewController alloc]initWithTitle:self.userName];
-//    chatViewController.chatToUserId = self.uid;
-//    chatViewController.chatToUserImageUrl = self.userImageUrl;
-//    [infoNavController pushViewController:chatViewController animated:YES];
-//    rootViewController.hidesBottomBarWhenPushed = NO;
     [[TJDataController sharedDataController]sendHiMessageTo:self.uid];
 }
+-(void)acceptChat
+{
+    [[TJDataController sharedDataController]haveReadHiMessage:self.hiMessageLocalId];
+    
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    [appDelegate changeToInfoTab];
+    UINavigationController *infoNavController = [appDelegate.tabBarController.viewControllers objectAtIndex:1];
+    NSArray *viewControllers = infoNavController.viewControllers;
+    UIViewController *rootViewController = [viewControllers objectAtIndex:0];
+    
+    rootViewController.hidesBottomBarWhenPushed = YES;
+    TJChatViewController *chatViewController = [[TJChatViewController alloc]initWithTitle:self.userName];
+    chatViewController.chatToUserId = self.uid;
+    chatViewController.chatToUserImageUrl = self.userImageUrl;
+    [infoNavController pushViewController:chatViewController animated:YES];
+    rootViewController.hidesBottomBarWhenPushed = NO;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

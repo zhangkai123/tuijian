@@ -269,6 +269,7 @@
     userInfoViewController.userName = theItem.userName;
     userInfoViewController.userGender = theItem.userGender;
     userInfoViewController.uid = theItem.uid;
+    userInfoViewController.chatCellStatus = TJChatCellStatusSayHi;
     [self.navigationController pushViewController:userInfoViewController animated:YES];
     rootViewController.hidesBottomBarWhenPushed = NO;
 }

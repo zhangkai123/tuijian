@@ -10,6 +10,6 @@
 
 @implementation TJHiMessage
 @synthesize theId;
-@synthesize uid ,userName ,profileImageUrl ,messageContentType;
+@synthesize uid ,userName ,profileImageUrl ,gender ,messageContentType;
 
 @end

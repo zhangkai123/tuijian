@@ -13,6 +13,7 @@
 
 #import "TJAppDelegate.h"
 #import "TJChatViewController.h"
+#import "TJUserInfoViewController.h"
 
 @interface TJHiMessageViewController ()<UITableViewDataSource,UITableViewDelegate,TJHiMessageCellDelegate>
 {
@@ -47,6 +48,7 @@
     
     hiMessageArray = [[NSMutableArray alloc]init];
     [self recieveMessage];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveMessage) name:TJ_HI_MESSAGE_VIEWCONTROLLER_NOTIFICATION object:nil];
 }
 -(void)recieveMessage
 {
@@ -107,6 +109,24 @@
     chatViewController.chatToUserImageUrl = hiMessage.profileImageUrl;
     [infoNavController pushViewController:chatViewController animated:YES];
     rootViewController.hidesBottomBarWhenPushed = NO;
+}
+-(void)goToUserInfoPage:(int)rowN
+{
+    TJHiMessage *hiMessage = [hiMessageArray objectAtIndex:rowN];
+    
+    self.hidesBottomBarWhenPushed = YES;
+    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
+    userInfoViewController.userImageUrl = hiMessage.profileImageUrl;
+    userInfoViewController.userName = hiMessage.userName;
+    userInfoViewController.userGender = hiMessage.gender;
+    userInfoViewController.uid = hiMessage.uid;
+    if ([hiMessage.messageContentType isEqualToString:@"0"]) {
+        userInfoViewController.chatCellStatus = TJChatCellStatusHaveAccepted;
+    }else{
+        userInfoViewController.chatCellStatus = TJChatCellStatusAccept;
+    }
+    userInfoViewController.hiMessageLocalId = hiMessage.theId;
+    [self.navigationController pushViewController:userInfoViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

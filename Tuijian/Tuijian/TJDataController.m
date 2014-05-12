@@ -313,7 +313,7 @@
     basicMessage.messageName = myUserInfo.name;
     basicMessage.message = @"招呼";
     basicMessage.messageContentType = @"1";
-    [[TJXMPPServerMananger sharedXMPPServerMananger]sendHiMessage:toUserId basicMessage:basicMessage];
+    [[TJXMPPServerMananger sharedXMPPServerMananger]sendHiMessage:toUserId basicMessage:basicMessage userGender:myUserInfo.gender];
 }
 -(void)sendChatMessageTo:(NSString *)toUserId chatMessage:(NSString *)chatMessage
 {
@@ -419,6 +419,8 @@
                 [[NSNotificationCenter defaultCenter]postNotificationName:TJ_CHAT_VIEWCONTROLLER_NOTIFICATION object:nil];
             }else if ([mes.messageType isEqualToString:@"itemMessage"]){
                 [[NSNotificationCenter defaultCenter]postNotificationName:TJ_ITEM_MESSAGE_VIEWCONTROLLER_NOTIFICATION object:nil];
+            }else if ([mes.messageType isEqualToString:@"hiMessage"]){
+                [[NSNotificationCenter defaultCenter]postNotificationName:TJ_HI_MESSAGE_VIEWCONTROLLER_NOTIFICATION object:nil];
             }
             [[NSNotificationCenter defaultCenter]postNotificationName:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
         }];

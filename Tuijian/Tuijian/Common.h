@@ -55,6 +55,7 @@
 #define TJ_INFO_VIEWCONTROLLER_NOTIFICATION @"info_viewcontroller_notification"
 #define TJ_CHAT_VIEWCONTROLLER_NOTIFICATION @"chat_viewcontroller_notification"
 #define TJ_ITEM_MESSAGE_VIEWCONTROLLER_NOTIFICATION @"item_message_viewcontroller_notification"
+#define TJ_HI_MESSAGE_VIEWCONTROLLER_NOTIFICATION @"hi_message_viewcontroller_notification"
 
 #define TJ_DATABASE_NAME @"message.sqlite"
 
@@ -81,4 +82,11 @@
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
+typedef enum {
+    TJChatCellStatusSayHi          = 0,
+    TJChatCellStatusAccept     = 1,
+    TJChatCellStatusHaveAccepted = 2,
+} TJChatCellStatus;
+
 #endif

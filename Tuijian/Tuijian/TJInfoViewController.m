@@ -148,6 +148,8 @@
         [self.navigationController pushViewController:chatViewController animated:YES];
         self.hidesBottomBarWhenPushed = NO;
     }else if ([message.messageType isEqualToString:@"hiMessage"]){
+        [[TJDataController sharedDataController]clearInfoMessageNum:[message.messageId intValue] messageType:@"hiMessage"];
+        message.messageNum = 0;
         
         self.hidesBottomBarWhenPushed = YES;
         TJHiMessageViewController *hiMessageViewController = [[TJHiMessageViewController alloc]init];

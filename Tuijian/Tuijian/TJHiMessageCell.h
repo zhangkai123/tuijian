@@ -13,6 +13,7 @@
 @protocol TJHiMessageCellDelegate <NSObject>
 
 -(void)acceptChat:(int)rowN;
+-(void)goToUserInfoPage:(int)rowN;
 
 @end
 

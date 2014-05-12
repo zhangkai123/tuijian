@@ -212,6 +212,7 @@
     userInfoViewController.userName = userN;
     userInfoViewController.userGender = userG;
     userInfoViewController.uid = uid;
+    userInfoViewController.chatCellStatus = TJChatCellStatusSayHi;
     [self.navigationController pushViewController:userInfoViewController animated:YES];
 }
 - (void)didReceiveMemoryWarning

@@ -28,7 +28,7 @@
         
         acceptButton = [[UIButton alloc]initWithFrame:CGRectMake(230, 15, 80, 30)];
         [acceptButton addTarget:self action:@selector(acceptChat) forControlEvents:UIControlEventTouchUpInside];
-        [acceptButton setTitle:@"同意聊天" forState:UIControlStateNormal];
+        [acceptButton setTitle:@"接受" forState:UIControlStateNormal];
         [acceptButton.titleLabel setFont:[UIFont systemFontOfSize:12]];
         acceptButton.layer.cornerRadius = 5;
         acceptButton.layer.masksToBounds = YES;
@@ -53,7 +53,7 @@
 {
     if ([contentType intValue] == 1) {
         acceptButton.backgroundColor = UIColorFromRGB(0x3399CC);
-        [acceptButton setTitle:@"同意聊天" forState:UIControlStateNormal];
+        [acceptButton setTitle:@"接受" forState:UIControlStateNormal];
         acceptButton.enabled = YES;
     }else{
         acceptButton.backgroundColor = [UIColor lightGrayColor];
@@ -64,12 +64,12 @@
 #pragma TJTouchableImageViewDelegate
 -(void)selectUserImageView:(int)sectionNum
 {
-//    [self.delegate selectCommentUserImage:self.rowNum];
+    [self.delegate goToUserInfoPage:self.rowNum];
 }
 #pragma TJSelectableLabelDelegate
 -(void)selectLabel:(int)rowNum
 {
-//    [self.delegate selectCommentUserImage:self.rowNum];
+    [self.delegate goToUserInfoPage:self.rowNum];
 }
 
 @end

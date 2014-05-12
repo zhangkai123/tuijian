@@ -10,13 +10,19 @@
 
 @protocol TJChatCellDelegate <NSObject>
 
--(void)sendMessageTo;
+@optional
+-(void)sendHiTo;
+-(void)acceptChat;
 
 @end
 
 @interface TJChatCell : UITableViewCell
 {
+    TJChatCellStatus chatCellStatus;
     __unsafe_unretained id<TJChatCellDelegate> delegate;
+    
+    UIButton *messageButton;
 }
+@property(nonatomic,assign) TJChatCellStatus chatCellStatus;
 @property(nonatomic,unsafe_unretained) id<TJChatCellDelegate> delegate;
 @end

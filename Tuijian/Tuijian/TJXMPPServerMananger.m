@@ -120,9 +120,13 @@ typedef void (^TJXMLLServerConnectedStatus)(BOOL hasOnline);
     [xmppStream sendElement:message];
 }
 #pragma mark send hi message
--(void)sendHiMessage:(NSString *)userId basicMessage:(TJMessage *)basicM
+-(void)sendHiMessage:(NSString *)userId basicMessage:(TJMessage *)basicM userGender:(NSString *)userG
 {
     NSXMLElement *message = [self constructBasicMessage:userId basicMessage:basicM];
+    NSXMLElement *userGender = [NSXMLElement elementWithName:@"userGender"];
+    [userGender setStringValue:userG];
+    [message addChild:userGender];
+
     [xmppStream sendElement:message];
 }
 
