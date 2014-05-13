@@ -32,7 +32,7 @@
     chatCellStatus = theStatus;
     
     if (chatCellStatus == TJChatCellStatusSayHi) {
-        [messageButton setTitle:@"打招呼" forState:UIControlStateNormal];
+        [messageButton setTitle:@"传纸条" forState:UIControlStateNormal];
         [messageButton addTarget:self action:@selector(sendHi) forControlEvents:UIControlEventTouchUpInside];
         messageButton.backgroundColor = UIColorFromRGB(0x3399CC);
         messageButton.enabled = YES;

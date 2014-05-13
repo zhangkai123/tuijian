@@ -15,6 +15,7 @@
 #import "TJMyRecommendCell.h"
 #import "TJUserRecommendViewController.h"
 #import "TJChatViewController.h"
+#import "TJPaperViewController.h"
 
 #import "TJAppDelegate.h"
 
@@ -30,6 +31,7 @@
 @implementation TJUserInfoViewController
 @synthesize userImageUrl ,userName ,userGender ,uid;
 @synthesize chatCellStatus ,hiMessageLocalId;
+@synthesize hiMessage;
 -(id)init
 {
     if (self = [super init]) {
@@ -199,12 +201,16 @@
 #pragma TJChatCellDelegate
 -(void)sendHiTo
 {
-    [[TJDataController sharedDataController]sendHiMessageTo:self.uid];
+    TJPaperViewController *paperViewController = [[TJPaperViewController alloc]init];
+    paperViewController.userId = self.uid;
+    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:paperViewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 -(void)acceptChat
 {
     [[TJDataController sharedDataController]haveReadHiMessage:self.hiMessageLocalId];
     [[TJDataController sharedDataController]sendChatMessageTo:self.uid chatMessage:@"接受了你的聊天请求"];
+    [self addPaperMessageToChat:self.hiMessage];
     
     [self.navigationController popToRootViewControllerAnimated:NO];
     TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
@@ -220,7 +226,24 @@
     [infoNavController pushViewController:chatViewController animated:YES];
     rootViewController.hidesBottomBarWhenPushed = NO;
 }
-
+-(void)addPaperMessageToChat:(TJHiMessage *)theHiMessage
+{
+    TJChatMessage *msg = [[TJChatMessage alloc] init];
+    msg.content = theHiMessage.messageContent;
+    //    msg.time = time;
+    msg.icon = theHiMessage.profileImageUrl;
+    msg.type = MessageTypeOther;
+    
+    TJMessage *messageList = [[TJMessage alloc]init];
+    messageList.messageId = theHiMessage.uid;
+    messageList.messageType = @"chatMessage";
+    messageList.imageUrl = theHiMessage.profileImageUrl;
+    messageList.messageTitle = theHiMessage.userName;
+    messageList.messageName = nil;
+    messageList.message = theHiMessage.messageContent;
+    messageList.messageContentType = [NSString stringWithFormat:@"%d",MessageTypeOther];
+    [[TJDataController sharedDataController]insertLocalChatMessage:theHiMessage.uid myChatMessage:msg messageList:messageList];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

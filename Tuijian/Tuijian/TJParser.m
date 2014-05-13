@@ -228,6 +228,7 @@
     NSString *userProfileImage = [[data elementForName:@"imageUrl"] stringValue];
     NSString *userName = [[data elementForName:@"messageName"] stringValue];
     NSString *userGender = [[data elementForName:@"userGender"] stringValue];
+    NSString *messageContent = [[data elementForName:@"body"] stringValue];
     
     theMessage.theId = lId;
     theMessage.uid = uid;
@@ -235,6 +236,7 @@
     theMessage.userName = userName;
     theMessage.gender = userGender;
     theMessage.messageContentType = haveRead;
+    theMessage.messageContent = messageContent;
     message(theMessage);
 }
 

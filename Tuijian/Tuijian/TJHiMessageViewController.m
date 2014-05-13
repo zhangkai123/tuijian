@@ -38,7 +38,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"招呼";
+    self.title = @"小纸条";
     
     hiMessageTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain];
     hiMessageTableView.dataSource = self;
@@ -96,6 +96,7 @@
     hiMessage.messageContentType = @"0";
     [[TJDataController sharedDataController]haveReadHiMessage:hiMessage.theId];
     [[TJDataController sharedDataController]sendChatMessageTo:hiMessage.uid chatMessage:@"接受了你的聊天请求"];
+    [self addPaperMessageToChat:hiMessage];
     
     [self.navigationController popToRootViewControllerAnimated:NO];
     TJAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
@@ -111,6 +112,25 @@
     [infoNavController pushViewController:chatViewController animated:YES];
     rootViewController.hidesBottomBarWhenPushed = NO;
 }
+-(void)addPaperMessageToChat:(TJHiMessage *)theHiMessage
+{
+    TJChatMessage *msg = [[TJChatMessage alloc] init];
+    msg.content = theHiMessage.messageContent;
+//    msg.time = time;
+    msg.icon = theHiMessage.profileImageUrl;
+    msg.type = MessageTypeOther;
+    
+    TJMessage *messageList = [[TJMessage alloc]init];
+    messageList.messageId = theHiMessage.uid;
+    messageList.messageType = @"chatMessage";
+    messageList.imageUrl = theHiMessage.profileImageUrl;
+    messageList.messageTitle = theHiMessage.userName;
+    messageList.messageName = nil;
+    messageList.message = theHiMessage.messageContent;
+    messageList.messageContentType = [NSString stringWithFormat:@"%d",MessageTypeOther];
+    [[TJDataController sharedDataController]insertLocalChatMessage:theHiMessage.uid myChatMessage:msg messageList:messageList];
+}
+
 -(void)goToUserInfoPage:(int)rowN
 {
     TJHiMessage *hiMessage = [hiMessageArray objectAtIndex:rowN];
@@ -127,6 +147,7 @@
         userInfoViewController.chatCellStatus = TJChatCellStatusAccept;
     }
     userInfoViewController.hiMessageLocalId = hiMessage.theId;
+    userInfoViewController.hiMessage = hiMessage;
     [self.navigationController pushViewController:userInfoViewController animated:YES];
 }
 

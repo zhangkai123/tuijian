@@ -113,7 +113,7 @@
     }else if ([message.messageType isEqualToString:@"chatMessage"]){
         messageContent = message.message;
     }else if([message.messageType isEqualToString:@"hiMessage"]){
-       messageContent = [NSString stringWithFormat:@"%@给你打招呼",message.messageName];
+       messageContent = [NSString stringWithFormat:@"%@给你传纸条",message.messageName];
     }
     [cell.messageLabel setText:messageContent];
     if (message.messageNum > 0) {

@@ -373,7 +373,7 @@
                   symbolName = "__65-[TJDataController getUserInformationFromServer:success:failure:]_block_invoke"
                   moduleName = "Tuijian"
                   urlString = "file:///Users/zhangkai/Desktop/tuijian/Tuijian/Tuijian/TJDataController.m"
-                  timestampString = "421580833.165439"
+                  timestampString = "421646053.149011"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "284"
@@ -387,11 +387,57 @@
                   symbolName = "__65-[TJDataController getUserInformationFromServer:success:failure:]_block_invoke_2"
                   moduleName = "Tuijian"
                   urlString = "file:///Users/zhangkai/Desktop/tuijian/Tuijian/Tuijian/TJDataController.m"
-                  timestampString = "421580833.165816"
+                  timestampString = "421646053.14931"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "284"
                   endingLineNumber = "284"
+                  offsetFromSymbolStart = "34">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tuijian/TJMineViewController.m"
+            timestampString = "421639945.792527"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__35-[TJMineViewController viewDidLoad]_block_invoke"
+                  moduleName = "Tuijian"
+                  urlString = "file:///Users/zhangkai/Desktop/tuijian/Tuijian/Tuijian/TJMineViewController.m"
+                  timestampString = "421646053.15111"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "38">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__35-[TJMineViewController viewDidLoad]_block_invoke_2"
+                  moduleName = "Tuijian"
+                  urlString = "file:///Users/zhangkai/Desktop/tuijian/Tuijian/Tuijian/TJMineViewController.m"
+                  timestampString = "421646053.151462"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
                   offsetFromSymbolStart = "34">
                </Location>
             </Locations>

@@ -298,7 +298,7 @@
 {
     [[TJXMPPServerMananger sharedXMPPServerMananger]disconnect];
 }
--(void)sendHiMessageTo:(NSString *)toUserId
+-(void)sendHiMessageTo:(NSString *)toUserId messageContent:(NSString *)mContent
 {
     TJUser *myUserInfo = [self getMyUserInfo];
     NSString *myUserId = [self getMyUserId];
@@ -309,9 +309,9 @@
     basicMessage.messageId = TJ_HI_MESSAGE_ID;
     basicMessage.messageType = @"hiMessage";
     basicMessage.imageUrl = myUserInfo.profile_image_url;
-    basicMessage.messageTitle = @"招呼";
+    basicMessage.messageTitle = @"小纸条";
     basicMessage.messageName = myUserInfo.name;
-    basicMessage.message = @"招呼";
+    basicMessage.message = mContent;
     basicMessage.messageContentType = @"1";
     [[TJXMPPServerMananger sharedXMPPServerMananger]sendHiMessage:toUserId basicMessage:basicMessage userGender:myUserInfo.gender];
 }
@@ -503,11 +503,19 @@
     NSString *messageType = nil;
     if (myChatMessage.type == MessageTypeMe) {
         messageType = @"me";
+    }else{
+        messageType = @"other";
     }
     [[TJDBManager sharedDBManager]insertMessageList:mId type:@"chatMessage" url:mes.imageUrl
                                               title:mes.messageTitle name:mes.messageName message:mes.message messageContentType:messageType updateMesNum:NO];
-    TJUser *myUser = [self getMyUserInfo];
-    NSXMLElement *localMessage = [self constructLocalChatMessage:messageType localMessage:myChatMessage.content userImageUrl:myUser.profile_image_url];
+    NSString *userImageUrl = nil;
+    if ([messageType isEqualToString:@"me"]) {
+        TJUser *myUser = [self getMyUserInfo];
+        userImageUrl = myUser.profile_image_url;
+    }else{
+        userImageUrl = mes.imageUrl;
+    }
+    NSXMLElement *localMessage = [self constructLocalChatMessage:messageType localMessage:myChatMessage.content userImageUrl:userImageUrl];
     [[TJDBManager sharedDBManager]insertMessage:(id)localMessage messageType:@"chatMessage" messageId:mId messageContentType:messageType];
     [[NSNotificationCenter defaultCenter]postNotificationName:TJ_INFO_VIEWCONTROLLER_NOTIFICATION object:nil];
 }
