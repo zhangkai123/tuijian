@@ -114,6 +114,9 @@
 }
 -(void)addPaperMessageToChat:(TJHiMessage *)theHiMessage
 {
+    if ([theHiMessage.messageContent isEqualToString:@""]) {
+        return;
+    }
     TJChatMessage *msg = [[TJChatMessage alloc] init];
     msg.content = theHiMessage.messageContent;
 //    msg.time = time;
