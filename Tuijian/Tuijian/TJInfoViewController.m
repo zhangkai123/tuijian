@@ -103,6 +103,7 @@
     [cell setMessageTitle:message.messageTitle];
     NSString *messageContent = nil;
     if ([message.messageType isEqualToString:@"itemMessage"]) {
+        [cell setMessageTitleColor:UIColorFromRGB(0x3399CC)];
         if ([message.messageContentType isEqualToString:@"like"]) {
             messageContent = [NSString stringWithFormat:@"%@给了你一个赞",message.messageName];
         }else if([message.messageContentType isEqualToString:@"comment"]){
@@ -111,8 +112,10 @@
             messageContent = [NSString stringWithFormat:@"%@回复你的评论:%@",message.messageName,message.message];
         }
     }else if ([message.messageType isEqualToString:@"chatMessage"]){
+        [cell setMessageTitleColor:[UIColor blackColor]];
         messageContent = message.message;
     }else if([message.messageType isEqualToString:@"hiMessage"]){
+        [cell setMessageTitleColor:UIColorFromRGB(0x3399CC)];
        messageContent = [NSString stringWithFormat:@"%@给你传纸条",message.messageName];
     }
     [cell.messageLabel setText:messageContent];

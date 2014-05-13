@@ -81,7 +81,8 @@
     theUser = [[TJDataController sharedDataController]getMyUserInfo];
     [photoUrlArray addObject:theUser.profile_image_url];
     
-    [[TJDataController sharedDataController]getUserInformationFromServer:theUser.myUserId success:^(id json){
+    NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
+    [[TJDataController sharedDataController]getUserInformationFromServer:myUserId success:^(TJUser *theUser){
         
     }failure:^(NSError *error){
         

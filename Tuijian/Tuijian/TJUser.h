@@ -16,6 +16,11 @@
 @property(nonatomic,retain) NSString *gender;
 @property(nonatomic,retain) NSString *profile_image_url;
 
+@property(nonatomic,strong) NSString *mood;
+@property(nonatomic,strong) NSMutableArray *photosArray;
+@property(nonatomic,assign) int heartNum;
+@property(nonatomic,assign) int charmValue;
+
 -(id)initWithTencentJsonData:(id)json;
 -(id)initWithSinaJsonData:(id)json;
 -(id)initWithDictionaryData:(NSDictionary *)dic;

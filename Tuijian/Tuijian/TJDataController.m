@@ -276,13 +276,17 @@
         failure(error);
     }];
 }
--(void)getUserInformationFromServer:(NSString *)theUserId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)getUserInformationFromServer:(NSString *)theUserId success:(void (^)(TJUser *theUser))success failure:(void (^)(NSError *error))failure
 {
     NSString *myOwnUserId = [self getMyUserId];
     [[TJNetworkManager sharedNetworkManager]getWholeUserInfo:myOwnUserId theUserId:theUserId success:^(id json){
-        
+        [TJParser parseUserInfoJsonData:json success:^(TJUser *theUser){
+            success(theUser);
+        }failed:^(NSError *error){
+            failure(error);
+        }];
     }failure:^(NSError *error){
-        
+        failure(error);
     }];
 }
 #pragma XMPP Server
@@ -309,7 +313,7 @@
     basicMessage.messageId = TJ_HI_MESSAGE_ID;
     basicMessage.messageType = @"hiMessage";
     basicMessage.imageUrl = myUserInfo.profile_image_url;
-    basicMessage.messageTitle = @"小纸条";
+    basicMessage.messageTitle = @"纸条";
     basicMessage.messageName = myUserInfo.name;
     basicMessage.message = mContent;
     basicMessage.messageContentType = @"1";

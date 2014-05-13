@@ -21,6 +21,41 @@
     }
     return haveSucceed;
 }
++(void )parseUserInfoJsonData:(id)json success:(void (^)(TJUser *theUser))successed failed:(void (^)(NSError *error))failed
+{
+    NSString *status = [json objectForKey:@"status"];
+    if ([status isEqualToString:@"success"]) {
+        TJUser *theUser = [[TJUser alloc]init];
+        
+        NSDictionary *userInfoDic = [[json objectForKey:@"userInfo"]objectAtIndex:0];
+        NSString *name = [userInfoDic objectForKey:@"name"];
+        NSString *gender = [userInfoDic objectForKey:@"sex"];
+        NSString *profile_image_url = [userInfoDic objectForKey:@"img"];
+        NSString *mood = [userInfoDic objectForKey:@"mood"];
+        NSString *heartNum = [userInfoDic objectForKey:@"likeNum"];
+        NSString *charmValue = [userInfoDic objectForKey:@"usercp"];
+        
+        theUser.name = name;
+        theUser.gender = gender;
+        theUser.profile_image_url = profile_image_url;
+        theUser.mood = mood;
+        theUser.heartNum = [heartNum intValue];
+        theUser.charmValue = [charmValue intValue];
+        
+        NSMutableArray *photosUrlArray = [[NSMutableArray alloc]init];
+        NSArray *photosArray = [json objectForKey:@"userPic"];
+        for (int i = 0; i < [photosArray count]; i++) {
+            NSDictionary *photoDic = [photosArray objectAtIndex:i];
+            NSString *imgUrl = [photoDic objectForKey:@"pic"];
+            [photosUrlArray addObject:imgUrl];
+        }
+        
+        theUser.photosArray = photosUrlArray;
+        successed(theUser);
+    }else{
+        failed(nil);
+    }
+}
 +(NSArray *)parseItemsJsonData:(id)json
 {
     NSMutableArray *itemsArray = [[NSMutableArray alloc]init];

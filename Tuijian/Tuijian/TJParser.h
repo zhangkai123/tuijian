@@ -15,6 +15,7 @@
 @interface TJParser : NSObject
 
 +(BOOL)parseStatusJsonData:(id)json;
++(void )parseUserInfoJsonData:(id)json success:(void (^)(TJUser *theUser))successed failed:(void (^)(NSError *error))failed;
 +(NSArray *)parseItemsJsonData:(id)json;
 +(void)parseLikeJsonData:(id)json success:(void (^)(BOOL hasLiked))success failed:(void (^)(NSError *error))failed;
 +(void)parseLikesCommentsData:(id)json likesArray:(void (^)(NSArray *likesArray))lArray comments:(void (^)(NSArray *commentsArray))cArray failed:(void (^)(NSError *error))failed;
