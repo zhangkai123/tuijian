@@ -21,15 +21,17 @@
 
 @interface TJUserInfoViewController ()<UITableViewDataSource,UITableViewDelegate,TJChatCellDelegate>
 {
+    TJUser *theUser;
     UITableView *theTableView;
-    NSMutableArray *photoUrlArray;
     
     BOOL isMan;
 }
+@property(nonatomic,strong) TJUser *theUser;
 @end
 
 @implementation TJUserInfoViewController
 @synthesize userImageUrl ,userName ,userGender ,uid;
+@synthesize theUser;
 @synthesize chatCellStatus ,hiMessageLocalId;
 @synthesize hiMessage;
 -(id)init
@@ -61,18 +63,26 @@
     theTableView.backgroundColor = UIColorFromRGB(0xF0F0F0);
     [self.view addSubview:theTableView];
     
-    if (([self.userGender intValue] == 1) || [self.userGender isEqualToString:@"男"] || [self.userGender isEqualToString:@"m"]){
+    theUser = [[TJUser alloc]init];
+    theUser.name = self.userName;
+    theUser.profile_image_url = self.userImageUrl;
+    theUser.gender = self.userGender;
+    [theUser.photosArray addObject:self.userImageUrl];
+    
+    if (([theUser.gender intValue] == 1) || [theUser.gender isEqualToString:@"男"] || [theUser.gender isEqualToString:@"m"]){
         isMan = YES;
     }else{
         isMan = NO;
     }
     
-    photoUrlArray = [[NSMutableArray alloc]initWithCapacity:8];
-    [photoUrlArray addObject:self.userImageUrl];
-//    [photoUrlArray addObject:self.userImageUrl];
-//    [photoUrlArray addObject:self.userImageUrl];
-//    [photoUrlArray addObject:self.userImageUrl];
-//    [photoUrlArray addObject:self.userImageUrl];
+    [[TJDataController sharedDataController]getUserInformationFromServer:self.uid success:^(TJUser *user){
+        
+        self.theUser = user;
+        [theTableView reloadData];
+        
+    }failure:^(NSError *error){
+        
+    }];
 }
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -105,7 +115,7 @@
     }else if(indexPath.section == 1){
         rowHeight = 51;
     }else if(indexPath.section == 2){
-        if ([photoUrlArray count] <= 4) {
+        if ([theUser.photosArray count] <= 4) {
             rowHeight = 87;
         }else{
            rowHeight = 165;
@@ -127,8 +137,8 @@
         if (!cell) {
             cell = [[TJMyInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         }
-        [[(TJMyInfoCell *)cell profileImageView] setImageWithURL:[NSURL URLWithString:self.userImageUrl] placeholderImage:nil];
-        [[(TJMyInfoCell *)cell nameLabel] setText:self.userName];
+        [[(TJMyInfoCell *)cell profileImageView] setImageWithURL:[NSURL URLWithString:theUser.profile_image_url] placeholderImage:nil];
+        [[(TJMyInfoCell *)cell nameLabel] setText:theUser.name];
         if (isMan) {
             [[(TJMyInfoCell *)cell genderImageView] setImage:[UIImage imageNamed:@"male.png"]];
         }else{
@@ -140,7 +150,11 @@
         if (!userSignCell) {
             userSignCell = [[TJUserSignCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userSignCell"];
         }
-        userSignCell.signLabel.text = @"这家伙还没写个性签名哦~";
+        if ([theUser.mood isEqualToString:@""]) {
+            userSignCell.signLabel.text = @"这家伙还没写个性签名哦~";
+        }else{
+            userSignCell.signLabel.text = theUser.mood;
+        }
         cell = userSignCell;
     }else if (indexPath.section == 2) {
         TJUserPhotoCell *userPhotoCell = [tableView dequeueReusableCellWithIdentifier:@"userPhotoCell"];
@@ -148,13 +162,14 @@
             userPhotoCell = [[TJUserPhotoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userPhotoCell"];
         }
 //        userPhotoCell.delegate = self;
-        userPhotoCell.photoUrlArray = photoUrlArray;
+        userPhotoCell.photoUrlArray = theUser.photosArray;
         cell = userPhotoCell;
     }else if (indexPath.section == 3) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellThree"];
         if (!cell) {
             cell = [[TJValueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
         }
+        [[(TJValueCell *)cell likeNumLabel] setText:[NSString stringWithFormat:@"%d",theUser.heartNum]];
     }else if (indexPath.section == 4){
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellFour"];
         if (!cell) {

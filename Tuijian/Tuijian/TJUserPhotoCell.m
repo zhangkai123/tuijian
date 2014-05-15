@@ -10,7 +10,9 @@
 #import "TJTouchablePhotoView.h"
 
 @interface TJUserPhotoCell()<TJTouchablePhotoViewDelegate>
-
+{
+    int alumNum;
+}
 @end
 
 @implementation TJUserPhotoCell
@@ -28,10 +30,15 @@
 }
 -(void)setPhotoUrlArray:(NSMutableArray *)pUrlArray
 {
+    for (int i = 0; i < alumNum; i++) {
+        UIView *subView = [self viewWithTag:1000 + i];
+        [subView removeFromSuperview];
+    }
+    
     photoUrlArray = pUrlArray;
     
     int photoNum = [photoUrlArray count];
-    int alumNum = 0;
+    alumNum = 0;
     float lineHeight = 0;
     if (photoNum <= 4) {
         alumNum = 4;
@@ -59,7 +66,9 @@
         UIImageView *photoView = (UIImageView *)[self viewWithTag:1000 + i];
         photoView.alpha = 1.0;
         NSString *photoUrl = [photoUrlArray objectAtIndex:i];
-        [photoView setImageWithURL:[NSURL URLWithString:photoUrl] placeholderImage:nil];
+        NSString *urlWithoutExtention = [photoUrl stringByDeletingPathExtension];
+        NSString *thumbImageUrl = [NSString stringWithFormat:@"%@_thumb.png",urlWithoutExtention];
+        [photoView setImageWithURL:[NSURL URLWithString:thumbImageUrl] placeholderImage:nil];
     }
 }
 #pragma TJTouchableImageViewDelegate

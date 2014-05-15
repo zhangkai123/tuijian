@@ -13,6 +13,14 @@
 @synthesize name = _name ,gender = _gender, profile_image_url = _profile_image_url;
 @synthesize mood ,photosArray ,heartNum ,charmValue;
 
+-(id)init
+{
+    if (self = [super init]) {
+        photosArray = [[NSMutableArray alloc]init];
+    }
+    return self;
+}
+
 -(id)initWithTencentJsonData:(id)json
 {
     if (self = [super init]) {
@@ -20,6 +28,8 @@
         self.name = [json objectForKey:@"nickname"];
         self.gender = [json objectForKey:@"gender"];
         self.profile_image_url = [json objectForKey:@"figureurl_qq_2"];
+        
+        photosArray = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -30,6 +40,8 @@
         self.name = [json objectForKey:@"name"];
         self.gender = [json objectForKey:@"gender"];
         self.profile_image_url = [json objectForKey:@"avatar_large"];
+        
+        photosArray = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -40,6 +52,8 @@
         self.name = [dic objectForKey:TJ_USER_NAME];
         self.gender = [dic objectForKey:TJ_USER_GENDER];
         self.profile_image_url = [dic objectForKey:TJ_USER_IMAGE_URL];
+        
+        photosArray = [[NSMutableArray alloc]init];
     }
     return self;
 }

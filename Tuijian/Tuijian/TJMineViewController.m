@@ -80,11 +80,11 @@
     [self.view addSubview:theTableView];
     
     theUser = [[TJDataController sharedDataController]getMyUserInfo];
-    
-    theUser = [[TJDataController sharedDataController]getMyUserInfo];
+    [theUser.photosArray addObject:theUser.profile_image_url];
     NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
     [[TJDataController sharedDataController]getUserInformationFromServer:myUserId success:^(TJUser *user){
         
+        [theUser.photosArray removeAllObjects];
         self.theUser = user;
         [theTableView reloadData];
     }failure:^(NSError *error){
