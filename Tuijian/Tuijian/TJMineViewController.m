@@ -249,6 +249,7 @@
 {
     TJMySignCell *signCell = [self getSignCell];
     signCell.signLabel.text = mText;
+    theUser.mood = mText;
 }
 #pragma UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex

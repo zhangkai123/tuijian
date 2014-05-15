@@ -7,14 +7,15 @@
 //
 
 #import "TJCommentViewController.h"
-#import "TJItemDetailCell.h"
+//#import "TJItemDetailCell.h"
+#import "TJItemCell.h"
 #import "TJCommentView.h"
 #import "TJCommentCell.h"
 #import "TJComment.h"
 #import "UIImage+additions.h"
 #import "TJUserInfoViewController.h"
 
-@interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,TJCommentViewDelegate>
+@interface TJCommentViewController ()<UITableViewDelegate,UITableViewDataSource,TJCommentViewDelegate,TJItemCellDelegate>
 {
     UITableView *detailTableView;
     int numberOfSections;
@@ -26,6 +27,10 @@
     
     NSMutableArray *myCommentsArray;
     NSMutableArray *myCommentHeightArray;
+    
+    UIView *coverView;
+    UIView *smallImageCoverView;
+    CGRect smallImageFrame;
 }
 @end
 
@@ -264,12 +269,12 @@
 {
     UITableViewCell *cell = nil;
     if (indexPath.section == 0) {
-        TJItemDetailCell *cellOne = [tableView dequeueReusableCellWithIdentifier:@"cellOne"];
+        TJItemCell *cellOne = [tableView dequeueReusableCellWithIdentifier:@"cellOne"];
         if (!cellOne) {
-            cellOne = [[TJItemDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
+            cellOne = [[TJItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         }
         [cellOne setItemId:theItem.itemId];
-        
+        cellOne.delegate = self;
         UIImage *genderPlaceHolder = nil;
         if ([theItem.userGender isEqualToString:@"男"] || [theItem.userGender isEqualToString:@"m"] || ([theItem.userGender intValue] == 1)) {
             [cellOne.genderImageView setImage:[UIImage imageNamed:@"male.png"]];
@@ -349,6 +354,63 @@
         [self replyCommentTo:comment.user];
     }
 }
+#pragma TJItemCellDelegate
+-(void)clickThePhoto:(int)rowNum
+{
+    NSIndexPath *theIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    TJItemCell *itemCell = (TJItemCell *)[detailTableView cellForRowAtIndexPath:theIndexPath];
+    UIImageView *theImageView = itemCell.itemImageView;
+    
+//    CGRect itemCellRect = [detailTableView rectForRowAtIndexPath:theIndexPath];
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    coverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, screenRect.size.height)];
+    coverView.backgroundColor = [UIColor blackColor];
+    smallImageFrame = CGRectMake(theImageView.frame.origin.x, theImageView.frame.origin.y + 64, 150, 150);
+    smallImageCoverView = [[UIView alloc]initWithFrame:CGRectMake(smallImageFrame.origin.x, theImageView.frame.origin.y + 64, 150, 150)];
+    smallImageCoverView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:smallImageCoverView];
+    
+    UIImageView *bigImageView = [[UIImageView alloc]initWithFrame:smallImageFrame];
+    bigImageView.image = theImageView.image;
+    bigImageView.tag = 1000;
+    [coverView addSubview:bigImageView];
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    [keyWindow addSubview:coverView];
+    
+    float scaleValue = 320.0/150.0;
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:(void (^)(void)) ^{
+                         bigImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
+                         bigImageView.center = keyWindow.center;
+                     }
+                     completion:^(BOOL finished){
+                         UIButton *coverButton = [[UIButton alloc]initWithFrame:screenRect];
+                         [coverButton addTarget:self action:@selector(removeBigPhoto) forControlEvents:UIControlEventTouchUpInside];
+                         [coverView addSubview:coverButton];
+                     }];
+}
+-(void)removeBigPhoto
+{
+    UIImageView *bigImageView = (UIImageView *)[coverView viewWithTag:1000];
+    coverView.backgroundColor = [UIColor clearColor];
+    [coverView removeFromSuperview];
+    [self.view addSubview:coverView];
+    bigImageView.center = CGPointMake(self.view.center.x, self.view.center.y + 10);
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:(void (^)(void)) ^{
+                         bigImageView.frame = CGRectMake(smallImageFrame.origin.x, smallImageFrame.origin.y, 150, 150);
+                     }
+                     completion:^(BOOL finished){
+                         [smallImageCoverView removeFromSuperview];
+                         [coverView removeFromSuperview];
+                     }];
+}
+
 #pragma TJCommentCellDelegate
 -(void)selectCommentUserImage:(int)rowNum
 {
