@@ -15,6 +15,7 @@
 @end
 
 @implementation TJPersonalSignViewController
+@synthesize delegate ,moodText;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,7 +40,7 @@
     [self.view addSubview:theNavigationBar];
     
     personalSignTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 64 + 10, 300, 100)];
-    [personalSignTextView setFont:[UIFont systemFontOfSize:20]];
+    [personalSignTextView setFont:[UIFont systemFontOfSize:16]];
     personalSignTextView.autocorrectionType = UITextAutocorrectionTypeNo;
     personalSignTextView.keyboardType = UIKeyboardTypeDefault;
     personalSignTextView.returnKeyType = UIReturnKeyDefault;
@@ -47,11 +48,18 @@
     personalSignTextView.scrollEnabled = YES;
     personalSignTextView.delegate = self;
     personalSignTextView.backgroundColor = [UIColor whiteColor];
+    personalSignTextView.text = self.moodText;
     [self.view addSubview:personalSignTextView];
     [personalSignTextView becomeFirstResponder];
 }
 -(void)goBack
 {
+    [self.delegate updateMoodText:personalSignTextView.text];
+    [[TJDataController sharedDataController]updateMoodInformation:personalSignTextView.text success:^(BOOL updated){
+        
+    }failure:^(NSError *error){
+        
+    }];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma text view delegate

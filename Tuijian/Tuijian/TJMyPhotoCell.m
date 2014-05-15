@@ -27,6 +27,7 @@
             int colomeNum = i/4;
             int rowNum = i%4;
             TJTouchablePhotoView *photoView = [[TJTouchablePhotoView alloc]initWithFrame:CGRectMake(8 + rowNum*(70 + 8), 8 + colomeNum*(70 + 8), 70, 70)];
+            photoView.delegate = self;
             photoView.layer.cornerRadius = 5;
             photoView.layer.masksToBounds = YES;
             photoView.backgroundColor = [UIColor darkGrayColor];
@@ -45,7 +46,7 @@
     photoUrlArray = pUrlArray;
     for (int i = 0; i < [photoUrlArray count]; i++) {
         TJTouchablePhotoView *photoView = (TJTouchablePhotoView *)[self viewWithTag:1000 + i];
-        photoView.delegate = nil;
+//        photoView.delegate = nil;
         photoView.alpha = 1.0;
         NSString *photoUrl = [photoUrlArray objectAtIndex:i];
         if ([photoUrl isEqualToString:@"uploading"]) {
@@ -59,7 +60,7 @@
         TJTouchablePhotoView *addPhotoView = (TJTouchablePhotoView *)[self viewWithTag:1000 + [photoUrlArray count]];
         addPhotoView.image = [UIImage imageNamed:@"addPhoto.png"];
         [addPhotoView setAlpha:0.2];
-        addPhotoView.delegate = self;
+//        addPhotoView.delegate = self;
     }
 }
 -(void)setImageAtIndex:(int)whichImageView placeHolderImage:(UIImage *)placeHolderImage
@@ -68,9 +69,13 @@
     photoView.image = placeHolderImage;
 }
 #pragma TJTouchableImageViewDelegate
--(void)selectPhotoView
+-(void)selectPhotoViewWithTag:(int)photoTag
 {
-    [self.delegate showPhotoActionSheet];
+    if (photoTag == 1000 + [photoUrlArray count]) {
+        [self.delegate showPhotoActionSheet];
+    }else{
+        [self.delegate selectPhotoWithIndex:photoTag - 1000];
+    }
 }
 - (void)awakeFromNib
 {

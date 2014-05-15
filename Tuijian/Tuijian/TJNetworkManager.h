@@ -22,5 +22,6 @@
 -(void)getLikesAndComments:(NSString *)itemId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 -(void)getItemWholeInfo:(NSString *)itemId myUserId:(NSString *)myUserId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 -(void)getWholeUserInfo:(NSString *)myUserId theUserId:(NSString *)theUserId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
+-(void)updateMoodInformation:(NSString *)myUserId moodInfo:(NSString *)moodInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 -(void)sendFeatchUserItemsRequest:(NSString *)ownUid uid:(NSString *)uid success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 @end

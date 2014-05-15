@@ -10,9 +10,7 @@
 
 @interface TJValueCell : UITableViewCell
 {
-    UILabel *flowerNumLabel;
     UILabel *likeNumLabel;
 }
-@property(nonatomic,strong) UILabel *flowerNumLabel;
 @property(nonatomic,strong) UILabel *likeNumLabel;
 @end

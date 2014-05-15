@@ -24,6 +24,7 @@
     float previousScrollViewYOffset;
     
     UIView *coverView;
+    UIView *smallImageCoverView;
     CGRect smallImageFrame;
 }
 @end
@@ -285,9 +286,10 @@
     coverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, screenRect.size.height)];
     coverView.backgroundColor = [UIColor blackColor];
     smallImageFrame = CGRectMake(theImageView.frame.origin.x, 64 + itemCellRect.origin.y + theImageView.frame.origin.y - itemTableView.contentOffset.y, 150, 150);
-//    UIView *smallImageCoverView = [[UIView alloc]initWithFrame:smallImageFrame];
-//    smallImageCoverView.backgroundColor = [UIColor clearColor];
-//    [coverView addSubview:smallImageCoverView];
+    smallImageCoverView = [[UIView alloc]initWithFrame:CGRectMake(smallImageFrame.origin.x, smallImageFrame.origin.y - 20, 150, 150)];
+    smallImageCoverView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:smallImageCoverView];
+    
     UIImageView *bigImageView = [[UIImageView alloc]initWithFrame:smallImageFrame];
     bigImageView.image = theImageView.image;
     bigImageView.tag = 1000;
@@ -314,15 +316,16 @@
     UIImageView *bigImageView = (UIImageView *)[coverView viewWithTag:1000];
     coverView.backgroundColor = [UIColor clearColor];
     [coverView removeFromSuperview];
-    [itemTableView addSubview:coverView];
-    bigImageView.center = CGPointMake(bigImageView.center.x, bigImageView.center.y - 32 + itemTableView.contentOffset.y/2);
+    [self.view addSubview:coverView];
+    bigImageView.center = CGPointMake(self.view.center.x, self.view.center.y + 10);
     [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:(void (^)(void)) ^{
-                         bigImageView.frame = CGRectMake(smallImageFrame.origin.x, smallImageFrame.origin.y + itemTableView.contentOffset.y - 64, 150, 150);
+                         bigImageView.frame = CGRectMake(smallImageFrame.origin.x, smallImageFrame.origin.y - 20, 150, 150);
                      }
                      completion:^(BOOL finished){
+                         [smallImageCoverView removeFromSuperview];
                          [coverView removeFromSuperview];
                      }];
 }

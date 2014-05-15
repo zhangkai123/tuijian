@@ -10,7 +10,9 @@
 
 @protocol TJTouchablePhotoViewDelegate <NSObject>
 
+@optional
 -(void)selectPhotoView;
+-(void)selectPhotoViewWithTag:(int)photoTag;
 
 @end
 

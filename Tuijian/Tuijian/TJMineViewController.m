@@ -20,17 +20,19 @@
 #import "TJInfoEditViewController.h"
 #import "TJPersonalSignViewController.h"
 
-@interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate,TJMySignCellDelegate,TJMyPhotoCellDelegate,UIActionSheetDelegate>
+@interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate,TJMySignCellDelegate,TJMyPhotoCellDelegate,UIActionSheetDelegate,TJPersonalSignViewControllerDelegate>
 {
     UITableView *theTableView;
     TJUser *theUser;
-    NSMutableArray *photoUrlArray;
     
     MBProgressHUD *uploadHud;
 }
+@property(nonatomic,strong) TJUser *theUser;
 @end
 
 @implementation TJMineViewController
+@synthesize theUser;
+
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
@@ -77,17 +79,27 @@
     theTableView.backgroundColor = UIColorFromRGB(0xF0F0F0);
     [self.view addSubview:theTableView];
     
-    photoUrlArray = [[NSMutableArray alloc]initWithCapacity:8];
     theUser = [[TJDataController sharedDataController]getMyUserInfo];
-    [photoUrlArray addObject:theUser.profile_image_url];
     
+    theUser = [[TJDataController sharedDataController]getMyUserInfo];
     NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
-    [[TJDataController sharedDataController]getUserInformationFromServer:myUserId success:^(TJUser *theUser){
+    [[TJDataController sharedDataController]getUserInformationFromServer:myUserId success:^(TJUser *user){
         
+        self.theUser = user;
+        [theTableView reloadData];
     }failure:^(NSError *error){
         
     }];
 }
+-(TJMyPhotoCell *)getPhotoCell
+{
+    return (TJMyPhotoCell *)[theTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
+}
+-(TJMySignCell *)getSignCell
+{
+    return (TJMySignCell *)[theTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+}
+
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -105,7 +117,7 @@
     }else if(section == 3){
         rowNum = 1;
     }else{
-        rowNum = 2;
+        rowNum = 1;
     }
     return rowNum;
 }
@@ -133,7 +145,6 @@
         if (!cell) {
             cell = [[TJMyInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellOne"];
         }
-        theUser = [[TJDataController sharedDataController]getMyUserInfo];
         [[(TJMyInfoCell *)cell profileImageView] setImageWithURL:[NSURL URLWithString:theUser.profile_image_url] placeholderImage:nil];
         [[(TJMyInfoCell *)cell nameLabel] setText:theUser.name];
         if ([theUser.gender isEqualToString:@"男"] || [theUser.gender isEqualToString:@"m"] || ([theUser.gender intValue] == 1)) {
@@ -149,7 +160,11 @@
             cellTwo = [[TJMySignCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
         }
         cellTwo.delegate = self;
-        cellTwo.signLabel.text = @"说点什么吧";
+        if ([theUser.mood isEqualToString:@""]) {
+            cellTwo.signLabel.text = @"说点什么吧";
+        }else{
+            cellTwo.signLabel.text = theUser.mood;
+        }
         cellTwo.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell = cellTwo;
     }else if (indexPath.section == 2) {
@@ -158,7 +173,7 @@
             photoCell = [[TJMyPhotoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellThree"];
         }
         photoCell.delegate = self;
-        photoCell.photoUrlArray = photoUrlArray;
+        photoCell.photoUrlArray = theUser.photosArray;
         cell = photoCell;
     }else if (indexPath.section == 3) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellFour"];
@@ -166,6 +181,7 @@
             cell = [[TJValueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [[(TJValueCell *)cell likeNumLabel]setText:[NSString stringWithFormat:@"%d",theUser.heartNum]];
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellFive"];
         if (!cell) {
@@ -173,12 +189,8 @@
         }
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
-        if (indexPath.row == 0) {
-            [cell.textLabel setTextColor:UIColorFromRGB(0x3399CC)];
-            cell.textLabel.text = @"我的美食";
-        }else{
-            cell.textLabel.text = @"最近访客";
-        }
+        [cell.textLabel setTextColor:UIColorFromRGB(0x3399CC)];
+        cell.textLabel.text = @"我的美食";
     }
 //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -213,9 +225,15 @@
 -(void)haveClickedSignCell
 {
     TJPersonalSignViewController *personalSignViewController = [[TJPersonalSignViewController alloc]init];
+    personalSignViewController.delegate = self;
+    personalSignViewController.moodText = theUser.mood;
     [self presentViewController:personalSignViewController animated:YES completion:nil];
 }
 #pragma TJMyPhotoCellDelegate
+-(void)selectPhotoWithIndex:(int)photoIndex
+{
+    
+}
 -(void)showPhotoActionSheet
 {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
@@ -225,6 +243,12 @@
                                   destructiveButtonTitle:nil
                                   otherButtonTitles:@"拍照",@"从手机相册选择",nil];
     [actionSheet showInView:self.view];
+}
+#pragma TJPersonalSignViewControllerDelegate
+-(void)updateMoodText:(NSString *)mText
+{
+    TJMySignCell *signCell = [self getSignCell];
+    signCell.signLabel.text = mText;
 }
 #pragma UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -294,11 +318,11 @@
                                  holdImageView.layer.masksToBounds = YES;
                              }
                              completion:^(BOOL finished){
-                                 [photoUrlArray addObject:@"uploading"];
+                                 [theUser.photosArray addObject:@"uploading"];
                                  NSIndexPath *photoCellIndexPath = [NSIndexPath indexPathForRow:0 inSection:2];
                                  TJMyPhotoCell *myPhotoCell = (TJMyPhotoCell *)[theTableView cellForRowAtIndexPath:photoCellIndexPath];
-                                 myPhotoCell.photoUrlArray = photoUrlArray;
-                                 [myPhotoCell setImageAtIndex:([photoUrlArray count] - 1) placeHolderImage:chosenImage];
+                                 myPhotoCell.photoUrlArray = theUser.photosArray;
+                                 [myPhotoCell setImageAtIndex:([theUser.photosArray count] - 1) placeHolderImage:chosenImage];
                                  [holdImageView removeFromSuperview];
                              }];
         }
@@ -310,16 +334,16 @@
 }
 -(void)updatePhotoCellData:(NSString *)iUrl
 {
-    for (int i = 0; i < [photoUrlArray count]; i++) {
-        NSString *photoUrl = [photoUrlArray objectAtIndex:i];
+    for (int i = 0; i < [theUser.photosArray count]; i++) {
+        NSString *photoUrl = [theUser.photosArray objectAtIndex:i];
         if ([photoUrl isEqualToString:@"uploading"]) {
-            [photoUrlArray replaceObjectAtIndex:i withObject:iUrl];
+            [theUser.photosArray replaceObjectAtIndex:i withObject:iUrl];
             break;
         }
     }
     NSIndexPath *photoCellIndex = [NSIndexPath indexPathForRow:0 inSection:2];
     TJMyPhotoCell *myPhotoCell = (TJMyPhotoCell *)[theTableView cellForRowAtIndexPath:photoCellIndex];
-    myPhotoCell.photoUrlArray = photoUrlArray;
+    myPhotoCell.photoUrlArray = theUser.photosArray;
 }
 - (void)showHUDWhenUploading {
 	
@@ -334,7 +358,7 @@
 {
     NSIndexPath *photoCellIndex = [NSIndexPath indexPathForRow:0 inSection:2];
     CGRect photoCellRect = [theTableView rectForRowAtIndexPath:photoCellIndex];
-    int imageCount = [photoUrlArray count];
+    int imageCount = [theUser.photosArray count];
     int colume = imageCount/4;
     int row = imageCount%4;
     CGPoint uploadImageViewPosition = CGPointMake(8 + row*(70 + 8) + 35, 8 + colume*(70 + 8) + photoCellRect.origin.y + 35);

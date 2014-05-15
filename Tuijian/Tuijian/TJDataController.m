@@ -289,6 +289,20 @@
         failure(error);
     }];
 }
+-(void)updateMoodInformation:(NSString *)moodInfor success:(void (^)(BOOL updated))success failure:(void (^)(NSError *error))failure
+{
+    NSString *myOwnUserId = [self getMyUserId];
+    [[TJNetworkManager sharedNetworkManager]updateMoodInformation:myOwnUserId moodInfo:moodInfor success:^(id json){
+        NSString *updated = [json objectForKey:@"status"];
+        if ([updated isEqualToString:@"mySuccess"]) {
+            success(YES);
+        }else{
+            success(NO);
+        }
+    }failure:^(NSError *error){
+        failure(error);
+    }];
+}
 #pragma XMPP Server
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success
 {

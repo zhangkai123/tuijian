@@ -10,6 +10,7 @@
 
 @protocol TJMyPhotoCellDelegate <NSObject>
 
+-(void)selectPhotoWithIndex:(int)photoIndex;
 -(void)showPhotoActionSheet;
 
 @end

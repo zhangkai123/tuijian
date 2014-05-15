@@ -31,7 +31,11 @@
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.delegate selectPhotoView];
+    if ([self.delegate respondsToSelector:@selector(selectPhotoView)]) {
+        [self.delegate selectPhotoView];
+    }else{
+        [self.delegate selectPhotoViewWithTag:self.tag];
+    }
 }
 
 @end

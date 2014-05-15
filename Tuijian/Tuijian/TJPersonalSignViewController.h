@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TJPersonalSignViewControllerDelegate <NSObject>
+
+-(void)updateMoodText:(NSString *)mText;
+
+@end
+
 @interface TJPersonalSignViewController : UIViewController
 
+@property(nonatomic,unsafe_unretained) id<TJPersonalSignViewControllerDelegate> delegate;
+@property(nonatomic,strong) NSString *moodText;
 @end
