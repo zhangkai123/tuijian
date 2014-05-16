@@ -241,12 +241,13 @@
     TJTouchablePhotoView *thePhotoView = (TJTouchablePhotoView *)[photosCell viewWithTag:1000 + photoIndex];
     
     CGRect photoViewRect = [self getThePhotoImageViewRectAtIndex:photoIndex];
+    float tableViewContentOffset = theTableView.contentOffset.y + 64;
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     photosCoverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, screenRect.size.height)];
-    photosCoverView.backgroundColor = [UIColor blackColor];
+    photosCoverView.backgroundColor = [UIColor clearColor];
     
-    UIImageView *bigImageView = [[UIImageView alloc]initWithFrame:CGRectMake(photoViewRect.origin.x, photoViewRect.origin.y + 64, 70, 70)];
+    UIImageView *bigImageView = [[UIImageView alloc]initWithFrame:CGRectMake(photoViewRect.origin.x, photoViewRect.origin.y + 64 - tableViewContentOffset, 70, 70)];
     bigImageView.image = thePhotoView.image;
     bigImageView.tag = 1000;
     [photosCoverView addSubview:bigImageView];
@@ -291,6 +292,18 @@
                                   cancelButtonTitle:@"取消"
                                   destructiveButtonTitle:nil
                                   otherButtonTitles:@"拍照",@"从手机相册选择",nil];
+    actionSheet.tag = 0;
+    [actionSheet showInView:self.view];
+}
+-(void)showDeletePhotoActionSheet
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:self
+                                  cancelButtonTitle:@"取消"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"删除",nil];
+    actionSheet.tag = 1;
     [actionSheet showInView:self.view];
 }
 #pragma TJPhotosViewControllerDelegate
@@ -311,6 +324,7 @@
     [coverView addSubview:holdImageView];
     [[[UIApplication sharedApplication] keyWindow] addSubview:coverView];
    
+    float tableViewContentOffset = theTableView.contentOffset.y + 64;
     CGRect photoViewRect = [self getThePhotoImageViewRectAtIndex:theIndex];
     float scaleValue = 70.0/320.0;
     [UIView animateWithDuration:0.3
@@ -318,7 +332,7 @@
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:(void (^)(void)) ^{
                          holdImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
-                         holdImageView.frame = CGRectMake(photoViewRect.origin.x,photoViewRect.origin.y + 64, 70, 70);
+                         holdImageView.frame = CGRectMake(photoViewRect.origin.x,photoViewRect.origin.y + 64 - tableViewContentOffset, 70, 70);
                          holdImageView.layer.cornerRadius = 5/scaleValue;
                          holdImageView.layer.masksToBounds = YES;
                      }
@@ -337,10 +351,20 @@
 #pragma UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
-        [self showCamera];
-    }else if(buttonIndex == 1){
-        [self showAlbume];
+    if (popup.tag == 0) {
+        if (buttonIndex == 0) {
+            [self showCamera];
+        }else if(buttonIndex == 1){
+            [self showAlbume];
+        }
+    }else{
+        if (buttonIndex == 0) {
+            
+        }else{
+            NSIndexPath *photoCellIndex = [NSIndexPath indexPathForRow:0 inSection:2];
+            TJMyPhotoCell *myPhotoCell = (TJMyPhotoCell *)[theTableView cellForRowAtIndexPath:photoCellIndex];
+            [myPhotoCell cancelShakeView];
+        }
     }
 }
 -(void)showCamera

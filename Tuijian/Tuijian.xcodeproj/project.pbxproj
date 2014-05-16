@@ -99,6 +99,7 @@
 		4B57DA3919012992006F0355 /* TJRecentViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA3819012992006F0355 /* TJRecentViewerViewController.m */; };
 		4B67AF0F1925A9FE006A699C /* TJPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B67AF0E1925A9FE006A699C /* TJPhotosViewController.m */; };
 		4B67AF121925B58A006A699C /* TJBigPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B67AF111925B58A006A699C /* TJBigPhotoCell.m */; };
+		4B67AF141926005A006A699C /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B67AF131926005A006A699C /* delete.png */; };
 		4B6A862A18F3E15F00E27AAE /* message.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A862918F3E15F00E27AAE /* message.sqlite */; };
 		4B6BD7B918FBA7DA0059C46E /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */; };
 		4B6BD7BA18FBA7DA0059C46E /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */; };
@@ -521,6 +522,7 @@
 		4B67AF0E1925A9FE006A699C /* TJPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJPhotosViewController.m; sourceTree = "<group>"; };
 		4B67AF101925B58A006A699C /* TJBigPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJBigPhotoCell.h; sourceTree = "<group>"; };
 		4B67AF111925B58A006A699C /* TJBigPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJBigPhotoCell.m; sourceTree = "<group>"; };
+		4B67AF131926005A006A699C /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		4B6A862918F3E15F00E27AAE /* message.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sqlite; sourceTree = "<group>"; };
 		4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
 		4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -2572,6 +2574,7 @@
 		4BFA999518AFA19200D673CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B67AF131926005A006A699C /* delete.png */,
 				4BDACC2D1906638200FD91C3 /* chat */,
 				4B57DA1C1900EE12006F0355 /* mine */,
 				4BB6C05B18F2462E00DB13C9 /* radioButton */,
@@ -2728,6 +2731,7 @@
 				4BFB834518EBD529008651DA /* Tencent_QQ.png in Resources */,
 				4B8B93AA18E8F89100459AC2 /* user-outline@2x.png in Resources */,
 				4BDACC4F1906639000FD91C3 /* chatto_bg_focused.png in Resources */,
+				4B67AF141926005A006A699C /* delete.png in Resources */,
 				4BD3A06818F5197400C6B6AE /* comment.png in Resources */,
 				4BFB839918EC1752008651DA /* placeholder.png in Resources */,
 				4B47A3AC18D1B42300087BE4 /* share.png in Resources */,

@@ -117,11 +117,11 @@
     if (_pageIndex == 0) {
         category = @"美食";
     }else if(_pageIndex == 1){
-        category = @"玩乐";
+        category = @"focus";
     }else if(_pageIndex == 2){
         category = @"all";
     }else if(_pageIndex == 3){
-        category = @"focus";
+        category = @"玩乐";
     }
     [[TJDataController sharedDataController]getItems:category success:^(NSArray *iteArray){
         if ([iteArray count] == 0) {

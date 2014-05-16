@@ -7,7 +7,6 @@
 //
 
 #import "TJMyPhotoCell.h"
-#import "TJTouchablePhotoView.h"
 
 @interface TJMyPhotoCell()<TJTouchablePhotoViewDelegate>
 
@@ -46,7 +45,6 @@
     photoUrlArray = pUrlArray;
     for (int i = 0; i < [photoUrlArray count]; i++) {
         TJTouchablePhotoView *photoView = (TJTouchablePhotoView *)[self viewWithTag:1000 + i];
-//        photoView.delegate = nil;
         photoView.alpha = 1.0;
         NSString *photoUrl = [photoUrlArray objectAtIndex:i];
         if ([photoUrl isEqualToString:@"uploading"]) {
@@ -55,13 +53,55 @@
         NSString *urlWithoutExtention = [photoUrl stringByDeletingPathExtension];
         NSString *thumbImageUrl = [NSString stringWithFormat:@"%@_thumb.png",urlWithoutExtention];
         [photoView setImageWithURL:[NSURL URLWithString:thumbImageUrl] placeholderImage:nil];
+        
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] init];
+        [longPress addTarget:self action:@selector(longPressDetected:)];
+        longPress.delegate = (id<UIGestureRecognizerDelegate>)self;
+        [photoView addGestureRecognizer:longPress];
     }
     if ([photoUrlArray count] < 8) {
         TJTouchablePhotoView *addPhotoView = (TJTouchablePhotoView *)[self viewWithTag:1000 + [photoUrlArray count]];
         addPhotoView.image = [UIImage imageNamed:@"addPhoto.png"];
         [addPhotoView setAlpha:0.2];
-//        addPhotoView.delegate = self;
     }
+}
+- (void)longPressDetected:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        NSLog(@"UIGestureRecognizerStateEnded");
+        //Do Whatever You want on End of Gesture
+    }
+    else if (gestureRecognizer.state == UIGestureRecognizerStateBegan){
+        NSLog(@"UIGestureRecognizerStateBegan.");
+        //Do Whatever You want on Began of Gesture
+        shakingView = (TJTouchablePhotoView *)[gestureRecognizer view];
+        [self shakeView:shakingView];
+        [self.delegate showDeletePhotoActionSheet];
+    }
+}
+- (void)shakeView:(UIView *)viewToShake
+{
+    CGFloat t = 2.0;
+    CGAffineTransform translateRight  = CGAffineTransformTranslate(CGAffineTransformIdentity, t, 0.0);
+    CGAffineTransform translateLeft = CGAffineTransformTranslate(CGAffineTransformIdentity, -t, 0.0);
+    
+    viewToShake.transform = translateLeft;
+    
+    [UIView animateWithDuration:0.07 delay:0.0 options:UIViewAnimationOptionAutoreverse|UIViewAnimationOptionRepeat animations:^{
+        viewToShake.transform = translateRight;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [UIView animateWithDuration:0.05 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                viewToShake.transform = CGAffineTransformIdentity;
+            } completion:NULL];
+        }
+    }];
+}
+-(void)cancelShakeView
+{
+    [CATransaction begin];
+    [shakingView.layer removeAllAnimations];
+    [CATransaction commit];
 }
 -(void)setImageAtIndex:(int)whichImageView placeHolderImage:(UIImage *)placeHolderImage
 {
