@@ -45,6 +45,7 @@
     photoUrlArray = pUrlArray;
     for (int i = 0; i < [photoUrlArray count]; i++) {
         TJTouchablePhotoView *photoView = (TJTouchablePhotoView *)[self viewWithTag:1000 + i];
+        photoView.delegate = self;
         photoView.alpha = 1.0;
         NSString *photoUrl = [photoUrlArray objectAtIndex:i];
         if ([photoUrl isEqualToString:@"uploading"]) {
@@ -62,7 +63,14 @@
     if ([photoUrlArray count] < 8) {
         TJTouchablePhotoView *addPhotoView = (TJTouchablePhotoView *)[self viewWithTag:1000 + [photoUrlArray count]];
         addPhotoView.image = [UIImage imageNamed:@"addPhoto.png"];
+        addPhotoView.delegate = self;
         [addPhotoView setAlpha:0.2];
+    }
+    for (int i = [photoUrlArray count] + 1; i < 8; i++) {
+        TJTouchablePhotoView *emptyPhotoView = (TJTouchablePhotoView *)[self viewWithTag:1000 + i];
+        emptyPhotoView.image = nil;
+        emptyPhotoView.delegate = nil;
+        [emptyPhotoView setAlpha:0.5];
     }
 }
 - (void)longPressDetected:(UIGestureRecognizer *)gestureRecognizer
@@ -76,7 +84,7 @@
         //Do Whatever You want on Began of Gesture
         shakingView = (TJTouchablePhotoView *)[gestureRecognizer view];
         [self shakeView:shakingView];
-        [self.delegate showDeletePhotoActionSheet];
+        [self.delegate showDeletePhotoActionSheet:(shakingView.tag - 1000)];
     }
 }
 - (void)shakeView:(UIView *)viewToShake

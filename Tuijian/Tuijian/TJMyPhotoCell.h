@@ -13,7 +13,7 @@
 
 -(void)selectPhotoWithIndex:(int)photoIndex;
 -(void)showPhotoActionSheet;
--(void)showDeletePhotoActionSheet;
+-(void)showDeletePhotoActionSheet:(int)photoIndex;
 
 @end
 

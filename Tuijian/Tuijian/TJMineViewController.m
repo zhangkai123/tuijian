@@ -30,6 +30,7 @@
     MBProgressHUD *uploadHud;
     
     UIView *photosCoverView;
+    int deletingPhotoIndex;
 }
 @property(nonatomic,strong) TJUser *theUser;
 @end
@@ -295,8 +296,9 @@
     actionSheet.tag = 0;
     [actionSheet showInView:self.view];
 }
--(void)showDeletePhotoActionSheet
+-(void)showDeletePhotoActionSheet:(int)photoIndex
 {
+    deletingPhotoIndex = photoIndex;
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:nil
                                   delegate:self
@@ -359,7 +361,8 @@
         }
     }else{
         if (buttonIndex == 0) {
-            
+            [theUser.photosArray removeObjectAtIndex:deletingPhotoIndex];
+            [theTableView reloadData];
         }else{
             NSIndexPath *photoCellIndex = [NSIndexPath indexPathForRow:0 inSection:2];
             TJMyPhotoCell *myPhotoCell = (TJMyPhotoCell *)[theTableView cellForRowAtIndexPath:photoCellIndex];
@@ -371,7 +374,6 @@
 {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = (id)self;
-//    picker.allowsEditing = YES;
     [picker setAllowsEditing:YES];
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
 
