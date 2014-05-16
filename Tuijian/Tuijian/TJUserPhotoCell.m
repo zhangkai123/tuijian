@@ -34,6 +34,10 @@
         UIView *subView = [self viewWithTag:1000 + i];
         [subView removeFromSuperview];
     }
+    UIView *subLineView = [self viewWithTag:2000];
+    if (subLineView != nil) {
+        [subLineView removeFromSuperview];
+    }
     
     photoUrlArray = pUrlArray;
     
@@ -61,6 +65,7 @@
     }
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, lineHeight, 320, 1)];
     lineView.backgroundColor = [UIColor blackColor];
+    lineView.tag = 2000;
     [self addSubview:lineView];
 
     for (int i = 0; i < [photoUrlArray count]; i++) {

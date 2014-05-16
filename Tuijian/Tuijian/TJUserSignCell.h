@@ -10,8 +10,11 @@
 
 @interface TJUserSignCell : UITableViewCell
 {
+    UIImageView *signImageView;
     UILabel *signLabel;
+    UIView *lineView;
 }
 @property(nonatomic,strong) UILabel *signLabel;
 
+-(void)setSignLabelText:(NSString *)moodText andTextHeight:(float)moodLabelHeight;
 @end

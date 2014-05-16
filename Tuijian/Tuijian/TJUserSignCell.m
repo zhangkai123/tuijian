@@ -18,7 +18,7 @@
         // Initialization code
         self.backgroundColor = UIColorFromRGB(0x242424);
         
-        UIImageView *signImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 13, 24, 24)];
+        signImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 13, 24, 24)];
         signImageView.image = [UIImage imageNamed:@"Pencil.png"];
         [self addSubview:signImageView];
 
@@ -26,17 +26,26 @@
         signLabel.backgroundColor = [UIColor clearColor];
         [signLabel setTextColor:UIColorFromRGB(0xADD8E6)];
         [signLabel setFont:[UIFont systemFontOfSize:15]];
-        signLabel.textAlignment = NSTextAlignmentLeft;
         signLabel.alpha = 0.5;
+        signLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        signLabel.numberOfLines = 0;
         [self addSubview:signLabel];
         
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 50, 320, 1)];
+        lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 50, 320, 1)];
         lineView.backgroundColor = UIColorFromRGB(0x121212);
         [self addSubview:lineView];
     }
     return self;
 }
+-(void)setSignLabelText:(NSString *)moodText andTextHeight:(float)moodLabelHeight
+{
+    signImageView.center = CGPointMake(25, 5 + moodLabelHeight/2 + 5);
+    signLabel.text = moodText;
 
+    signLabel.frame = CGRectMake(35, 10, 265, moodLabelHeight);
+    
+    lineView.frame = CGRectMake(0, moodLabelHeight + 20, 320, 1);
+}
 - (void)awakeFromNib
 {
     // Initialization code

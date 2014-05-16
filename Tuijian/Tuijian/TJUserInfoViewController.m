@@ -28,6 +28,7 @@
     
     BOOL isMan;
     
+    float moodTextLabelHeight;
     UIView *photosCoverView;
 }
 @property(nonatomic,strong) TJUser *theUser;
@@ -82,6 +83,10 @@
     [[TJDataController sharedDataController]getUserInformationFromServer:self.uid success:^(TJUser *user){
         
         self.theUser = user;
+        CGRect expectedLabelRect = [user.mood boundingRectWithSize:CGSizeMake(265, 0)
+                                                          options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                       attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+        moodTextLabelHeight = expectedLabelRect.size.height;
         [theTableView reloadData];
         
     }failure:^(NSError *error){
@@ -117,7 +122,7 @@
     if (indexPath.section == 0) {
         rowHeight = 101;
     }else if(indexPath.section == 1){
-        rowHeight = 51;
+        rowHeight = 20 + moodTextLabelHeight;
     }else if(indexPath.section == 2){
         if ([theUser.photosArray count] <= 4) {
             rowHeight = 87;
@@ -155,9 +160,9 @@
             userSignCell = [[TJUserSignCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userSignCell"];
         }
         if ([theUser.mood isEqualToString:@""]) {
-            userSignCell.signLabel.text = @"这家伙还没写个性签名哦~";
+            [userSignCell setSignLabelText:@"这家伙还没写个性签名哦~" andTextHeight:moodTextLabelHeight];
         }else{
-            userSignCell.signLabel.text = theUser.mood;
+            [userSignCell setSignLabelText:theUser.mood andTextHeight:moodTextLabelHeight];
         }
         cell = userSignCell;
     }else if (indexPath.section == 2) {
@@ -228,9 +233,10 @@
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     photosCoverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, screenRect.size.height)];
-    photosCoverView.backgroundColor = [UIColor blackColor];
+    photosCoverView.backgroundColor = [UIColor clearColor];
     
-    UIImageView *bigImageView = [[UIImageView alloc]initWithFrame:CGRectMake(photoViewRect.origin.x, photoViewRect.origin.y + 64, 70, 70)];
+    float tableContentOffset = theTableView.contentOffset.y + 64;
+    UIImageView *bigImageView = [[UIImageView alloc]initWithFrame:CGRectMake(photoViewRect.origin.x, photoViewRect.origin.y + 64 - tableContentOffset, 70, 70)];
     bigImageView.image = thePhotoView.image;
     bigImageView.tag = 1000;
     [photosCoverView addSubview:bigImageView];
@@ -254,7 +260,6 @@
                          photosViewController.delegate = self;
                          [self presentViewController:photosViewController animated:NO completion:nil];
                      }];
-
 }
 -(CGRect)getThePhotoImageViewRectAtIndex:(int)photoIndex
 {
@@ -295,6 +300,7 @@
     [coverView addSubview:holdImageView];
     [[[UIApplication sharedApplication] keyWindow] addSubview:coverView];
     
+    float tableContentOffset = theTableView.contentOffset.y + 64;
     CGRect photoViewRect = [self getThePhotoImageViewRectAtIndex:theIndex];
     float scaleValue = 70.0/320.0;
     [UIView animateWithDuration:0.3
@@ -302,7 +308,7 @@
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:(void (^)(void)) ^{
                          holdImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
-                         holdImageView.frame = CGRectMake(photoViewRect.origin.x,photoViewRect.origin.y + 64, 70, 70);
+                         holdImageView.frame = CGRectMake(photoViewRect.origin.x,photoViewRect.origin.y + 64 - tableContentOffset, 70, 70);
                          holdImageView.layer.cornerRadius = 5/scaleValue;
                          holdImageView.layer.masksToBounds = YES;
                      }
