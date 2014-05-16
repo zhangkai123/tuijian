@@ -22,7 +22,7 @@
 #import "TJTouchablePhotoView.h"
 #import "TJPhotosViewController.h"
 
-@interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate,TJMySignCellDelegate,TJMyPhotoCellDelegate,UIActionSheetDelegate,TJPersonalSignViewControllerDelegate>
+@interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate,TJMySignCellDelegate,TJMyPhotoCellDelegate,UIActionSheetDelegate,TJPersonalSignViewControllerDelegate,TJPhotosViewControllerDelegate>
 {
     UITableView *theTableView;
     TJUser *theUser;
@@ -30,8 +30,6 @@
     MBProgressHUD *uploadHud;
     
     UIView *photosCoverView;
-    UIView *smallImageCoverView;
-    CGRect smallImageFrame;
 }
 @property(nonatomic,strong) TJUser *theUser;
 @end
@@ -198,7 +196,7 @@
         [cell.textLabel setTextColor:UIColorFromRGB(0x3399CC)];
         cell.textLabel.text = @"我的美食";
     }
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -269,6 +267,7 @@
                          photosViewController.imageArray = theUser.photosArray;
                          photosViewController.placeHolderImageArray = [self getTheSmallPhotos];
                          photosViewController.beginningIndex = photoIndex;
+                         photosViewController.delegate = self;
                          [self presentViewController:photosViewController animated:NO completion:nil];
                      }];
 }
@@ -294,6 +293,40 @@
                                   otherButtonTitles:@"拍照",@"从手机相册选择",nil];
     [actionSheet showInView:self.view];
 }
+#pragma TJPhotosViewControllerDelegate
+-(void)backFromPhotoAlum:(UIImage *)bigPhoto atIndex:(int)theIndex
+{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    int position = 0;
+    if (screenHeight == 568){
+        position = 124;
+    }else{
+        position = 80;
+    }
+    UIView *coverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, screenHeight)];
+    coverView.backgroundColor = [UIColor clearColor];
+    UIImageView *holdImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, position, 320, 320)];
+    holdImageView.image = bigPhoto;
+    [coverView addSubview:holdImageView];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:coverView];
+   
+    CGRect photoViewRect = [self getThePhotoImageViewRectAtIndex:theIndex];
+    float scaleValue = 70.0/320.0;
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:(void (^)(void)) ^{
+                         holdImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
+                         holdImageView.frame = CGRectMake(photoViewRect.origin.x,photoViewRect.origin.y + 64, 70, 70);
+                         holdImageView.layer.cornerRadius = 5/scaleValue;
+                         holdImageView.layer.masksToBounds = YES;
+                     }
+                     completion:^(BOOL finished){
+                         [coverView removeFromSuperview];
+                     }];
+}
+
 #pragma TJPersonalSignViewControllerDelegate
 -(void)updateMoodText:(NSString *)mText
 {

@@ -56,6 +56,7 @@
         photoView.backgroundColor = [UIColor darkGrayColor];
         photoView.tag = 1000 + i;
         photoView.alpha = 0.5;
+        photoView.delegate = nil;
         [self addSubview:photoView];
     }
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, lineHeight, 320, 1)];
@@ -63,18 +64,19 @@
     [self addSubview:lineView];
 
     for (int i = 0; i < [photoUrlArray count]; i++) {
-        UIImageView *photoView = (UIImageView *)[self viewWithTag:1000 + i];
+        TJTouchablePhotoView *photoView = (TJTouchablePhotoView *)[self viewWithTag:1000 + i];
         photoView.alpha = 1.0;
         NSString *photoUrl = [photoUrlArray objectAtIndex:i];
         NSString *urlWithoutExtention = [photoUrl stringByDeletingPathExtension];
         NSString *thumbImageUrl = [NSString stringWithFormat:@"%@_thumb.png",urlWithoutExtention];
         [photoView setImageWithURL:[NSURL URLWithString:thumbImageUrl] placeholderImage:nil];
+        photoView.delegate = self;
     }
 }
 #pragma TJTouchableImageViewDelegate
--(void)selectPhotoView
+-(void)selectPhotoViewWithTag:(int)photoTag
 {
-//    [self.delegate selectPhotoAtIndex:0];
+    [self.delegate selectPhotoAtIndex:photoTag - 1000];
 }
 
 - (void)awakeFromNib

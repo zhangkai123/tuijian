@@ -16,6 +16,7 @@
 @end
 
 @implementation TJPhotosViewController
+@synthesize delegate;
 @synthesize imageArray ,placeHolderImageArray ,beginningIndex;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -67,6 +68,8 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    TJBigPhotoCell *bigPhotoCell = (TJBigPhotoCell *)[myTableView cellForRowAtIndexPath:indexPath];
+    [self.delegate backFromPhotoAlum:bigPhotoCell.photoImageView.image atIndex:indexPath.row];
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 - (void)didReceiveMemoryWarning

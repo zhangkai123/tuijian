@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TJPhotosViewControllerDelegate <NSObject>
+
+-(void)backFromPhotoAlum:(UIImage *)bigPhoto atIndex:(int)theIndex;
+
+@end
+
 @interface TJPhotosViewController : UIViewController
 {
+    __unsafe_unretained id<TJPhotosViewControllerDelegate> delegate;
     NSMutableArray *imageArray;
     NSMutableArray *placeHolderImageArray;
     int beginningIndex;
 }
+@property(nonatomic,unsafe_unretained) id<TJPhotosViewControllerDelegate> delegate;
 @property(nonatomic,strong) NSMutableArray *imageArray;
 @property(nonatomic,strong) NSMutableArray *placeHolderImageArray;
 @property(nonatomic,assign) int beginningIndex;

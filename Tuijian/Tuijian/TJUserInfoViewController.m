@@ -18,13 +18,17 @@
 #import "TJPaperViewController.h"
 
 #import "TJAppDelegate.h"
+#import "TJTouchablePhotoView.h"
+#import "TJPhotosViewController.h"
 
-@interface TJUserInfoViewController ()<UITableViewDataSource,UITableViewDelegate,TJChatCellDelegate>
+@interface TJUserInfoViewController ()<UITableViewDataSource,UITableViewDelegate,TJChatCellDelegate,TJUserPhotoCellDelegate,TJPhotosViewControllerDelegate>
 {
     TJUser *theUser;
     UITableView *theTableView;
     
     BOOL isMan;
+    
+    UIView *photosCoverView;
 }
 @property(nonatomic,strong) TJUser *theUser;
 @end
@@ -161,7 +165,7 @@
         if (!userPhotoCell) {
             userPhotoCell = [[TJUserPhotoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userPhotoCell"];
         }
-//        userPhotoCell.delegate = self;
+        userPhotoCell.delegate = self;
         userPhotoCell.photoUrlArray = theUser.photosArray;
         cell = userPhotoCell;
     }else if (indexPath.section == 3) {
@@ -213,6 +217,100 @@
         }
     }
 }
+#pragma TJUserPhotoCellDelegate
+-(void)selectPhotoAtIndex:(int)photoNum
+{
+    NSIndexPath *theIndexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+    TJUserPhotoCell *photosCell = (TJUserPhotoCell *)[theTableView cellForRowAtIndexPath:theIndexPath];
+    TJTouchablePhotoView *thePhotoView = (TJTouchablePhotoView *)[photosCell viewWithTag:1000 + photoNum];
+    
+    CGRect photoViewRect = [self getThePhotoImageViewRectAtIndex:photoNum];
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    photosCoverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, screenRect.size.height)];
+    photosCoverView.backgroundColor = [UIColor blackColor];
+    
+    UIImageView *bigImageView = [[UIImageView alloc]initWithFrame:CGRectMake(photoViewRect.origin.x, photoViewRect.origin.y + 64, 70, 70)];
+    bigImageView.image = thePhotoView.image;
+    bigImageView.tag = 1000;
+    [photosCoverView addSubview:bigImageView];
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    [keyWindow addSubview:photosCoverView];
+    
+    float scaleValue = 320.0/70.0;
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:(void (^)(void)) ^{
+                         bigImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
+                         bigImageView.center = keyWindow.center;
+                     }
+                     completion:^(BOOL finished){
+                         [photosCoverView removeFromSuperview];
+                         TJPhotosViewController *photosViewController = [[TJPhotosViewController alloc]init];
+                         photosViewController.imageArray = theUser.photosArray;
+                         photosViewController.placeHolderImageArray = [self getTheSmallPhotos];
+                         photosViewController.beginningIndex = photoNum;
+                         photosViewController.delegate = self;
+                         [self presentViewController:photosViewController animated:NO completion:nil];
+                     }];
+
+}
+-(CGRect)getThePhotoImageViewRectAtIndex:(int)photoIndex
+{
+    NSIndexPath *photoCellIndex = [NSIndexPath indexPathForRow:0 inSection:2];
+    CGRect photoCellRect = [theTableView rectForRowAtIndexPath:photoCellIndex];
+    int colume = photoIndex/4;
+    int row = photoIndex%4;
+    CGRect theRect = CGRectMake(8 + row*(70 + 8), 8 + colume*(70 + 8) + photoCellRect.origin.y,70,70);
+    return theRect;
+}
+-(NSMutableArray *)getTheSmallPhotos
+{
+    NSIndexPath *theIndexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+    TJUserPhotoCell *photosCell = (TJUserPhotoCell *)[theTableView cellForRowAtIndexPath:theIndexPath];
+    NSMutableArray *smallPhotosArray = [[NSMutableArray alloc]init];
+    for (int i = 0; i < [theUser.photosArray count]; i++) {
+        
+        TJTouchablePhotoView *thePhotoView = (TJTouchablePhotoView *)[photosCell viewWithTag:1000 + i];
+        [smallPhotosArray addObject:thePhotoView.image];
+    }
+    return smallPhotosArray;
+}
+#pragma TJPhotosViewControllerDelegate
+-(void)backFromPhotoAlum:(UIImage *)bigPhoto atIndex:(int)theIndex
+{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    int position = 0;
+    if (screenHeight == 568){
+        position = 124;
+    }else{
+        position = 80;
+    }
+    UIView *coverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, screenHeight)];
+    coverView.backgroundColor = [UIColor clearColor];
+    UIImageView *holdImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, position, 320, 320)];
+    holdImageView.image = bigPhoto;
+    [coverView addSubview:holdImageView];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:coverView];
+    
+    CGRect photoViewRect = [self getThePhotoImageViewRectAtIndex:theIndex];
+    float scaleValue = 70.0/320.0;
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:(void (^)(void)) ^{
+                         holdImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
+                         holdImageView.frame = CGRectMake(photoViewRect.origin.x,photoViewRect.origin.y + 64, 70, 70);
+                         holdImageView.layer.cornerRadius = 5/scaleValue;
+                         holdImageView.layer.masksToBounds = YES;
+                     }
+                     completion:^(BOOL finished){
+                         [coverView removeFromSuperview];
+                     }];
+}
+
 #pragma TJChatCellDelegate
 -(void)sendHiTo
 {
