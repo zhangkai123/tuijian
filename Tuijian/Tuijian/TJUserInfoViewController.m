@@ -72,7 +72,7 @@
     theUser.name = self.userName;
     theUser.profile_image_url = self.userImageUrl;
     theUser.gender = self.userGender;
-    [theUser.photosArray addObject:self.userImageUrl];
+//    [theUser.photosArray addObject:self.userImageUrl];
     
     if (([theUser.gender intValue] == 1) || [theUser.gender isEqualToString:@"男"] || [theUser.gender isEqualToString:@"m"]){
         isMan = YES;

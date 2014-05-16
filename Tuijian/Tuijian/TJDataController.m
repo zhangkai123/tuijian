@@ -297,10 +297,24 @@
         if ([updated isEqualToString:@"mySuccess"]) {
             success(YES);
         }else{
-            success(NO);
+            failure(nil);
         }
     }failure:^(NSError *error){
         failure(error);
+    }];
+}
+-(void)removePhotoWithId:(NSString *)photoId success:(void (^)(BOOL updated))success failure:(void (^)(NSError *error))failure
+{
+    NSString *myOwnUserId = [self getMyUserId];
+    [[TJNetworkManager sharedNetworkManager]removePhotoWithId:myOwnUserId photoId:photoId success:^(id json){
+        NSString *deleted = [json objectForKey:@"status"];
+        if ([deleted isEqualToString:@"mySuccess"]) {
+            success(YES);
+        }else{
+            failure(nil);
+        }
+    }failure:^(NSError *error){
+        failure(nil);
     }];
 }
 #pragma XMPP Server

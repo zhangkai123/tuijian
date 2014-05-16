@@ -50,6 +50,7 @@
 -(void)uploadUserPhoto:(UIImage *)uPhoto progress:(void (^)(float uploadProgess))uploadPro success:(void (^)(NSString *uploadImageUrl))success failure:(void (^)(NSError *error))failure;
 -(void)getUserInformationFromServer:(NSString *)theUserId success:(void (^)(TJUser *theUser))success failure:(void (^)(NSError *error))failure;
 -(void)updateMoodInformation:(NSString *)moodInfor success:(void (^)(BOOL updated))success failure:(void (^)(NSError *error))failure;
+-(void)removePhotoWithId:(NSString *)photoId success:(void (^)(BOOL updated))success failure:(void (^)(NSError *error))failure;
 
 #pragma XMPP Server
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success;

@@ -43,14 +43,18 @@
         theUser.charmValue = [charmValue intValue];
         
         NSMutableArray *photosUrlArray = [[NSMutableArray alloc]init];
+        NSMutableArray *photosIdArray  = [[NSMutableArray alloc]init];
         NSArray *photosArray = [json objectForKey:@"userPic"];
         for (int i = 0; i < [photosArray count]; i++) {
             NSDictionary *photoDic = [photosArray objectAtIndex:i];
             NSString *imgUrl = [photoDic objectForKey:@"pic"];
+            NSString *imgId = [photoDic objectForKey:@"pic_id"];
             [photosUrlArray addObject:imgUrl];
+            [photosIdArray addObject:imgId];
         }
         
         theUser.photosArray = photosUrlArray;
+        theUser.photosIdArray = photosIdArray;
         successed(theUser);
     }else{
         failed(nil);

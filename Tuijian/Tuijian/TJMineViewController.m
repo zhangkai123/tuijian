@@ -85,7 +85,7 @@
     [self.view addSubview:theTableView];
     
     theUser = [[TJDataController sharedDataController]getMyUserInfo];
-    [theUser.photosArray addObject:theUser.profile_image_url];
+//    [theUser.photosArray addObject:theUser.profile_image_url];
     NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
     [[TJDataController sharedDataController]getUserInformationFromServer:myUserId success:^(TJUser *user){
         
@@ -361,6 +361,11 @@
         }
     }else{
         if (buttonIndex == 0) {
+            NSString *photoId = [theUser.photosIdArray objectAtIndex:deletingPhotoIndex];
+            [[TJDataController sharedDataController]removePhotoWithId:photoId success:^(BOOL success){
+                
+            }failure:^(NSError *error){
+            }];
             [theUser.photosArray removeObjectAtIndex:deletingPhotoIndex];
             [theTableView reloadData];
         }else{

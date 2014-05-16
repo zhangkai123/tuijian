@@ -18,6 +18,7 @@
 
 @property(nonatomic,strong) NSString *mood;
 @property(nonatomic,strong) NSMutableArray *photosArray;
+@property(nonatomic,strong) NSMutableArray *photosIdArray;
 @property(nonatomic,assign) int heartNum;
 @property(nonatomic,assign) int charmValue;
 

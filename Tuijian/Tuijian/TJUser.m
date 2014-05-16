@@ -11,12 +11,13 @@
 @implementation TJUser
 @synthesize myUserId ,accessToken;
 @synthesize name = _name ,gender = _gender, profile_image_url = _profile_image_url;
-@synthesize mood ,photosArray ,heartNum ,charmValue;
+@synthesize mood ,photosArray ,photosIdArray ,heartNum ,charmValue;
 
 -(id)init
 {
     if (self = [super init]) {
         photosArray = [[NSMutableArray alloc]init];
+        photosIdArray = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -30,6 +31,7 @@
         self.profile_image_url = [json objectForKey:@"figureurl_qq_2"];
         
         photosArray = [[NSMutableArray alloc]init];
+        photosIdArray = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -42,6 +44,7 @@
         self.profile_image_url = [json objectForKey:@"avatar_large"];
         
         photosArray = [[NSMutableArray alloc]init];
+        photosIdArray = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -54,6 +57,7 @@
         self.profile_image_url = [dic objectForKey:TJ_USER_IMAGE_URL];
         
         photosArray = [[NSMutableArray alloc]init];
+        photosIdArray = [[NSMutableArray alloc]init];
     }
     return self;
 }
