@@ -97,6 +97,8 @@
 		4B57DA2919011B76006F0355 /* addPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B57DA2819011B76006F0355 /* addPhoto.png */; };
 		4B57DA3019011FDF006F0355 /* TJTouchablePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA2F19011FDF006F0355 /* TJTouchablePhotoView.m */; };
 		4B57DA3919012992006F0355 /* TJRecentViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B57DA3819012992006F0355 /* TJRecentViewerViewController.m */; };
+		4B67AF0F1925A9FE006A699C /* TJPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B67AF0E1925A9FE006A699C /* TJPhotosViewController.m */; };
+		4B67AF121925B58A006A699C /* TJBigPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B67AF111925B58A006A699C /* TJBigPhotoCell.m */; };
 		4B6A862A18F3E15F00E27AAE /* message.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A862918F3E15F00E27AAE /* message.sqlite */; };
 		4B6BD7B918FBA7DA0059C46E /* libMobClickLibrary_armv6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */; };
 		4B6BD7BA18FBA7DA0059C46E /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */; };
@@ -515,6 +517,10 @@
 		4B57DA2F19011FDF006F0355 /* TJTouchablePhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJTouchablePhotoView.m; sourceTree = "<group>"; };
 		4B57DA3719012992006F0355 /* TJRecentViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJRecentViewerViewController.h; sourceTree = "<group>"; };
 		4B57DA3819012992006F0355 /* TJRecentViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJRecentViewerViewController.m; sourceTree = "<group>"; };
+		4B67AF0D1925A9FE006A699C /* TJPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJPhotosViewController.h; sourceTree = "<group>"; };
+		4B67AF0E1925A9FE006A699C /* TJPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJPhotosViewController.m; sourceTree = "<group>"; };
+		4B67AF101925B58A006A699C /* TJBigPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJBigPhotoCell.h; sourceTree = "<group>"; };
+		4B67AF111925B58A006A699C /* TJBigPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJBigPhotoCell.m; sourceTree = "<group>"; };
 		4B6A862918F3E15F00E27AAE /* message.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = message.sqlite; sourceTree = "<group>"; };
 		4B6BD7B618FBA7DA0059C46E /* libMobClickLibrary_armv6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_armv6.a; sourceTree = "<group>"; };
 		4B6BD7B718FBA7DA0059C46E /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -1098,6 +1104,8 @@
 				4BDACC1E1906183700FD91C3 /* TJChatCell.m */,
 				4B0DE0E01920903A005F5C7C /* TJHiMessageCell.h */,
 				4B0DE0E11920903A005F5C7C /* TJHiMessageCell.m */,
+				4B67AF101925B58A006A699C /* TJBigPhotoCell.h */,
+				4B67AF111925B58A006A699C /* TJBigPhotoCell.m */,
 			);
 			name = CellView;
 			sourceTree = "<group>";
@@ -1420,6 +1428,8 @@
 				4B57DA3819012992006F0355 /* TJRecentViewerViewController.m */,
 				4BF4BBF9190E334D003C85BD /* TJPersonalSignViewController.h */,
 				4BF4BBFA190E334D003C85BD /* TJPersonalSignViewController.m */,
+				4B67AF0D1925A9FE006A699C /* TJPhotosViewController.h */,
+				4B67AF0E1925A9FE006A699C /* TJPhotosViewController.m */,
 			);
 			name = Mine;
 			sourceTree = "<group>";
@@ -2956,6 +2966,7 @@
 				4BC7D07E18B394690055D40B /* AVCamPreviewView.m in Sources */,
 				4BFB64CF18C07AEC00C304BB /* TJMineViewController.m in Sources */,
 				4B47A38E18D179B800087BE4 /* MKAnnotationView+WebCache.m in Sources */,
+				4B67AF121925B58A006A699C /* TJBigPhotoCell.m in Sources */,
 				4B57DA251901007A006F0355 /* TJMyRecommendCell.m in Sources */,
 				4BEE41D41918C02900EC8EDB /* DBCameraManager.m in Sources */,
 				4B9C40FD18D984AF00B9F8E5 /* XMPPResultSet.m in Sources */,
@@ -3003,6 +3014,7 @@
 				4BE911BF18DBE12400F4C3B1 /* TJMemoryCache.m in Sources */,
 				4B9C40DB18D984AF00B9F8E5 /* XMPPIQ+JabberRPC.m in Sources */,
 				4BDACC191906018F00FD91C3 /* TJUserPhotoCell.m in Sources */,
+				4B67AF0F1925A9FE006A699C /* TJPhotosViewController.m in Sources */,
 				4B47A36B18D1477400087BE4 /* TJItem.m in Sources */,
 				4B47A38F18D179B800087BE4 /* NSData+ImageContentType.m in Sources */,
 				4B569CCC18CEBA0D000DF219 /* AFJSONRequestOperation.m in Sources */,

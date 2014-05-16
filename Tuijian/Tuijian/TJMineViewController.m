@@ -19,6 +19,8 @@
 
 #import "TJInfoEditViewController.h"
 #import "TJPersonalSignViewController.h"
+#import "TJTouchablePhotoView.h"
+#import "TJPhotosViewController.h"
 
 @interface TJMineViewController ()<UITableViewDataSource,UITableViewDelegate,TJMySignCellDelegate,TJMyPhotoCellDelegate,UIActionSheetDelegate,TJPersonalSignViewControllerDelegate>
 {
@@ -26,6 +28,10 @@
     TJUser *theUser;
     
     MBProgressHUD *uploadHud;
+    
+    UIView *photosCoverView;
+    UIView *smallImageCoverView;
+    CGRect smallImageFrame;
 }
 @property(nonatomic,strong) TJUser *theUser;
 @end
@@ -232,7 +238,51 @@
 #pragma TJMyPhotoCellDelegate
 -(void)selectPhotoWithIndex:(int)photoIndex
 {
+    NSIndexPath *theIndexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+    TJMyPhotoCell *photosCell = (TJMyPhotoCell *)[theTableView cellForRowAtIndexPath:theIndexPath];
+    TJTouchablePhotoView *thePhotoView = (TJTouchablePhotoView *)[photosCell viewWithTag:1000 + photoIndex];
     
+    CGRect photoViewRect = [self getThePhotoImageViewRectAtIndex:photoIndex];
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    photosCoverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, screenRect.size.height)];
+    photosCoverView.backgroundColor = [UIColor blackColor];
+    
+    UIImageView *bigImageView = [[UIImageView alloc]initWithFrame:CGRectMake(photoViewRect.origin.x, photoViewRect.origin.y + 64, 70, 70)];
+    bigImageView.image = thePhotoView.image;
+    bigImageView.tag = 1000;
+    [photosCoverView addSubview:bigImageView];
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    [keyWindow addSubview:photosCoverView];
+    
+    float scaleValue = 320.0/70.0;
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:(void (^)(void)) ^{
+                         bigImageView.transform=CGAffineTransformMakeScale(scaleValue, scaleValue);
+                         bigImageView.center = keyWindow.center;
+                     }
+                     completion:^(BOOL finished){
+                         [photosCoverView removeFromSuperview];
+                         TJPhotosViewController *photosViewController = [[TJPhotosViewController alloc]init];
+                         photosViewController.imageArray = theUser.photosArray;
+                         photosViewController.placeHolderImageArray = [self getTheSmallPhotos];
+                         photosViewController.beginningIndex = photoIndex;
+                         [self presentViewController:photosViewController animated:NO completion:nil];
+                     }];
+}
+-(NSMutableArray *)getTheSmallPhotos
+{
+    NSIndexPath *theIndexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+    TJMyPhotoCell *photosCell = (TJMyPhotoCell *)[theTableView cellForRowAtIndexPath:theIndexPath];
+    NSMutableArray *smallPhotosArray = [[NSMutableArray alloc]init];
+    for (int i = 0; i < [theUser.photosArray count]; i++) {
+        
+        TJTouchablePhotoView *thePhotoView = (TJTouchablePhotoView *)[photosCell viewWithTag:1000 + i];
+        [smallPhotosArray addObject:thePhotoView.image];
+    }
+    return smallPhotosArray;
 }
 -(void)showPhotoActionSheet
 {
@@ -365,6 +415,16 @@
     CGPoint uploadImageViewPosition = CGPointMake(8 + row*(70 + 8) + 35, 8 + colume*(70 + 8) + photoCellRect.origin.y + 35);
     return uploadImageViewPosition;
 }
+-(CGRect)getThePhotoImageViewRectAtIndex:(int)photoIndex
+{
+    NSIndexPath *photoCellIndex = [NSIndexPath indexPathForRow:0 inSection:2];
+    CGRect photoCellRect = [theTableView rectForRowAtIndexPath:photoCellIndex];
+    int colume = photoIndex/4;
+    int row = photoIndex%4;
+    CGRect theRect = CGRectMake(8 + row*(70 + 8), 8 + colume*(70 + 8) + photoCellRect.origin.y,70,70);
+    return theRect;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

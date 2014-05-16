@@ -18,14 +18,14 @@
         // Initialization code
         self.backgroundColor = UIColorFromRGB(0x242424);
          
-        UIImageView *likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 12, 16, 16)];
+        UIImageView *likeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(120, 12, 16, 16)];
         likeImageView.image = [UIImage imageNamed:@"likeNum.png"];
         [self addSubview:likeImageView];
         
-        likeNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 10, 35, 20)];
+        likeNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(140, 10, 35, 20)];
         [likeNumLabel setFont:[UIFont systemFontOfSize:11]];
         [likeNumLabel setTextColor:[UIColor whiteColor]];
-        likeNumLabel.text = @"10000";
+//        likeNumLabel.text = @"10000";
         [self addSubview:likeNumLabel];
         
         UILabel *charmLabel = [[UILabel alloc]initWithFrame:CGRectMake(180, 10, 30, 20)];
