@@ -26,4 +26,6 @@
 -(NSDictionary *)getUserInfoFromDisk;
 //-(void)saveCurrentEditCourse:(NSDictionary *)dic;
 //-(NSDictionary *)getCurrentEditCourse;
+-(void)saveBlackList:(NSMutableArray *)blackListArray;
+-(NSArray *)getBlackList;
 @end

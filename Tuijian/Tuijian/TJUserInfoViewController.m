@@ -21,7 +21,7 @@
 #import "TJTouchablePhotoView.h"
 #import "TJPhotosViewController.h"
 
-@interface TJUserInfoViewController ()<UITableViewDataSource,UITableViewDelegate,TJChatCellDelegate,TJUserPhotoCellDelegate,TJPhotosViewControllerDelegate>
+@interface TJUserInfoViewController ()<UITableViewDataSource,UITableViewDelegate,TJChatCellDelegate,TJUserPhotoCellDelegate,TJPhotosViewControllerDelegate,UIActionSheetDelegate>
 {
     TJUser *theUser;
     UITableView *theTableView;
@@ -43,8 +43,41 @@
 {
     if (self = [super init]) {
         self.title = @"用户信息";
+        UIButton *reportButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+        [reportButton setImage:[UIImage imageNamed:@"share.png"] forState:UIControlStateNormal];
+        [reportButton addTarget:self action:@selector(report) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *reportButtonItem = [[UIBarButtonItem alloc] initWithCustomView:reportButton];
+        self.navigationItem.rightBarButtonItem = reportButtonItem;
     }
     return self;
+}
+-(void)report
+{
+    NSString *blackList = nil;
+    if ([[TJDataController sharedDataController]checkIfUserInBlackList:self.uid]) {
+        blackList = @"从黑名单中移除";
+    }else{
+        blackList = @"加入黑名单";
+    }
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:self
+                                  cancelButtonTitle:@"取消"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"举报",blackList,nil];
+    [actionSheet showInView:self.view];
+}
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        
+    }else if(buttonIndex == 1){
+        if ([[TJDataController sharedDataController]checkIfUserInBlackList:self.uid]) {
+            [[TJDataController sharedDataController]removeUserFromLocalBlackList:self.uid];
+        }else{
+            [[TJDataController sharedDataController]addUserToLocalBlackList:self.uid];
+        }
+    }
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

@@ -76,7 +76,33 @@
         failure(error);
     }];
 }
-
+-(BOOL)checkIfUserInBlackList:(NSString *)userId
+{
+    NSArray *blackListArray = [[TJDiskCacheManager sharedDiskCacheManager]getBlackList];
+    return [blackListArray containsObject:userId];
+}
+-(void)addUserToLocalBlackList:(NSString *)userId
+{
+    NSArray *blackListArray = [[TJDiskCacheManager sharedDiskCacheManager]getBlackList];
+    NSMutableArray *newBlackListArray = nil;
+    if (blackListArray == nil) {
+        newBlackListArray = [[NSMutableArray alloc]init];
+        [newBlackListArray addObject:userId];
+    }else{
+        newBlackListArray = [NSMutableArray arrayWithArray:blackListArray];
+        [newBlackListArray addObject:userId];
+    }
+    [[TJDiskCacheManager sharedDiskCacheManager]saveBlackList:newBlackListArray];
+}
+-(void)removeUserFromLocalBlackList:(NSString *)userId
+{
+    NSArray *blackListArray = [[TJDiskCacheManager sharedDiskCacheManager]getBlackList];
+    NSMutableArray *newBlackListArray = [NSMutableArray arrayWithArray:blackListArray];
+    if ([newBlackListArray containsObject:userId]) {
+         [newBlackListArray removeObject:userId];
+    }
+    [[TJDiskCacheManager sharedDiskCacheManager]saveBlackList:newBlackListArray];
+}
 -(void)getMyUserToken:(TJUser *)theUser userCate:(NSString *)uCate myUserToken:(void (^)(NSString *userToken))myUserToken failure:(void (^)(NSError *error))failure
 {
     NSString *thirdPartAccessToken = nil;
@@ -438,8 +464,11 @@
         id message = notification.object;
         __block id weakMessage = message;
         [TJParser parseMessage:message parsedMessage:^(TJMessage *mes){
+            NSString *fromUserId = [TJParser getMessageFromUserId:weakMessage];
+            if ([self checkIfUserInBlackList:fromUserId]) {
+                return;
+            }
             if ([mes.messageContentType isEqualToString:@"like"]) {
-                NSString *fromUserId = [TJParser getMessageFromUserId:weakMessage];
                 NSString *itemId = [TJParser getMessageItemId:weakMessage];
                 if ([self checkIfUserLikedInItemMessages:fromUserId theItemId:itemId]) {
                     return;

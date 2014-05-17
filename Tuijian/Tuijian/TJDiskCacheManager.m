@@ -94,5 +94,16 @@
     NSDictionary *userInfo = [userDefaults objectForKey:TJ_USER_INFO];
     return userInfo;
 }
-
+-(void)saveBlackList:(NSMutableArray *)blackListArray
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:blackListArray forKey:TJ_BLACK_LIST];
+    [userDefaults synchronize];
+}
+-(NSArray *)getBlackList
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray *userBlackList = [userDefaults objectForKey:TJ_BLACK_LIST];
+    return userBlackList;
+}
 @end

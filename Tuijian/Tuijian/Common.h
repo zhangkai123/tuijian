@@ -43,6 +43,8 @@
 #define TJ_USER_GENDER @"user_gender"
 #define TJ_USER_IMAGE_URL @"user_image_url"
 
+#define TJ_BLACK_LIST @"black_list"
+
 //notifications
 #define TJ_UPLOADING_ITEM_NOTIFICATION @"uploading_item_notification"
 #define TJ_UPLOADING_ITEM_SUCCESS @"uploading_item_success"

@@ -34,6 +34,9 @@
 -(void)getSinaUserInfo:(void(^)(TJUser *sinaUser))sinaUserInfo failure:(void (^)(NSError *error))failure;
 -(void)saveTencentLoginInfo:(TencentOAuth *)tencentOAuth;
 -(void)getTencentUserInfo:(void(^)(TJUser *tencentUser))tencentUserInfo failure:(void (^)(NSError *error))failure;
+-(BOOL)checkIfUserInBlackList:(NSString *)userId;
+-(void)addUserToLocalBlackList:(NSString *)userId;
+-(void)removeUserFromLocalBlackList:(NSString *)userId;
 -(void)getMyUserToken:(TJUser *)theUser userCate:(NSString *)uCate myUserToken:(void (^)(NSString *userToken))myUserToken failure:(void (^)(NSError *error))failure;
 -(TJUser *)getMyUserInfo;
 
