@@ -32,19 +32,24 @@
     chatCellStatus = theStatus;
     
     if (chatCellStatus == TJChatCellStatusSayHi) {
+        messageButton.hidden = NO;
         [messageButton setTitle:@"传纸条" forState:UIControlStateNormal];
         [messageButton addTarget:self action:@selector(sendHi) forControlEvents:UIControlEventTouchUpInside];
         messageButton.backgroundColor = UIColorFromRGB(0x3399CC);
         messageButton.enabled = YES;
     }else if(chatCellStatus == TJChatCellStatusAccept){
+        messageButton.hidden = NO;
         [messageButton setTitle:@"接受" forState:UIControlStateNormal];
         [messageButton addTarget:self action:@selector(acceptChat) forControlEvents:UIControlEventTouchUpInside];
         messageButton.backgroundColor = UIColorFromRGB(0x3399CC);
         messageButton.enabled = YES;
     }else if(chatCellStatus == TJChatCellStatusHaveAccepted){
+        messageButton.hidden = NO;
         [messageButton setTitle:@"已接受" forState:UIControlStateNormal];
         messageButton.backgroundColor = [UIColor lightGrayColor];
         messageButton.enabled = NO;
+    }else if(chatCellStatus == TJChatCellStatusIsChatting){
+        messageButton.hidden = YES;
     }
 }
 -(void)acceptChat

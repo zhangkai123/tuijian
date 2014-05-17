@@ -238,14 +238,16 @@
 #pragma MessageCellDelegate
 -(void)goToUserInfoPage:(MessageType)messageType
 {
-//    UIViewController *rootViewController = [self getTheNavigationRootViewController];
-//    rootViewController.hidesBottomBarWhenPushed = YES;
-//    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
-//    userInfoViewController.userImageUrl = theItem.userImg;
-//    userInfoViewController.userName = self.title;
-//    userInfoViewController.userGender = theItem.userGender;
-//    userInfoViewController.uid = theItem.uid;
-//    [self.navigationController pushViewController:userInfoViewController animated:YES];
+    self.hidesBottomBarWhenPushed = YES;
+    TJUserInfoViewController *userInfoViewController = [[TJUserInfoViewController alloc]init];
+    if (messageType == MessageTypeOther) {
+        userInfoViewController.uid = self.chatToUserId;
+    }else{
+        NSString *myUserId = [[TJDataController sharedDataController]getMyUserId];
+        userInfoViewController.uid = myUserId;
+    }
+    userInfoViewController.chatCellStatus = TJChatCellStatusIsChatting;
+    [self.navigationController pushViewController:userInfoViewController animated:YES];
 }
 #pragma mark - 键盘处理
 #pragma mark 键盘即将显示

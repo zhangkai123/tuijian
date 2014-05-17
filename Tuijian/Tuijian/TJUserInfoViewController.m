@@ -73,12 +73,7 @@
     theUser.profile_image_url = self.userImageUrl;
     theUser.gender = self.userGender;
 //    [theUser.photosArray addObject:self.userImageUrl];
-    
-    if (([theUser.gender intValue] == 1) || [theUser.gender isEqualToString:@"男"] || [theUser.gender isEqualToString:@"m"]){
-        isMan = YES;
-    }else{
-        isMan = NO;
-    }
+    [self checkTheGender];
     
     [[TJDataController sharedDataController]getUserInformationFromServer:self.uid success:^(TJUser *user){
         
@@ -87,11 +82,20 @@
                                                           options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                                        attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
         moodTextLabelHeight = expectedLabelRect.size.height;
+        [self checkTheGender];
         [theTableView reloadData];
         
     }failure:^(NSError *error){
         
     }];
+}
+-(void)checkTheGender
+{
+    if (([theUser.gender intValue] == 1) || [theUser.gender isEqualToString:@"男"] || [theUser.gender isEqualToString:@"m"]){
+        isMan = YES;
+    }else{
+        isMan = NO;
+    }
 }
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

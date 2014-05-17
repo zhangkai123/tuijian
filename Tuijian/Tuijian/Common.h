@@ -87,6 +87,7 @@ typedef enum {
     TJChatCellStatusSayHi          = 0,
     TJChatCellStatusAccept     = 1,
     TJChatCellStatusHaveAccepted = 2,
+    TJChatCellStatusIsChatting = 3,
 } TJChatCellStatus;
 
 #endif
