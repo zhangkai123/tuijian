@@ -33,6 +33,7 @@
 		4B31B77E18D8164000F87D71 /* TJLikeUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B77D18D8164000F87D71 /* TJLikeUserCell.m */; };
 		4B31B78118D825BB00F87D71 /* TJCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31B78018D825BB00F87D71 /* TJCommentCell.m */; };
 		4B3B98DD192756BD00240E97 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B3B98DC192756BD00240E97 /* share.png */; };
+		4B3B98E01927665B00240E97 /* TJReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B98DF1927665B00240E97 /* TJReportViewController.m */; };
 		4B3E46121921BF20004E19A0 /* TJPaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3E46111921BF20004E19A0 /* TJPaperViewController.m */; };
 		4B47A36818D1462500087BE4 /* TJItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B47A36718D1462500087BE4 /* TJItemCell.m */; };
 		4B47A36B18D1477400087BE4 /* TJItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B47A36A18D1477400087BE4 /* TJItem.m */; };
@@ -410,6 +411,8 @@
 		4B31B77F18D825BB00F87D71 /* TJCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCommentCell.h; sourceTree = "<group>"; };
 		4B31B78018D825BB00F87D71 /* TJCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCommentCell.m; sourceTree = "<group>"; };
 		4B3B98DC192756BD00240E97 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		4B3B98DE1927665B00240E97 /* TJReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJReportViewController.h; sourceTree = "<group>"; };
+		4B3B98DF1927665B00240E97 /* TJReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJReportViewController.m; sourceTree = "<group>"; };
 		4B3E46101921BF20004E19A0 /* TJPaperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJPaperViewController.h; sourceTree = "<group>"; };
 		4B3E46111921BF20004E19A0 /* TJPaperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJPaperViewController.m; sourceTree = "<group>"; };
 		4B47A36618D1462500087BE4 /* TJItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJItemCell.h; sourceTree = "<group>"; };
@@ -2565,6 +2568,8 @@
 				4B57DA2F19011FDF006F0355 /* TJTouchablePhotoView.m */,
 				4B20FD2B19162DFA0049E13F /* TJWatermarkLabel.h */,
 				4B20FD2C19162DFA0049E13F /* TJWatermarkLabel.m */,
+				4B3B98DE1927665B00240E97 /* TJReportViewController.h */,
+				4B3B98DF1927665B00240E97 /* TJReportViewController.m */,
 				4BFA99A018AFA19200D673CB /* Images.xcassets */,
 				4BFA999518AFA19200D673CB /* Supporting Files */,
 			);
@@ -2894,6 +2899,7 @@
 				4B569CC918CEBA0D000DF219 /* AFHTTPClient.m in Sources */,
 				4B9C40D618D984AF00B9F8E5 /* XMPPResourceMemoryStorageObject.m in Sources */,
 				4B9C410B18D984AF00B9F8E5 /* XMPPCapsCoreDataStorageObject.m in Sources */,
+				4B3B98E01927665B00240E97 /* TJReportViewController.m in Sources */,
 				4B9C412E18D984AF00B9F8E5 /* DDASLLogger.m in Sources */,
 				4B9C411618D984AF00B9F8E5 /* XMPPMessage+XEP_0184.m in Sources */,
 				4B9C40C818D984AF00B9F8E5 /* XMPPModule.m in Sources */,

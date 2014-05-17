@@ -20,6 +20,7 @@
 #import "TJAppDelegate.h"
 #import "TJTouchablePhotoView.h"
 #import "TJPhotosViewController.h"
+#import "TJReportViewController.h"
 
 @interface TJUserInfoViewController ()<UITableViewDataSource,UITableViewDelegate,TJChatCellDelegate,TJUserPhotoCellDelegate,TJPhotosViewControllerDelegate,UIActionSheetDelegate>
 {
@@ -70,7 +71,9 @@
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        
+        TJReportViewController *reportViewController = [[TJReportViewController alloc]init];
+        UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:reportViewController];
+        [self presentViewController:navigationController animated:YES completion:nil];
     }else if(buttonIndex == 1){
         if ([[TJDataController sharedDataController]checkIfUserInBlackList:self.uid]) {
             [[TJDataController sharedDataController]removeUserFromLocalBlackList:self.uid];
