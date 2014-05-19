@@ -47,13 +47,13 @@
     if (self = [super init]) {
         self.title = @"我的";
         
-        UIButton *logoutButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 36)];
-        [[logoutButton titleLabel]setFont:[UIFont systemFontOfSize:16]];
-        [logoutButton setTitle:@"登出" forState:UIControlStateNormal];
-        [logoutButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *logoutButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logoutButton];
-        self.navigationItem.leftBarButtonItem = logoutButtonItem;
+//        UIButton *logoutButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 36)];
+//        [[logoutButton titleLabel]setFont:[UIFont systemFontOfSize:16]];
+//        [logoutButton setTitle:@"登出" forState:UIControlStateNormal];
+//        [logoutButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//        [logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+//        UIBarButtonItem *logoutButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logoutButton];
+//        self.navigationItem.leftBarButtonItem = logoutButtonItem;
     }
     return self;
 }
