@@ -78,13 +78,13 @@
         lblTitle.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
         [titleView addSubview:lblTitle];
         
-        pageControl = [[UIPageControl alloc] init];
-        pageControl.frame = CGRectMake(0,30,160,10);
-        pageControl.pageIndicatorTintColor = UIColorFromRGB(0xA0BFFB);
-        pageControl.currentPageIndicatorTintColor = UIColorFromRGB(0xF29A0B);
-        pageControl.numberOfPages = 2;
-        pageControl.currentPage = 0;
-        [titleView addSubview:pageControl];
+//        pageControl = [[UIPageControl alloc] init];
+//        pageControl.frame = CGRectMake(0,30,160,10);
+//        pageControl.pageIndicatorTintColor = UIColorFromRGB(0xA0BFFB);
+//        pageControl.currentPageIndicatorTintColor = UIColorFromRGB(0xF29A0B);
+//        pageControl.numberOfPages = 2;
+//        pageControl.currentPage = 0;
+//        [titleView addSubview:pageControl];
     }
     return self;
 }
@@ -117,10 +117,10 @@
     // Do any additional setup after loading the view.
     // kick things off by making the first page
     TJShowViewController *pageZero = [TJShowViewController showViewControllerForPageIndex:0];
-    TJShowViewController *pageOne = [TJShowViewController showViewControllerForPageIndex:1];
+//    TJShowViewController *pageOne = [TJShowViewController showViewControllerForPageIndex:1];
     controllersArray = [[NSMutableArray alloc]init];
     [controllersArray addObject:pageZero];
-    [controllersArray addObject:pageOne];
+//    [controllersArray addObject:pageOne];
     if (pageZero != nil)
     {
         // assign the first page to the pageViewController (our rootViewController)
@@ -189,10 +189,11 @@
     currentIndex = index;
     if(currentIndex == 0){
         lblTitle.text = @"动态";
-    }else if(currentIndex == 1){
-        lblTitle.text = @"关注";
     }
-    pageControl.currentPage = currentIndex;
+//    else if(currentIndex == 1){
+//        lblTitle.text = @"关注";
+//    }
+//    pageControl.currentPage = currentIndex;
 }
 -(void)uploadingItem
 {
@@ -212,8 +213,8 @@
 -(void)showUploadingActivityOnStatusbar
 {
     MTStatusBarOverlay *overlay = [MTStatusBarOverlay sharedInstance];
-    overlay.animation = MTStatusBarOverlayAnimationFallDown;
-    overlay.detailViewMode = MTDetailViewModeDetailText;
+    overlay.animation = MTStatusBarOverlayAnimationNone;
+//    overlay.detailViewMode = MTDetailViewModeDetailText;
     overlay.delegate = self;
     [overlay postMessage:@"正在发布您的美食…"];
 }

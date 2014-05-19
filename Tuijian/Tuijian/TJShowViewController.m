@@ -12,6 +12,7 @@
 #import "TJCommentViewController.h"
 #import "TJUserInfoViewController.h"
 #import "UIImage+additions.h"
+#import "SVPullToRefresh.h"
 
 @interface TJShowViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -26,7 +27,10 @@
     UIView *coverView;
     UIView *smallImageCoverView;
     CGRect smallImageFrame;
+    
+    int lastItemId;
 }
+//@property(nonatomic,strong) NSString *lastItemId;
 @end
 
 @implementation TJShowViewController
@@ -92,6 +96,14 @@
     [refreshControl addTarget:self action:@selector(refreshTableViewData) forControlEvents:UIControlEventValueChanged];
     [itemTableView addSubview:refreshControl];
     
+//    TJItem *lastItem = [itemsArray lastObject];
+    __block int *weakLastItemId = &lastItemId;
+    __block id weakSelf = self;
+    [itemTableView addInfiniteScrollingWithActionHandler:^{
+        int itemId = *weakLastItemId;
+        [weakSelf featchItemData:[NSString stringWithFormat:@"%d",itemId]];
+    }];
+    
     itemsArray = [[NSMutableArray alloc]init];
     textHeightArray = [[NSMutableArray alloc]init];
     if ([[TJDataController sharedDataController]getUserLoginMask]) {
@@ -110,6 +122,10 @@
 }
 -(void)refreshTableViewData
 {
+    [self featchItemData:@"0"];
+}
+-(void)featchItemData:(NSString *)theItemId
+{
     __weak UITableView *weaktheTalbleView = itemTableView;
     __block NSMutableArray *weakItemsArray = itemsArray;
     __block NSMutableArray *weakTextHeightArray = textHeightArray;
@@ -123,14 +139,19 @@
     }else if(_pageIndex == 3){
         category = @"玩乐";
     }
-    [[TJDataController sharedDataController]getItems:category success:^(NSArray *iteArray){
+    [[TJDataController sharedDataController]getItems:category itemId:theItemId success:^(NSArray *iteArray){
         if ([iteArray count] == 0) {
             [activityIndicator stopAnimating];
             [refreshControl endRefreshing];
+            [itemTableView.infiniteScrollingView stopAnimating];
             return;
         }
-        [weakTextHeightArray removeAllObjects];
-        [weakItemsArray removeAllObjects];
+        TJItem *lastItem = [iteArray lastObject];
+        lastItemId = [lastItem.itemId intValue];
+        if ([theItemId intValue] == 0) {
+            [weakTextHeightArray removeAllObjects];
+            [weakItemsArray removeAllObjects];
+        }
         for (int i = 0; i < [iteArray count]; i++) {
             TJItem *item = [iteArray objectAtIndex:i];
             NSString *recommendTex = item.recommendReason;
@@ -149,9 +170,11 @@
         }
         [refreshControl endRefreshing];
         [activityIndicator stopAnimating];
+        [itemTableView.infiniteScrollingView stopAnimating];
     }failure:^(NSError *error){
         [refreshControl endRefreshing];
         [activityIndicator stopAnimating];
+        [itemTableView.infiniteScrollingView stopAnimating];
     }];
 }
 

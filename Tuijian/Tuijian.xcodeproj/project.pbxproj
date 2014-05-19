@@ -325,6 +325,7 @@
 		4BEFE99B18E3DA0800E2B6A3 /* TJTouchableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99A18E3DA0800E2B6A3 /* TJTouchableImageView.m */; };
 		4BEFE99E18E3E94600E2B6A3 /* TJUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99D18E3E94600E2B6A3 /* TJUserInfoViewController.m */; };
 		4BEFEAEF1929B53500D55E07 /* halfDiamond.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BEFEAEE1929B53500D55E07 /* halfDiamond.png */; };
+		4BEFEAF31929EE8E00D55E07 /* SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFEAF21929EE8E00D55E07 /* SVPullToRefresh.m */; };
 		4BF41A2318D299B6004E9A38 /* TJCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */; };
 		4BF41A2718D2E17A004E9A38 /* write.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF41A2618D2E17A004E9A38 /* write.png */; };
 		4BF4BBE6190DEAF9003C85BD /* TJInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4BBE5190DEAF9003C85BD /* TJInfoEditViewController.m */; };
@@ -946,6 +947,8 @@
 		4BEFE99C18E3E94600E2B6A3 /* TJUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJUserInfoViewController.h; sourceTree = "<group>"; };
 		4BEFE99D18E3E94600E2B6A3 /* TJUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJUserInfoViewController.m; sourceTree = "<group>"; };
 		4BEFEAEE1929B53500D55E07 /* halfDiamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = halfDiamond.png; sourceTree = "<group>"; };
+		4BEFEAF11929EE8E00D55E07 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		4BEFEAF21929EE8E00D55E07 /* SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPullToRefresh.m; sourceTree = "<group>"; };
 		4BF41A2118D299B6004E9A38 /* TJCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCommentViewController.h; sourceTree = "<group>"; };
 		4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCommentViewController.m; sourceTree = "<group>"; };
 		4BF41A2618D2E17A004E9A38 /* write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = write.png; sourceTree = "<group>"; };
@@ -1279,6 +1282,7 @@
 		4B569CB418CEB9D5000DF219 /* ThirdPartyLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				4BEFEAF01929EE7D00D55E07 /* SVPullToRefresh */,
 				4BEE418919186BF300EC8EDB /* FXBlurView */,
 				4B6BD7B518FBA7CD0059C46E /* UMAnalytics */,
 				4B82B07E18F7F17100920EC2 /* MBProgressHUD */,
@@ -2480,6 +2484,15 @@
 			name = UserInformation;
 			sourceTree = "<group>";
 		};
+		4BEFEAF01929EE7D00D55E07 /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				4BEFEAF11929EE8E00D55E07 /* SVPullToRefresh.h */,
+				4BEFEAF21929EE8E00D55E07 /* SVPullToRefresh.m */,
+			);
+			name = SVPullToRefresh;
+			sourceTree = "<group>";
+		};
 		4BF4BBF2190E19AC003C85BD /* InformationEdit */ = {
 			isa = PBXGroup;
 			children = (
@@ -2937,6 +2950,7 @@
 				4B9C411518D984AF00B9F8E5 /* XMPPPresence+XEP_0172.m in Sources */,
 				4B9C411F18D984AF00B9F8E5 /* XMPPAttentionModule.m in Sources */,
 				4B47A39518D179B800087BE4 /* SDWebImageManager.m in Sources */,
+				4BEFEAF31929EE8E00D55E07 /* SVPullToRefresh.m in Sources */,
 				4B9C412A18D984AF00B9F8E5 /* XMPPSRVResolver.m in Sources */,
 				4B14F38518FE20290063C89E /* TJAcceptViewController.m in Sources */,
 				4B9C40FC18D984AF00B9F8E5 /* NSXMLElement+XEP_0059.m in Sources */,

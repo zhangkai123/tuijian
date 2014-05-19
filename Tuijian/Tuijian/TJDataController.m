@@ -177,11 +177,11 @@
         failure(error);
     }];
 }
--(void)getItems:(NSString *)category success:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure
+-(void)getItems:(NSString *)category itemId:(NSString *)theItemId success:(void (^)(NSArray *itemsArray))success failure:(void (^)(NSError *error))failure
 {
     NSString *myAccessToken = [self getMyUserToken];
     NSString *myUserId = [self getMyUserId];
-    [[TJNetworkManager sharedNetworkManager]sendFeatchItemsRequest:myAccessToken uid:myUserId category:category success:^(id Json){
+    [[TJNetworkManager sharedNetworkManager]sendFeatchItemsRequest:myAccessToken uid:myUserId category:category itemId:theItemId success:^(id Json){
         
         NSArray *itemsArray = [TJParser parseItemsJsonData:Json];
         success(itemsArray);

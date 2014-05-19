@@ -151,11 +151,11 @@
     [operation start];
 }
 
--(void)sendFeatchItemsRequest:(NSString *)accessT uid:(NSString *)uid category:(NSString *)category success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+-(void)sendFeatchItemsRequest:(NSString *)accessT uid:(NSString *)uid category:(NSString *)category itemId:(NSString *)itemId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     TJMyServerClient *client = [TJMyServerClient sharedClient];
     NSString *path = @"GetPostItemsByItemTag";
-    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken",uid,@"uid",category,@"itemTag", nil];
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:accessT,@"accessToken",uid,@"uid",category,@"itemTag",itemId,@"itemid", nil];
     NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
     
     [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
