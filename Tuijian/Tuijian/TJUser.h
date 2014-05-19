@@ -21,6 +21,7 @@
 @property(nonatomic,strong) NSMutableArray *photosIdArray;
 @property(nonatomic,assign) int heartNum;
 @property(nonatomic,assign) int charmValue;
+@property(nonatomic,assign) int userStar;
 
 -(id)initWithTencentJsonData:(id)json;
 -(id)initWithSinaJsonData:(id)json;

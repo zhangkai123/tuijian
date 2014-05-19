@@ -324,6 +324,7 @@
 		4BEFE99718E3CA6B00E2B6A3 /* TJUserItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99618E3CA6B00E2B6A3 /* TJUserItemViewController.m */; };
 		4BEFE99B18E3DA0800E2B6A3 /* TJTouchableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99A18E3DA0800E2B6A3 /* TJTouchableImageView.m */; };
 		4BEFE99E18E3E94600E2B6A3 /* TJUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE99D18E3E94600E2B6A3 /* TJUserInfoViewController.m */; };
+		4BEFEAEF1929B53500D55E07 /* halfDiamond.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BEFEAEE1929B53500D55E07 /* halfDiamond.png */; };
 		4BF41A2318D299B6004E9A38 /* TJCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */; };
 		4BF41A2718D2E17A004E9A38 /* write.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF41A2618D2E17A004E9A38 /* write.png */; };
 		4BF4BBE6190DEAF9003C85BD /* TJInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4BBE5190DEAF9003C85BD /* TJInfoEditViewController.m */; };
@@ -944,6 +945,7 @@
 		4BEFE99A18E3DA0800E2B6A3 /* TJTouchableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJTouchableImageView.m; sourceTree = "<group>"; };
 		4BEFE99C18E3E94600E2B6A3 /* TJUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJUserInfoViewController.h; sourceTree = "<group>"; };
 		4BEFE99D18E3E94600E2B6A3 /* TJUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJUserInfoViewController.m; sourceTree = "<group>"; };
+		4BEFEAEE1929B53500D55E07 /* halfDiamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = halfDiamond.png; sourceTree = "<group>"; };
 		4BF41A2118D299B6004E9A38 /* TJCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJCommentViewController.h; sourceTree = "<group>"; };
 		4BF41A2218D299B6004E9A38 /* TJCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJCommentViewController.m; sourceTree = "<group>"; };
 		4BF41A2618D2E17A004E9A38 /* write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = write.png; sourceTree = "<group>"; };
@@ -2580,6 +2582,7 @@
 			isa = PBXGroup;
 			children = (
 				4B67AF131926005A006A699C /* delete.png */,
+				4BEFEAEE1929B53500D55E07 /* halfDiamond.png */,
 				4BDACC2D1906638200FD91C3 /* chat */,
 				4B57DA1C1900EE12006F0355 /* mine */,
 				4BB6C05B18F2462E00DB13C9 /* radioButton */,
@@ -2781,6 +2784,7 @@
 				4B57DA221900F38A006F0355 /* Diamond.png in Resources */,
 				4BDACC4E1906639000FD91C3 /* chatfrom_bg_normal.png in Resources */,
 				4B8B93A818E8F88900459AC2 /* star-outline@2x.png in Resources */,
+				4BEFEAEF1929B53500D55E07 /* halfDiamond.png in Resources */,
 				4BF41A2718D2E17A004E9A38 /* write.png in Resources */,
 				4B543FCF18B4F4EC0052DFDD /* CameraFlipIcon@2x.png in Resources */,
 				4B8B93A018E8F7FD00459AC2 /* user-outline.png in Resources */,

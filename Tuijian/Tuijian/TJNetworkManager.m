@@ -130,6 +130,27 @@
     }];
     [operation start];
 }
+-(void)reportUser:(UIImage *)reportPhoto userId:(NSString *)uid reportedId:(NSString *)reportedId reportText:(NSString *)reportText success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+{
+    TJMyServerClient *client = [TJMyServerClient sharedClient];
+    NSString *path = @"AddReport";
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:uid,@"uid",reportedId,@"id",reportText,@"txt", nil];
+    NSData *imgData = UIImagePNGRepresentation(reportPhoto);
+    NSMutableURLRequest *myRequest = [client multipartFormRequestWithMethod:@"POST" path:path
+                                                                 parameters:paraDic constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
+                                                                     [formData appendPartWithFileData:imgData name:@"uploadedfile" fileName:@"myDynamicFile.png" mimeType:@"images/png"];
+                                                                 }];
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:myRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        
+        success(JSON);
+    }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        failure(error);
+    }];
+    [operation start];
+}
+
 -(void)sendFeatchItemsRequest:(NSString *)accessT uid:(NSString *)uid category:(NSString *)category success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
 {
     TJMyServerClient *client = [TJMyServerClient sharedClient];

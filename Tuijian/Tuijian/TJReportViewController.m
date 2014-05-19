@@ -13,10 +13,13 @@
     UITextView *reportTextView;
     UILabel *placeHolderLabel;
     UIImageView *reportImageView;
+    
+    MBProgressHUD *hud;
 }
 @end
 
 @implementation TJReportViewController
+@synthesize reportedUserId;
 
 -(id)init
 {
@@ -25,6 +28,7 @@
         self.title = @"举报";
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelReport)];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"发送" style:UIBarButtonItemStyleDone target:self action:@selector(postReport)];
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     }
     return self;
 }
@@ -42,9 +46,23 @@
 }
 -(void)postReport
 {
-    
+    [self showProcessHUD];
+    [[TJDataController sharedDataController]reportUser:self.reportedUserId reportedPhoto:reportImageView.image reportText:reportTextView.text success:^(BOOL succeed){
+        hud.hidden = YES;
+        if (succeed) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }failure:^(NSError *error){
+        hud.hidden = YES;
+    }];
 }
-
+- (void)showProcessHUD {
+	
+	hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	hud.mode = MBProgressHUDModeIndeterminate;
+	hud.margin = 10.f;
+	hud.removeFromSuperViewOnHide = YES;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -97,6 +115,8 @@
     [picker dismissViewControllerAnimated:NO completion:NULL];
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     reportImageView.image = chosenImage;
+    
+    self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 #pragma text view delegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{

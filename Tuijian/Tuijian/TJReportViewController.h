@@ -10,4 +10,5 @@
 
 @interface TJReportViewController : UIViewController
 
+@property(nonatomic,strong) NSString *reportedUserId;
 @end

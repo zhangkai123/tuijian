@@ -343,6 +343,22 @@
         failure(nil);
     }];
 }
+-(void)reportUser:(NSString *)reportedId reportedPhoto:(UIImage *)reportedPhoto reportText:(NSString *)reportText success:(void (^)(BOOL succeed))success failure:(void (^)(NSError *error))failure
+{
+    NSString *myOwnUserId = [self getMyUserId];
+    [[TJNetworkManager sharedNetworkManager]reportUser:reportedPhoto userId:myOwnUserId reportedId:reportedId reportText:reportText success:^(id json){
+        
+        NSString *reportSuccess = [json objectForKey:@"status"];
+        if ([reportSuccess isEqualToString:@"success"]) {
+            success(YES);
+        }
+        else{
+            failure(nil);
+        }
+    }failure:^(NSError *error){
+        failure(error);
+    }];
+}
 #pragma XMPP Server
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success
 {

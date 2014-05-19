@@ -91,10 +91,46 @@
         
         [theUser.photosArray removeAllObjects];
         self.theUser = user;
+        self.theUser.userStar = [self computeUserStar:self.theUser.charmValue];
         [theTableView reloadData];
     }failure:^(NSError *error){
         
     }];
+}
+-(int)computeUserStar:(int)value
+{
+    int userStar = 1;
+    if ((value >= 1) && (value < 10)) {
+        userStar = 1;
+    }
+    else if ((value >= 10) && (value < 30)){
+        userStar = 2;
+    }
+    else if ((value >= 30) && (value < 70)){
+        userStar = 3;
+    }
+    else if ((value >= 70) && (value < 150)){
+        userStar = 4;
+    }
+    else if ((value >= 150) && (value < 310)){
+        userStar = 5;
+    }
+    else if ((value >= 310) && (value < 630)){
+        userStar = 6;
+    }
+    else if ((value >= 630) && (value < 1270)){
+        userStar = 7;
+    }
+    else if ((value >= 1270) && (value < 2550)){
+        userStar = 8;
+    }
+    else if ((value >= 2550) && (value < 5110)){
+        userStar = 9;
+    }
+    else if ((value >= 5110) && (value < 10122)){
+        userStar = 10;
+    }
+    return userStar;
 }
 -(TJMyPhotoCell *)getPhotoCell
 {
@@ -186,7 +222,8 @@
             cell = [[TJValueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [[(TJValueCell *)cell likeNumLabel]setText:[NSString stringWithFormat:@"%d",theUser.heartNum]];
+        [(TJValueCell *)cell setLikeNumber:theUser.heartNum];
+        [(TJValueCell *)cell setTheUserStar:theUser.userStar];
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellFive"];
         if (!cell) {

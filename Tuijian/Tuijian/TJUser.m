@@ -11,7 +11,7 @@
 @implementation TJUser
 @synthesize myUserId ,accessToken;
 @synthesize name = _name ,gender = _gender, profile_image_url = _profile_image_url;
-@synthesize mood ,photosArray ,photosIdArray ,heartNum ,charmValue;
+@synthesize mood ,photosArray ,photosIdArray ,heartNum ,charmValue ,userStar;
 
 -(id)init
 {
