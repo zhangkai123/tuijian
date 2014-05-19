@@ -43,6 +43,14 @@
 {
     return [[TJDiskCacheManager sharedDiskCacheManager]getUserLoginMask];
 }
+-(void)saveUserEnterAppDate:(NSDate *)theDate
+{
+    [[TJDiskCacheManager sharedDiskCacheManager]saveUserEnterAppDate:theDate];
+}
+-(NSDate *)getUserLastEnterAppDate
+{
+    return [[TJDiskCacheManager sharedDiskCacheManager]getUserLastEnterAppDate];
+}
 -(void)saveTencentLoginInfo:(TencentOAuth *)tencentOAuth
 {
     [[TJDiskCacheManager sharedDiskCacheManager]saveTencentLoginInfo:tencentOAuth];
@@ -357,6 +365,20 @@
         }
     }failure:^(NSError *error){
         failure(error);
+    }];
+}
+-(void)getUserStatus:(NSString *)usercpFlag success:(void (^)(BOOL reported))success failure:(void (^)(NSError *error))failure
+{
+    NSString *myOwnUserId = [self getMyUserId];
+    [[TJNetworkManager sharedNetworkManager]getUserStatus:myOwnUserId usercpFlag:usercpFlag success:^(id json){
+        NSString *userStatus = [json objectForKey:@"status"];
+        if ([userStatus intValue] == 1) {
+            success(YES);
+        }else{
+            success(NO);
+        }
+    }failure:^(NSError *error){
+        
     }];
 }
 #pragma XMPP Server

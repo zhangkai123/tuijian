@@ -26,4 +26,5 @@
 -(void)updateMoodInformation:(NSString *)myUserId moodInfo:(NSString *)moodInfo success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 -(void)removePhotoWithId:(NSString *)myUserId photoId:(NSString *)photoId success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 -(void)sendFeatchUserItemsRequest:(NSString *)ownUid uid:(NSString *)uid success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
+-(void)getUserStatus:(NSString *)ownUid usercpFlag:(NSString *)usercpFlag success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure;
 @end

@@ -305,5 +305,22 @@
     }];
     [operation start];
 }
+-(void)getUserStatus:(NSString *)ownUid usercpFlag:(NSString *)usercpFlag success:(void (^)(id JSON))success failure:(void (^)(NSError *error))failure
+{
+    TJMyServerClient *client = [TJMyServerClient sharedClient];
+    NSString *path = @"GetUserStatus";
+    NSDictionary *paraDic = [NSDictionary dictionaryWithObjectsAndKeys:ownUid,@"uid",usercpFlag,@"usercpFlag", nil];
+    NSURLRequest *request = [client requestWithMethod:@"GET" path:path parameters:paraDic];
+    
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        
+        success(JSON);
+    }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        failure(error);
+    }];
+    [operation start];
+}
 
 @end

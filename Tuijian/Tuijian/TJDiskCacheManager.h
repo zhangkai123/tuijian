@@ -16,6 +16,8 @@
 
 +(id)sharedDiskCacheManager;
 
+-(void)saveUserEnterAppDate:(NSDate *)theDate;
+-(NSDate *)getUserLastEnterAppDate;
 -(BOOL)getUserLoginMask;
 -(void)saveTencentLoginInfo:(TencentOAuth *)tencentOAuth;
 -(NSDictionary *)getTencentLoginInfo;

@@ -27,6 +27,8 @@
 
 +(id)sharedDataController;
 
+-(void)saveUserEnterAppDate:(NSDate *)theDate;
+-(NSDate *)getUserLastEnterAppDate;
 -(BOOL)getUserLoginMask;
 -(void)setUserLoginMask:(BOOL)hasLogin;
 -(NSString *)getMyUserId;
@@ -55,6 +57,7 @@
 -(void)updateMoodInformation:(NSString *)moodInfor success:(void (^)(BOOL updated))success failure:(void (^)(NSError *error))failure;
 -(void)removePhotoWithId:(NSString *)photoId success:(void (^)(BOOL updated))success failure:(void (^)(NSError *error))failure;
 -(void)reportUser:(NSString *)reportedId reportedPhoto:(UIImage *)reportedPhoto reportText:(NSString *)reportText success:(void (^)(BOOL succeed))success failure:(void (^)(NSError *error))failure;
+-(void)getUserStatus:(NSString *)usercpFlag success:(void (^)(BOOL reported))success failure:(void (^)(NSError *error))failure;
 
 #pragma XMPP Server
 -(void)connectToXMPPServer:(void (^)(BOOL hasOnline))success;

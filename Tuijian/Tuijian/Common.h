@@ -19,6 +19,8 @@
 #define TJ_SINA_kAppKey         @"2773657914"
 #define TJ_SINA_kRedirectURI    @"https://api.weibo.com/oauth2/default.html"
 
+#define TJ_USER_STATUS_CHECK_DATE @"user_status_check_date"
+
 #define TJ_USER_HAVE_LOGIN @"user_have_login"
 
 //tencent user info

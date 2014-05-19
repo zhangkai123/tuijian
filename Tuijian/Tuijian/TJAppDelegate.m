@@ -141,6 +141,50 @@
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(connectToXMPPServer) name:TJ_CONNECT_XMPP_NOTIFICATION object:nil];
     }
 //    [[NSNotificationCenter defaultCenter]postNotificationName:TJ_APP_ACTIVE_UPDATE_ALL_DATA object:nil];
+    if (![[TJDataController sharedDataController]getUserLoginMask]) {
+        return;
+    }
+    NSDate *userLastEnterAppDate = [[TJDataController sharedDataController]getUserLastEnterAppDate];
+    if (userLastEnterAppDate == nil) {
+        NSDate* now = [NSDate date];
+        [[TJDataController sharedDataController]saveUserEnterAppDate:now];
+    }else{
+        NSDate* now = [NSDate date];
+        int diffDays = [self daysBetweenDate:userLastEnterAppDate andDate:now];
+        if (diffDays > 0) {
+            [[TJDataController sharedDataController]saveUserEnterAppDate:now];
+            [[TJDataController sharedDataController]getUserStatus:@"yes" success:^(BOOL reported){
+                if (!reported) {
+                    [self logoutToShowLoginPage];
+                }
+            }failure:^(NSError *error){
+            }];
+        }else{
+            [[TJDataController sharedDataController]getUserStatus:@"no" success:^(BOOL reported){
+                if (!reported) {
+                    [self logoutToShowLoginPage];
+                }
+            }failure:^(NSError *error){
+            }];
+        }
+    }
+}
+- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
+{
+    NSDate *fromDate;
+    NSDate *toDate;
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate
+                 interval:NULL forDate:fromDateTime];
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDate
+                 interval:NULL forDate:toDateTime];
+    
+    NSDateComponents *difference = [calendar components:NSDayCalendarUnit
+                                               fromDate:fromDate toDate:toDate options:0];
+    
+    return [difference day];
 }
 -(void)connectToXMPPServer
 {

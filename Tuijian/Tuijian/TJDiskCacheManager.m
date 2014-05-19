@@ -25,6 +25,18 @@
     }
     return self;
 }
+-(void)saveUserEnterAppDate:(NSDate *)theDate
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:theDate forKey:TJ_USER_STATUS_CHECK_DATE];
+    [userDefaults synchronize];
+}
+-(NSDate *)getUserLastEnterAppDate
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDate *lastCheckDate = [userDefaults objectForKey:TJ_USER_STATUS_CHECK_DATE];
+    return lastCheckDate;
+}
 -(BOOL)getUserLoginMask
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
